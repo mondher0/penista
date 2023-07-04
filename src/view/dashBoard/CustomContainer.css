@@ -38,3 +38,8 @@ line-height: 20px;
     width: 370px;
   }
 }
+@media screen and (min-width: 1800px) and (max-width:1950px){
+    .custom-container {
+      width: 600px
+    }
+}

@@ -27,7 +27,6 @@
   gap: 20px;
   margin-top: 20px;
   align-items: center;
-  justify-content: center;
 }
 .container .performance .performance-container {
   background: #ffffff;
@@ -54,3 +53,13 @@
     gap: 10px;
   }
 }
+@media screen and (min-width: 1800px) and (max-width:1950px){
+  .container .performance .custom {
+    gap: 70px;
+  }
+
+  @media screen and (min-width: 1500px) and (max-width:1799px){
+    .container .performance .custom {
+      gap: 63px;
+    }
+  }}
