@@ -1,8 +1,10 @@
 .admin-container {
   display: flex;
   flex-direction: row;
- 
   justify-content: flex-start;
-  margin: 0;
 
+  width: 100;
+}
+.admin-content {
+  width: 100%;
 }

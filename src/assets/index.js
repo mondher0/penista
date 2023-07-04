@@ -11,7 +11,9 @@ import game from "./game.svg";
 import gift from "./gift.svg";
 import ball from "./ball.svg";
 import logout from "./logout.svg";
-
+import search from "./search.svg";
+import actifNotification from "./actif-notification.svg";
+import avatar from "./avatare.png";
 export {
   logo,
   dashboard,
@@ -26,4 +28,7 @@ export {
   gift,
   ball,
   logout,
+  search,
+  actifNotification,
+  avatar,
 };

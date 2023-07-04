@@ -13,7 +13,7 @@ import {
   gift,
   ball,
   logout,
-} from "../../assets/index";
+} from "../../../assets/index";
 
 const SideBar = () => {
   return (
@@ -86,7 +86,7 @@ const SideBar = () => {
             <img src={settings} alt="Paramètres" />
             <p>Paramètres</p>
           </div>
-        </li>   
+        </li>
         <li>
           <div className="link logout">
             <img src={logout} alt="Se déconnecter" />
