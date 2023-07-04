@@ -17,21 +17,16 @@ import {
 import { NavLink } from "react-router-dom";
 
 const SideBar = () => {
+  const style = {
+    textDecoration: "none",
+    color: "white",
+  };
+
   return (
     <aside className="sidebar">
       <img src={logo} alt="Logo" />
       <ul className="links">
-        <NavLink
-          to="/"
-          style={{
-            borderRadius: "6px",
-            background: "rgba(255, 255, 255, 0.25)",
-            textDecoration: "none",
-            color: "white",
-            paddingTop: "10px",
-          }}
-        >
-          {" "}
+        <NavLink to="/" activeClassName="active" style={style}>
           <li>
             <div className="link dashboard">
               <img src={dashboard} alt="Dashboard" />
@@ -39,13 +34,14 @@ const SideBar = () => {
             </div>
           </li>
         </NavLink>
-
-        <li>
-          <div className="link produit">
-            <img src={produit} alt="Produit" />
-            <p>Produit</p>
-          </div>
-        </li>
+        <NavLink to="/produit" style={style}>
+          <li>
+            <div className="link produit">
+              <img src={produit} alt="Produit" />
+              <p>Produit</p>
+            </div>
+          </li>
+        </NavLink>
         <li>
           <div className="link commandes">
             <img src={shoppingCart} alt="Commandes" />

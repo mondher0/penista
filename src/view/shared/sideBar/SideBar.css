@@ -23,6 +23,12 @@
   transition: all 0.2s ease-in-out;
   gap: 10px;
 }
+.sidebar .links .link:hover {
+  border-radius: 6px;
+  background-color: rgba(255, 255, 255, 0.25);
+  text-decoration: none;
+  color: white;
+}
 .sidebar .links .link p {
   margin: 10px;
 }
@@ -49,4 +55,10 @@
     margin-bottom: 20px;
     padding: 0;
   }
+}
+.active {
+  border-radius: 6px;
+  background-color: rgba(255, 255, 255, 0.25);
+  text-decoration: none;
+  color: white;
 }
