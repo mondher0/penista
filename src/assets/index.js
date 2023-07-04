@@ -14,6 +14,14 @@ import logout from "./logout.svg";
 import search from "./search.svg";
 import actifNotification from "./actif-notification.svg";
 import avatar from "./avatare.png";
+import user from "./user.svg";
+import reserve from "./reserve.svg";
+import revenue from "./revenue.svg";
+import games from "./games.svg";
+import buy from "./buy.svg";
+import next from "./next.svg";
+import prev from "./prev.svg";
+import tShirt from "./t-shirt.svg"
 export {
   logo,
   dashboard,
@@ -31,4 +39,12 @@ export {
   search,
   actifNotification,
   avatar,
+  user,
+  reserve,
+  revenue,
+  games,
+  buy,
+  next,
+  prev,
+  tShirt
 };

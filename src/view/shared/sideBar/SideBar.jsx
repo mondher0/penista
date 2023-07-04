@@ -14,18 +14,23 @@ import {
   ball,
   logout,
 } from "../../../assets/index";
+import { NavLink } from "react-router-dom";
 
 const SideBar = () => {
   return (
     <aside className="sidebar">
       <img src={logo} alt="Logo" />
       <ul className="links">
-        <li>
-          <div className="link dashboard">
-            <img src={dashboard} alt="Dashboard" />
-            <p>Dashboard</p>
-          </div>
-        </li>
+        <NavLink to="/">
+          {" "}
+          <li>
+            <div className="link dashboard">
+              <img src={dashboard} alt="Dashboard" />
+              <p>Dashboard</p>
+            </div>
+          </li>
+        </NavLink>
+
         <li>
           <div className="link produit">
             <img src={produit} alt="Produit" />
