@@ -63,7 +63,7 @@ const PerformanceChart = () => {
         type: "bar",
         data: chartData,
         options: {
-          responsive: true,
+       
           layout: {
             padding: 8,
           },

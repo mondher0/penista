@@ -21,7 +21,15 @@ const SideBar = () => {
     <aside className="sidebar">
       <img src={logo} alt="Logo" />
       <ul className="links">
-        <NavLink to="/">
+        <NavLink
+          to="/"
+          style={{
+            borderRadius: "6px",
+            background: "rgba(255, 255, 255, 0.25)",
+            textDecoration: "none",
+            color:"white"
+          }}
+        >
           {" "}
           <li>
             <div className="link dashboard">
