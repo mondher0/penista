@@ -27,7 +27,8 @@ const SideBar = () => {
             borderRadius: "6px",
             background: "rgba(255, 255, 255, 0.25)",
             textDecoration: "none",
-            color:"white"
+            color: "white",
+            paddingTop: "10px",
           }}
         >
           {" "}

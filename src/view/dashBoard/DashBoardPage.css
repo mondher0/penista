@@ -53,13 +53,20 @@
     gap: 10px;
   }
 }
-@media screen and (min-width: 1800px) and (max-width:1950px){
+@media screen and (min-width: 1800px) and (max-width:2000px){
   .container .performance .custom {
-    gap: 70px;
+    gap: 65px;
   }
+}
+  @media screen and (min-width: 2000px) and (max-width:3000px){
+    .container .performance .custom {
+      gap: 95px;
+    }
 
   @media screen and (min-width: 1500px) and (max-width:1799px){
     .container .performance .custom {
       gap: 63px;
     }
   }}
+
+  

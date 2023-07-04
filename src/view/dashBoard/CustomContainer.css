@@ -38,8 +38,13 @@ line-height: 20px;
     width: 370px;
   }
 }
-@media screen and (min-width: 1800px) and (max-width:1950px){
+@media screen and (min-width: 1800px) and (max-width:2000px){
     .custom-container {
       width: 600px
+    }
+}
+@media screen and (min-width: 2000px) and (max-width:3000px){
+    .custom-container {
+      width: 900px
     }
 }

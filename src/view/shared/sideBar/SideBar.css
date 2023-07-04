@@ -6,7 +6,7 @@
   background-color: var(--primary-color);
   margin: 0;
   padding: 10px;
-  width: 232px;
+  width: 272px;
   line-height: 1.4;
   height: 100vh;
 }
@@ -40,4 +40,13 @@
 }
 .sidebar .links .logout {
   margin-top: 15px;
+}
+@media screen and (min-width: 1600px) {
+  .sidebar {
+    width: 300px;
+  }
+  .sidebar .links li {
+    margin-bottom: 20px;
+    padding: 0;
+  }
 }

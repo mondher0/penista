@@ -25,7 +25,7 @@ const DashBoardPage = () => {
             img={reserve}
           />
           <StatistiqueContainer
-            title="Utilisateur participant au jeu"
+            title="Participant au jeu"
             number="1000"
             img={games}
           />
