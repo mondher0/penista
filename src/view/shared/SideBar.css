@@ -1,0 +1,42 @@
+.sidebar {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  border-radius: 0px 20px 20px 0px;
+  background-color: var(--primary-color);
+  margin: 0;
+  padding: 10px;
+  width: 232px;
+
+}
+.sidebar .links {
+  list-style: none;
+  display: flex;
+  flex-direction: column;
+  padding: 0;
+}
+.sidebar .links .link {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  transition: all 0.2s ease-in-out;
+  gap: 10px;
+}
+.sidebar .links .link p {
+  margin: 10px;
+}
+.sidebar .links .produit {
+  margin-left: 0px;
+}
+.sidebar .links .produit p {
+  margin-left: 11px;
+}
+.sidebar .links .expectations {
+  margin-left: 2px;
+}
+.sidebar .links .expectations p {
+  margin-left: 11px;
+}
+.sidebar .links .logout {
+  margin-top: 15px;
+}
