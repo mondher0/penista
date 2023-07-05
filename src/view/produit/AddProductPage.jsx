@@ -188,6 +188,7 @@ const AddProductPage = () => {
                   id="valeur"
                   name="valeur"
                   placeholder="Valeur"
+                  value={state.value}
                   onChange={(e) => {
                     dispatch({ type: SET_VALUE, payload: e.target.value });
                     console.log(state);
@@ -198,6 +199,7 @@ const AddProductPage = () => {
                   id="quantité"
                   name="quantité"
                   placeholder="Quantité"
+                  value={state.quantite}
                   onChange={(e) => {
                     dispatch({ type: SET_QUANTITE, payload: e.target.value });
                     console.log(state);
