@@ -43,6 +43,8 @@ export const addProductReducer = (state, action) => {
   if (action.type === SAVE) {
     return {
       ...state,
+      value: "",
+      quantite: "",
       isFinished: false,
       isAdded: true,
       values: state.values.map((value) => {
