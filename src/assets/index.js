@@ -24,6 +24,7 @@ import prev from "./prev.svg";
 import tShirt from "./t-shirt.svg";
 import edite from "./edite.svg";
 import deleteIcon from "./delete.svg";
+import image from "./image.svg";
 export {
   logo,
   dashboard,
@@ -51,4 +52,5 @@ export {
   tShirt,
   edite,
   deleteIcon,
+  image,
 };

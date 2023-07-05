@@ -51,7 +51,7 @@
   .sidebar {
     width: 300px;
   }
-  .sidebar .links li {
+  .sidebar .links .link p {
     margin-bottom: 20px;
     padding: 0;
   }

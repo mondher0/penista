@@ -26,7 +26,7 @@ const SideBar = () => {
     <aside className="sidebar">
       <img src={logo} alt="Logo" />
       <ul className="links">
-        <NavLink to="/" activeClassName="active" style={style}>
+        <NavLink to="/" activeclassname="active" style={style}>
           <li>
             <div className="link dashboard">
               <img src={dashboard} alt="Dashboard" />
