@@ -129,7 +129,7 @@ const AddProductPage = () => {
                             value={value.value}
                           />
                         )}
-                        {state.isAdded === false && (
+                        {value.isAdded === false && (
                           <input
                             className="added-value"
                             value={value.value}

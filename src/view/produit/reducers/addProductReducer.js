@@ -28,7 +28,6 @@ export const addProductReducer = (state, action) => {
       value: "",
       quantite: "",
       isFinished: true,
-      isAdded: true,
       values: [
         ...state.values,
         {
@@ -36,6 +35,7 @@ export const addProductReducer = (state, action) => {
           quantite: action.payload.quantite,
           id: Math.random(),
           disabled: true,
+          isAdded: false,
         },
       ],
     };
@@ -52,6 +52,7 @@ export const addProductReducer = (state, action) => {
           ...value,
           isAddingAfterSaved: true,
           disabled: true,
+          isAdded: true,
         };
       }),
     };
@@ -73,6 +74,7 @@ export const addProductReducer = (state, action) => {
             ...value,
             isAddingAfterSaved: false,
             disabled: false,
+            isAdded: false,
           };
         }
         return value;
