@@ -28,7 +28,7 @@ export const addProductReducer = (state, action) => {
       value: "",
       quantite: "",
       isFinished: true,
-      isAdded: false,
+      isAdded: true,
       values: [
         ...state.values,
         {
