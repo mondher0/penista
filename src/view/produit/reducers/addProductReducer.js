@@ -1,4 +1,13 @@
-import { ADD_VALUE, SET_VALUE, SET_QUANTITE, SAVE } from "./addProductActions";
+import {
+  ADD_VALUE,
+  SET_VALUE,
+  SET_QUANTITE,
+  SAVE,
+  EDIT,
+  DELETE,
+  UPDATE_QUANTITE,
+  UPDATE_VALUE,
+} from "./addProductActions";
 export const addProductReducer = (state, action) => {
   if (action.type === SET_VALUE) {
     return {
@@ -19,13 +28,14 @@ export const addProductReducer = (state, action) => {
       value: action.payload.value,
       quantite: action.payload.quantite,
       isFinished: true,
-      isSaved: false,
+      isAdded: false,
       values: [
         ...state.values,
         {
           value: action.payload.value,
           quantite: action.payload.quantite,
-          isSaved: true,
+          id: Math.random(),
+          disabled: true,
         },
       ],
     };
@@ -33,10 +43,70 @@ export const addProductReducer = (state, action) => {
   if (action.type === SAVE) {
     return {
       ...state,
-      isSaved: true,
       isFinished: false,
-      isAddingAfterSaved :true
+      isAdded: true,
+      values: state.values.map((value) => {
+        return {
+          ...value,
+          isAddingAfterSaved: true,
+          disabled: true,
+        };
+      }),
     };
   }
+  if (action.type === DELETE) {
+    return {
+      ...state,
+      values: state.values.filter((value) => value.value !== action.payload),
+    };
+  }
+  if (action.type === EDIT) {
+    return {
+      ...state,
+      isFinished: true,
+      isAdded: false,
+      values: state.values.map((value) => {
+        if (value.value === action.payload) {
+          return {
+            ...value,
+            isAddingAfterSaved: false,
+            disabled: false,
+          };
+        }
+        return value;
+      }),
+    };
+  }
+  if (action.type === UPDATE_VALUE) {
+    console.log(state);
+    return {
+      ...state,
+      values: state.values.map((value) => {
+        if (value.id === action.payload.id) {
+          return {
+            ...value,
+            value: action.payload.value,
+          };
+        }
+        return value;
+      }),
+    };
+  }
+  if (action.type === UPDATE_QUANTITE) {
+    console.log(state);
+    return {
+      ...state,
+      values: state.values.map((value) => {
+        if (value.id === action.payload.id) {
+          return {
+            ...value,
+            quantite: action.payload.quantite,
+          };
+        }
+        return value;
+      }),
+    };
+  }
+
   return state;
 };

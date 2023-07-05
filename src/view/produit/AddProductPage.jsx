@@ -1,6 +1,6 @@
 import NavBar from "../shared/navBar/NavBar";
 import "./AddProductPage.css";
-import { image } from "../../assets/index";
+import { image, deleteIcon, edite } from "../../assets/index";
 import { useReducer } from "react";
 import { addProductReducer } from "./reducers/addProductReducer";
 import {
@@ -8,14 +8,19 @@ import {
   SET_QUANTITE,
   SET_VALUE,
   SAVE,
+  EDIT,
+  DELETE,
+  UPDATE_VALUE,
+  UPDATE_QUANTITE,
 } from "./reducers/addProductActions";
 const initialState = {
   value: "",
   quantite: "",
   values: [],
-  isSaved: false,
   isFinished: false,
   isAddingAfterSaved: false,
+  desabled: true,
+  isAdded: false,
 };
 const AddProductPage = () => {
   const [state, dispatch] = useReducer(addProductReducer, initialState);
@@ -116,13 +121,63 @@ const AddProductPage = () => {
                     console.log(value);
                     return (
                       <div className="added" key={value.value}>
-                        {state.isAddingAfterSaved && (
-                          <div className="saved-value">{value.value}</div>
+                        {value.isAddingAfterSaved && (
+                          <input
+                            className="saved-value"
+                            type="text"
+                            disabled
+                            value={value.value}
+                          />
                         )}
-                        {!state.isAddingAfterSaved && (
-                          <div className="added-value">{value.value}</div>
+                        {state.isAdded === false && (
+                          <input
+                            className="added-value"
+                            value={value.value}
+                            type="text"
+                            disabled={value.disabled}
+                            onChange={(e) => {
+                              dispatch({
+                                type: UPDATE_VALUE,
+                                payload: {
+                                  id: value.id,
+                                  value: e.target.value,
+                                },
+                              });
+                            }}
+                          />
                         )}
-                        <div className="added-quantite">{value.quantite}</div>
+                        <input
+                          className="added-quantite"
+                          value={value.quantite}
+                          type="text"
+                          disabled={value.disabled}
+                          onChange={(e) => {
+                            dispatch({
+                              type: UPDATE_QUANTITE,
+                              payload: {
+                                id: value.id,
+                                quantite: e.target.value,
+                              },
+                            });
+                          }}
+                        />
+                        {value.isAddingAfterSaved ? (
+                          <img
+                            src={edite}
+                            alt="Modifier"
+                            onClick={() => {
+                              dispatch({ type: EDIT, payload: value.value });
+                            }}
+                          />
+                        ) : (
+                          <img
+                            alt="Supprimer"
+                            src={deleteIcon}
+                            onClick={() => {
+                              dispatch({ type: DELETE, payload: value.value });
+                            }}
+                          />
+                        )}
                       </div>
                     );
                   })
@@ -165,6 +220,7 @@ const AddProductPage = () => {
                   className="add-value"
                   onClick={() => {
                     dispatch({ type: SAVE });
+                    console.log(state);
                   }}
                 >
                   Terminer
