@@ -42,12 +42,14 @@ const SideBar = () => {
             </div>
           </li>
         </NavLink>
-        <li>
-          <div className="link commandes">
-            <img src={shoppingCart} alt="Commandes" />
-            <p>Commandes</p>
-          </div>
-        </li>
+        <NavLink to="/commandes" style={style}>
+          <li>
+            <div className="link commandes">
+              <img src={shoppingCart} alt="Commandes" />
+              <p>Commandes</p>
+            </div>
+          </li>
+        </NavLink>
 
         <li>
           <div className="link users">

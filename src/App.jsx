@@ -4,6 +4,7 @@ import AdminContainer from "./view/shared/adminContainer/AdminContainer";
 import DashBoardPage from "./view/dashBoard/DashBoardPage";
 import ProduitPage from "./view/produit/ProduitPage";
 import AddProductPage from "./view/produit/AddProductPage";
+import CommandesPages from "./view/commandes/CommandesPages";
 
 function App() {
   return (
@@ -13,6 +14,7 @@ function App() {
           <Route index element={<DashBoardPage />} />
           <Route path="/produit" element={<ProduitPage />} />
           <Route path="/ajouter-produit" element={<AddProductPage />} />
+          <Route path="/commandes" element={<CommandesPages />} />
         </Route>
       </Routes>
     </BrowserRouter>

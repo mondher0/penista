@@ -11,7 +11,7 @@ const PopUp = (props) => {
             src={cancel}
             alt="cancel"
             onClick={() => {
-              props.setShowPopUp(false);
+                props.setShowPopUp(false);
             }}
           />
         </div>
