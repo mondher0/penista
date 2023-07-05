@@ -1,0 +1,39 @@
+.product-table {
+  margin-top: 20px;
+  width: 100%;
+  border-radius: 8px 8px 0px 0px;
+  border: 1px solid #eaecf0;
+  background: #f9fafb;
+}
+.product-table thead {
+  border-radius: 8px 8px 0px 0px;
+  border: 1px solid #eaecf0;
+  background: #f9fafb;
+
+}
+.product-table tbody {
+  background-color: white;
+}
+.product-table th {
+  color: #8a92a6;
+  font-size: 16px;
+  font-style: normal;
+  font-weight: 400;
+  line-height: 175%;
+  margin: 0;
+  padding: 10px;
+}
+.product-table td {
+  color: #232d42;
+  font-size: 16px;
+  font-style: normal;
+  font-weight: 400;
+  line-height: 175%;
+  text-align: center;
+}
+@media screen and (max-width: 1400px) {
+  .product-table th {
+    font-size: 14px;
+    padding: 3px;
+  }
+}

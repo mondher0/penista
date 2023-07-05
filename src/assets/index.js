@@ -21,7 +21,9 @@ import games from "./games.svg";
 import buy from "./buy.svg";
 import next from "./next.svg";
 import prev from "./prev.svg";
-import tShirt from "./t-shirt.svg"
+import tShirt from "./t-shirt.svg";
+import edite from "./edite.svg";
+import deleteIcon from "./delete.svg";
 export {
   logo,
   dashboard,
@@ -46,5 +48,7 @@ export {
   buy,
   next,
   prev,
-  tShirt
+  tShirt,
+  edite,
+  deleteIcon,
 };

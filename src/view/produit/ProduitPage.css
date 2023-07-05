@@ -1,0 +1,22 @@
+.container {
+  margin-top: 20px;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+
+  
+}
+.container .title {
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+  align-items: center;
+}
+.container .title .add-product {
+  background-color: var(--primary-color);
+  color: white;
+  border: none;
+  padding: 10px 20px 10px 20px;
+  border-radius: 12px;
+  font-weight: 700;
+}
