@@ -5,6 +5,7 @@ import { useNavigate } from "react-router-dom";
 
 const ProduitPage = () => {
   const navigate = useNavigate();
+
   return (
     <>
       <NavBar title="Produit" />
