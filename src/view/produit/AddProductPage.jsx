@@ -210,6 +210,9 @@ const AddProductPage = () => {
                 type="button"
                 className="add-value"
                 onClick={() => {
+                  if (state.value === "" || state.quantite === "") {
+                    return;
+                  }
                   dispatch({ type: ADD_VALUE, payload: state });
                   console.log(state);
                 }}
@@ -229,6 +232,9 @@ const AddProductPage = () => {
                 </button>
               )}
             </div>
+            <button type="submit" className="add-value submit">
+              Ajouter le produit
+            </button>
           </form>
         </div>
       </div>

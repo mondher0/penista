@@ -152,6 +152,9 @@ label {
   padding: 8px;
   text-align: center;
 }
+.submit {
+  margin-top: 70px;
+}
 @media screen and (max-width: 1800px) {
   .container .form form .media .image,
   .container .form form .consulter .image {
