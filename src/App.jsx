@@ -10,6 +10,7 @@ import UtilisateursPage from "./view/utilisateurs/UtilisateursPage";
 import SingleUtilisateurCommandesPage from "./view/utilisateurs/SingleUtilisateurCommandesPage";
 import DemandeAbonnementPage from "./view/utilisateurs/DemandeAbonnementPage";
 import SingleUtilisateurEventsPage from "./view/utilisateurs/SingleUtilisateurEventsPage";
+import UtilisateursNotificationsPage from "./view/utilisateurs/UtilisateursNotificationsPage";
 
 function App() {
   return (
@@ -30,7 +31,14 @@ function App() {
             path="/utilisateurs/demande-abonnement"
             element={<DemandeAbonnementPage />}
           />
-          <Route path="/utilisateurs/evenements/:id" element={<SingleUtilisateurEventsPage/>}/>
+          <Route
+            path="/utilisateurs/evenements/:id"
+            element={<SingleUtilisateurEventsPage />}
+          />
+          <Route
+            path="/utilisateurs/notifications"
+            element={<UtilisateursNotificationsPage />}
+          />
         </Route>
       </Routes>
     </BrowserRouter>

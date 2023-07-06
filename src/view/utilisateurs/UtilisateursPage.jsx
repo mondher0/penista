@@ -17,7 +17,12 @@ const UtilisateursPage = () => {
             >
               Demandes d’abonnement
             </button>
-            <button className="add-product">Envoyer des notifications</button>
+            <button
+              className="add-product"
+              onClick={() => navigate("/utilisateurs/notifications")}
+            >
+              Envoyer des notifications
+            </button>
           </div>
         </div>
         <UtilisateursTable />

@@ -1,0 +1,2 @@
+adding notification pop up
+adding effacer button in the notifiation page of users
