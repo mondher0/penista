@@ -5,6 +5,7 @@ import DashBoardPage from "./view/dashBoard/DashBoardPage";
 import ProduitPage from "./view/produit/ProduitPage";
 import AddProductPage from "./view/produit/AddProductPage";
 import CommandesPages from "./view/commandes/CommandesPages";
+import SingleCommandePage from "./view/commandes/SingleCommandePage";
 
 function App() {
   return (
@@ -15,6 +16,7 @@ function App() {
           <Route path="/produit" element={<ProduitPage />} />
           <Route path="/ajouter-produit" element={<AddProductPage />} />
           <Route path="/commandes" element={<CommandesPages />} />
+          <Route path="/commandes/:id" element={<SingleCommandePage />} />
         </Route>
       </Routes>
     </BrowserRouter>

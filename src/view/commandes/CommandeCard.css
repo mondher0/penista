@@ -1,0 +1,44 @@
+.commande-card {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  justify-content: flex-start;
+  border-radius: 10px;
+  background: #fff;
+  box-shadow: 0px 4px 20px 2px rgba(0, 0, 0, 0.07);
+  width: 351px;
+}
+.commande-card img {
+  width: 167px;
+  height: 130px;
+  flex-shrink: 0;
+  object-fit: cover;
+  margin-right: 0px;
+  border-radius: 10px 0 0 10px;
+}
+.commande-card .commande-card-content p {
+  margin: 0;
+}
+.commande-card .commande-card-content {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  padding: 10px;
+  width: 50%;
+  gap: 10px;
+  margin: 0;
+}
+.commande-card .commande-card-content div {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  gap: 30px;
+}
+.commande-card .commande-card-content div span {
+  color: #202224;
+  font-size: 14px;
+  font-style: normal;
+  font-weight: 400;
+  line-height: 15.452px;
+}
