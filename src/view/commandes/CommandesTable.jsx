@@ -1,6 +1,8 @@
 import { eye } from "../../assets/index";
 import "./CommandesTable.css";
+import { useNavigate } from "react-router-dom";
 const CommandesTable = () => {
+  const navigate = useNavigate();
   return (
     <table className="product-table">
       <thead>
@@ -41,7 +43,13 @@ const CommandesTable = () => {
             <div className="type">Commande</div>
           </td>
           <td>
-            <img src={eye} alt="Consulter" />
+            <img
+              src={eye}
+              alt="Consulter"
+              onClick={() => {
+                navigate("/commandes/1");
+              }}
+            />
           </td>
         </tr>
         <tr>
@@ -66,7 +74,13 @@ const CommandesTable = () => {
             <div className="type">Commande</div>
           </td>
           <td>
-            <img src={eye} alt="Consulter" />
+            <img
+              src={eye}
+              alt="Consulter"
+              onClick={() => {
+                navigate("/commandes/1");
+              }}
+            />
           </td>
         </tr>
       </tbody>
