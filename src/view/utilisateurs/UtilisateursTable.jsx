@@ -5,7 +5,7 @@ import PopUp from "../shared/popUp/PopUp";
 
 const UtilisateursTable = () => {
   const [showPopUp, setShowPopUp] = useState(false);
-  const [action, setAction] = useState(false);
+  const [action, setAction] = useState();
   return (
     <>
       <table className="product-table">
@@ -44,15 +44,32 @@ const UtilisateursTable = () => {
             <td>32</td>
             <td>40</td>
             <td>
-              <div className="type">
-                <select name="status" id="status">
-                  <option value="actif">Actif</option>
-                  <option value="inactif">Bloquer</option>
-                </select>
+              <div className="action">
+                {action == "4" && (
+                  <div
+                    className="edit"
+                    onClick={() => {
+                      setShowPopUp(true);
+                    }}
+                  >
+                    Bloquer
+                  </div>
+                )}
+                <div className="type">Commande</div>
               </div>
             </td>
             <td>
-              <img src={edite} alt="Consulter" />
+              <img
+                src={edite}
+                alt="Modifier"
+                onClick={() => {
+                  if (action == "4") {
+                    setAction("");
+                  } else {
+                    setAction("4");
+                  }
+                }}
+              />
             </td>
           </tr>
           <tr>
@@ -75,7 +92,7 @@ const UtilisateursTable = () => {
             <td>40</td>
             <td>
               <div className="action">
-                {action && (
+                {action == "5" && (
                   <div
                     className="edit"
                     onClick={() => {
@@ -93,7 +110,11 @@ const UtilisateursTable = () => {
                 src={edite}
                 alt="Modifier"
                 onClick={() => {
-                  setAction(!action);
+                  if (action == "5") {
+                    setAction("");
+                  } else {
+                    setAction("5");
+                  }
                 }}
               />
             </td>
