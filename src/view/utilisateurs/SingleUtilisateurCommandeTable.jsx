@@ -8,7 +8,6 @@ const SingleUtilisateurCommandeTable = () => {
       <thead>
         <tr>
           <th>ID Commande</th>
-          <th>Utilisateur</th>
           <th>Nom complet</th>
           <th>Téléphone</th>
           <th>Wilaya</th>
@@ -23,15 +22,6 @@ const SingleUtilisateurCommandeTable = () => {
       <tbody>
         <tr>
           <td>1</td>
-          <td>
-            <div className="user-details">
-              <img src="https://picsum.photos/200" alt="user" />
-              <div className="user-info">
-                <p>Utilisateur 1</p>
-                <span>mondher@gmail.com</span>
-              </div>
-            </div>
-          </td>
           <td>Mondher Mameri</td>
           <td>0558604705</td>
           <td>Béjaia</td>
@@ -54,15 +44,6 @@ const SingleUtilisateurCommandeTable = () => {
         </tr>
         <tr>
           <td>1</td>
-          <td>
-            <div className="user-details">
-              <img src="https://picsum.photos/200" alt="user" />
-              <div className="user-info">
-                <p>Utilisateur 1</p>
-                <span>mondher@gmail.com</span>
-              </div>
-            </div>
-          </td>
           <td>Mondher Mameri</td>
           <td>0558604705</td>
           <td>Béjaia</td>

@@ -8,7 +8,6 @@ const DemandeAbonnementTable = () => {
         <tr>
           <th>ID Demande</th>
           <th>Utilisateur</th>
-          <th>Téléphone</th>
           <th>Abonnement</th>
           <th>Date de demande</th>
           <th>Paiement</th>
@@ -27,10 +26,9 @@ const DemandeAbonnementTable = () => {
               </div>
             </div>
           </td>
-          <td>0558604705</td>
-          <td>Béjaia</td>
-          <td>Féminin</td>
-          <td>Gratuit</td>
+          <td>Premium</td>
+          <td>11-02-2023</td>
+          <td>Versement</td>
           <td>
             <div className="actions">
               <img src={save} alt="" />
@@ -50,10 +48,9 @@ const DemandeAbonnementTable = () => {
               </div>
             </div>
           </td>
-          <td>0558604705</td>
-          <td>Béjaia</td>
-          <td>Féminin</td>
-          <td>Gratuit</td>
+          <td>Premium</td>
+          <td>11-02-2023</td>
+          <td>Versement</td>
           <td>
             <div className="actions">
               <img src={save} alt="" />
