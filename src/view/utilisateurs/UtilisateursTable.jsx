@@ -44,7 +44,7 @@ const UtilisateursTable = () => {
             <td>Gratuit</td>
             <td>11-02-2023</td>
             <td onClick={() => navigate("/utilisateurs/commandes/1")}>32</td>
-            <td>40</td>
+            <td onClick={() => navigate("/utilisateurs/evenements/1")}>40</td>
             <td>
               <div className="action">
                 {action == "4" && (
@@ -91,7 +91,7 @@ const UtilisateursTable = () => {
             <td>Gratuit</td>
             <td>11-02-2023</td>
             <td onClick={() => navigate("/utilisateurs/commandes/1")}>32</td>
-            <td>40</td>
+            <td onClick={() => navigate("/utilisateurs/evenements/1")}>40</td>
             <td>
               <div className="action">
                 {action == "5" && (
