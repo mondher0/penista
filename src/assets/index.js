@@ -27,6 +27,9 @@ import deleteIcon from "./delete.svg";
 import image from "./image.svg";
 import cancel from "./cancel.svg";
 import eye from "./eye.svg";
+import save from "./save.svg";
+import accept from "./accept.svg";
+import refuse from "./refuse.svg";
 export {
   logo,
   dashboard,
@@ -57,4 +60,7 @@ export {
   image,
   cancel,
   eye,
+  save,
+  accept,
+  refuse,
 };

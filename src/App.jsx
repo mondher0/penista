@@ -8,6 +8,7 @@ import CommandesPages from "./view/commandes/CommandesPages";
 import SingleCommandePage from "./view/commandes/SingleCommandePage";
 import UtilisateursPage from "./view/utilisateurs/UtilisateursPage";
 import SingleUtilisateurCommandesPage from "./view/utilisateurs/SingleUtilisateurCommandesPage";
+import DemandeAbonnementPage from "./view/utilisateurs/DemandeAbonnementPage";
 
 function App() {
   return (
@@ -23,6 +24,10 @@ function App() {
           <Route
             path="/utilisateurs/commandes/:id"
             element={<SingleUtilisateurCommandesPage />}
+          />
+          <Route
+            path="/utilisateurs/demande-abonnement"
+            element={<DemandeAbonnementPage />}
           />
         </Route>
       </Routes>
