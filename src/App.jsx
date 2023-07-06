@@ -7,6 +7,7 @@ import AddProductPage from "./view/produit/AddProductPage";
 import CommandesPages from "./view/commandes/CommandesPages";
 import SingleCommandePage from "./view/commandes/SingleCommandePage";
 import UtilisateursPage from "./view/utilisateurs/UtilisateursPage";
+import SingleUtilisateurCommandesPage from "./view/utilisateurs/SingleUtilisateurCommandesPage";
 
 function App() {
   return (
@@ -19,6 +20,10 @@ function App() {
           <Route path="/commandes" element={<CommandesPages />} />
           <Route path="/commandes/:id" element={<SingleCommandePage />} />
           <Route path="/utilisateurs" element={<UtilisateursPage />} />
+          <Route
+            path="/utilisateurs/commandes/:id"
+            element={<SingleUtilisateurCommandesPage />}
+          />
         </Route>
       </Routes>
     </BrowserRouter>

@@ -2,10 +2,12 @@ import { edite } from "../../assets/index";
 import "./UtilisateursTable.css";
 import { useState } from "react";
 import PopUp from "../shared/popUp/PopUp";
+import { useNavigate } from "react-router-dom";
 
 const UtilisateursTable = () => {
   const [showPopUp, setShowPopUp] = useState(false);
   const [action, setAction] = useState();
+  const navigate = useNavigate();
   return (
     <>
       <table className="product-table">
@@ -41,7 +43,7 @@ const UtilisateursTable = () => {
             <td>Féminin</td>
             <td>Gratuit</td>
             <td>11-02-2023</td>
-            <td>32</td>
+            <td onClick={() => navigate("/utilisateurs/commandes/1")}>32</td>
             <td>40</td>
             <td>
               <div className="action">
@@ -88,7 +90,7 @@ const UtilisateursTable = () => {
             <td>Féminin</td>
             <td>Gratuit</td>
             <td>11-02-2023</td>
-            <td>32</td>
+            <td onClick={() => navigate("/utilisateurs/commandes/1")}>32</td>
             <td>40</td>
             <td>
               <div className="action">
