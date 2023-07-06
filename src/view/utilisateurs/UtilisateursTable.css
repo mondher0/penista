@@ -1,0 +1,27 @@
+.type select {
+  border: none;
+  outline: none;
+  color: var(--primary-color);
+}
+.type select option {
+  color: var(--primary-color);
+}
+.action {
+  position: relative;
+}
+.action .edit {
+  position: absolute;
+  top: 0;
+  left: 0;
+  border: none;
+  outline: none;
+  padding: 0.5rem;
+  border-radius: 0.5rem;
+  cursor: pointer;
+  background-color: white;
+  box-shadow: 0 0 0.5rem rgba(0, 0, 0, 0.2);
+  width: 100px;
+  color: #667085;
+  font-weight: 500;
+  font-size: 17px;
+}

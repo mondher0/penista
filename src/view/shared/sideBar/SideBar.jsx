@@ -50,13 +50,14 @@ const SideBar = () => {
             </div>
           </li>
         </NavLink>
-
-        <li>
-          <div className="link users">
-            <img src={users} alt="Utilisateurs" />
-            <p>Utilisateurs</p>
-          </div>
-        </li>
+        <NavLink to="/utilisateurs" style={style}>
+          <li>
+            <div className="link users">
+              <img src={users} alt="Utilisateurs" />
+              <p>Utilisateurs</p>
+            </div>
+          </li>
+        </NavLink>
         <li>
           <div className="link events">
             <img src={events} alt="Evénements" />

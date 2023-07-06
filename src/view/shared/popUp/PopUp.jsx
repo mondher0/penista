@@ -11,17 +11,19 @@ const PopUp = (props) => {
             src={cancel}
             alt="cancel"
             onClick={() => {
-                props.setShowPopUp(false);
+              props.setShowPopUp(false);
+              props.setAction(false);
             }}
           />
         </div>
         <div className="info">
-          <p>Vous voulez vraiment supprimer ce produit?</p>
+          <p>{props.text}</p>
           <div className="buttons">
             <button
               className="outline annuler"
               onClick={() => {
                 props.setShowPopUp(false);
+                props.setAction(false);
               }}
             >
               Annuler

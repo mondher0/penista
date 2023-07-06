@@ -55,7 +55,13 @@ const ProductTable = () => {
           </tr>
         </tbody>
       </table>
-      {showPopUp && <PopUp setShowPopUp={setShowPopUp} id="4" />}
+      {showPopUp && (
+        <PopUp
+          setShowPopUp={setShowPopUp}
+          text="Vous voulez vraiment supprimer ce produit?"
+          id="4"
+        />
+      )}
     </>
   );
 };
