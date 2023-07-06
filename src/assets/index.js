@@ -26,6 +26,7 @@ import edite from "./edite.svg";
 import deleteIcon from "./delete.svg";
 import image from "./image.svg";
 import cancel from "./cancel.svg";
+import eye from "./eye.svg";
 export {
   logo,
   dashboard,
@@ -55,4 +56,5 @@ export {
   deleteIcon,
   image,
   cancel,
+  eye,
 };

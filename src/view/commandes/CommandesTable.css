@@ -1,0 +1,84 @@
+.product-table {
+  margin-top: 20px;
+  width: 100%;
+  border-radius: 8px 8px 0px 0px;
+  border: 1px solid #eaecf0;
+  background: #f9fafb;
+}
+.product-table thead {
+  border-radius: 8px 8px 0px 0px;
+  border: 1px solid #eaecf0;
+  background: #f9fafb;
+}
+.product-table tbody {
+  background-color: white;
+}
+.product-table th {
+  color: #8a92a6;
+  font-size: 16px;
+  font-style: normal;
+  font-weight: 400;
+  line-height: 175%;
+  margin: 0;
+  padding: 10px;
+}
+.product-table td {
+  color: #232d42;
+  font-size: 16px;
+  font-style: normal;
+  font-weight: 400;
+  line-height: 175%;
+  text-align: center;
+  padding: 10px;
+}
+.user-details {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+.user-details img {
+  width: 40px;
+  height: 40px;
+  border-radius: 50%;
+  margin-right: 10px;
+}
+.user-details .user-info {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  justify-content: center;
+}
+.user-details .user-info span {
+  color: #667085;
+  font-size: 14px;
+  font-style: normal;
+  font-weight: 400;
+  line-height: 175%;
+}
+.type {
+  border-radius: 16px;
+  border: 1px solid #afafaf;
+  color: #afafaf;
+  text-align: center;
+  font-size: 13px;
+  font-weight: 400;
+  line-height: 13px;
+  text-transform: uppercase;
+  padding: 8px;
+}
+@media screen and (max-width: 1400px) {
+  .user-details .user-info p {
+    font-size: 12px;
+  }
+  .user-details .user-info span {
+    font-size: 12px;
+  }
+  .product-table th {
+    font-size: 14px;
+    padding: 3px;
+  }
+  .product-table td {
+    font-size: 12px;
+    padding: 3px;
+  }
+}
