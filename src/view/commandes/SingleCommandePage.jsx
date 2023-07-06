@@ -10,7 +10,7 @@ const SingleCommandePage = () => {
     <>
       <NavBar title="Commandes" />
       <div className="container">
-        <div className="title">
+        <div className="header">
           <p>Tous les commandes</p>
           <img src={next} />
           <p>{id}</p>
