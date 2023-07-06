@@ -32,9 +32,9 @@
   font-weight: 400;
   align-self: stretch;
   width: 130px;
-    justify-content: center;
-    align-items: center;
-    padding: 7px;
+  justify-content: center;
+  align-items: center;
+  padding: 7px;
 }
 .container .filtres .filtre select {
   border: none;
