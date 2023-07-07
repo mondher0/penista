@@ -96,12 +96,14 @@ const SideBar = () => {
             </div>
           </li>
         </NavLink>
-        <li>
-          <div className="link gifts">
-            <img src={gift} alt="Cadeaux" />
-            <p>Cadeaux</p>
-          </div>
-        </li>
+        <NavLink to="/cadeaux" style={style}>
+          <li>
+            <div className="link gifts">
+              <img src={gift} alt="Cadeaux" />
+              <p>Cadeaux</p>
+            </div>
+          </li>
+        </NavLink>
         <li>
           <div className="link settings">
             <img src={settings} alt="Paramètres" />
