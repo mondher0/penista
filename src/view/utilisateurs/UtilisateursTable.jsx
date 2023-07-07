@@ -51,7 +51,7 @@ const UtilisateursTable = () => {
                   <div
                     className="edit"
                     onClick={() => {
-                      setShowPopUp(true);
+                      setShowPopUp("10");
                     }}
                   >
                     Bloquer
@@ -73,15 +73,6 @@ const UtilisateursTable = () => {
                 }}
               />
             </td>
-            {showPopUp && (
-              <PopUp
-                setShowPopUp={setShowPopUp}
-                setAction={setAction}
-                text="Vous voulez vraiment bloquer
-            cet utilisateur?"
-                button="Bloquer"
-              />
-            )}
           </tr>
           <tr>
             <td>1</td>
@@ -107,7 +98,7 @@ const UtilisateursTable = () => {
                   <div
                     className="edit"
                     onClick={() => {
-                      setShowPopUp(true);
+                      setShowPopUp("20202");
                     }}
                   >
                     Bloquer
@@ -129,18 +120,19 @@ const UtilisateursTable = () => {
                 }}
               />
             </td>
-            {showPopUp && (
-              <PopUp
-                setShowPopUp={setShowPopUp}
-                setAction={setAction}
-                text="Vous voulez vraiment bloquer
-            cet utilisateur?"
-                button="Bloquer"
-              />
-            )}
           </tr>
         </tbody>
       </table>
+      {showPopUp && (
+        <PopUp
+          setShowPopUp={setShowPopUp}
+          setAction={setAction}
+          text="Vous voulez vraiment bloquer
+      cet utilisateur?"
+          button="Bloquer"
+          id={showPopUp}
+        />
+      )}
     </>
   );
 };

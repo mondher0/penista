@@ -41,7 +41,7 @@
   display: flex;
   justify-content: center;
   align-items: center;
-  margin-top: 40px;
+  margin-top: 20px;
   gap: 30px;
 }
 .them .them_container .info .buttons .elevated,
@@ -59,9 +59,19 @@
   background: var(--primary-color);
   color: #fff;
   border: none;
+  width: 171px;
+  margin-top: 0px;
 }
 .them .them_container .info .buttons .outline {
   border: 1px solid var(--primary-color);
   background: #fff;
   color: var(--primary-color);
+  
+}
+.points {
+  border-radius: 12px;
+  border: 1px solid #ddd;
+  padding: 8px 8px 8px 15px;
+  margin-top: 20px;
+  outline: none;
 }

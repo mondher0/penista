@@ -4,7 +4,7 @@ import { useState } from "react";
 import PopUp from "../shared/popUp/PopUp";
 
 const ProductTable = () => {
-  const [showPopUp, setShowPopUp] = useState(false);
+  const [showPopUp, setShowPopUp] = useState("");
   return (
     <>
       <table className="product-table">
@@ -34,19 +34,11 @@ const ProductTable = () => {
                 src={deleteIcon}
                 alt="Supprimer"
                 onClick={() => {
-                  setShowPopUp(true);
+                  setShowPopUp("3");
                 }}
               />
               <img src={edite} alt="Modifier" />
             </td>
-            {showPopUp && (
-              <PopUp
-                setShowPopUp={setShowPopUp}
-                text="Vous voulez vraiment supprimer ce produit?"
-                id="4"
-                button="Supprimer"
-              />
-            )}
           </tr>
           <tr>
             <td>1</td>
@@ -60,21 +52,21 @@ const ProductTable = () => {
               <img
                 src={deleteIcon}
                 alt="Supprimer"
-                onClick={() => setShowPopUp(true)}
+                onClick={() => setShowPopUp("4")}
               />
               <img src={edite} alt="Modifier" />
             </td>
-            {showPopUp && (
-              <PopUp
-                setShowPopUp={setShowPopUp}
-                text="Vous voulez vraiment supprimer ce produit?"
-                id="4"
-                button="Supprimer"
-              />
-            )}
           </tr>
         </tbody>
       </table>
+      {showPopUp && (
+        <PopUp
+          setShowPopUp={setShowPopUp}
+          text="Vous voulez vraiment supprimer ce produit?"
+          id={showPopUp}
+          button="Supprimer"
+        />
+      )}
     </>
   );
 };

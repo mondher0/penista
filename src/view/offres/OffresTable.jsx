@@ -33,18 +33,10 @@ const OffresTable = () => {
               <img
                 src={deleteIcon}
                 alt="Supprimer"
-                onClick={() => setShowPopUp(true)}
+                onClick={() => setShowPopUp("1")}
               />
               <img src={edite} alt="Modifier" />
             </td>
-            {showPopUp && (
-              <PopUp
-                setShowPopUp={setShowPopUp}
-                text="Vous voulez vraiment supprimer cette offre?"
-                id="4"
-                button="Supprimer"
-              />
-            )}
           </tr>
           <tr>
             <td>1</td>
@@ -59,21 +51,21 @@ const OffresTable = () => {
               <img
                 src={deleteIcon}
                 alt="Supprimer"
-                onClick={() => setShowPopUp(true)}
+                onClick={() => setShowPopUp("2")}
               />
               <img src={edite} alt="Modifier" />
             </td>
-            {showPopUp && (
-              <PopUp
-                setShowPopUp={setShowPopUp}
-                text="Vous voulez vraiment supprimer cette offre?"
-                id="4"
-                button="Supprimer"
-              />
-            )}
           </tr>
         </tbody>
       </table>
+      {showPopUp && (
+        <PopUp
+          setShowPopUp={setShowPopUp}
+          text="Vous voulez vraiment supprimer cette offre?"
+          button="Supprimer"
+          id={showPopUp}
+        />
+      )}
     </>
   );
 };

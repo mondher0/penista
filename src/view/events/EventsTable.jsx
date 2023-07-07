@@ -45,24 +45,10 @@ const EventsTable = () => {
             <td>
               <div className="actions">
                 <img src={save} alt="" />
-                <img src={accept} alt="" onClick={() => setShowPopUp1(true)} />
-                <img src={refuse} alt="" onClick={() => setShowPopUp2(true)} />
+                <img src={accept} alt="" onClick={() => setShowPopUp1("10")} />
+                <img src={refuse} alt="" onClick={() => setShowPopUp2("10")} />
               </div>
             </td>
-            {showPopUp1 && (
-              <PopUp
-                text="Vous voulez vraiment accepter cette réservation?"
-                setShowPopUp={setShowPopUp1}
-                button="Accepter"
-              />
-            )}
-            {showPopUp2 && (
-              <PopUp
-                text="Vous voulez vraiment refuser cette réservation?"
-                setShowPopUp={setShowPopUp2}
-                button="Refuser"
-              />
-            )}
           </tr>
           <tr>
             <td>1</td>
@@ -85,27 +71,29 @@ const EventsTable = () => {
             <td>
               <div className="actions">
                 <img src={save} alt="" />
-                <img src={accept} alt="" onClick={() => setShowPopUp1(true)} />
-                <img src={refuse} alt="" onClick={() => setShowPopUp2(true)} />
+                <img src={accept} alt="" onClick={() => setShowPopUp1("11")} />
+                <img src={refuse} alt="" onClick={() => setShowPopUp2("11")} />
               </div>
             </td>
-            {showPopUp1 && (
-              <PopUp
-                text="Vous voulez vraiment accepter cette réservation?"
-                setShowPopUp={setShowPopUp1}
-                button="Accepter"
-              />
-            )}
-            {showPopUp2 && (
-              <PopUp
-                text="Vous voulez vraiment refuser cette réservation?"
-                setShowPopUp={setShowPopUp2}
-                button="Refuser"
-              />
-            )}
           </tr>
         </tbody>
       </table>
+      {showPopUp1 && (
+        <PopUp
+          text="Vous voulez vraiment accepter cette réservation?"
+          setShowPopUp={setShowPopUp1}
+          button="Accepter"
+          id={showPopUp1}
+        />
+      )}
+      {showPopUp2 && (
+        <PopUp
+          text="Vous voulez vraiment refuser cette réservation?"
+          setShowPopUp={setShowPopUp2}
+          button="Refuser"
+          id={showPopUp2}
+        />
+      )}
     </>
   );
 };
