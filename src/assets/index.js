@@ -30,6 +30,7 @@ import eye from "./eye.svg";
 import save from "./save.svg";
 import accept from "./accept.svg";
 import refuse from "./refuse.svg";
+import lien from "./lien.svg";
 export {
   logo,
   dashboard,
@@ -63,4 +64,5 @@ export {
   save,
   accept,
   refuse,
+  lien,
 };

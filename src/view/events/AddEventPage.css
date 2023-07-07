@@ -1,0 +1,31 @@
+select,
+option {
+  border-radius: 12px;
+  border: 1px solid #ddd;
+  outline: none;
+  padding: 8px 80px 8px 10px ;
+  color: #7c7c7c;
+
+}
+label {
+  margin: 0;
+}
+.url {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  width: 100%;
+  border-radius: 12px;
+  border: 1px solid #ddd;
+  outline: none;
+  color: #7c7c7c;
+  margin-right: 410px;
+
+}
+.url input {
+  border: none !important;
+  outline: none;
+}
+.url img {
+    margin-right: 10px;
+}

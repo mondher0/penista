@@ -13,6 +13,7 @@ import SingleUtilisateurEventsPage from "./view/utilisateurs/SingleUtilisateurEv
 import UtilisateursNotificationsPage from "./view/utilisateurs/UtilisateursNotificationsPage";
 import EventsPage from "./view/events/EventsPage";
 import MyEventsPage from "./view/events/MyEventsPage";
+import AddEventPage from "./view/events/AddEventPage";
 
 function App() {
   return (
@@ -43,6 +44,10 @@ function App() {
           />
           <Route path="/evenements" element={<EventsPage />} />
           <Route path="/evenements/mes-evenements" element={<MyEventsPage />} />
+          <Route
+            path="/evenements/ajouter-evenement"
+            element={<AddEventPage />}
+          />
         </Route>
       </Routes>
     </BrowserRouter>
