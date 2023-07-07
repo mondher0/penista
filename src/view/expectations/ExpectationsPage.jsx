@@ -26,7 +26,9 @@ const ExpectationsPage = () => {
                   <input type="date" placeholder="Ecrivez..." />
                 </div>
               </div>
-              <button type="submit" className="add-product">Filtrer</button>
+              <button type="submit" className="add-product">
+                Filtrer
+              </button>
             </form>
           </div>
         </div>
