@@ -4,7 +4,9 @@ import { image } from "../../assets/index";
 import "../events/AddEventPage.css";
 import SettingsImageTable from "./SettingsImageTable";
 import SettingsPageTable from "./SettingsPageTable";
+import { useNavigate } from "react-router-dom";
 const AddEventPage = () => {
+  const navigate = useNavigate();
   return (
     <>
       <NavBar title="Paramètres" />
@@ -74,7 +76,12 @@ const AddEventPage = () => {
         </div>
         <div className="title">
           <p>Sliders et publicités</p>
-          <button className="add-product">Ajouter une image</button>
+          <button
+            className="add-product"
+            onClick={() => navigate("/parametres/ajouter-image")}
+          >
+            Ajouter une image
+          </button>
         </div>
         <SettingsImageTable />
         <p>Page</p>

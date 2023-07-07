@@ -23,6 +23,7 @@ import AddTicketPage from "./view/tickets/AddTicketPage";
 import CadeauxPage from "./view/cadeaux/CadeauxPage";
 import SettingsPage from "./view/settings/SettingsPage";
 import EditSettingsPage from "./view/settings/EditSettingsPage";
+import SettingsAddImagePage from "./view/settings/SettingsAddImagePage";
 
 function App() {
   return (
@@ -68,6 +69,10 @@ function App() {
           <Route
             path="/parametres/:id/modifier"
             element={<EditSettingsPage />}
+          />
+          <Route
+            path="/parametres/ajouter-image"
+            element={<SettingsAddImagePage />}
           />
         </Route>
       </Routes>
