@@ -1,4 +1,5 @@
 adding notification pop up
 adding effacer button in the notifiation page of users
 editing in the produit page it redirect to the same page as add produit
-editing in the produit page it redirect to the same page as add event
+editing in the My events page it redirect to the same page as add event
+editing in the offre page it redirect to the same page as add offre
