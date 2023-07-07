@@ -31,6 +31,8 @@ import save from "./save.svg";
 import accept from "./accept.svg";
 import refuse from "./refuse.svg";
 import lien from "./lien.svg";
+import pub from "./pub.svg";
+import pause from "./pause.svg";
 export {
   logo,
   dashboard,
@@ -65,4 +67,6 @@ export {
   accept,
   refuse,
   lien,
+  pub,
+  pause,
 };

@@ -22,6 +22,7 @@ import TicketsMatchePage from "./view/tickets/TicketsMatchePage";
 import AddTicketPage from "./view/tickets/AddTicketPage";
 import CadeauxPage from "./view/cadeaux/CadeauxPage";
 import SettingsPage from "./view/settings/SettingsPage";
+import EditSettingsPage from "./view/settings/EditSettingsPage";
 
 function App() {
   return (
@@ -64,6 +65,10 @@ function App() {
           <Route path="/tiquet/ajouter-tiquet" element={<AddTicketPage />} />
           <Route path="/cadeaux" element={<CadeauxPage />} />
           <Route path="/parametres" element={<SettingsPage />} />
+          <Route
+            path="/parametres/:id/modifier"
+            element={<EditSettingsPage />}
+          />
         </Route>
       </Routes>
     </BrowserRouter>
