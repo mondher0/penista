@@ -72,14 +72,25 @@ const AddEventPage = () => {
                 <input type="text" id="premium-box" name="premium-box" />
               </div>
             </div>
-            <div className="input option-name">
-              <label htmlFor="option-name">Nombre de tiquets Max</label>
-              <input
-                type="number"
-                id="option-name"
-                name="option-name"
-                placeholder="Nombre de tiquets Max"
-              />
+            <div className="tickets">
+              <div className="ticket">
+                <label htmlFor="option-name">Nombre de tiquets Max</label>
+                <input
+                  type="number"
+                  id="option-name"
+                  name="option-name"
+                  placeholder="Nombre de tiquets Max"
+                />
+              </div>
+              <div className="ticket">
+                <label htmlFor="option-name">Nombre de tiquets Min</label>
+                <input
+                  type="number"
+                  id="option-name"
+                  name="option-name"
+                  placeholder="Nombre de tiquets Max"
+                />
+              </div>
             </div>
             <div className="input option-name">
               <label htmlFor="option-name">Type de réservation</label>

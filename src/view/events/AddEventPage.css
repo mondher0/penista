@@ -29,3 +29,19 @@ label {
 .url img {
     margin-right: 10px;
 }
+.tickets {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  width: 80%;
+  outline: none;
+  color: #7c7c7c;
+  margin-right: 410px;
+
+}
+.tickets .ticket {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+
+}
