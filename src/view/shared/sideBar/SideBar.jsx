@@ -72,12 +72,14 @@ const SideBar = () => {
             <p>Partenaire</p>
           </div>
         </li>
-        <li>
-          <div className="link offres">
-            <img src={offres} alt="Offres" />
-            <p>Offres</p>
-          </div>
-        </li>
+        <NavLink to="/offres" style={style}>
+          <li>
+            <div className="link offres">
+              <img src={offres} alt="Offres" />
+              <p>Offres</p>
+            </div>
+          </li>
+        </NavLink>
         <li>
           <div className="link expectations">
             <img src={game} alt="Expectations" />
