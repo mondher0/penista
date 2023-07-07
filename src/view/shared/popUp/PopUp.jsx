@@ -28,7 +28,7 @@ const PopUp = (props) => {
             >
               Annuler
             </button>
-            <button className="elevated Supprimer">Supprimer</button>
+            <button className="elevated Supprimer">{props.button}</button>
           </div>
         </div>
       </div>

@@ -1,8 +1,11 @@
 import { save, accept, refuse } from "../../assets/index";
 import "../utilisateurs/DemandeAbonnementTable.css";
-import PopUp from "../shared/popUp/PopUp"
+import PopUp from "../shared/popUp/PopUp";
+import { useState } from "react";
 
 const EventsTable = () => {
+  const [showPopUp1, setShowPopUp1] = useState(false);
+  const [showPopUp2, setShowPopUp2] = useState(false);
   return (
     <>
       <table className="product-table">
@@ -42,10 +45,24 @@ const EventsTable = () => {
             <td>
               <div className="actions">
                 <img src={save} alt="" />
-                <img src={accept} alt="" />
-                <img src={refuse} alt="" />
+                <img src={accept} alt="" onClick={() => setShowPopUp1(true)} />
+                <img src={refuse} alt="" onClick={() => setShowPopUp2(true)} />
               </div>
             </td>
+            {showPopUp1 && (
+              <PopUp
+                text="Vous voulez vraiment accepter cette réservation?"
+                setShowPopUp={setShowPopUp1}
+                button="Accepter"
+              />
+            )}
+            {showPopUp2 && (
+              <PopUp
+                text="Vous voulez vraiment refuser cette réservation?"
+                setShowPopUp={setShowPopUp2}
+                button="Refuser"
+              />
+            )}
           </tr>
           <tr>
             <td>1</td>
@@ -68,14 +85,27 @@ const EventsTable = () => {
             <td>
               <div className="actions">
                 <img src={save} alt="" />
-                <img src={accept} alt="" />
-                <img src={refuse} alt="" />
+                <img src={accept} alt="" onClick={() => setShowPopUp1(true)} />
+                <img src={refuse} alt="" onClick={() => setShowPopUp2(true)} />
               </div>
             </td>
+            {showPopUp1 && (
+              <PopUp
+                text="Vous voulez vraiment accepter cette réservation?"
+                setShowPopUp={setShowPopUp1}
+                button="Accepter"
+              />
+            )}
+            {showPopUp2 && (
+              <PopUp
+                text="Vous voulez vraiment refuser cette réservation?"
+                setShowPopUp={setShowPopUp2}
+                button="Refuser"
+              />
+            )}
           </tr>
         </tbody>
       </table>
-      <PopUp text="" />
     </>
   );
 };

@@ -73,6 +73,15 @@ const UtilisateursTable = () => {
                 }}
               />
             </td>
+            {showPopUp && (
+              <PopUp
+                setShowPopUp={setShowPopUp}
+                setAction={setAction}
+                text="Vous voulez vraiment bloquer
+            cet utilisateur?"
+                button="Bloquer"
+              />
+            )}
           </tr>
           <tr>
             <td>1</td>
@@ -120,18 +129,18 @@ const UtilisateursTable = () => {
                 }}
               />
             </td>
+            {showPopUp && (
+              <PopUp
+                setShowPopUp={setShowPopUp}
+                setAction={setAction}
+                text="Vous voulez vraiment bloquer
+            cet utilisateur?"
+                button="Bloquer"
+              />
+            )}
           </tr>
         </tbody>
       </table>
-      {showPopUp && (
-        <PopUp
-          setShowPopUp={setShowPopUp}
-          setAction={setAction}
-          text="Vous voulez vraiment bloquer
-      cet utilisateur?"
-          id="4"
-        />
-      )}
     </>
   );
 };
