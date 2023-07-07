@@ -1,5 +1,6 @@
 import NavBar from "../shared/navBar/NavBar";
 import "./ExpectationsPage.css";
+import ExpectationsTable from "./ExpectationsTable";
 
 const ExpectationsPage = () => {
   return (
@@ -15,6 +16,9 @@ const ExpectationsPage = () => {
                   <div>Etat</div>
                   <select name="abonnement" id="abonnement">
                     <option value="">Choisir</option>
+                    <option value="1">Nul</option>
+                    <option value="2">Victoire</option>
+                    <option value="3">Défaite</option>
                   </select>
                 </div>
                 <div className="element">
@@ -32,6 +36,7 @@ const ExpectationsPage = () => {
             </form>
           </div>
         </div>
+        <ExpectationsTable />
       </div>
     </>
   );
