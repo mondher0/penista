@@ -6,7 +6,7 @@ const ExpectationsPage = () => {
     <>
       <NavBar title="Expectations" />
       <div className="container">
-        <div className="title">
+        <div className="title row">
           <p>Toutes les expectations</p>
           <div>
             <form>

@@ -1,18 +1,19 @@
-.container .title {
+.container .row {
   align-items: center;
 }
-.container .title div {
+.container .row div {
   display: flex;
   flex-direction: row;
   align-items: center;
   gap: 10px;
 }
-.container .title div form {
+.container .row div form {
   display: flex;
   flex-direction: row;
+  align-items: center;
   gap: 10px;
 }
-.container .title div form .search .element {
+.container .row div form .search .element {
   display: flex;
   align-items: flex-start;
   align-self: stretch;
@@ -21,7 +22,7 @@
   border: 1px solid #d9d9d9;
   background: #fff;
 }
-.container .title div form .search .element div {
+.container .row div form .search .element div {
   display: flex;
   padding: 5px 12px;
   align-items: center;
@@ -31,7 +32,7 @@
   background: #fafafa;
   color: #595959;
 }
-.container .title div form .search .element input {
+.container .row div form .search .element input {
   border: none;
   outline: none;
   font-size: 17px;
@@ -42,12 +43,12 @@ select {
   border: none;
 }
 @media screen and (max-width: 1400px) {
-  .container .title {
+  .container .row {
     flex-direction: column;
     align-items: flex-start;
     gap: 10px;
   }
-  .container .title div form .search .element div {
+  .container .row div form .search .element div {
     font-size: 13px;
   }
 }
