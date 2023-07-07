@@ -19,6 +19,7 @@ import AddOffrePage from "./view/offres/AddOffrePage";
 import ExpectationsPage from "./view/expectations/ExpectationsPage";
 import TicketsPage from "./view/tickets/TicketsPage";
 import TicketsMatchePage from "./view/tickets/TicketsMatchePage";
+import AddTicketPage from "./view/tickets/AddTicketPage";
 
 function App() {
   return (
@@ -58,6 +59,7 @@ function App() {
           <Route path="/expectations" element={<ExpectationsPage />} />
           <Route path="/tiquet" element={<TicketsPage />} />
           <Route path="/tiquet/mes-tiquets" element={<TicketsMatchePage />} />
+          <Route path="/tiquet/ajouter-tiquet" element={<AddTicketPage />} />
         </Route>
       </Routes>
     </BrowserRouter>
