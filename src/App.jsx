@@ -12,6 +12,7 @@ import DemandeAbonnementPage from "./view/utilisateurs/DemandeAbonnementPage";
 import SingleUtilisateurEventsPage from "./view/utilisateurs/SingleUtilisateurEventsPage";
 import UtilisateursNotificationsPage from "./view/utilisateurs/UtilisateursNotificationsPage";
 import EventsPage from "./view/events/EventsPage";
+import MyEventsPage from "./view/events/MyEventsPage";
 
 function App() {
   return (
@@ -20,7 +21,7 @@ function App() {
         <Route path="/" element={<AdminContainer />}>
           <Route index element={<DashBoardPage />} />
           <Route path="/produit" element={<ProduitPage />} />
-          <Route path="/ajouter-produit" element={<AddProductPage />} />
+          <Route path="/produit/ajouter-produit" element={<AddProductPage />} />
           <Route path="/commandes" element={<CommandesPages />} />
           <Route path="/commandes/:id" element={<SingleCommandePage />} />
           <Route path="/utilisateurs" element={<UtilisateursPage />} />
@@ -41,6 +42,7 @@ function App() {
             element={<UtilisateursNotificationsPage />}
           />
           <Route path="/evenements" element={<EventsPage />} />
+          <Route path="/evenements/mes-evenements" element={<MyEventsPage />} />
         </Route>
       </Routes>
     </BrowserRouter>

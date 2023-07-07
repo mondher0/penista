@@ -14,7 +14,7 @@ const ProduitPage = () => {
           <p>Vos Produit</p>
           <button
             className="add-product"
-            onClick={() => navigate("/ajouter-produit")}
+            onClick={() => navigate("/produit/ajouter-produit")}
           >
             Ajouter Produit
           </button>
