@@ -75,11 +75,11 @@ const AddEventPage = () => {
             <div className="input prix">
               <div className="price gratuit ticket">
                 <label htmlFor="gratuit">Nombre de tiquets Min</label>
-                <input type="text" id="gratuit" name="gratuit" />
+                <input type="number" id="gratuit" name="gratuit" />
               </div>
               <div className="price premium ticket">
                 <label htmlFor="premium">Nombre de tiquets Max</label>
-                <input type="text" id="premium" name="premium" />
+                <input type="number" id="premium" name="premium" />
               </div>
             </div>
             <div className="input option-name">
