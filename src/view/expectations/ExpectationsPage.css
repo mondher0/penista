@@ -1,0 +1,53 @@
+.container .title {
+  align-items: center;
+}
+.container .title div {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  gap: 10px;
+}
+.container .title div form {
+    display: flex;
+    flex-direction: row;
+    gap: 10px;
+}
+.container .title div form .search .element {
+  display: flex;
+  align-items: flex-start;
+  align-self: stretch;
+  align-items: center;
+  border-radius: 12px;
+  border: 1px solid #d9d9d9;
+  background: #fff;
+}
+.container .title div form .search .element div {
+  display: flex;
+  padding: 5px 12px;
+  align-items: center;
+  gap: 4px;
+  align-self: stretch;
+  border-radius: 12px 0px 0px 12px;
+  background: #fafafa;
+  color: #595959;
+}
+.container .title div form .search .element input {
+  border: none;
+  outline: none;
+  font-size: 17px;
+  margin-right: 10px;
+  color: rgba(0, 0, 0, 0.25);
+}
+select {
+    border:none
+}
+@media screen and (max-width:1400px) {
+    .container .title {
+        flex-direction: column;
+        align-items: flex-start;
+        gap: 10px;
+    }
+    .container .title div form .search .element div {
+        font-size: 13px;
+    }
+}

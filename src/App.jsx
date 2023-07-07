@@ -16,6 +16,7 @@ import MyEventsPage from "./view/events/MyEventsPage";
 import AddEventPage from "./view/events/AddEventPage";
 import OffresPage from "./view/offres/OffresPage";
 import AddOffrePage from "./view/offres/AddOffrePage";
+import ExpectationsPage from "./view/expectations/ExpectationsPage";
 
 function App() {
   return (
@@ -52,6 +53,7 @@ function App() {
           />
           <Route path="/offres" element={<OffresPage />} />
           <Route path="/offres/ajouter-offre" element={<AddOffrePage />} />
+          <Route path="/expectations" element={<ExpectationsPage />} />
         </Route>
       </Routes>
     </BrowserRouter>

@@ -80,12 +80,14 @@ const SideBar = () => {
             </div>
           </li>
         </NavLink>
-        <li>
-          <div className="link expectations">
-            <img src={game} alt="Expectations" />
-            <p>Expectations</p>
-          </div>
-        </li>
+        <NavLink to="/expectations" style={style}>
+          <li>
+            <div className="link expectations">
+              <img src={game} alt="Expectations" />
+              <p>Expectations</p>
+            </div>
+          </li>
+        </NavLink>
         <li>
           <div className="link tickets">
             <img src={ball} alt="Tickets" />
