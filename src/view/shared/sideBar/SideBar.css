@@ -52,8 +52,10 @@
     width: 300px;
   }
   .sidebar .links .link p {
-    margin-bottom: 20px;
     padding: 0;
+  }
+  .sidebar .links {
+    gap: 10px;
   }
 }
 .active {
