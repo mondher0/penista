@@ -34,6 +34,7 @@ import lien from "./lien.svg";
 import pub from "./pub.svg";
 import pause from "./pause.svg";
 import colorLogo from "./color-logo.svg";
+import isNotificated from "./is-notificated.svg";
 export {
   logo,
   dashboard,
@@ -71,4 +72,5 @@ export {
   pub,
   pause,
   colorLogo,
+  isNotificated,
 };
