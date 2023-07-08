@@ -10,11 +10,11 @@ const NewPasswordPage = () => {
         <form>
           <div className="form-control">
             <label htmlFor="password">Nouveau mot de passe</label>
-            <input type="password" id="email" placeholder="Adresse email" />
+            <input type="password" id="email" placeholder="Nouveau mot de passe" />
           </div>
           <div className="form-control">
             <label htmlFor="password">Réécrire le mot de passe</label>
-            <input type="password" id="password" placeholder="Mot de passe" />
+            <input type="password" id="password" placeholder="Réécrire le mot de passe" />
           </div>
           <button className="login-btn" type="submit">
             Changez le mot de passe
