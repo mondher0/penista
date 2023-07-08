@@ -1,6 +1,8 @@
 import { colorLogo } from "../../assets/index";
+import { useNavigate } from "react-router-dom";
 
 const EnterEmailPage = () => {
+  const navigate = useNavigate();
   return (
     <div className="login">
       <div className="login-card">
@@ -10,7 +12,7 @@ const EnterEmailPage = () => {
           Entrez l’adresse email que vous souhaitez recevoire le code de
           vérification
         </p>
-        <form>
+        <form onSubmit={() => navigate("/valider-code")}>
           <div className="form-control">
             <label htmlFor="email">Adresse email</label>
             <input type="email" id="email" placeholder="Adresse email" />

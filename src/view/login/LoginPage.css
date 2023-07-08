@@ -65,10 +65,10 @@ div {
 .login form .form-control input {
   width: 300px;
   border-radius: 8px;
-  border: 1px solid #f0f1f7;
+  border: 1px solid #252733;
   background: #fcfdfe;
   padding: 10px;
-  outline: none;
+
 }
 .login-btn {
   background-color: var(--primary-color);

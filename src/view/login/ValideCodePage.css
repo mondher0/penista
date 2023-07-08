@@ -1,0 +1,12 @@
+span {
+    color: var(--primary-color)
+}
+.code {
+    display: flex;
+    flex-direction: row !important;
+    align-items: center;
+    gap: 10px;
+}
+.code input {
+    width: 30px !important;
+}
