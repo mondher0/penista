@@ -17,6 +17,7 @@ const NavBar = ({ title }) => {
             <img
               src={actifNotification}
               alt="Notification"
+              className="not-img"
               onClick={() => setShowNotification(!showNotification)}
             />
           </div>
