@@ -19,7 +19,7 @@
   align-items: center;
   justify-content: center;
   gap: 15px;
-  width: 400px
+  width: 400px;
 }
 .error .error-content .error-title {
   color: #232323;
