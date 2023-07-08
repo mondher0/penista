@@ -20,7 +20,6 @@ const SettingsPageTable = () => {
         <tbody>
           <tr>
             <td>Ils ont dit de nous</td>
-            <td>Lorem ipsum</td>
             <td>12-12-2022</td>
             <td>
               <div className="type">Commande</div>
@@ -38,7 +37,6 @@ const SettingsPageTable = () => {
           </tr>
           <tr>
             <td>Ils ont dit de nous</td>
-            <td>Lorem ipsum</td>
             <td>12-12-2022</td>
             <td>
               <div className="type">Commande</div>
