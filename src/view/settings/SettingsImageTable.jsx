@@ -50,7 +50,17 @@ const SettingsImageTable = () => {
                   setShowPopUp1("3");
                 }}
               />
-              <img src={edite} alt="Modifier" onClick={() => setAction("3")} />
+              <img
+                src={edite}
+                alt="Modifier"
+                onClick={() => {
+                  if (action == "3") {
+                    setAction("");
+                  } else {
+                    setAction("3");
+                  }
+                }}
+              />
             </td>
           </tr>
           <tr>

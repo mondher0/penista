@@ -1,7 +1,7 @@
-adding notification pop up
 adding effacer button in the notifiation page of users
 editing in the produit page it redirect to the same page as add produit
 editing in the My events page it redirect to the same page as add event
 editing in the offre page it redirect to the same page as add offre
 editing in the mes-ticket page it redirect to the same page as add ticket
-pop ip in the demande abonnement page in utilisateurs page
+pop up in the demande abonnement page in utilisateurs page
+adding resume icon  in settings page
