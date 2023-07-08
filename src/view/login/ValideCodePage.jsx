@@ -1,9 +1,6 @@
-import "./LoginPage.css";
 import { colorLogo } from "../../assets/index";
-import { useNavigate } from "react-router-dom";
 
-const LoginPage = () => {
-  const navigate = useNavigate();
+const ValideCodePage = () => {
   return (
     <div className="login">
       <div className="login-card">
@@ -18,9 +15,7 @@ const LoginPage = () => {
           <div className="form-control">
             <div className="labels">
               <label htmlFor="password">Mot de passe</label>
-              <label htmlFor="password" onClick={() => navigate("/mdp-oublié")}>
-                Mot de passe oublié?
-              </label>
+              <label htmlFor="password">Mot de passe oublié?</label>
             </div>
             <input type="password" id="password" placeholder="Mot de passe" />
           </div>
@@ -33,4 +28,4 @@ const LoginPage = () => {
   );
 };
 
-export default LoginPage;
+export default ValideCodePage;
