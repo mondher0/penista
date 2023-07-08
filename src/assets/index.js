@@ -33,6 +33,7 @@ import refuse from "./refuse.svg";
 import lien from "./lien.svg";
 import pub from "./pub.svg";
 import pause from "./pause.svg";
+import colorLogo from "./color-logo.svg";
 export {
   logo,
   dashboard,
@@ -69,4 +70,5 @@ export {
   lien,
   pub,
   pause,
+  colorLogo,
 };

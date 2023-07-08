@@ -24,6 +24,7 @@ import CadeauxPage from "./view/cadeaux/CadeauxPage";
 import SettingsPage from "./view/settings/SettingsPage";
 import EditSettingsPage from "./view/settings/EditSettingsPage";
 import SettingsAddImagePage from "./view/settings/SettingsAddImagePage";
+import LoginPage from "./view/login/LoginPage";
 
 function App() {
   return (
@@ -75,6 +76,7 @@ function App() {
             element={<SettingsAddImagePage />}
           />
         </Route>
+        <Route path="/login" element={<LoginPage />} />
       </Routes>
     </BrowserRouter>
   );
