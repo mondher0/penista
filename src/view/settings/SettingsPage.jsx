@@ -44,8 +44,12 @@ const AddEventPage = () => {
                 <input type="password" id="premium" name="premium" />
               </div>
             </div>
-            <label>Yalidine informations</label>
-            <div className="input prix">
+            <label style={{
+              marginBottom: "10px"
+            }}>Yalidine informations</label>
+            <div className="input prix" style={{
+              marginTop: "10px"
+            }}>
               <div className="price gratuit ticket">
                 <label htmlFor="gratuit">API Token</label>
                 <input type="text" id="gratuit" name="gratuit" />

@@ -2,3 +2,6 @@
   --primary-color: #3b5f90;
   --secondary-color: #252733;
 }
+button:hover {
+  cursor: pointer;
+}
