@@ -9,8 +9,8 @@ const NewPasswordPage = () => {
         <h2>Changez votre mot de passe</h2>
         <form>
           <div className="form-control">
-            <label htmlFor="email">Nouveau mot de passe</label>
-            <input type="email" id="email" placeholder="Adresse email" />
+            <label htmlFor="password">Nouveau mot de passe</label>
+            <input type="password" id="email" placeholder="Adresse email" />
           </div>
           <div className="form-control">
             <label htmlFor="password">Réécrire le mot de passe</label>
