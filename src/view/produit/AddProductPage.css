@@ -64,6 +64,7 @@ label {
   width: 20%;
   margin: 20px;
   height: 200px;
+  position: relative;
 }
 .container .form form .media .image p,
 .container .form form .consulter .image p {
@@ -77,6 +78,8 @@ label {
 .container .form form .consulter .image input {
   opacity: 0;
   margin-left: 200px;
+  position: absolute;
+  top: 40px;
 }
 .container .form form .prix {
   display: flex;
@@ -162,5 +165,11 @@ label {
   }
   .container .form form .prix .price {
     width: 300px;
+  }
+}
+@media screen and (min-width: 1800px) {
+  .container .form form .media .image input,
+  .container .form form .consulter .image input {
+    top: 60px;
   }
 }
