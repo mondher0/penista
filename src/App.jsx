@@ -33,6 +33,10 @@ function App() {
   return (
     <BrowserRouter>
       <Routes>
+        <Route path="/login" element={<LoginPage />} />
+        <Route path="/mdp-oublié" element={<EnterEmailPage />} />
+        <Route path="/valider-code" element={<ValideCodePage />} />
+        <Route path="/changer-mot-de-passe" element={<NewPasswordPage />} />
         <Route path="/" element={<AdminContainer />}>
           <Route index element={<DashBoardPage />} />
           <Route path="/produit" element={<ProduitPage />} />
@@ -79,10 +83,6 @@ function App() {
             element={<SettingsAddImagePage />}
           />
         </Route>
-        <Route path="/login" element={<LoginPage />} />
-        <Route path="/mdp-oublié" element={<EnterEmailPage />} />
-        <Route path="/valider-code" element={<ValideCodePage />} />
-        <Route path="/changer-mot-de-passe" element={<NewPasswordPage />} />
       </Routes>
     </BrowserRouter>
   );

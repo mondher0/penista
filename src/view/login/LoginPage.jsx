@@ -10,7 +10,7 @@ const LoginPage = () => {
         <img src={colorLogo} alt="logo" />
         <p className="titre">Panel Admin</p>
         <h2>Connectez-vous à votre panel admin</h2>
-        <form>
+        <form onSubmit={() => navigate("/")}>
           <div className="form-control">
             <label htmlFor="email">Adresse email</label>
             <input type="email" id="email" placeholder="Adresse email" />
