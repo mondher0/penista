@@ -1,7 +1,9 @@
 import { colorLogo } from "../../assets/index";
 import "./ValideCodePage.css";
+import { useNavigate } from "react-router-dom";
 
 const ValideCodePage = () => {
+  const navigate = useNavigate();
   return (
     <div className="login">
       <div className="login-card">
@@ -11,7 +13,7 @@ const ValideCodePage = () => {
           Entrez le code de vérification envoyé à l’adresse email que vous avez
           saisie
         </p>
-        <form>
+        <form onSubmit={() => navigate("/changer-mot-de-passe")}>
           <div className="form-control code">
             <input type="text" maxLength="1" />
             <input type="text" maxLength="1" />

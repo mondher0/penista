@@ -27,6 +27,7 @@ import SettingsAddImagePage from "./view/settings/SettingsAddImagePage";
 import LoginPage from "./view/login/LoginPage";
 import EnterEmailPage from "./view/login/EnterEmailPage";
 import ValideCodePage from "./view/login/ValideCodePage";
+import NewPasswordPage from "./view/login/NewPasswordPage";
 
 function App() {
   return (
@@ -81,6 +82,7 @@ function App() {
         <Route path="/login" element={<LoginPage />} />
         <Route path="/mdp-oublié" element={<EnterEmailPage />} />
         <Route path="/valider-code" element={<ValideCodePage />} />
+        <Route path="/changer-mot-de-passe" element={<NewPasswordPage />} />
       </Routes>
     </BrowserRouter>
   );
