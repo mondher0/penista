@@ -28,6 +28,7 @@ import LoginPage from "./view/login/LoginPage";
 import EnterEmailPage from "./view/login/EnterEmailPage";
 import ValideCodePage from "./view/login/ValideCodePage";
 import NewPasswordPage from "./view/login/NewPasswordPage";
+import ErrorPage from "./view/error/ErrorPage";
 
 function App() {
   return (
@@ -37,6 +38,7 @@ function App() {
         <Route path="/mdp-oublié" element={<EnterEmailPage />} />
         <Route path="/valider-code" element={<ValideCodePage />} />
         <Route path="/changer-mot-de-passe" element={<NewPasswordPage />} />
+        <Route path="*" element={<ErrorPage />} />
         <Route path="/" element={<AdminContainer />}>
           <Route index element={<DashBoardPage />} />
           <Route path="/produit" element={<ProduitPage />} />
