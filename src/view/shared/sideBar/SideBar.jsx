@@ -1,4 +1,5 @@
 import "./SideBar.css";
+import useAuthContext from "../../../hooks/useAuthContext";
 import {
   logo,
   dashboard,
@@ -21,6 +22,7 @@ const SideBar = () => {
     textDecoration: "none",
     color: "white",
   };
+  const { handleLogout } = useAuthContext();
 
   return (
     <aside className="sidebar">
@@ -113,7 +115,7 @@ const SideBar = () => {
           </li>
         </NavLink>
         <li>
-          <div className="link logout">
+          <div className="link logout" onClick={handleLogout}>
             <img src={logout} alt="Se déconnecter" />
             <p>Se déconnecter</p>
           </div>

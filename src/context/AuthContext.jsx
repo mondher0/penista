@@ -49,7 +49,8 @@ const AuthContextProvider = ({ children }) => {
       localStorage.setItem("token", token);
       dispatch({ type: LOADING });
       dispatch({ type: IS_AUTHENTICATED });
-      window.location.href = "/";
+      console.log(response);
+      // window.location.href = "/";
     } catch (error) {
       console.log(error);
       dispatch({ type: ERROR, payload: error.response.data?.detail });
@@ -67,6 +68,7 @@ const AuthContextProvider = ({ children }) => {
   const handleLogout = () => {
     localStorage.removeItem("token");
     dispatch({ type: LOGOUT });
+    window.location.href = "/login";
   };
 
   useEffect(() => {
