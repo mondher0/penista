@@ -1,13 +1,31 @@
 import { edite } from "../../assets/index";
 import "./UtilisateursTable.css";
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import PopUp from "../shared/popUp/PopUp";
 import { useNavigate } from "react-router-dom";
+import { baseUrl } from "../../utils/constants";
+import axiosInstance from "../../utils/axiosInstance";
 
 const UtilisateursTable = () => {
   const [showPopUp, setShowPopUp] = useState(false);
   const [action, setAction] = useState();
+  const [users, setUsers] = useState([]);
   const navigate = useNavigate();
+
+  // get all users
+  const getUsers = async () => {
+    try {
+      const response = await axiosInstance.get(`${baseUrl}accounts/users/`);
+      console.log(response);
+      setUsers(response.data.data.users);
+    } catch (error) {
+      console.log(error);
+    }
+  };
+
+  useEffect(() => {
+    getUsers();
+  }, []);
   return (
     <>
       <table className="product-table">
@@ -27,100 +45,68 @@ const UtilisateursTable = () => {
           </tr>
         </thead>
         <tbody>
-          <tr>
-            <td>1</td>
-            <td>
-              <div className="user-details">
-                <img src="https://picsum.photos/200" alt="user" />
-                <div className="user-info">
-                  <p>Utilisateur 1</p>
-                  <span>mondher@gmail.com</span>
-                </div>
-              </div>
-            </td>
-            <td>0558604705</td>
-            <td>Béjaia</td>
-            <td>Féminin</td>
-            <td>Gratuit</td>
-            <td>11-02-2023</td>
-            <td onClick={() => navigate("/utilisateurs/commandes/1")}>32</td>
-            <td onClick={() => navigate("/utilisateurs/evenements/1")}>40</td>
-            <td>
-              <div className="action">
-                {action == "4" && (
-                  <div
-                    className="edit"
-                    onClick={() => {
-                      setShowPopUp("10");
-                    }}
-                  >
-                    Bloquer
-                  </div>
-                )}
-                <div className="type">Commande</div>
-              </div>
-            </td>
-            <td>
-              <img
-                src={edite}
-                alt="Modifier"
-                onClick={() => {
-                  if (action == "4") {
-                    setAction("");
-                  } else {
-                    setAction("4");
-                  }
-                }}
-              />
-            </td>
-          </tr>
-          <tr>
-            <td>1</td>
-            <td>
-              <div className="user-details">
-                <img src="https://picsum.photos/200" alt="user" />
-                <div className="user-info">
-                  <p>Utilisateur 1</p>
-                  <span>mondher@gmail.com</span>
-                </div>
-              </div>
-            </td>
-            <td>0558604705</td>
-            <td>Béjaia</td>
-            <td>Féminin</td>
-            <td>Gratuit</td>
-            <td>11-02-2023</td>
-            <td onClick={() => navigate("/utilisateurs/commandes/1")}>32</td>
-            <td onClick={() => navigate("/utilisateurs/evenements/1")}>40</td>
-            <td>
-              <div className="action">
-                {action == "5" && (
-                  <div
-                    className="edit"
-                    onClick={() => {
-                      setShowPopUp("20202");
-                    }}
-                  >
-                    Bloquer
-                  </div>
-                )}
-                <div className="type">Commande</div>
-              </div>
-            </td>
-            <td>
-              <img
-                src={edite}
-                alt="Modifier"
-                onClick={() => {
-                  if (action == "5") {
-                    setAction("");
-                  } else {
-                    setAction("5");
-                  }
-                }}
-              />
-            </td>
-          </tr>
+          {users.map((user) => {
+            const { id } = user;
+            return (
+              <>
+                <tr key={id}>
+                  <td>{id}</td>
+                  <td>
+                    <div className="user-details">
+                      <img src={user.image} alt="user" />
+                      <div className="user-info">
+                        <p>
+                          {user.first_name} {user.last_name}
+                        </p>
+                        <span>{user.email}</span>
+                      </div>
+                    </div>
+                  </td>
+                  <td>{user.phone_no}</td>
+                  <td>{user.wilaya}</td>
+                  <td>{user.gender}</td>
+                  <td>{user.plan_name}</td>
+                  <td>{user.date_joined}</td>
+                  <td onClick={() => navigate("/utilisateurs/commandes/1")}>
+                    {user.orders}
+                  </td>
+                  <td onClick={() => navigate("/utilisateurs/evenements/1")}>
+                    {user.events}
+                  </td>
+                  <td>
+                    <div className="action">
+                      {action == id && (
+                        <div
+                          className="edit"
+                          onClick={() => {
+                            setShowPopUp("10");
+                          }}
+                        >
+                          Bloquer
+                        </div>
+                      )}
+                      <div className="type">{user.is_active}</div>
+                    </div>
+                  </td>
+                  <td>
+                    <img
+                      src={edite}
+                      alt="Modifier"
+                      onClick={() => {
+                        const { id } = user;
+                        console.log(id);
+                        if (action == id) {
+                          setAction("");
+                        } else {
+                          setAction(id);
+                        }
+                      }}
+                    />
+                  </td>
+                </tr>
+              </>
+            );
+          })}
         </tbody>
       </table>
       {showPopUp && (

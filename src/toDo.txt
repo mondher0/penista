@@ -6,3 +6,4 @@ editing in the mes-ticket page it redirect to the same page as add ticket
 pop up in the demande abonnement page in utilisateurs page
 adding resume icon  in settings page
 hover effect in anything is clickable
+pagination 

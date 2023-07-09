@@ -34,7 +34,7 @@
 .user-details {
   display: flex;
   align-items: center;
-  justify-content: center;
+  justify-content: flex-start;
 }
 .user-details img {
   width: 40px;
