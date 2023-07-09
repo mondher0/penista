@@ -46,10 +46,14 @@ export const authReducer = (state, action) => {
     };
   }
   if (action.type === IS_AUTHENTICATED) {
-    return {
-      ...state,
-      isLogged: true,
-    };
+    const token = localStorage.getItem("token");
+    if (token) {
+      console.log("token exist");
+      return {
+        ...state,
+        isLogged: true,
+      };
+    }
   }
 
   return state;

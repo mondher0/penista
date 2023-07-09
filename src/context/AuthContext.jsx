@@ -1,3 +1,4 @@
+/* eslint-disable react-hooks/exhaustive-deps */
 /* eslint-disable react/prop-types */
 import { createContext, useEffect } from "react";
 import { useReducer } from "react";
@@ -24,7 +25,7 @@ const initialState = {
 
 const AuthContextProvider = ({ children }) => {
   const [state, dispatch] = useReducer(authReducer, initialState);
-
+  console.log(state);
   // set email function
   const setEmail = (email) => {
     dispatch({ type: SET_EMAIL, payload: email });
@@ -48,9 +49,8 @@ const AuthContextProvider = ({ children }) => {
       const token = response.data.data.tokens.access;
       localStorage.setItem("token", token);
       dispatch({ type: LOADING });
-      dispatch({ type: IS_AUTHENTICATED });
-      console.log(response);
-      // window.location.href = "/";
+      isAuthenticated();
+      window.location.href = "/";
     } catch (error) {
       console.log(error);
       dispatch({ type: ERROR, payload: error.response.data?.detail });
@@ -61,7 +61,9 @@ const AuthContextProvider = ({ children }) => {
   const isAuthenticated = () => {
     const token = localStorage.getItem("token");
     if (token) {
+      console.log("token exist");
       dispatch({ type: IS_AUTHENTICATED });
+      console.log(state);
     }
   };
   // handle logout
@@ -73,6 +75,7 @@ const AuthContextProvider = ({ children }) => {
 
   useEffect(() => {
     isAuthenticated();
+    console.log(state);
   }, []);
 
   return (
