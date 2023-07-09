@@ -1,4 +1,11 @@
-import { ERROR, LOADING, SET_EMAIL, SET_PASSWORD } from "./authActions";
+import {
+  ERROR,
+  IS_AUTHENTICATED,
+  LOADING,
+  LOGOUT,
+  SET_EMAIL,
+  SET_PASSWORD,
+} from "./authActions";
 export const authReducer = (state, action) => {
   if (action.type === SET_EMAIL) {
     return {
@@ -32,5 +39,18 @@ export const authReducer = (state, action) => {
       isLoading: false,
     };
   }
+  if (action.type === LOGOUT) {
+    return {
+      ...state,
+      isLogged: false,
+    };
+  }
+  if (action.type === IS_AUTHENTICATED) {
+    return {
+      ...state,
+      isLogged: true,
+    };
+  }
+
   return state;
 };

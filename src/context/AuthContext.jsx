@@ -1,5 +1,5 @@
 /* eslint-disable react/prop-types */
-import { createContext } from "react";
+import { createContext, useEffect } from "react";
 import { useReducer } from "react";
 import { authReducer } from "../reducers/authReducer/authReducer";
 import { loginUrl } from "../utils/constants";
@@ -9,6 +9,8 @@ import {
   LOADING,
   SET_EMAIL,
   SET_PASSWORD,
+  IS_AUTHENTICATED,
+  LOGOUT,
 } from "../reducers/authReducer/authActions";
 
 export const AuthContext = createContext();
@@ -17,6 +19,7 @@ const initialState = {
   password: "",
   isLoading: false,
   error: "",
+  isLogged: false,
 };
 
 const AuthContextProvider = ({ children }) => {
@@ -42,8 +45,10 @@ const AuthContextProvider = ({ children }) => {
         password: state.password,
       };
       const response = await axios.post(loginUrl, data);
-      console.log(response);
+      const token = response.data.data.tokens.access;
+      localStorage.setItem("token", token);
       dispatch({ type: LOADING });
+      dispatch({ type: IS_AUTHENTICATED });
       window.location.href = "/";
     } catch (error) {
       console.log(error);
@@ -51,9 +56,26 @@ const AuthContextProvider = ({ children }) => {
     }
   };
 
+  // check if user is authenticated with virify token using jwt decode
+  const isAuthenticated = () => {
+    const token = localStorage.getItem("token");
+    if (token) {
+      dispatch({ type: IS_AUTHENTICATED });
+    }
+  };
+  // handle logout
+  const handleLogout = () => {
+    localStorage.removeItem("token");
+    dispatch({ type: LOGOUT });
+  };
+
+  useEffect(() => {
+    isAuthenticated();
+  }, []);
+
   return (
     <AuthContext.Provider
-      value={{ ...state, setEmail, setPassword, handleLogin }}
+      value={{ ...state, setEmail, setPassword, handleLogin, handleLogout }}
     >
       {children}
     </AuthContext.Provider>
