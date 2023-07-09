@@ -1,37 +1,28 @@
 import "./LoginPage.css";
 import { colorLogo } from "../../assets/index";
 import { useNavigate } from "react-router-dom";
-import axios from "axios";
+import useAuthContext from "../../hooks/useAuthContext";
 
 const LoginPage = () => {
   const navigate = useNavigate();
-  // handle submit just for test
-  const handleSubmit = async (e) => {
-    try {
-      e.preventDefault();
-      const data = {
-        username: "zaki@penista.com",
-        password: "12345678",
-      };
-      const response = await axios.post(
-        "https://akramayeb.pythonanywhere.com/accounts/token/",
-        data
-      );
-      console.log(response);
-    } catch (error) {
-      console.log(error);
-    }
-  };
+  const { setEmail, setPassword, handleLogin, isLoading, error } =
+    useAuthContext();
   return (
     <div className="login">
       <div className="login-card">
         <img src={colorLogo} alt="logo" />
         <p className="titre">Panel Admin</p>
         <h2>Connectez-vous à votre panel admin</h2>
-        <form onSubmit={handleSubmit}>
+        <form onSubmit={handleLogin}>
           <div className="form-control">
             <label htmlFor="email">Adresse email</label>
-            <input type="email" id="email" placeholder="Adresse email" />
+            <input
+              type="email"
+              id="email"
+              required
+              placeholder="Adresse email"
+              onChange={(e) => setEmail(e.target.value)}
+            />
           </div>
           <div className="form-control">
             <div className="labels">
@@ -40,10 +31,26 @@ const LoginPage = () => {
                 Mot de passe oublié?
               </label>
             </div>
-            <input type="password" id="password" placeholder="Mot de passe" />
+            <input
+              type="password"
+              id="password"
+              required
+              placeholder="Mot de passe"
+              onChange={(e) => setPassword(e.target.value)}
+            />
           </div>
+          {error && (
+            <p
+              style={{
+                color: "red",
+                fontWeight: "bold",
+              }}
+            >
+              {error}
+            </p>
+          )}
           <button className="login-btn" type="submit">
-            Se connecter
+            {isLoading ? "Chargement..." : "Se connecter"}
           </button>
         </form>
       </div>

@@ -2,7 +2,7 @@ import NavBar from "../shared/navBar/NavBar";
 import "./AddProductPage.css";
 import { image, deleteIcon, edite } from "../../assets/index";
 import { useReducer } from "react";
-import { addProductReducer } from "./reducers/addProductReducer";
+import { addProductReducer } from "../../reducers/ProductReducer/addProductReducer";
 import {
   ADD_VALUE,
   SET_QUANTITE,
@@ -12,7 +12,7 @@ import {
   DELETE,
   UPDATE_VALUE,
   UPDATE_QUANTITE,
-} from "./reducers/addProductActions";
+} from "../../reducers/ProductReducer/addProductActions";
 const initialState = {
   value: "",
   quantite: "",
