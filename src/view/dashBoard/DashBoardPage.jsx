@@ -1,20 +1,25 @@
+/* eslint-disable react-hooks/exhaustive-deps */
 import NavBar from "../shared/navBar/NavBar";
 import "./DashBoardPage.css";
 import StatistiqueContainer from "./StatistiqueContainer";
 import { buy, games, reserve, revenue, user } from "../../assets/index";
 import PerformanceChart from "./PerformanceChart";
 import CustomContainer from "./CustomContainer";
-import { useEffect } from "react";
+import { useEffect, useState } from "react";
 import axiosInstance from "../../utils/axiosInstance";
+import { baseUrl } from "../../utils/constants";
 
 const DashBoardPage = () => {
+  const [topProducts, setTopProducts] = useState([]);
   // get data
   const getData = async () => {
     try {
       const response = await axiosInstance.get(
-        "https://zakisudo.pythonanywhere.com/dashboard/"
+        `${baseUrl}dashboard/top-product/`
       );
       console.log(response);
+      setTopProducts(response.data.data.products);
+      console.log(topProducts);
     } catch (error) {
       console.log(error);
     }
@@ -53,10 +58,21 @@ const DashBoardPage = () => {
             <PerformanceChart />
           </div>
           <div className="custom">
-            <CustomContainer />
-            <CustomContainer />
-            <CustomContainer />
-            <CustomContainer />
+            {topProducts.map(
+              (product) => (
+                console.log(product.images[0].image),
+                (
+                  <>
+                    <CustomContainer
+                      title={product.name}
+                      cmd={product.total_stock}
+                      key={product.id}
+                      image={product.images[0].image}
+                    />
+                  </>
+                )
+              )
+            )}
           </div>
         </section>
       </div>
