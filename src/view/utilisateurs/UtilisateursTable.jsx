@@ -12,16 +12,19 @@ const UtilisateursTable = () => {
   const [action, setAction] = useState();
   const [users, setUsers] = useState([]);
   const [currentPage, setCurrentPage] = useState(1);
+  const [isLoading, setIsLoading] = useState(false);
   const navigate = useNavigate();
 
   // Fetch users based on the current page
   const getUsers = async () => {
     try {
+      setIsLoading(true);
       const response = await axiosInstance.get(
         `${baseUrl}accounts/users/?page=${currentPage}`
       );
       console.log(response);
       setUsers(response.data.data.users);
+      setIsLoading(false);
     } catch (error) {
       console.log(error);
     }
@@ -42,6 +45,7 @@ const UtilisateursTable = () => {
 
   return (
     <>
+      {isLoading && <div className="loader">Chargement...</div>}
       <table className="product-table">
         <thead>
           <tr>

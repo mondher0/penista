@@ -4,8 +4,25 @@ import StatistiqueContainer from "./StatistiqueContainer";
 import { buy, games, reserve, revenue, user } from "../../assets/index";
 import PerformanceChart from "./PerformanceChart";
 import CustomContainer from "./CustomContainer";
+import { useEffect } from "react";
+import axiosInstance from "../../utils/axiosInstance";
 
 const DashBoardPage = () => {
+  // get data
+  const getData = async () => {
+    try {
+      const response = await axiosInstance.get(
+        "https://zakisudo.pythonanywhere.com/dashboard/"
+      );
+      console.log(response);
+    } catch (error) {
+      console.log(error);
+    }
+  };
+  useEffect(() => {
+    getData();
+  }, []);
+
   return (
     <>
       <NavBar title="Dashboard" />
