@@ -1,8 +1,9 @@
 /* eslint-disable react/prop-types */
 import "./PopUp.css";
 import { cancel } from "../../../assets/index";
-
+import usePopUpContext from "../../../hooks/usePopUpContext";
 const PopUp = (props) => {
+  const { handleBlock, handleUnblock } = usePopUpContext();
   console.log(props.id);
   return (
     <div className="them">
@@ -13,8 +14,8 @@ const PopUp = (props) => {
             alt="cancel"
             onClick={() => {
               props.setShowPopUp(false);
-              if(props?.setAction) {
-              props?.setAction(false);
+              if (props?.setAction) {
+                props?.setAction(false);
               }
             }}
           />
@@ -35,9 +36,9 @@ const PopUp = (props) => {
                   className="outline annuler"
                   onClick={() => {
                     props.setShowPopUp(false);
-                    if(props?.setAction) {
+                    if (props?.setAction) {
                       props?.setAction(false);
-                      }
+                    }
                   }}
                 >
                   Annuler
@@ -46,6 +47,16 @@ const PopUp = (props) => {
               <button
                 className="elevated Supprimer"
                 type={props.case ? "submit" : "button"}
+                onClick={() => {
+                  if (props.action === "bloquer") {
+                    handleBlock(props.id);
+                  }
+                  if (props.action === "débloquer") {
+                    handleUnblock(props.id);
+                  }
+                  props.setShowPopUp(false);
+                  props?.setAction(false);
+                }}
               >
                 {props.button}
               </button>

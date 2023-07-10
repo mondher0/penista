@@ -6,6 +6,7 @@ import PopUp from "../shared/popUp/PopUp";
 import { useNavigate } from "react-router-dom";
 import { baseUrl } from "../../utils/constants";
 import axiosInstance from "../../utils/axiosInstance";
+import usePopUpContext from "../../hooks/usePopUpContext";
 
 const UtilisateursTable = () => {
   const [showPopUp1, setShowPopUp1] = useState(false);
@@ -14,6 +15,8 @@ const UtilisateursTable = () => {
   const [users, setUsers] = useState([]);
   const [currentPage, setCurrentPage] = useState(1);
   const [isLoading, setIsLoading] = useState(false);
+
+  const { update } = usePopUpContext();
   const navigate = useNavigate();
 
   // Fetch users based on the current page
@@ -33,7 +36,9 @@ const UtilisateursTable = () => {
 
   useEffect(() => {
     getUsers();
-  }, [currentPage]);
+    console.log("update");
+    console.log(update);
+  }, [currentPage, update]);
 
   // Pagination handlers
   const goToPreviousPage = () => {
