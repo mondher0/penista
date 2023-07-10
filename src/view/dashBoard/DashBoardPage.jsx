@@ -17,9 +17,7 @@ const DashBoardPage = () => {
       const response = await axiosInstance.get(
         `${baseUrl}dashboard/top-product/`
       );
-      console.log(response);
       setTopProducts(response.data.data.products);
-      console.log(topProducts);
     } catch (error) {
       console.log(error);
     }
