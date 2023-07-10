@@ -49,6 +49,12 @@
 
 }
 @media screen and (max-width: 1500px) {
+  .container .performance {
+    flex-direction: column;
+    gap: 20px;
+    justify-content: flex-start;
+
+  }
   .container .performance .custom {
     gap: 10px;
   }

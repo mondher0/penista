@@ -5,7 +5,7 @@
   border-radius: 0px 20px 20px 0px;
   background-color: var(--primary-color);
   margin: 0;
-  padding: 10px;
+  padding: 10px!important;
   width: 272px;
   line-height: 1.4;
   height: 100vh;

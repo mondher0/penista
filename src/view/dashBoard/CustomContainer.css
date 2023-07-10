@@ -8,6 +8,10 @@
   border-radius: 16px;
   width: 450px;
 }
+.custom-container img {
+  width: 89px;
+  height: 70px;
+}
 .custom-container .desc {
   display: flex;
   flex-direction: row;
