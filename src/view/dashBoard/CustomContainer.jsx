@@ -1,6 +1,5 @@
 /* eslint-disable react/prop-types */
 import "./CustomContainer.css";
-import { tShirt } from "../../assets/index";
 import { baseUrl } from "../../utils/constants";
 
 const CustomContainer = ({ cmd, title, image }) => {

@@ -9,6 +9,8 @@
   width: 272px;
   line-height: 1.4;
   height: 100vh;
+  position: sticky;
+  top: 0;
 }
 .sidebar .links {
   list-style: none;
