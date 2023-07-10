@@ -29,17 +29,33 @@ import EnterEmailPage from "./view/login/EnterEmailPage";
 import ValideCodePage from "./view/login/ValideCodePage";
 import NewPasswordPage from "./view/login/NewPasswordPage";
 import ErrorPage from "./view/error/ErrorPage";
+import ProtectedRoute from "./routes/ProtuctedRoute";
+import LoginProtectedRoute from "./routes/LoginProtectedRoute";
 
 function App() {
   return (
     <BrowserRouter>
       <Routes>
-        <Route path="/login" element={<LoginPage />} />
+        <Route
+          path="/login"
+          element={
+            <LoginProtectedRoute>
+              <LoginPage />
+            </LoginProtectedRoute>
+          }
+        />
         <Route path="/mdp-oublié" element={<EnterEmailPage />} />
         <Route path="/valider-code" element={<ValideCodePage />} />
         <Route path="/changer-mot-de-passe" element={<NewPasswordPage />} />
         <Route path="*" element={<ErrorPage />} />
-        <Route path="/" element={<AdminContainer />}>
+        <Route
+          path="/"
+          element={
+            <ProtectedRoute>
+              <AdminContainer />
+            </ProtectedRoute>
+          }
+        >
           <Route index element={<DashBoardPage />} />
           <Route path="/produit" element={<ProduitPage />} />
           <Route path="/produit/ajouter-produit" element={<AddProductPage />} />
