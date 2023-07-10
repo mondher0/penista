@@ -8,7 +8,8 @@ import { baseUrl } from "../../utils/constants";
 import axiosInstance from "../../utils/axiosInstance";
 
 const UtilisateursTable = () => {
-  const [showPopUp, setShowPopUp] = useState(false);
+  const [showPopUp1, setShowPopUp1] = useState(false);
+  const [showPopUp2, setShowPopUp2] = useState(false);
   const [action, setAction] = useState();
   const [users, setUsers] = useState([]);
   const [currentPage, setCurrentPage] = useState(1);
@@ -96,13 +97,19 @@ const UtilisateursTable = () => {
                       <div
                         className="edit"
                         onClick={() => {
-                          setShowPopUp("10");
+                          if (user.is_active) {
+                            setShowPopUp1(id);
+                          } else {
+                            setShowPopUp2(id);
+                          }
                         }}
                       >
-                        Bloquer
+                        {user.is_active ? "Bloquer" : "Débloquer"}
                       </div>
                     )}
-                    <div className="type">{user.is_active}</div>
+                    <div className="type">
+                      {user.is_active ? "actif" : "Bloqué"}
+                    </div>
                   </div>
                 </td>
                 <td>
@@ -131,13 +138,24 @@ const UtilisateursTable = () => {
         <span>Page{currentPage}</span>
         <button onClick={goToNextPage}>Next</button>
       </div>
-      {showPopUp && (
+      {showPopUp1 && (
         <PopUp
-          setShowPopUp={setShowPopUp}
+          setShowPopUp={setShowPopUp1}
           setAction={setAction}
           text="Vous voulez vraiment bloquer cet utilisateur?"
           button="Bloquer"
-          id={showPopUp}
+          id={showPopUp1}
+          action="bloquer"
+        />
+      )}
+      {showPopUp2 && (
+        <PopUp
+          setShowPopUp={setShowPopUp2}
+          setAction={setAction}
+          text="Vous voulez vraiment débloquer cet utilisateur?"
+          button="Débloquer"
+          id={showPopUp2}
+          action="débloquer"
         />
       )}
     </>

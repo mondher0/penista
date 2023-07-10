@@ -8,3 +8,4 @@ adding resume icon  in settings page
 hover effect in anything is clickable
 pagination 
 token  virify
+images did not work from the backend
