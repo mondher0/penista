@@ -154,7 +154,7 @@ const EditSingleProduct = () => {
                   }}
                 />
                 <img src={image} alt="image" />
-                <p className="photo">Ajouter une photo</p>
+                <p className="photo">Modifier la photo</p>
               </div>
             </div>
             <label htmlFor="prix">
@@ -176,7 +176,7 @@ const EditSingleProduct = () => {
                   }}
                 />
                 <img src={image} alt="image" />
-                <p className="photo">Ajouter une photo</p>
+                <p className="photo">Modifier la photo</p>
               </div>
             </div>
             <div className="input prix">
