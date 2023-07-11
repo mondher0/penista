@@ -18,4 +18,4 @@ dashboard:
 linking the chart and statistiques
 error in top product 
 products:
-linking the add product (images and adding from the backend optionName property)
+linking the add product (images and adding i can add just one from the backend optionName property)
