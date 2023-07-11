@@ -18,6 +18,8 @@ import {
   SET_PREMIUM_PRICE,
   SET_PRO_PRICE,
   SET_OPTION,
+  SET_MEDIA,
+  SET_LAVAGE,
 } from "../../reducers/ProductReducer/addProductActions";
 import axiosInstance from "../../utils/axiosInstance";
 import { baseUrl } from "../../utils/constants";
@@ -34,6 +36,8 @@ const initialState = {
   free_price: "",
   premium_price: "",
   pro_price: "",
+  media: "",
+  lavage: "",
 };
 const AddProductPage = () => {
   const [state, dispatch] = useReducer(addProductReducer, initialState);
@@ -46,30 +50,21 @@ const AddProductPage = () => {
         [value.value]: value.quantite,
       };
     }, {});
-
-    console.log(values);
-    const data = {
-      total_stock: null,
-      name: state.name,
-      description: state.description,
-      free_price: state.free_price,
-      premium_price: state.premium_price,
-      pro_price: state.pro_price,
-      stock: 33,
-      sales: 0,
-      options: JSON.stringify(values),
-      // table_image: JSON.stringify([
-      //   "https://images.unsplash.com/photo-1575936123452-b67c3203c357?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxzZWFyY2h8Mnx8aW1hZ2V8ZW58MHx8MHx8fDA%3D&w=1000&q=80",
-      // ]),
-    };
-    console.log(data);
+    const formData = new FormData();
+    formData.append("name", state.name);
+    formData.append("description", state.description);
+    formData.append("free_price", state.free_price);
+    formData.append("premium_price", state.premium_price);
+    formData.append("pro_price", state.pro_price);
+    formData.append("stock", 33);
+    formData.append("sales", 0);
+    formData.append("options", JSON.stringify(values));
+    formData.append("table_image", state.media);
     const response = await axiosInstance.post(
       `${baseUrl}product/create/`,
-      data
+      formData
     );
     console.log(response);
-
-    console.log(state);
   };
   return (
     <>
@@ -129,6 +124,10 @@ const AddProductPage = () => {
                   size="60px"
                   onChange={(e) => {
                     console.log(e.target.value);
+                    dispatch({
+                      type: SET_MEDIA,
+                      payload: e.target.files[0],
+                    });
                   }}
                 />
                 <img src={image} alt="image" />
@@ -147,6 +146,10 @@ const AddProductPage = () => {
                   size="60px"
                   onChange={(e) => {
                     console.log(e.target.value);
+                    dispatch({
+                      type: SET_LAVAGE,
+                      payload: e.target.files[0],
+                    });
                   }}
                 />
                 <img src={image} alt="image" />

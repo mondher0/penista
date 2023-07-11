@@ -13,6 +13,8 @@ import {
   SET_PREMIUM_PRICE,
   SET_PRO_PRICE,
   SET_OPTION,
+  SET_MEDIA,
+  SET_LAVAGE,
 } from "./addProductActions";
 export const addProductReducer = (state, action) => {
   if (action.type === SET_NAME) {
@@ -51,7 +53,18 @@ export const addProductReducer = (state, action) => {
       optionName: action.payload,
     };
   }
-
+  if (action.type === SET_MEDIA) {
+    return {
+      ...state,
+      media: action.payload,
+    };
+  }
+  if (action.type === SET_LAVAGE) {
+    return {
+      ...state,
+      lavage: action.payload,
+    };
+  }
 
   if (action.type === SET_VALUE) {
     return {

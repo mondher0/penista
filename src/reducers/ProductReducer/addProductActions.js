@@ -12,4 +12,6 @@ export const SET_FREE_PRICE = "SET_FREE_PRICE";
 export const SET_PREMIUM_PRICE = "SET_PREMIUM_PRICE";
 export const SET_PRO_PRICE = "SET_PRO_PRICE";
 export const SET_OPTION = "SET_OPTION";
+export const SET_MEDIA = "SET_MEDIA";
+export const SET_LAVAGE = "SET_LAVAGE";
 export const SUBMIT = "SUBMIT";
