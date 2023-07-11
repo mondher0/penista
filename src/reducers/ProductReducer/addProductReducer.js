@@ -7,8 +7,52 @@ import {
   DELETE,
   UPDATE_QUANTITE,
   UPDATE_VALUE,
+  SET_NAME,
+  SET_DESCRIPTION,
+  SET_FREE_PRICE,
+  SET_PREMIUM_PRICE,
+  SET_PRO_PRICE,
+  SET_OPTION,
 } from "./addProductActions";
 export const addProductReducer = (state, action) => {
+  if (action.type === SET_NAME) {
+    return {
+      ...state,
+      name: action.payload,
+    };
+  }
+  if (action.type === SET_DESCRIPTION) {
+    return {
+      ...state,
+      description: action.payload,
+    };
+  }
+  if (action.type === SET_FREE_PRICE) {
+    return {
+      ...state,
+      free_price: action.payload,
+    };
+  }
+  if (action.type === SET_PREMIUM_PRICE) {
+    return {
+      ...state,
+      premium_price: action.payload,
+    };
+  }
+  if (action.type === SET_PRO_PRICE) {
+    return {
+      ...state,
+      pro_price: action.payload,
+    };
+  }
+  if (action.type === SET_OPTION) {
+    return {
+      ...state,
+      optionName: action.payload,
+    };
+  }
+
+
   if (action.type === SET_VALUE) {
     return {
       ...state,

@@ -12,6 +12,12 @@ import {
   DELETE,
   UPDATE_VALUE,
   UPDATE_QUANTITE,
+  SET_NAME,
+  SET_DESCRIPTION,
+  SET_FREE_PRICE,
+  SET_PREMIUM_PRICE,
+  SET_PRO_PRICE,
+  SET_OPTION,
 } from "../../reducers/ProductReducer/addProductActions";
 import axiosInstance from "../../utils/axiosInstance";
 import { baseUrl } from "../../utils/constants";
@@ -23,6 +29,11 @@ const initialState = {
   isAddingAfterSaved: false,
   desabled: true,
   isAdded: false,
+  name: "",
+  description: "",
+  free_price: "",
+  premium_price: "",
+  pro_price: "",
 };
 const AddProductPage = () => {
   const [state, dispatch] = useReducer(addProductReducer, initialState);
@@ -38,19 +49,18 @@ const AddProductPage = () => {
 
     console.log(values);
     const data = {
-      images: [],
       total_stock: null,
-      name: "sabat",
-      description: "bla bla bla bla",
-      free_price: 333.0,
-      premium_price: 333.0,
-      pro_price: 33.0,
+      name: state.name,
+      description: state.description,
+      free_price: state.free_price,
+      premium_price: state.premium_price,
+      pro_price: state.pro_price,
       stock: 33,
       sales: 0,
-      options: {
-        s: "20",
-        m: "20",
-      },
+      options: JSON.stringify(values),
+      // table_image: JSON.stringify([
+      //   "https://images.unsplash.com/photo-1575936123452-b67c3203c357?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxzZWFyY2h8Mnx8aW1hZ2V8ZW58MHx8MHx8fDA%3D&w=1000&q=80",
+      // ]),
     };
     console.log(data);
     const response = await axiosInstance.post(
@@ -70,7 +80,18 @@ const AddProductPage = () => {
           <form onSubmit={handleSubmit}>
             <div className="input nom">
               <label htmlFor="nom">Nom Produit</label>
-              <input type="text" id="nom" name="nom" placeholder="T-shirt" />
+              <input
+                type="text"
+                id="nom"
+                name="nom"
+                placeholder="T-shirt"
+                onChange={(e) =>
+                  dispatch({
+                    type: SET_NAME,
+                    payload: e.target.value,
+                  })
+                }
+              />
             </div>
             <div className="input desc">
               <label htmlFor="desc">Description</label>
@@ -80,6 +101,12 @@ const AddProductPage = () => {
                 cols="30"
                 rows="10"
                 placeholder="Description du produit"
+                onChange={(e) =>
+                  dispatch({
+                    type: SET_DESCRIPTION,
+                    payload: e.target.value,
+                  })
+                }
               ></textarea>
             </div>
             <div className="input livraison">
@@ -129,17 +156,47 @@ const AddProductPage = () => {
             <div className="input prix">
               <div className="price gratuit">
                 <label htmlFor="gratuit">Prix abonnement gratuit</label>
-                <input type="text" id="gratuit" name="gratuit" />
+                <input
+                  type="text"
+                  id="gratuit"
+                  name="gratuit"
+                  onChange={(e) =>
+                    dispatch({
+                      type: SET_FREE_PRICE,
+                      payload: e.target.value,
+                    })
+                  }
+                />
               </div>
               <div className="price premium">
                 <label htmlFor="premium">Prix abonnement premium</label>
-                <input type="text" id="premium" name="premium" />
+                <input
+                  type="text"
+                  id="premium"
+                  name="premium"
+                  onChange={(e) =>
+                    dispatch({
+                      type: SET_PREMIUM_PRICE,
+                      payload: e.target.value,
+                    })
+                  }
+                />
               </div>
               <div className="price premium-box">
                 <label htmlFor="premium-box">
                   Prix abonnement premium boxe
                 </label>
-                <input type="text" id="premium-box" name="premium-box" />
+                <input
+                  type="text"
+                  id="premium-box"
+                  name="premium-box"
+                  onChange={(e) =>
+                    dispatch({
+                      type: SET_PRO_PRICE,
+                      payload: e.target.value,
+                    })
+                  }
+                />
               </div>
             </div>
             <div className="input option-name">
@@ -149,6 +206,12 @@ const AddProductPage = () => {
                 id="option-name"
                 name="option-name"
                 placeholder="Nom de l’option"
+                onChange={(e) =>
+                  dispatch({
+                    type: SET_OPTION,
+                    payload: e.target.value,
+                  })
+                }
               />
             </div>
             <div className="valeurs">

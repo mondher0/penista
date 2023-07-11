@@ -66,8 +66,8 @@ const ProductTable = () => {
                 <td>{product.free_price}</td>
                 <td>{product.premium_price}</td>
                 <td>{product.pro_price}</td>
-                <td>{product.sales}</td>
                 <td>{product.stock}</td>
+                <td>{product.sales}</td>
                 <td>
                   <img
                     src={deleteIcon}
