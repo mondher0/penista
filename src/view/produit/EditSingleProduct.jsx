@@ -81,8 +81,8 @@ const EditSingleProduct = () => {
     formData.append("sales", 0);
     formData.append("options", JSON.stringify(values));
     formData.append("table_image", state.media);
-    const response = await axiosInstance.post(
-      `${baseUrl}product/create/`,
+    const response = await axiosInstance.put(
+      `${baseUrl}product/update/${id}/`,
       formData
     );
     console.log(response);
