@@ -1,12 +1,47 @@
 import "./ProductTable.css";
 import { deleteIcon, edite } from "../../assets/index";
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import PopUp from "../shared/popUp/PopUp";
+import axiosInstance from "../../utils/axiosInstance";
+import { baseUrl } from "../../utils/constants";
 
 const ProductTable = () => {
   const [showPopUp, setShowPopUp] = useState("");
+  const [products, setProducts] = useState();
+  const [currentPage, setCurrentPage] = useState(1);
+  const [pages, setPages] = useState(0);
+  const [isLoading, setIsLoading] = useState(false);
+  // get products from database
+  const getProducts = async () => {
+    try {
+      setIsLoading(true);
+      const response = await axiosInstance.get(
+        `${baseUrl}product/?page=${currentPage}`
+      );
+      console.log(response);
+      setProducts(response.data.data.products);
+      setPages(response.data.data.pages);
+      setIsLoading(false);
+    } catch (error) {
+      console.log(error);
+    }
+  };
+  // Pagination handlers
+  const goToPreviousPage = () => {
+    setCurrentPage((prevPage) => prevPage - 1);
+  };
+
+  const goToNextPage = () => {
+    setCurrentPage((prevPage) => prevPage + 1);
+  };
+
+  useEffect(() => {
+    getProducts();
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, [currentPage]);
   return (
     <>
+      {isLoading && <div className="loader">Chargement...</div>}
       <table className="product-table">
         <thead>
           <tr>
@@ -21,44 +56,40 @@ const ProductTable = () => {
           </tr>
         </thead>
         <tbody>
-          <tr>
-            <td>1</td>
-            <td>Produit 1</td>
-            <td>0</td>
-            <td>0</td>
-            <td>0</td>
-            <td>10</td>
-            <td>0</td>
-            <td>
-              <img
-                src={deleteIcon}
-                alt="Supprimer"
-                onClick={() => {
-                  setShowPopUp("3");
-                }}
-              />
-              <img src={edite} alt="Modifier" />
-            </td>
-          </tr>
-          <tr>
-            <td>1</td>
-            <td>Produit 1</td>
-            <td>0</td>
-            <td>0</td>
-            <td>0</td>
-            <td>10</td>
-            <td>0</td>
-            <td>
-              <img
-                src={deleteIcon}
-                alt="Supprimer"
-                onClick={() => setShowPopUp("4")}
-              />
-              <img src={edite} alt="Modifier" />
-            </td>
-          </tr>
+          {products?.map((product) => (
+            <>
+              <tr key={product.id}>
+                <td>{product.id}</td>
+                <td>{product.name}</td>
+                <td>{product.free_price}</td>
+                <td>{product.premium_price}</td>
+                <td>{product.pro_price}</td>
+                <td>{product.sales}</td>
+                <td>{product.stock}</td>
+                <td>
+                  <img
+                    src={deleteIcon}
+                    alt="Supprimer"
+                    onClick={() => {
+                      setShowPopUp(product.id);
+                    }}
+                  />
+                  <img src={edite} alt="Modifier" />
+                </td>
+              </tr>
+            </>
+          ))}
         </tbody>
       </table>
+      <div className="pagination">
+        <button disabled={currentPage === 1} onClick={goToPreviousPage}>
+          Previous
+        </button>
+        <span>Page{currentPage}</span>
+        <button onClick={goToNextPage} disabled={currentPage == pages}>
+          Next
+        </button>
+      </div>
       {showPopUp && (
         <PopUp
           setShowPopUp={setShowPopUp}

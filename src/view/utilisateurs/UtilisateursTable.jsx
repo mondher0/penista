@@ -15,6 +15,7 @@ const UtilisateursTable = () => {
   const [users, setUsers] = useState([]);
   const [currentPage, setCurrentPage] = useState(1);
   const [isLoading, setIsLoading] = useState(false);
+  const [pages, setPages] = useState(0);
 
   const { update } = usePopUpContext();
   const navigate = useNavigate();
@@ -28,6 +29,7 @@ const UtilisateursTable = () => {
       );
       console.log(response);
       setUsers(response.data.data.users);
+      setPages(response.data.data.pages);
       setIsLoading(false);
     } catch (error) {
       console.log(error);
@@ -141,7 +143,9 @@ const UtilisateursTable = () => {
           Previous
         </button>
         <span>Page{currentPage}</span>
-        <button onClick={goToNextPage}>Next</button>
+        <button onClick={goToNextPage} disabled={currentPage == pages}>
+          Next
+        </button>
       </div>
       {showPopUp1 && (
         <PopUp

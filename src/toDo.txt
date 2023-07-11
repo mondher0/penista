@@ -9,3 +9,8 @@ hover effect in anything is clickable
 pagination 
 token  virify
 images did not work from the backend
+backend of chart to be done
+
+---------------------------------------------------------------------------------------------------------
+dashboard: 
+linking the chart and statistiques

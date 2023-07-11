@@ -1,11 +1,26 @@
 import { save, accept, refuse } from "../../assets/index";
 import "../utilisateurs/DemandeAbonnementTable.css";
 import PopUp from "../shared/popUp/PopUp";
-import { useState } from "react";
+import { useEffect, useState } from "react";
+import axiosInstance from "../../utils/axiosInstance";
+import { baseUrl } from "../../utils/constants";
 
 const EventsTable = () => {
   const [showPopUp1, setShowPopUp1] = useState(false);
   const [showPopUp2, setShowPopUp2] = useState(false);
+  // get events
+  const getEvents = async () => {
+    try {
+      const response = await axiosInstance.get(`${baseUrl}reservation/`);
+      console.log(response);
+    } catch (error) {
+      console.log(error);
+    }
+  };
+  useEffect(() => {
+    getEvents();
+  }, []);
+
   return (
     <>
       <table className="product-table">
