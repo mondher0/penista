@@ -32,11 +32,25 @@ const PopUpContextProvider = ({ children }) => {
     }
   };
 
+  // handle delete produt
+  const handleDelete = async (id) => {
+    try {
+      const response = await axiosInstance.delete(
+        `${baseUrl}product/delete/${id}/`
+      );
+      console.log(response);
+      setUpdate(!update);
+    } catch (error) {
+      console.log(error);
+    }
+  };
+
   return (
     <PopUpContext.Provider
       value={{
         handleBlock,
         handleUnblock,
+        handleDelete,
         update,
       }}
     >

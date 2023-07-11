@@ -4,6 +4,7 @@ import { useEffect, useState } from "react";
 import PopUp from "../shared/popUp/PopUp";
 import axiosInstance from "../../utils/axiosInstance";
 import { baseUrl } from "../../utils/constants";
+import usePopUpContext from "../../hooks/usePopUpContext";
 
 const ProductTable = () => {
   const [showPopUp, setShowPopUp] = useState("");
@@ -11,6 +12,7 @@ const ProductTable = () => {
   const [currentPage, setCurrentPage] = useState(1);
   const [pages, setPages] = useState(0);
   const [isLoading, setIsLoading] = useState(false);
+  const { update } = usePopUpContext();
   // get products from database
   const getProducts = async () => {
     try {
@@ -38,7 +40,7 @@ const ProductTable = () => {
   useEffect(() => {
     getProducts();
     // eslint-disable-next-line react-hooks/exhaustive-deps
-  }, [currentPage]);
+  }, [currentPage, update]);
   return (
     <>
       {isLoading && <div className="loader">Chargement...</div>}
@@ -96,6 +98,7 @@ const ProductTable = () => {
           text="Vous voulez vraiment supprimer ce produit?"
           id={showPopUp}
           button="Supprimer"
+          action="deleteProduct"
         />
       )}
     </>
