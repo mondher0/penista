@@ -6,3 +6,4 @@ export const EDIT = "EDIT";
 export const DELETE = "DELETE";
 export const UPDATE_VALUE = "UPDATE_VALUE";
 export const UPDATE_QUANTITE = "UPDATE_QUANTITE";
+export const SUBMIT = "SUBMIT";

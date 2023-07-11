@@ -14,5 +14,6 @@ backend of chart to be done
 ---------------------------------------------------------------------------------------------------------
 notifiation:
 linking the notification popUp
+error in top product 
 dashboard: 
 linking the chart and statistiques

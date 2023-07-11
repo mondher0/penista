@@ -67,14 +67,15 @@ const DashBoardPage = () => {
           <div className="custom">
             {topProducts.map(
               (product) => (
-                console.log(product.images[0].image),
+                console.log(product?.images[0]?.image),
+                console.log(product),
                 (
                   <>
                     <CustomContainer
                       title={product.name}
                       cmd={product.total_stock}
                       key={product.id}
-                      image={product.images[0].image}
+                      image={product.images[0]?.image}
                     />
                   </>
                 )

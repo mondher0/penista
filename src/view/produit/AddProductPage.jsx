@@ -13,6 +13,8 @@ import {
   UPDATE_VALUE,
   UPDATE_QUANTITE,
 } from "../../reducers/ProductReducer/addProductActions";
+import axiosInstance from "../../utils/axiosInstance";
+import { baseUrl } from "../../utils/constants";
 const initialState = {
   value: "",
   quantite: "",
@@ -24,13 +26,48 @@ const initialState = {
 };
 const AddProductPage = () => {
   const [state, dispatch] = useReducer(addProductReducer, initialState);
+  const handleSubmit = async (e) => {
+    e.preventDefault();
+    // turn the array of values into an object
+    const values = state.values.reduce((acc, value) => {
+      return {
+        ...acc,
+        [value.value]: value.quantite,
+      };
+    }, {});
+
+    console.log(values);
+    const data = {
+      images: [],
+      total_stock: null,
+      name: "sabat",
+      description: "bla bla bla bla",
+      free_price: 333.0,
+      premium_price: 333.0,
+      pro_price: 33.0,
+      stock: 33,
+      sales: 0,
+      options: {
+        s: "20",
+        m: "20",
+      },
+    };
+    console.log(data);
+    const response = await axiosInstance.post(
+      `${baseUrl}product/create/`,
+      data
+    );
+    console.log(response);
+
+    console.log(state);
+  };
   return (
     <>
       <NavBar title="Produit" />
       <div className="container">
         <p>Ajouter un produit</p>
         <div className="form">
-          <form>
+          <form onSubmit={handleSubmit}>
             <div className="input nom">
               <label htmlFor="nom">Nom Produit</label>
               <input type="text" id="nom" name="nom" placeholder="T-shirt" />
