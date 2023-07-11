@@ -14,9 +14,15 @@ backend of chart to be done
 ---------------------------------------------------------------------------------------------------------
 notifiation:
 linking the notification popUp
+search :
+linking the search bar not yet done
 dashboard: 
 linking the chart and statistiques
 error in top product 
 products:
 linking the add product (images and adding i can add just one from the backend optionName property)
 the admin can add many images 
+commande :
+api link does not work
+utilisateurs:
+did not link the demende abonnments
