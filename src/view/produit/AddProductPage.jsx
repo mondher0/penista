@@ -50,6 +50,7 @@ const AddProductPage = () => {
         [value.value]: value.quantite,
       };
     }, {});
+    const tableImage = [state.media, state.lavage];
     const formData = new FormData();
     formData.append("name", state.name);
     formData.append("description", state.description);
@@ -59,7 +60,9 @@ const AddProductPage = () => {
     formData.append("stock", 33);
     formData.append("sales", 0);
     formData.append("options", JSON.stringify(values));
-    formData.append("table_image", state.media);
+    tableImage.forEach((image) => {
+      formData.append("table_image", image);
+    });
     const response = await axiosInstance.post(
       `${baseUrl}product/create/`,
       formData

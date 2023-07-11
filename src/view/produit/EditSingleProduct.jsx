@@ -1,9 +1,11 @@
+/* eslint-disable react-hooks/exhaustive-deps */
 import NavBar from "../shared/navBar/NavBar";
 import "./AddProductPage.css";
 import { image, deleteIcon, edite } from "../../assets/index";
-import { useReducer } from "react";
-import { addProductReducer } from "../../reducers/ProductReducer/addProductReducer";
+import { useReducer, useEffect } from "react";
+import { editProductReducer } from "../../reducers/ProductReducer/editProductReducer";
 import {
+  GET_PRODUCT_DETAILS,
   ADD_VALUE,
   SET_QUANTITE,
   SET_VALUE,
@@ -20,9 +22,10 @@ import {
   SET_OPTION,
   SET_MEDIA,
   SET_LAVAGE,
-} from "../../reducers/ProductReducer/addProductActions";
+} from "../../reducers/ProductReducer/editProductActions";
 import axiosInstance from "../../utils/axiosInstance";
 import { baseUrl } from "../../utils/constants";
+import { useParams } from "react-router-dom";
 const initialState = {
   value: "",
   quantite: "",
@@ -40,7 +43,25 @@ const initialState = {
   lavage: "",
 };
 const EditSingleProduct = () => {
-  const [state, dispatch] = useReducer(addProductReducer, initialState);
+  const [state, dispatch] = useReducer(editProductReducer, initialState);
+  const { id } = useParams();
+  console.log(id);
+  const getProduct = async () => {
+    try {
+      const response = await axiosInstance.get(`${baseUrl}product/${id}/`);
+      console.log(response);
+      dispatch({
+        type: GET_PRODUCT_DETAILS,
+        payload: response.data.data,
+      });
+    } catch (error) {
+      console.log(error);
+    }
+  };
+
+  useEffect(() => {
+    getProduct();
+  }, []);
   const handleSubmit = async (e) => {
     e.preventDefault();
     // turn the array of values into an object
@@ -70,7 +91,7 @@ const EditSingleProduct = () => {
     <>
       <NavBar title="Produit" />
       <div className="container">
-        <p>Ajouter un produit</p>
+        <p>Modifier un produit</p>
         <div className="form">
           <form onSubmit={handleSubmit}>
             <div className="input nom">
@@ -80,6 +101,7 @@ const EditSingleProduct = () => {
                 id="nom"
                 name="nom"
                 placeholder="T-shirt"
+                value={state.name}
                 onChange={(e) =>
                   dispatch({
                     type: SET_NAME,
@@ -96,6 +118,7 @@ const EditSingleProduct = () => {
                 cols="30"
                 rows="10"
                 placeholder="Description du produit"
+                value={state.description}
                 onChange={(e) =>
                   dispatch({
                     type: SET_DESCRIPTION,
@@ -163,6 +186,7 @@ const EditSingleProduct = () => {
                   type="text"
                   id="gratuit"
                   name="gratuit"
+                  value={state.free_price}
                   onChange={(e) =>
                     dispatch({
                       type: SET_FREE_PRICE,
@@ -177,6 +201,7 @@ const EditSingleProduct = () => {
                   type="text"
                   id="premium"
                   name="premium"
+                  value={state.premium_price}
                   onChange={(e) =>
                     dispatch({
                       type: SET_PREMIUM_PRICE,
@@ -193,6 +218,7 @@ const EditSingleProduct = () => {
                   type="text"
                   id="premium-box"
                   name="premium-box"
+                  value={state.pro_price}
                   onChange={(e) =>
                     dispatch({
                       type: SET_PRO_PRICE,
@@ -252,15 +278,14 @@ const EditSingleProduct = () => {
                         <input
                           className="added-quantite"
                           value={value.quantite}
-                          type="text"
+                          type="number"
                           disabled={value.disabled}
                           onChange={(e) => {
-                            const int = parseInt(e.target.value);
                             dispatch({
                               type: UPDATE_QUANTITE,
                               payload: {
                                 id: value.id,
-                                quantite: int,
+                                quantite: e.target.value,
                               },
                             });
                           }}
