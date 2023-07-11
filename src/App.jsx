@@ -31,6 +31,7 @@ import NewPasswordPage from "./view/login/NewPasswordPage";
 import ErrorPage from "./view/error/ErrorPage";
 import ProtectedRoute from "./routes/ProtuctedRoute";
 import LoginProtectedRoute from "./routes/LoginProtectedRoute";
+import EditSingleProduct from "./view/produit/EditSingleProduct";
 
 function App() {
   return (
@@ -59,6 +60,10 @@ function App() {
           <Route index element={<DashBoardPage />} />
           <Route path="/produit" element={<ProduitPage />} />
           <Route path="/produit/ajouter-produit" element={<AddProductPage />} />
+          <Route
+            path="/produit/modifier-produit/:id"
+            element={<EditSingleProduct />}
+          />
           <Route path="/commandes" element={<CommandesPages />} />
           <Route path="/commandes/:id" element={<SingleCommandePage />} />
           <Route path="/utilisateurs" element={<UtilisateursPage />} />

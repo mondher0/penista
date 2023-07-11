@@ -5,6 +5,7 @@ import PopUp from "../shared/popUp/PopUp";
 import axiosInstance from "../../utils/axiosInstance";
 import { baseUrl } from "../../utils/constants";
 import usePopUpContext from "../../hooks/usePopUpContext";
+import { useNavigate } from "react-router-dom";
 
 const ProductTable = () => {
   const [showPopUp, setShowPopUp] = useState("");
@@ -13,6 +14,7 @@ const ProductTable = () => {
   const [pages, setPages] = useState(0);
   const [isLoading, setIsLoading] = useState(false);
   const { update } = usePopUpContext();
+  const navigate = useNavigate();
   // get products from database
   const getProducts = async () => {
     try {
@@ -58,29 +60,40 @@ const ProductTable = () => {
           </tr>
         </thead>
         <tbody>
-          {products?.map((product) => (
-            <>
-              <tr key={product.id}>
-                <td>{product.id}</td>
-                <td>{product.name}</td>
-                <td>{product.free_price}</td>
-                <td>{product.premium_price}</td>
-                <td>{product.pro_price}</td>
-                <td>{product.stock}</td>
-                <td>{product.sales}</td>
-                <td>
-                  <img
-                    src={deleteIcon}
-                    alt="Supprimer"
-                    onClick={() => {
-                      setShowPopUp(product.id);
-                    }}
-                  />
-                  <img src={edite} alt="Modifier" />
-                </td>
-              </tr>
-            </>
-          ))}
+          {products?.map(
+            (product) => (
+              console.log(product),
+              (
+                <>
+                  <tr key={product.id}>
+                    <td>{product.id}</td>
+                    <td>{product.name}</td>
+                    <td>{product.free_price}</td>
+                    <td>{product.premium_price}</td>
+                    <td>{product.pro_price}</td>
+                    <td>{product.stock}</td>
+                    <td>{product.sales}</td>
+                    <td>
+                      <img
+                        src={deleteIcon}
+                        alt="Supprimer"
+                        onClick={() => {
+                          setShowPopUp(product.id);
+                        }}
+                      />
+                      <img
+                        src={edite}
+                        alt="Modifier"
+                        onClick={() =>
+                          navigate(`/produit/modifier-produit/${product.id}`)
+                        }
+                      />
+                    </td>
+                  </tr>
+                </>
+              )
+            )
+          )}
         </tbody>
       </table>
       <div className="pagination">

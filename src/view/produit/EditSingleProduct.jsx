@@ -39,7 +39,7 @@ const initialState = {
   media: "",
   lavage: "",
 };
-const AddProductPage = () => {
+const EditSingleProduct = () => {
   const [state, dispatch] = useReducer(addProductReducer, initialState);
   const handleSubmit = async (e) => {
     e.preventDefault();
@@ -347,4 +347,4 @@ const AddProductPage = () => {
     </>
   );
 };
-export default AddProductPage;
+export default EditSingleProduct;
