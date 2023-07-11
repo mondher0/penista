@@ -12,5 +12,7 @@ images did not work from the backend
 backend of chart to be done
 
 ---------------------------------------------------------------------------------------------------------
+notifiation:
+linking the notification popUp
 dashboard: 
 linking the chart and statistiques
