@@ -15,6 +15,7 @@ import {
   SET_OPTION,
   SET_MEDIA,
   SET_LAVAGE,
+  SET_DELEVERY_DESCRIPTION,
 } from "./addProductActions";
 export const addProductReducer = (state, action) => {
   if (action.type === SET_NAME) {
@@ -57,6 +58,13 @@ export const addProductReducer = (state, action) => {
     return {
       ...state,
       media: action.payload,
+      product_images: action.payload,
+    };
+  }
+  if (action.type === SET_DELEVERY_DESCRIPTION) {
+    return {
+      ...state,
+      deliveryDesc: action.payload,
     };
   }
   if (action.type === SET_LAVAGE) {

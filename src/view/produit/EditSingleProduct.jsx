@@ -22,6 +22,7 @@ import {
   SET_OPTION,
   SET_MEDIA,
   SET_LAVAGE,
+  SET_DELEVERY_DESCRIPTION,
 } from "../../reducers/ProductReducer/editProductActions";
 import axiosInstance from "../../utils/axiosInstance";
 import { baseUrl } from "../../utils/constants";
@@ -41,6 +42,9 @@ const initialState = {
   pro_price: "",
   media: "",
   lavage: "",
+  optionName: "",
+  deliveryDesc: "",
+  product_images: "",
 };
 const EditSingleProduct = () => {
   const [state, dispatch] = useReducer(editProductReducer, initialState);
@@ -79,8 +83,12 @@ const EditSingleProduct = () => {
     formData.append("pro_price", state.pro_price);
     formData.append("stock", 33);
     formData.append("sales", 0);
+    formData.append("deliveryDesc", state.deliveryDesc);
+    formData.append("optionName", state.optionName);
     formData.append("options", JSON.stringify(values));
     formData.append("table_image", state.media);
+    formData.append("product_images", state.product_images);
+    console.log(state.product_images);
     const response = await axiosInstance.put(
       `${baseUrl}product/update/${id}/`,
       formData
@@ -135,6 +143,13 @@ const EditSingleProduct = () => {
                 cols="30"
                 rows="10"
                 placeholder="Description de la livraison"
+                value={state.deliveryDesc}
+                onChange={(e) =>
+                  dispatch({
+                    type: SET_DELEVERY_DESCRIPTION,
+                    payload: e.target.value,
+                  })
+                }
               ></textarea>
             </div>
             <label htmlFor="prix">Media</label>
@@ -235,6 +250,7 @@ const EditSingleProduct = () => {
                 id="option-name"
                 name="option-name"
                 placeholder="Nom de l’option"
+                value={state.optionName}
                 onChange={(e) =>
                   dispatch({
                     type: SET_OPTION,

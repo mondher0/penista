@@ -16,6 +16,7 @@ import {
   SET_OPTION,
   SET_MEDIA,
   SET_LAVAGE,
+  SET_DELEVERY_DESCRIPTION,
 } from "./editProductActions";
 
 export const editProductReducer = (state, action) => {
@@ -40,6 +41,8 @@ export const editProductReducer = (state, action) => {
       pro_price: action.payload.pro_price,
       isAddingAfterSaved: true,
       values: arr,
+      deliveryDesc: action.payload.deliveryDesc,
+      optionName: action.payload.optionName,
     };
   }
   if (action.type === SET_NAME) {
@@ -54,6 +57,13 @@ export const editProductReducer = (state, action) => {
       description: action.payload,
     };
   }
+  if (action.type === SET_DELEVERY_DESCRIPTION) {
+    return {
+      ...state,
+      deliveryDesc: action.payload,
+    };
+  }
+
   if (action.type === SET_FREE_PRICE) {
     return {
       ...state,
@@ -82,6 +92,7 @@ export const editProductReducer = (state, action) => {
     return {
       ...state,
       media: action.payload,
+      product_images: action.payload,
     };
   }
   if (action.type === SET_LAVAGE) {

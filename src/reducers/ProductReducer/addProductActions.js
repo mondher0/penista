@@ -14,4 +14,5 @@ export const SET_PRO_PRICE = "SET_PRO_PRICE";
 export const SET_OPTION = "SET_OPTION";
 export const SET_MEDIA = "SET_MEDIA";
 export const SET_LAVAGE = "SET_LAVAGE";
+export const SET_DELEVERY_DESCRIPTION = "SET_DELEVERY_DESCRIPTION";
 export const SUBMIT = "SUBMIT";

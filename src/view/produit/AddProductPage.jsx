@@ -20,6 +20,7 @@ import {
   SET_OPTION,
   SET_MEDIA,
   SET_LAVAGE,
+  SET_DELEVERY_DESCRIPTION,
 } from "../../reducers/ProductReducer/addProductActions";
 import axiosInstance from "../../utils/axiosInstance";
 import { baseUrl } from "../../utils/constants";
@@ -38,6 +39,9 @@ const initialState = {
   pro_price: "",
   media: "",
   lavage: "",
+  optionName: "",
+  deliveryDesc: "",
+  product_images: "",
 };
 const AddProductPage = () => {
   const [state, dispatch] = useReducer(addProductReducer, initialState);
@@ -50,7 +54,6 @@ const AddProductPage = () => {
         [value.value]: value.quantite,
       };
     }, {});
-    const tableImage = [state.media, state.lavage];
     const formData = new FormData();
     formData.append("name", state.name);
     formData.append("description", state.description);
@@ -60,9 +63,11 @@ const AddProductPage = () => {
     formData.append("stock", 33);
     formData.append("sales", 0);
     formData.append("options", JSON.stringify(values));
-    tableImage.forEach((image) => {
-      formData.append("table_image", image);
-    });
+    formData.append("table_image", state.lavage);
+    formData.append("optionName", state.optionName);
+    formData.append("deliveryDesc", state.deliveryDesc);
+    formData.append("product_images", state.product_images);
+
     const response = await axiosInstance.post(
       `${baseUrl}product/create/`,
       formData
@@ -115,6 +120,12 @@ const AddProductPage = () => {
                 cols="30"
                 rows="10"
                 placeholder="Description de la livraison"
+                onChange={(e) => {
+                  dispatch({
+                    type: SET_DELEVERY_DESCRIPTION,
+                    payload: e.target.value,
+                  });
+                }}
               ></textarea>
             </div>
             <label htmlFor="prix">Media</label>
