@@ -18,7 +18,7 @@ search :
 linking the search bar not yet done
 dashboard: 
 linking the chart and statistiques
-error in top product 
+error in top product missing number of commande property
 products:
 linking the add product (images and adding i can add just one from the backend)
 the admin can add many images 
