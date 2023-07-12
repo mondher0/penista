@@ -84,7 +84,13 @@ const AddEventPage = () => {
             </div>
             <div className="input option-name">
               <label htmlFor="option-name">Type de réservation</label>
-              <select name="type-reservation" id="type-reservation">
+              <select
+                name="type-reservation"
+                id="type-reservation"
+                style={{
+                  border: "1px solid #E5E5E5",
+                }}
+              >
                 <option value="">Choisissez le type de réservation</option>
                 <option value="1">Confirmer présence</option>
                 <option value="2">Versement</option>
