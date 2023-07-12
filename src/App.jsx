@@ -32,6 +32,7 @@ import ErrorPage from "./view/error/ErrorPage";
 import ProtectedRoute from "./routes/ProtuctedRoute";
 import LoginProtectedRoute from "./routes/LoginProtectedRoute";
 import EditSingleProduct from "./view/produit/EditSingleProduct";
+import EditeSingleEvent from "./view/events/EditeSingleEvent";
 
 function App() {
   return (
@@ -85,6 +86,10 @@ function App() {
           />
           <Route path="/evenements" element={<EventsPage />} />
           <Route path="/evenements/mes-evenements" element={<MyEventsPage />} />
+          <Route
+            path="/evenements/modifier-evenement/:id"
+            element={<EditeSingleEvent />}
+          />
           <Route
             path="/evenements/ajouter-evenement"
             element={<AddEventPage />}

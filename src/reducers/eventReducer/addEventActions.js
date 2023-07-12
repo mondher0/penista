@@ -19,3 +19,7 @@ export const SET_ADDRESS = "SET_ADDRESS";
 export const SET_RES_TYPE = "SET_RES_TYPE";
 export const SET_DATE_START = "SET_DATE_START";
 export const SET_DATE_END = "SET_DATE_END";
+export const GET_EVENT_DETAILS = "GET_EVENT_DETAILS";
+export const EDIT_START_DATE = "EDIT_START_DATE";
+export const EDIT_END_DATE = "EDIT_END_DATE";
+export const EDIT_PLACES = "EDIT_PLACES";
