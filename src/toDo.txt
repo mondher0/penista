@@ -26,3 +26,5 @@ commande :
 in the single CommandeCard image property is missing from the backend
 utilisateurs:
 did not link the demende abonnments
+send notification
+sending the id id of the user to get all the commandes of the user
