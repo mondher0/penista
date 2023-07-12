@@ -380,7 +380,7 @@ const EditSingleProduct = () => {
               )}
             </div>
             <button type="submit" className="add-value submit">
-              Ajouter le produit
+              Modifier le produit
             </button>
           </form>
         </div>
