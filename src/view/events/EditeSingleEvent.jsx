@@ -31,6 +31,7 @@ import {
   EDIT_START_DATE,
   EDIT_END_DATE,
   EDIT_PLACES,
+  EDIT_OPTION_VALUES,
 } from "../../reducers/eventReducer/addEventActions";
 import axiosInstance from "../../utils/axiosInstance";
 import { baseUrl } from "../../utils/constants";
@@ -64,17 +65,36 @@ const EditeSingleEvent = () => {
   console.log(id);
   const [competition, setCompetition] = useState(false);
   const [state, dispatch] = useReducer(editEventReducer, initialState);
+  const [date, setDate] = useState("");
+  const [res_dline, setRes_dline] = useState("");
 
   // get single event
   const getSingleEvent = async () => {
     try {
       const response = await axiosInstance.get(`${baseUrl}event/${id}/`);
+      console.log(response.data.data.date);
+      console.log(response.data.data.res_dline);
+      setDate(response.data.data.date);
+      setRes_dline(response.data.data.res_dline);
+      console.log(date);
+      console.log(res_dline);
+
       if (response.data.data.type === "Compétition") {
         setCompetition(true);
       }
       dispatch({
         type: GET_EVENT_DETAILS,
-        payload: response.data.data,
+        payload: {
+          response: response.data.data,
+        },
+      });
+      dispatch({
+        type: SET_DATE_START,
+        payload: date,
+      });
+      dispatch({
+        type: SET_DATE_END,
+        payload: res_dline,
       });
 
       console.log(response);
@@ -86,6 +106,7 @@ const EditeSingleEvent = () => {
   useEffect(() => {
     getSingleEvent();
   }, []);
+  console.log(state);
 
   // handle competition submit
   const handleCompetitionSubmit = async (e) => {
@@ -134,6 +155,7 @@ const EditeSingleEvent = () => {
       formData.append("address", state.address);
       formData.append("date_start", state.date_start);
       formData.append("date_end", state.date_end);
+      console.log(state);
       const response = await axiosInstance.post(
         `${baseUrl}event/create/`,
         formData
@@ -143,7 +165,6 @@ const EditeSingleEvent = () => {
       console.log(error);
     }
   };
-
   return (
     <>
       <NavBar title="Evénements" />
@@ -368,6 +389,7 @@ const EditeSingleEvent = () => {
                     id="nom"
                     name="nom"
                     placeholder="Ajouter une option"
+                    value={state.optionName}
                     onChange={(e) => {
                       dispatch({
                         type: SET_OPTION_NAME,
@@ -376,8 +398,8 @@ const EditeSingleEvent = () => {
                     }}
                   />
                 </div>
-                {state.values.length > 0
-                  ? state.values.map((value) => {
+                {state?.values?.length > 0
+                  ? state.values.map((value, index) => {
                       return (
                         <>
                           <div className="input nom">
@@ -386,7 +408,15 @@ const EditeSingleEvent = () => {
                               id="nom"
                               name="nom"
                               value={value}
-                              disabled
+                              onChange={(e) => {
+                                dispatch({
+                                  type: EDIT_OPTION_VALUES,
+                                  payload: {
+                                    value: e.target.value,
+                                    index: index,
+                                  },
+                                });
+                              }}
                             />
                           </div>
                         </>
@@ -432,6 +462,7 @@ const EditeSingleEvent = () => {
                     id="nom"
                     name="nom"
                     placeholder="date"
+                    value={date}
                     onChange={(e) => {
                       dispatch({
                         type: SET_DATE_START,
@@ -454,6 +485,7 @@ const EditeSingleEvent = () => {
                     id="nom"
                     name="nom"
                     placeholder="date"
+                    value={res_dline}
                     onChange={(e) => {
                       dispatch({ type: SET_DATE_END, payload: e.target.value });
                     }}
@@ -466,6 +498,7 @@ const EditeSingleEvent = () => {
                       type="text"
                       id="gratuit"
                       name="gratuit"
+                      value={state.free_price}
                       onChange={(e) => {
                         dispatch({
                           type: SET_FREE_PRICE,
@@ -480,6 +513,7 @@ const EditeSingleEvent = () => {
                       type="text"
                       id="premium"
                       name="premium"
+                      value={state.premium_price}
                       onChange={(e) => {
                         dispatch({
                           type: SET_PREMIUM_PRICE,
@@ -496,6 +530,7 @@ const EditeSingleEvent = () => {
                       type="text"
                       id="premium-box"
                       name="premium-box"
+                      value={state.pro_price}
                       onChange={(e) => {
                         dispatch({
                           type: SET_PRO_PRICE,
@@ -512,6 +547,7 @@ const EditeSingleEvent = () => {
                       type="number"
                       id="gratuit"
                       name="gratuit"
+                      value={state.min_ticket}
                       onChange={(e) => {
                         dispatch({
                           type: SET_MIN_TICKETS,
@@ -525,6 +561,7 @@ const EditeSingleEvent = () => {
                     <input
                       type="number"
                       id="premium"
+                      value={state.max_ticket}
                       name="premium"
                       onChange={(e) => {
                         dispatch({
@@ -543,6 +580,7 @@ const EditeSingleEvent = () => {
                     style={{
                       border: "1px solid #E5E5E5",
                     }}
+                    value={state.res_type}
                     onChange={(e) => {
                       dispatch({
                         type: SET_RES_TYPE,
@@ -566,6 +604,7 @@ const EditeSingleEvent = () => {
                 id="option-name"
                 name="option-name"
                 placeholder="Adresse"
+                value={state.address}
                 onChange={(e) => {
                   dispatch({
                     type: SET_ADDRESS,
@@ -582,6 +621,7 @@ const EditeSingleEvent = () => {
                   id="option-name"
                   name="option-name"
                   placeholder="Lien maps"
+                  value={state.maps_link}
                   onChange={(e) => {
                     dispatch({
                       type: SET_MAPS_LINK,

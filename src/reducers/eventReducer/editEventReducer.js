@@ -24,29 +24,27 @@ import {
   EDIT_START_DATE,
   EDIT_END_DATE,
   EDIT_PLACES,
+  EDIT_OPTION_VALUES,
 } from "./addEventActions";
 export const editEventReducer = (state, action) => {
   if (action.type === GET_EVENT_DETAILS) {
-    console.log("action.payload", action.payload);
     return {
       ...state,
-      title: action.payload.title,
-      type: action.payload.type,
-      description: action.payload.description,
-      uploaded_images: action.payload.images[0]?.image,
-      max_ticket: action.payload?.max_ticket,
-      min_ticket: action.payload?.min_ticket,
-      pro_price: action.payload?.pro_price,
-      premium_price: action.payload?.premium_price,
-      free_price: action.payload?.free_price,
-      maps_link: action.payload.maps_link,
-      address: action.payload.address,
-      res_type: action.payload?.res_type,
-      dates: action.payload?.dates,
-      date_start: action.paylod?.date,
-      date_end: action.paylod?.res_dline,
-      optionName: action.payload.options?.name,
-      value: action.payload.options?.value,
+      title: action.payload.response?.title,
+      type: action.payload.response?.type,
+      description: action.payload.response?.description,
+      uploaded_images: action.payload.response?.images[0]?.image,
+      max_ticket: action.payload.response?.max_ticket,
+      min_ticket: action.payload.response?.min_ticket,
+      pro_price: action.payload.response?.pro_price,
+      premium_price: action.payload.response?.premium_price,
+      free_price: action.payload.response?.free_price,
+      maps_link: action.payload.response?.maps_link,
+      address: action.payload.response?.address,
+      res_type: action.payload.response?.res_type,
+      dates: action.payload.response?.dates,
+      optionName: action.payload.response?.options?.name,
+      values: action.payload.response?.options?.values,
     };
   }
   if (action.type === EDIT_START_DATE) {
@@ -77,6 +75,13 @@ export const editEventReducer = (state, action) => {
           ? { ...date, places: action.payload.places }
           : date
       ),
+    };
+  }
+  if (action.type === EDIT_OPTION_VALUES) {
+    state.values[action.payload.index] = action.payload.value;
+    return {
+      ...state,
+      values: state.values,
     };
   }
 
