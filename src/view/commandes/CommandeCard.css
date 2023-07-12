@@ -50,3 +50,14 @@
   flex-wrap: wrap;
   gap: 10px;
 }
+.loading {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 70vh;
+}
+.loading p {
+  text-align: center;
+  font-size: 20px;
+  font-weight: bold;
+}

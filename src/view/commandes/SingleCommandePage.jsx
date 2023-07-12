@@ -40,49 +40,20 @@ const SingleCommandePage = () => {
           <p>{id}</p>
         </div>
         {isLoading && (
-          <div
-            className="loading"
-            style={{
-              display: "flex",
-              justifyContent: "center",
-              alignItems: "center",
-              height: "70vh",
-            }}
-          >
-            <p
-              style={{
-                textAlign: "center",
-                fontSize: "20px",
-                fontWeight: "bold",
-              }}
-            >
-              Chargement...
-            </p>
+          <div className="loading">
+            <p>Chargement...</p>
           </div>
         )}
-
         {isError && (
-          <div
-            className="loading"
-            style={{
-              display: "flex",
-              justifyContent: "center",
-              alignItems: "center",
-              height: "70vh",
-            }}
-          >
-            <p
-              style={{
-                textAlign: "center",
-                fontSize: "20px",
-                fontWeight: "bold",
-              }}
-            >
-              Something went wrong...
-            </p>
+          <div className="loading">
+            <p>Something went wrong...</p>
           </div>
         )}
-
+        {items.length === 0 && (
+          <div className="loading">
+            <p>Aucun article pour cette commande</p>
+          </div>
+        )}
         {!isLoading && (
           <div className="commande-cards">
             {items?.map((item) => (
