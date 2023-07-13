@@ -35,6 +35,7 @@ import pub from "./pub.svg";
 import pause from "./pause.svg";
 import colorLogo from "./color-logo.svg";
 import isNotificated from "./is-notificated.svg";
+import emptyNot from "./empty-not.svg";
 export {
   logo,
   dashboard,
@@ -73,4 +74,5 @@ export {
   pause,
   colorLogo,
   isNotificated,
+  emptyNot,
 };

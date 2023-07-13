@@ -15,7 +15,7 @@ backend of chart to be done
 all projects : 
 adding loading on any formulaire and errors in this project
 notifiation:
-linking the notification popUp
+fixing hier bug
 search :
 linking the search bar not yet done
 dashboard: 

@@ -1,6 +1,11 @@
 /* eslint-disable react-hooks/exhaustive-deps */
 /* eslint-disable react/prop-types */
-import { search, actifNotification, avatar } from "../../../assets/index";
+import {
+  search,
+  actifNotification,
+  avatar,
+  emptyNot,
+} from "../../../assets/index";
 import { baseUrl } from "../../../utils/constants";
 import axiosInstance from "../../../utils/axiosInstance";
 import "./NavBar.css";
@@ -9,21 +14,27 @@ import { useEffect, useState } from "react";
 const NavBar = ({ title }) => {
   const [showNotification, setShowNotification] = useState(false);
   const [userInfo, setUserInfo] = useState({});
+  const [isNotificated, setIsNotificated] = useState(false);
+
+  // get user info
   const getUserInfo = async () => {
     try {
       const response = await axiosInstance.get(`${baseUrl}accounts/userinfo/`);
-      console.log(response);
+      const response1 = await axiosInstance.get(
+        `${baseUrl}notification/admin/`
+      );
+      setIsNotificated(response1.data.data.unread);
+      console.log(response1);
       const { first_name, last_name } = response.data.data;
       setUserInfo({ first_name, last_name });
-      console.log(userInfo);
     } catch (error) {
       console.log(error);
     }
   };
+
   useEffect(() => {
     getUserInfo();
   }, []);
-
   return (
     <>
       <nav className="navbar">
@@ -34,7 +45,7 @@ const NavBar = ({ title }) => {
           <div className="icons">
             <img src={search} alt="Rechercher" />
             <img
-              src={actifNotification}
+              src={isNotificated ? actifNotification : emptyNot}
               alt="Notification"
               className="not-img"
               onClick={() => setShowNotification(!showNotification)}
