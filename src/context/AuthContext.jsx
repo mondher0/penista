@@ -1,10 +1,10 @@
 /* eslint-disable react-hooks/exhaustive-deps */
 /* eslint-disable react/prop-types */
-import { createContext, useEffect } from "react";
-import { useReducer } from "react";
+import { createContext, useEffect, useReducer } from "react";
 import { authReducer } from "../reducers/authReducer/authReducer";
-import { loginUrl } from "../utils/constants";
+import { loginUrl, baseUrl } from "../utils/constants";
 import axios from "axios";
+
 import {
   ERROR,
   LOADING,
@@ -12,6 +12,11 @@ import {
   SET_PASSWORD,
   IS_AUTHENTICATED,
   LOGOUT,
+  SET_VERIFICATION_FIRST_CODE,
+  SET_VERIFICATION_SECOND_CODE,
+  SET_VERIFICATION_THIRD_CODE,
+  SET_VERIFICATION_FOURTH_CODE,
+  SET_NEW_PASSWORD,
 } from "../reducers/authReducer/authActions";
 
 export const AuthContext = createContext();
@@ -21,10 +26,16 @@ const initialState = {
   isLoading: false,
   error: "",
   isLogged: false,
+  firstCode: "",
+  secondCode: "",
+  thirdCode: "",
+  fourthCode: "",
+  newPassword: "",
 };
 
 const AuthContextProvider = ({ children }) => {
   const [state, dispatch] = useReducer(authReducer, initialState);
+
   console.log(state);
   // set email function
   const setEmail = (email) => {
@@ -34,6 +45,25 @@ const AuthContextProvider = ({ children }) => {
   // set password function
   const setPassword = (password) => {
     dispatch({ type: SET_PASSWORD, payload: password });
+  };
+
+  // set verification code function
+  const setVerificationFirstCode = (code) => {
+    dispatch({ type: SET_VERIFICATION_FIRST_CODE, payload: code });
+  };
+  const setVerificationSecondCode = (code) => {
+    dispatch({ type: SET_VERIFICATION_SECOND_CODE, payload: code });
+  };
+  const setVerificationThirdCode = (code) => {
+    dispatch({ type: SET_VERIFICATION_THIRD_CODE, payload: code });
+  };
+  const setVerificationFourthCode = (code) => {
+    dispatch({ type: SET_VERIFICATION_FOURTH_CODE, payload: code });
+  };
+
+  // set new password function
+  const setNewPassword = (password) => {
+    dispatch({ type: SET_NEW_PASSWORD, payload: password });
   };
 
   // handle login function
@@ -73,6 +103,33 @@ const AuthContextProvider = ({ children }) => {
     window.location.href = "/login";
   };
 
+  // handle change password
+  const handleChangePassword = async (e) => {
+    try {
+      e.preventDefault();
+      dispatch({ type: LOADING });
+      const data = {
+        email: state.username,
+        verification_code:
+          state.firstCode +
+          state.secondCode +
+          state.thirdCode +
+          state.fourthCode,
+        password: state.password,
+      };
+      const response = await axios.post(
+        `${baseUrl}accounts/password/reset/`,
+        data
+      );
+      console.log(response);
+      dispatch({ type: LOADING });
+      window.location.href = "/login";
+    } catch (error) {
+      console.log(error);
+      dispatch({ type: ERROR, payload: "something went wrong" });
+    }
+  };
+
   useEffect(() => {
     isAuthenticated();
     console.log(state);
@@ -80,7 +137,20 @@ const AuthContextProvider = ({ children }) => {
 
   return (
     <AuthContext.Provider
-      value={{ ...state, setEmail, setPassword, handleLogin, handleLogout }}
+      value={{
+        ...state,
+        setEmail,
+        setPassword,
+        setNewPassword,
+        setVerificationFirstCode,
+        setVerificationSecondCode,
+        setVerificationThirdCode,
+        setVerificationFourthCode,
+        handleLogin,
+        handleLogout,
+        handleChangePassword,
+        dispatch,
+      }}
     >
       {children}
     </AuthContext.Provider>
