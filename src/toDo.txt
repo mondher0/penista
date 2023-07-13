@@ -12,6 +12,8 @@ images did not work from the backend
 backend of chart to be done
 
 ---------------------------------------------------------------------------------------------------------
+all projects : 
+adding loading on any formulaire and errors in this project
 notifiation:
 linking the notification popUp
 search :
@@ -28,3 +30,5 @@ utilisateurs:
 did not link the demende abonnments
 send notification
 sending the id id of the user to get all the commandes of the user
+events:
+update event

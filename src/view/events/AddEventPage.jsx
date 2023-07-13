@@ -532,7 +532,7 @@ const AddEventPage = () => {
               </div>
             </div>
             <button type="submit" className="add-value submit">
-              Ajouter le produit
+              Ajouter
             </button>
           </form>
         </div>

@@ -633,7 +633,7 @@ const EditeSingleEvent = () => {
               </div>
             </div>
             <button type="submit" className="add-value submit">
-              Ajouter le produit
+              Modifier
             </button>
           </form>
         </div>
