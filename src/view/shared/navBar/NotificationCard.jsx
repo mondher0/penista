@@ -59,6 +59,8 @@ const NotificationCard = () => {
     fetchNotifications();
   }, []);
 
+  const today = new Date();
+
   return (
     <div className="notification-card" onScroll={handleScroll}>
       {notifications.map((notification, index) => {
@@ -67,6 +69,9 @@ const NotificationCard = () => {
         let hour = dateObj.getHours();
         let minute = dateObj.getMinutes();
         minute = String(minute).padStart(2, "0");
+
+        const isToday = dateObj.toDateString() === today.toDateString();
+
         return (
           <div
             className="notification"
@@ -83,9 +88,16 @@ const NotificationCard = () => {
               />
               <div className="txt">
                 <p className="not">{notification.message}</p>
-                <p className="time">
-                  Hier à {hour}:{minute}
-                </p>
+                {isToday && (
+                  <p className="time">
+                    Aujourd{"'"}hui à {hour}:{minute}
+                  </p>
+                )}
+                {!isToday && (
+                  <p className="time">
+                    Hier à {hour}:{minute}
+                  </p>
+                )}
               </div>
             </div>
           </div>

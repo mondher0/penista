@@ -30,5 +30,3 @@ utilisateurs:
 did not link the demende abonnments
 send notification
 sending the id id of the user to get all the commandes of the user
-events:
-update event

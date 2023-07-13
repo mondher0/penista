@@ -126,8 +126,8 @@ const EditeSingleEvent = () => {
         values: state.values,
       };
       formData.append("options", JSON.stringify(options));
-      const response = await axiosInstance.post(
-        `${baseUrl}event/create/`,
+      const response = await axiosInstance.put(
+        `${baseUrl}event/update/${id}/`,
         formData
       );
       console.log(response);
@@ -153,11 +153,11 @@ const EditeSingleEvent = () => {
       formData.append("maps_link", state.maps_link);
       formData.append("res_type", state.res_type);
       formData.append("address", state.address);
-      formData.append("date_start", state.date_start);
-      formData.append("date_end", state.date_end);
+      formData.append("date_start", date);
+      formData.append("date_end", res_dline);
       console.log(state);
-      const response = await axiosInstance.post(
-        `${baseUrl}event/create/`,
+      const response = await axiosInstance.put(
+        `${baseUrl}event/update/${id}/`,
         formData
       );
       console.log(response);
@@ -464,6 +464,7 @@ const EditeSingleEvent = () => {
                     placeholder="date"
                     value={date}
                     onChange={(e) => {
+                      setDate(e.target.value);
                       dispatch({
                         type: SET_DATE_START,
                         payload: e.target.value,
@@ -487,6 +488,7 @@ const EditeSingleEvent = () => {
                     placeholder="date"
                     value={res_dline}
                     onChange={(e) => {
+                      setRes_dline(e.target.value);
                       dispatch({ type: SET_DATE_END, payload: e.target.value });
                     }}
                   />
