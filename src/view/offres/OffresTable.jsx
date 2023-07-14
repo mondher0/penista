@@ -10,9 +10,10 @@ const OffresTable = () => {
   const [currentPage, setCurrentPage] = useState(1);
   const [isLoading, setIsLoading] = useState(false);
   const [pages, setPages] = useState(0);
-
   const [offre, setOffre] = useState();
-  const getOffrs = async () => {
+
+  // get all offres
+  const getOffres = async () => {
     try {
       setIsLoading(true);
       const response = await axiosInstance.get(`${baseUrl}promotion/`);
@@ -33,7 +34,7 @@ const OffresTable = () => {
     setCurrentPage((prevPage) => prevPage + 1);
   };
   useEffect(() => {
-    getOffrs();
+    getOffres();
   }, [currentPage]);
 
   return (

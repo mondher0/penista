@@ -14,19 +14,17 @@ backend of chart to be done
 ---------------------------------------------------------------------------------------------------------
 all projects : 
 adding loading on any formulaire and errors in this project
-notifiation:
-fixing hier bug
 search :
 linking the search bar not yet done
 dashboard: 
-linking the chart and statistiques
+changing the name of data in chart
 error in top product missing number of commande property
 products:
 linking the add product (images and adding i can add just one from the backend)
 the admin can add many images 
 commande :
-in the single CommandeCard image property is missing from the backend
 utilisateurs:
 did not link the demende abonnments
-send notification
-sending the id id of the user to get all the commandes of the user
+did not link send notification
+event: 
+adding champ in the add event
