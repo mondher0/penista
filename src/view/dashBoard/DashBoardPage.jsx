@@ -11,6 +11,7 @@ import { baseUrl } from "../../utils/constants";
 
 const DashBoardPage = () => {
   const [topProducts, setTopProducts] = useState([]);
+  const [statistiques, setStatistiques] = useState({});
   // get data
   const getData = async () => {
     try {
@@ -31,7 +32,18 @@ const DashBoardPage = () => {
       console.log(error);
     }
   };
+  const getStatistiques = async () => {
+    try {
+      const response = await axiosInstance.get(`${baseUrl}dashboard/`);
+      console.log(response);
+      setStatistiques(response.data.data);
+      console.log(statistiques["Utilisateur participant au jeu "]);
+    } catch (error) {
+      console.log(error);
+    }
+  };
   useEffect(() => {
+    getStatistiques();
     getData();
     getChart();
   }, []);
@@ -42,21 +54,29 @@ const DashBoardPage = () => {
       <div className="container">
         <p>Statistiques</p>
         <section className="statistique">
-          <StatistiqueContainer title="Revenus" number="1000" img={revenue} />
-          <StatistiqueContainer title="Utilisateurs" number="1000" img={user} />
+          <StatistiqueContainer
+            title="Revenus"
+            number={statistiques["Revenus "]}
+            img={revenue}
+          />
+          <StatistiqueContainer
+            title="Utilisateurs"
+            number={statistiques.Utilisateur}
+            img={user}
+          />
           <StatistiqueContainer
             title="Produit acheté"
-            number="1000"
+            number={statistiques.Produit_achete}
             img={buy}
           />
           <StatistiqueContainer
             title="Evènement réservé"
-            number="1000"
+            number={statistiques.Evenement_reserve}
             img={reserve}
           />
           <StatistiqueContainer
             title="Participant au jeu"
-            number="1000"
+            number={statistiques["Utilisateur participant au jeu"]}
             img={games}
           />
         </section>
@@ -74,9 +94,9 @@ const DashBoardPage = () => {
                   <>
                     <CustomContainer
                       title={product.name}
-                      cmd={product.total_stock}
+                      cmd={product.sales}
                       key={product.id}
-                      image={product.images[0]?.image}
+                      image={product.images[1]?.image}
                     />
                   </>
                 )
