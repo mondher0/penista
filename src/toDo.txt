@@ -23,8 +23,14 @@ products:
 linking the add product (images and adding i can add just one from the backend)
 the admin can add many images 
 commande :
+promo code did not work or it not in the api 
 utilisateurs:
 did not link the demende abonnments
 did not link send notification
 event: 
 adding champ in the add event
+reservation : 
+link not yet done
+offre :
+delete offre no api 
+linkig update offre not yet done
