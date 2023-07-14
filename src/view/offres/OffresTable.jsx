@@ -65,7 +65,7 @@ const OffresTable = () => {
                     <td>{offre.expirationDate}</td>
                     <td>
                       <div className="type">
-                        {offre.status ? "Actif" : "Inactif"}
+                        {!offre.status ? "Actif" : "Inactif"}
                       </div>
                     </td>
                     <td>
