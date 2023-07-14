@@ -41,10 +41,8 @@ const PerformanceChart = () => {
 
       const labels = orderData.map((item) => months[item.month - 1]);
 
-      const eventData = orderData.map((item) => item.total_orders);
-      const productData = reservationData.map(
-        (item) => item.total_reservations
-      );
+      const productData = orderData.map((item) => item.total_orders);
+      const eventData = reservationData.map((item) => item.total_reservations);
 
       setChartData({ labels, eventData, productData });
     } catch (error) {
