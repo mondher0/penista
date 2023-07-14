@@ -34,3 +34,4 @@ link not yet done
 offre :
 delete offre no api 
 linkig update offre not yet done
+fixing date bug
