@@ -35,14 +35,14 @@ const AddOffrePage = () => {
     e.preventDefault();
     try {
       const formData = new FormData();
-      formData.append("type", state.type);
+      formData.append("promoType", state.type);
       formData.append("title", state.title);
       formData.append("percentage", state.percentage);
       formData.append("promo_code", state.promoCode);
       formData.append("expirationDate", state.expirationDate);
       formData.append("image", state.image);
       const response = await axiosInstance.post(
-        `${baseUrl}promotion/create`,
+        `${baseUrl}promotion/create/`,
         formData
       );
       console.log(response);
