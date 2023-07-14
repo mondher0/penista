@@ -24,14 +24,7 @@ const DashBoardPage = () => {
       console.log(error);
     }
   };
-  const getChart = async () => {
-    try {
-      const response = await axiosInstance.get(`${baseUrl}dashboard/chart/`);
-      console.log(response);
-    } catch (error) {
-      console.log(error);
-    }
-  };
+
   const getStatistiques = async () => {
     try {
       const response = await axiosInstance.get(`${baseUrl}dashboard/`);
@@ -45,7 +38,6 @@ const DashBoardPage = () => {
   useEffect(() => {
     getStatistiques();
     getData();
-    getChart();
   }, []);
 
   return (
