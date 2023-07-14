@@ -1,6 +1,7 @@
 /* eslint-disable react/prop-types */
+import { baseUrl } from "../../utils/constants";
 import "./CommandeCard.css";
-const CommandeCard = ({ price, title, quantity }) => {
+const CommandeCard = ({ price, title, quantity, img }) => {
   const quantityArray = [];
 
   for (const key in quantity) {
@@ -11,7 +12,7 @@ const CommandeCard = ({ price, title, quantity }) => {
   }
   return (
     <div className="commande-card">
-      <img src="https://picsum.photos/200/300" alt="commande" />
+      <img src={`${baseUrl}static${img}`} alt="commande" />
       <div className="commande-card-content">
         <p>{title}</p>
         <p>{price}DA</p>

@@ -92,7 +92,7 @@ const UtilisateursTable = () => {
                 <td>{user.gender}</td>
                 <td>{user.plan_name}</td>
                 <td>{user.date_joined}</td>
-                <td onClick={() => navigate(`/utilisateurs/commandes/${id}`)}>
+                <td onClick={() => navigate(`/utilisateurs/commandes/${id}`)} className="hover">
                   {user.orders}
                 </td>
                 <td onClick={() => navigate(`/utilisateurs/evenements/${id}`)}>

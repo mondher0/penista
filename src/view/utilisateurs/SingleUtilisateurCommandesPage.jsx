@@ -1,10 +1,13 @@
+/* eslint-disable react-hooks/exhaustive-deps */
 import NavBar from "../shared/navBar/NavBar";
 import { useParams } from "react-router-dom";
 import { next } from "../../assets/index";
 import SingleUtilisateurCommandeTable from "./SingleUtilisateurCommandeTable";
 
+
 const SingleUtilisateurCommandesPage = () => {
   const { id } = useParams();
+ 
   return (
     <>
       <NavBar title="Utilisateurs" />
@@ -16,7 +19,7 @@ const SingleUtilisateurCommandesPage = () => {
           <img src={next} alt="next" />
           <p>Commandes</p>
         </div>
-        <SingleUtilisateurCommandeTable />
+        <SingleUtilisateurCommandeTable id={id} />
       </div>
     </>
   );
