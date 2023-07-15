@@ -19,7 +19,6 @@
   border: solid 1px #e9ecef;
   width: 350px;
   margin-bottom: 20px;
-
 }
 .container .filtres .filtre div {
   display: flex;
@@ -68,4 +67,9 @@ label {
     width: 250px;
     padding-right: 25px;
   }
+}
+input {
+  border: none;
+  outline: none;
+  background-color: transparent;
 }

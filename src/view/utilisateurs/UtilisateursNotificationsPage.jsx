@@ -19,25 +19,24 @@ const UtilisateursNotificationsPage = () => {
             <div className="filtre">
               <div>Sex</div>
               <select name="sex" id="sex">
-                <option value="">Choisir</option>
+                <option value="1">femme</option>
+                <option value="0">homme</option>
               </select>
             </div>
             <div className="filtre">
               <div>Wilaya</div>
-              <select name="wilaya" id="wilaya">
-                <option value="">Choisir</option>
-              </select>
+              <input type="text" placeholder="Wilaya" />
             </div>
             <div className="filtre">
               <div>Nombre d’étoiles </div>
-              <select name="nmbr" id="nmbr">
-                <option value="">Choisir</option>
-              </select>
+              <input type="text" placeholder="Etoiles" />
             </div>
           </div>
           <label>Ecrivez votre message</label>
           <textarea cols="30" rows="10"></textarea>
-          <button type="submit" className="submit">Envoyer</button>
+          <button type="submit" className="submit">
+            Envoyer
+          </button>
         </form>
       </div>
     </>
