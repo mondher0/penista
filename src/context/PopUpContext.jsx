@@ -70,6 +70,33 @@ const PopUpContextProvider = ({ children }) => {
       console.log(error);
     }
   };
+
+  // handle accept demande abonnement
+  const handleAcceptDemandeAbonnement = async (id) => {
+    try {
+      const response = await axiosInstance.put(
+        `${baseUrl}accounts/subscription/approve/${id}/`
+      );
+      console.log(response);
+      setUpdate(!update);
+    } catch (error) {
+      console.log(error);
+    }
+  };
+
+  // handle refuse demande abonnement
+  const handleRefuseDemandeAbonnement = async (id) => {
+    try {
+      const response = await axiosInstance.put(
+        `${baseUrl}accounts/subscription/reject/${id}/`
+      );
+      console.log(response);
+      setUpdate(!update);
+    } catch (error) {
+      console.log(error);
+    }
+  };
+
   return (
     <PopUpContext.Provider
       value={{
@@ -78,6 +105,8 @@ const PopUpContextProvider = ({ children }) => {
         handleDelete,
         handleAccept,
         handleRefuse,
+        handleAcceptDemandeAbonnement,
+        handleRefuseDemandeAbonnement,
         update,
       }}
     >

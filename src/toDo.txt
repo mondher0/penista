@@ -14,6 +14,7 @@ backend of chart to be done
 ---------------------------------------------------------------------------------------------------------
 all projects : 
 adding loading on any formulaire and errors in this project
+adding is empty in the table if there is no data
 
 search :
 linking the search bar not yet done
@@ -23,7 +24,7 @@ linking the add product (images and adding i can add just one from the backend)
 the admin can add many images 
 
 utilisateurs:
-missing some property in the backend
+missing some property in the backend and pagination 
 did not link send notification
 
 event: 
