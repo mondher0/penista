@@ -17,13 +17,10 @@ adding loading on any formulaire and errors in this project
 search :
 linking the search bar not yet done
 dashboard: 
-changing the name of data in chart
-error in top product missing number of commande property
 products:
 linking the add product (images and adding i can add just one from the backend)
 the admin can add many images 
 commande :
-promo code did not work or it not in the api 
 utilisateurs:
 did not link the demende abonnments
 did not link send notification
