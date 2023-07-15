@@ -67,7 +67,7 @@ const PopUpContextProvider = ({ children }) => {
       console.log(response);
       setUpdate(!update);
     } catch (error) {
-      console.log();
+      console.log(error);
     }
   };
   return (
