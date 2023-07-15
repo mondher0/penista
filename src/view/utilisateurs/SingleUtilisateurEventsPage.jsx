@@ -16,7 +16,7 @@ const SingleUtilisateurEventsPage = () => {
           <img src={next} alt="next" />
           <p>Evénements</p>
         </div>
-        <SingleUtilisateurEventsTable />
+        <SingleUtilisateurEventsTable id = {id} />
       </div>
     </>
   );

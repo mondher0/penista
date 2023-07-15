@@ -31,3 +31,6 @@ offre :
 delete offre no api 
 linkig update offre not yet done (bug from the backend)
 fixing date bug
+reservation :
+date de reservation is it createAT property
+type de reservation is it reservation_type or res_type
