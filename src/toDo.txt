@@ -14,23 +14,29 @@ backend of chart to be done
 ---------------------------------------------------------------------------------------------------------
 all projects : 
 adding loading on any formulaire and errors in this project
+
 search :
 linking the search bar not yet done
-dashboard: 
+
 products:
 linking the add product (images and adding i can add just one from the backend)
 the admin can add many images 
+
 utilisateurs:
-did not link the demende abonnments
+missing some property in the backend
 did not link send notification
+
 event: 
 adding champ in the add event
+
 reservation : 
 link not yet done
+
 offre :
 delete offre no api 
 linkig update offre not yet done (bug from the backend)
 fixing date bug
+
 reservation :
 date de reservation is it createAT property
 type de reservation is it reservation_type or res_type
