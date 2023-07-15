@@ -45,12 +45,39 @@ const PopUpContextProvider = ({ children }) => {
     }
   };
 
+  // handle accept reservation
+  const handleAccept = async (id) => {
+    try {
+      const response = await axiosInstance.put(
+        `${baseUrl}reservation/approve/${id}/`
+      );
+      console.log(response);
+      setUpdate(!update);
+    } catch (error) {
+      console.log(error);
+    }
+  };
+
+  // handle refuse reservation
+  const handleRefuse = async (id) => {
+    try {
+      const response = await axiosInstance.put(
+        `${baseUrl}reservation/reject/${id}/`
+      );
+      console.log(response);
+      setUpdate(!update);
+    } catch (error) {
+      console.log();
+    }
+  };
   return (
     <PopUpContext.Provider
       value={{
         handleBlock,
         handleUnblock,
         handleDelete,
+        handleAccept,
+        handleRefuse,
         update,
       }}
     >

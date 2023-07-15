@@ -6,8 +6,13 @@ import "./DemandeAbonnementTable.css";
 import axiosInstance from "../../utils/axiosInstance";
 import { baseUrl } from "../../utils/constants";
 import { useEffect, useState } from "react";
+import PopUp from "../shared/popUp/PopUp";
+import usePopUpContext from "../../hooks/usePopUpContext";
 
 const SingleUtilisateurEventsTable = ({ id }) => {
+  const { update } = usePopUpContext();
+  const [showPopUp1, setShowPopUp1] = useState(false);
+  const [showPopUp2, setShowPopUp2] = useState(false);
   const [reservations, setReservations] = useState();
   const [currentPage, setCurrentPage] = useState(1);
   const [isLoading, setIsLoading] = useState(false);
@@ -39,7 +44,7 @@ const SingleUtilisateurEventsTable = ({ id }) => {
 
   useEffect(() => {
     getUserEvents();
-  }, [currentPage]);
+  }, [currentPage, update]);
 
   return (
     <>
@@ -74,9 +79,26 @@ const SingleUtilisateurEventsTable = ({ id }) => {
                     <td>{reservation.payment}</td>
                     <td>
                       <div className="actions">
-                        <img src={save} alt="" />
-                        <img src={accept} alt="" />
-                        <img src={refuse} alt="" />
+                        {reservation.event_detail.type ===
+                        "Compétition" ? null : (
+                          <>
+                            <img src={save} alt="" />
+                            <img
+                              src={accept}
+                              alt=""
+                              onClick={() => {
+                                setShowPopUp1(reservation.id);
+                              }}
+                            />
+                            <img
+                              src={refuse}
+                              alt=""
+                              onClick={() => {
+                                setShowPopUp2(reservation.id);
+                              }}
+                            />
+                          </>
+                        )}
                       </div>
                     </td>
                   </tr>
@@ -94,6 +116,24 @@ const SingleUtilisateurEventsTable = ({ id }) => {
           Next
         </button>
       </div>
+      {showPopUp1 && (
+        <PopUp
+          text="Vous voulez vraiment accepter cette réservation?"
+          setShowPopUp={setShowPopUp1}
+          button="Accepter"
+          id={showPopUp1}
+          action="accept"
+        />
+      )}
+      {showPopUp2 && (
+        <PopUp
+          text="Vous voulez vraiment refuser cette réservation?"
+          setShowPopUp={setShowPopUp2}
+          button="Refuser"
+          id={showPopUp2}
+          action="refuse"
+        />
+      )}
     </>
   );
 };

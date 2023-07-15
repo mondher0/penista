@@ -3,7 +3,13 @@ import "./PopUp.css";
 import { cancel } from "../../../assets/index";
 import usePopUpContext from "../../../hooks/usePopUpContext";
 const PopUp = (props) => {
-  const { handleBlock, handleUnblock, handleDelete } = usePopUpContext();
+  const {
+    handleBlock,
+    handleUnblock,
+    handleDelete,
+    handleAccept,
+    handleRefuse,
+  } = usePopUpContext();
   console.log(props.id);
   return (
     <div className="them">
@@ -56,6 +62,12 @@ const PopUp = (props) => {
                   }
                   if (props.action === "deleteProduct") {
                     handleDelete(props.id);
+                  }
+                  if (props.action === "accept") {
+                    handleAccept(props.id);
+                  }
+                  if (props.action === "refuse") {
+                    handleRefuse(props.id);
                   }
                   props.setShowPopUp(false);
                   props?.setAction(false);
