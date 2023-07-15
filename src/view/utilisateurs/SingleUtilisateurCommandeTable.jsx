@@ -43,7 +43,7 @@ const SingleUtilisateurCommandeTable = ({ id }) => {
 
   useEffect(() => {
     getuserOrders();
-  }, []);
+  }, [currentPage]);
 
   return (
     <>

@@ -4,6 +4,7 @@ import { useEffect, useState } from "react";
 import PopUp from "../shared/popUp/PopUp";
 import axiosInstance from "../../utils/axiosInstance";
 import { baseUrl } from "../../utils/constants";
+import { useNavigate } from "react-router-dom";
 
 const OffresTable = () => {
   const [showPopUp, setShowPopUp] = useState(false);
@@ -11,6 +12,7 @@ const OffresTable = () => {
   const [isLoading, setIsLoading] = useState(false);
   const [pages, setPages] = useState(0);
   const [offre, setOffre] = useState();
+  const navigate = useNavigate();
 
   // get all offres
   const getOffres = async () => {
@@ -74,7 +76,13 @@ const OffresTable = () => {
                         alt="Supprimer"
                         onClick={() => setShowPopUp("1")}
                       />
-                      <img src={edite} alt="Modifier" />
+                      <img
+                        src={edite}
+                        alt="Modifier"
+                        onClick={() => {
+                          navigate(`/offres/modifier-offre/${offre.id}`);
+                        }}
+                      />
                     </td>
                   </tr>
                 </>

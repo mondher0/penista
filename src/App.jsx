@@ -33,6 +33,7 @@ import ProtectedRoute from "./routes/ProtuctedRoute";
 import LoginProtectedRoute from "./routes/LoginProtectedRoute";
 import EditSingleProduct from "./view/produit/EditSingleProduct";
 import EditeSingleEvent from "./view/events/EditeSingleEvent";
+import EditSingleOffre from "./view/offres/EditSingleOffre";
 
 function App() {
   return (
@@ -96,6 +97,10 @@ function App() {
           />
           <Route path="/offres" element={<OffresPage />} />
           <Route path="/offres/ajouter-offre" element={<AddOffrePage />} />
+          <Route
+            path="/offres/modifier-offre/:id"
+            element={<EditSingleOffre />}
+          />
           <Route path="/expectations" element={<ExpectationsPage />} />
           <Route path="/tiquet" element={<TicketsPage />} />
           <Route path="/tiquet/mes-tiquets" element={<TicketsMatchePage />} />
