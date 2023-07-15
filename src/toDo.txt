@@ -25,7 +25,7 @@ the admin can add many images
 
 utilisateurs:
 missing some property in the backend and pagination 
-did not link send notification
+did not link send notification 
 
 event: 
 adding champ in the add event
