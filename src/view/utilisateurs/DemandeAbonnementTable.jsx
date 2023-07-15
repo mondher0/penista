@@ -2,6 +2,13 @@ import { save, accept, refuse } from "../../assets/index";
 import "./DemandeAbonnementTable.css";
 
 const DemandeAbonnementTable = () => {
+  // get all demande abonnement
+  const getDemandeAbonnement = async () => {
+    try {
+    } catch (error) {
+      console.log(error);
+    }
+  };
   return (
     <table className="product-table">
       <thead>

@@ -39,8 +39,16 @@ const AddOffrePage = () => {
       formData.append("title", state.title);
       formData.append("percentage", state.percentage);
       formData.append("promo_code", state.promoCode);
-      formData.append("expirationDate", state.expirationDate);
+      formData.append(
+        "expirationDate",
+        state.expirationDate +
+          " " +
+          state.expirationHour +
+          ":" +
+          state.expirationMinute
+      );
       formData.append("image", state.image);
+      console.log(state);
       const response = await axiosInstance.post(
         `${baseUrl}promotion/create/`,
         formData
