@@ -66,6 +66,7 @@ const SingleUtilisateurEventsTable = ({ id }) => {
         <tbody>
           {reservations &&
             reservations.map((reservation) => {
+              console.log(reservation.status);
               return (
                 <>
                   <tr>
@@ -79,8 +80,8 @@ const SingleUtilisateurEventsTable = ({ id }) => {
                     <td>{reservation.payment}</td>
                     <td>
                       <div className="actions">
-                        {reservation.event_detail.type ===
-                        "Compétition" ? null : (
+                        {reservation.event_detail.type === "Compétition" ||
+                        reservation.status !== "WAITING" ? null : (
                           <>
                             <img src={save} alt="" />
                             <img
