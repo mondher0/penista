@@ -60,6 +60,8 @@ const NotificationCard = () => {
   }, []);
 
   const today = new Date();
+  const yesterday = new Date(today);
+  yesterday.setDate(yesterday.getDate() - 1);
 
   return (
     <div className="notification-card" onScroll={handleScroll}>
@@ -71,6 +73,16 @@ const NotificationCard = () => {
         minute = String(minute).padStart(2, "0");
 
         const isToday = dateObj.toDateString() === today.toDateString();
+        const isYesterday = dateObj.toDateString() === yesterday.toDateString();
+
+        let dateDisplay;
+        if (isToday) {
+          dateDisplay = `Aujourd'hui à ${hour}:${minute}`;
+        } else if (isYesterday) {
+          dateDisplay = `Hier à ${hour}:${minute}`;
+        } else {
+          dateDisplay = `${dateObj.getDate()}/${dateObj.getMonth() + 1}/${dateObj.getFullYear()} à ${hour}:${minute}`;
+        }
 
         return (
           <div
@@ -88,16 +100,7 @@ const NotificationCard = () => {
               />
               <div className="txt">
                 <p className="not">{notification.message}</p>
-                {isToday && (
-                  <p className="time">
-                    Aujourd{"'"}hui à {hour}:{minute}
-                  </p>
-                )}
-                {!isToday && (
-                  <p className="time">
-                    Hier à {hour}:{minute}
-                  </p>
-                )}
+                <p className="time">{dateDisplay}</p>
               </div>
             </div>
           </div>
