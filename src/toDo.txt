@@ -14,7 +14,6 @@ backend of chart to be done
 ---------------------------------------------------------------------------------------------------------
 all projects : 
 adding loading on any formulaire and errors in this project
-adding is empty in the table if there is no data
 
 search :
 linking the search bar not yet done
