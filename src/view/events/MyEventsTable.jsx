@@ -12,6 +12,8 @@ const MyEventsTable = () => {
   const [currentPage, setCurrentPage] = useState(1);
   const [isLoading, setIsLoading] = useState(false);
   const [pages, setPages] = useState(0);
+  const [isError, setIsError] = useState(false);
+  const [isEmpty, setIsEmpty] = useState(false);
   // get events
   const getEvents = async () => {
     try {
@@ -21,10 +23,15 @@ const MyEventsTable = () => {
       );
       console.log(response.data.data.events);
       setEvents(response.data.data.events);
+      if (response.data.data.events.length === 0) {
+        setIsEmpty(true);
+      }
       setPages(response.data.data.pages);
       setIsLoading(false);
     } catch (error) {
       console.log(error);
+      setIsLoading(false);
+      setIsError(true);
     }
   };
   // Pagination handlers
@@ -42,6 +49,8 @@ const MyEventsTable = () => {
   return (
     <>
       {isLoading && <div className="loader">Chargement...</div>}
+      {isError && <div className="loader">Erreur de chargement</div>}
+      {isEmpty && <div className="loader">Aucun événement</div>}
       <table className="product-table">
         <thead>
           <tr>
