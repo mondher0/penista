@@ -13,23 +13,48 @@ const DemandeAbonnementTable = () => {
   const [showPopUp2, setShowPopUp2] = useState(false);
   const [isLoading, setIsLoading] = useState(false);
   const [isEmpty, setIsEmpty] = useState(false);
-  // get all demande abonnement
+  const [currentPage, setCurrentPage] = useState(1);
+  const [pages, setPages] = useState(0);
+
+  // Get all demande abonnement
   const getDemandeAbonnement = async () => {
     try {
       setIsLoading(true);
       const response = await axiosInstance.get(
-        `${baseUrl}accounts/subscription/?page=20`
+        `${baseUrl}accounts/subscription/?page=${currentPage}`
       );
       console.log(response);
-      // filter demande abonnement that have status waiting
-      const demandeAbonnement = response.data.data.filter(
-        (demande) => demande.status == "WAITING"
-      );
+      setPages(response.data.data.pages);
+      setDemandeAbonnement(response.data.data.subscriptions);
       if (demandeAbonnement.length === 0) {
         setIsEmpty(true);
       }
-      setDemandeAbonnement(demandeAbonnement);
       setIsLoading(false);
+    } catch (error) {
+      console.log(error);
+    }
+  };
+
+  // Pagination handlers
+  const goToPreviousPage = () => {
+    setCurrentPage((prevPage) => prevPage - 1);
+  };
+
+  const goToNextPage = () => {
+    setCurrentPage((prevPage) => prevPage + 1);
+  };
+
+  // Function to download the image
+  const downloadImage = async (imagePath) => {
+    try {
+      const response = await axiosInstance.get(`${baseUrl}static${imagePath}`);
+      const blob = await response.blob();
+      const url = URL.createObjectURL(blob);
+      const link = document.createElement("a");
+      link.href = url;
+      link.download = "image.png";
+      link.click();
+      URL.revokeObjectURL(url);
     } catch (error) {
       console.log(error);
     }
@@ -37,7 +62,8 @@ const DemandeAbonnementTable = () => {
 
   useEffect(() => {
     getDemandeAbonnement();
-  }, [update]);
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, [currentPage, update]);
 
   return (
     <>
@@ -57,47 +83,70 @@ const DemandeAbonnementTable = () => {
         <tbody>
           {demandeAbonnement &&
             demandeAbonnement.map((demande) => {
+              console.log(demande.payment_receipt);
               return (
-                <>
-                  <tr key={demande.id}>
-                    <td>{demande.id}</td>
-                    <td>
-                      <div className="user-details">
-                        <img src="https://picsum.photos/200" alt="user" />
-                        <div className="user-info">
-                          <p>Utilisateur 1</p>
-                          <span>mondher@gmail.com</span>
-                        </div>
+                <tr key={demande.id}>
+                  <td>{demande.id}</td>
+                  <td>
+                    <div className="user-details">
+                      <img
+                        src={`${baseUrl}static${demande.user.image}`}
+                        alt="user"
+                      />
+                      <div className="user-info">
+                        <p>{demande.user.first_name}</p>
+                        <span>{demande.user.email}</span>
                       </div>
-                    </td>
-                    <td>{demande.plan}</td>
-                    <td>{demande.start_date}</td>
-                    <td>Versement</td>
-                    <td>
-                      <div className="actions">
-                        <img src={save} alt="" />
-                        <img
-                          src={accept}
-                          alt=""
-                          onClick={() => {
-                            setShowPopUp1(demande.id);
-                          }}
-                        />
-                        <img
-                          src={refuse}
-                          alt=""
-                          onClick={() => {
-                            setShowPopUp2(demande.id);
-                          }}
-                        />
-                      </div>
-                    </td>
-                  </tr>
-                </>
+                    </div>
+                  </td>
+                  <td>{demande.plan.name}</td>
+                  <td>{demande.start_date}</td>
+                  <td>Versement</td>
+                  <td>
+                    <div className="actions">
+                      {/* Save image with onClick event handler */}
+
+                      <img
+                        src={save}
+                        alt=""
+                        onClick={() => {
+                          downloadImage(demande.payment_receipt);
+                        }}
+                      />
+                      {demande.status === "WAITING" && (
+                        <>
+                          <img
+                            src={accept}
+                            alt=""
+                            onClick={() => {
+                              setShowPopUp1(demande.id);
+                            }}
+                          />
+                          <img
+                            src={refuse}
+                            alt=""
+                            onClick={() => {
+                              setShowPopUp2(demande.id);
+                            }}
+                          />
+                        </>
+                      )}
+                    </div>
+                  </td>
+                </tr>
               );
             })}
         </tbody>
       </table>
+      <div className="pagination">
+        <button disabled={currentPage === 1} onClick={goToPreviousPage}>
+          Previous
+        </button>
+        <span>Page{currentPage}</span>
+        <button onClick={goToNextPage} disabled={currentPage === pages}>
+          Next
+        </button>
+      </div>
       {showPopUp1 && (
         <PopUp
           text="Vous voulez vraiment accepter cette réservation?"
