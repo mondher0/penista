@@ -13,6 +13,7 @@ const ProductTable = () => {
   const [currentPage, setCurrentPage] = useState(1);
   const [pages, setPages] = useState(0);
   const [isLoading, setIsLoading] = useState(false);
+  const [isError, setIsError] = useState(false);
   const { update } = usePopUpContext();
   const navigate = useNavigate();
   // get products from database
@@ -28,6 +29,8 @@ const ProductTable = () => {
       setIsLoading(false);
     } catch (error) {
       console.log(error);
+      setIsLoading(false);
+      setIsError(true);
     }
   };
   // Pagination handlers
@@ -46,6 +49,7 @@ const ProductTable = () => {
   return (
     <>
       {isLoading && <div className="loader">Chargement...</div>}
+      {isError && <div className="loader">Erreur de chargement</div>}
       <table className="product-table">
         <thead>
           <tr>

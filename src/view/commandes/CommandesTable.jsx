@@ -11,6 +11,7 @@ const CommandesTable = () => {
   const [currentPage, setCurrentPage] = useState(1);
   const [pages, setPages] = useState(0);
   const [isLoading, setIsLoading] = useState(false);
+  const [isError, setIsError] = useState(false);
   // get all commandes
   const getCommandes = async () => {
     try {
@@ -24,6 +25,8 @@ const CommandesTable = () => {
       setIsLoading(false);
     } catch (error) {
       console.log(error);
+      setIsLoading(false);
+      setIsError(true);
     }
   };
   useEffect(() => {
@@ -42,6 +45,7 @@ const CommandesTable = () => {
   return (
     <>
       {isLoading && <div className="loader">Chargement...</div>}
+      {isError && <div className="loader">Erreur de chargement</div>}
       <table className="product-table">
         <thead>
           <tr>

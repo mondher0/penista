@@ -14,6 +14,7 @@ const SingleUtilisateurCommandeTable = ({ id }) => {
   const [isLoading, setIsLoading] = useState(false);
   const [pages, setPages] = useState(0);
   const [isEmpty, setIsEmpty] = useState(false);
+  const [isError, setIsError] = useState(false);
   // get all orders of this user
   const getuserOrders = async () => {
     try {
@@ -30,6 +31,8 @@ const SingleUtilisateurCommandeTable = ({ id }) => {
       setIsLoading(false);
     } catch (error) {
       console.log(error);
+      setIsLoading(false);
+      setIsError(true);
     }
   };
   // Pagination handlers
@@ -51,6 +54,7 @@ const SingleUtilisateurCommandeTable = ({ id }) => {
       {isEmpty && (
         <div className="loader">Aucune commande pour cet utilisateur</div>
       )}
+      {isError && <div className="loader">Erreur de chargement</div>}
       <table className="product-table">
         <thead>
           <tr>

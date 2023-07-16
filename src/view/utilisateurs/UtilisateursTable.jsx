@@ -16,6 +16,7 @@ const UtilisateursTable = () => {
   const [currentPage, setCurrentPage] = useState(1);
   const [isLoading, setIsLoading] = useState(false);
   const [pages, setPages] = useState(0);
+  const [isError, setIsError] = useState(false);
 
   const { update } = usePopUpContext();
   const navigate = useNavigate();
@@ -33,6 +34,8 @@ const UtilisateursTable = () => {
       setIsLoading(false);
     } catch (error) {
       console.log(error);
+      setIsLoading(false);
+      setIsError(true);
     }
   };
 
@@ -54,6 +57,7 @@ const UtilisateursTable = () => {
   return (
     <>
       {isLoading && <div className="loader">Chargement...</div>}
+      {isError && <div className="loader">Erreur de chargement</div>}
       <table className="product-table">
         <thead>
           <tr>
@@ -92,7 +96,10 @@ const UtilisateursTable = () => {
                 <td>{user.gender}</td>
                 <td>{user.plan_name}</td>
                 <td>{user.date_joined}</td>
-                <td onClick={() => navigate(`/utilisateurs/commandes/${id}`)} className="hover">
+                <td
+                  onClick={() => navigate(`/utilisateurs/commandes/${id}`)}
+                  className="hover"
+                >
                   {user.orders}
                 </td>
                 <td onClick={() => navigate(`/utilisateurs/evenements/${id}`)}>

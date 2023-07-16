@@ -12,6 +12,7 @@ const OffresTable = () => {
   const [isLoading, setIsLoading] = useState(false);
   const [pages, setPages] = useState(0);
   const [offre, setOffre] = useState();
+  const [isError, setIsError] = useState(false);
   const navigate = useNavigate();
 
   // get all offres
@@ -25,6 +26,8 @@ const OffresTable = () => {
       setIsLoading(false);
     } catch (error) {
       console.log(error);
+      setIsLoading(false);
+      setIsError(true);
     }
   };
   // Pagination handlers
@@ -42,6 +45,7 @@ const OffresTable = () => {
   return (
     <>
       {isLoading && <div className="loader">Chargement...</div>}
+      {isError && <div className="loader">Erreur de chargement</div>}
       <table className="product-table">
         <thead>
           <tr>

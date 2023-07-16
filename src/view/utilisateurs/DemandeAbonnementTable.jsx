@@ -15,6 +15,7 @@ const DemandeAbonnementTable = () => {
   const [isEmpty, setIsEmpty] = useState(false);
   const [currentPage, setCurrentPage] = useState(1);
   const [pages, setPages] = useState(0);
+  const [isError, setIsError] = useState(false);
 
   // Get all demande abonnement
   const getDemandeAbonnement = async () => {
@@ -26,12 +27,14 @@ const DemandeAbonnementTable = () => {
       console.log(response);
       setPages(response.data.data.pages);
       setDemandeAbonnement(response.data.data.subscriptions);
-      if (demandeAbonnement.length === 0) {
+      if (demandeAbonnement?.length === 0) {
         setIsEmpty(true);
       }
       setIsLoading(false);
     } catch (error) {
       console.log(error);
+      setIsLoading(false);
+      setIsError(true);
     }
   };
 
@@ -67,8 +70,9 @@ const DemandeAbonnementTable = () => {
 
   return (
     <>
-      {isLoading && <div className="loader">Chargement...</div>}
+      {isLoading && <div className="loader">Chargement...</div>}{" "}
       {isEmpty && <div className="loader">Aucune demande d{"'"}abonnement</div>}
+      {isError && <div className="loader">Erreur de chargement</div>}
       <table className="product-table">
         <thead>
           <tr>
@@ -105,7 +109,6 @@ const DemandeAbonnementTable = () => {
                   <td>
                     <div className="actions">
                       {/* Save image with onClick event handler */}
-
                       <img
                         src={save}
                         alt=""
