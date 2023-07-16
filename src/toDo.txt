@@ -18,6 +18,9 @@ adding loading on any formulaire and errors in this project
 search :
 linking the search bar not yet done
 
+notifications : 
+fixing bug of is the notification is not today or yesterday ill show the date
+
 products:
 linking the add product (images and adding i can add just one from the backend)
 the admin can add many images 
@@ -25,7 +28,6 @@ the admin can add many images
 utilisateurs:
 missing some property in the backend '(payment) 
 I Can not download the recus from the backend private route error 
-linked the notifications but ther is some bugs
 
 event: 
 adding champ in the add event
