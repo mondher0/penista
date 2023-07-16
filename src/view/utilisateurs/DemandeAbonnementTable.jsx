@@ -152,7 +152,7 @@ const DemandeAbonnementTable = () => {
       </div>
       {showPopUp1 && (
         <PopUp
-          text="Vous voulez vraiment accepter cette réservation?"
+          text="Vous voulez vraiment accepter cette demande?"
           setShowPopUp={setShowPopUp1}
           button="Accepter"
           id={showPopUp1}
@@ -161,7 +161,7 @@ const DemandeAbonnementTable = () => {
       )}
       {showPopUp2 && (
         <PopUp
-          text="Vous voulez vraiment refuser cette réservation?"
+          text="Vous voulez vraiment refuser cette demande?"
           setShowPopUp={setShowPopUp2}
           button="Refuser"
           id={showPopUp2}

@@ -14,6 +14,7 @@ const ProductTable = () => {
   const [pages, setPages] = useState(0);
   const [isLoading, setIsLoading] = useState(false);
   const [isError, setIsError] = useState(false);
+  const [isEmpty, setIsEmpty] = useState(false);
   const { update } = usePopUpContext();
   const navigate = useNavigate();
   // get products from database
@@ -25,6 +26,9 @@ const ProductTable = () => {
       );
       console.log(response);
       setProducts(response.data.data.products);
+      if (response.data.data.products.length === 0) {
+        setIsEmpty(true);
+      }
       setPages(response.data.data.pages);
       setIsLoading(false);
     } catch (error) {
@@ -50,6 +54,7 @@ const ProductTable = () => {
     <>
       {isLoading && <div className="loader">Chargement...</div>}
       {isError && <div className="loader">Erreur de chargement</div>}
+      {isEmpty && <div className="loader">Aucun produit</div>}
       <table className="product-table">
         <thead>
           <tr>

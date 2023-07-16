@@ -12,6 +12,7 @@ const CommandesTable = () => {
   const [pages, setPages] = useState(0);
   const [isLoading, setIsLoading] = useState(false);
   const [isError, setIsError] = useState(false);
+  const [isEmpty, setIsEmpty] = useState(false);
   // get all commandes
   const getCommandes = async () => {
     try {
@@ -21,6 +22,9 @@ const CommandesTable = () => {
       );
       console.log(response);
       setOrders(response.data.data.orders);
+      if (response.data.data.orders.length === 0) {
+        setIsEmpty(true);
+      }
       setPages(response.data.data.pages);
       setIsLoading(false);
     } catch (error) {
@@ -46,6 +50,7 @@ const CommandesTable = () => {
     <>
       {isLoading && <div className="loader">Chargement...</div>}
       {isError && <div className="loader">Erreur de chargement</div>}
+      {isEmpty && <div className="loader">Aucune commande</div>}
       <table className="product-table">
         <thead>
           <tr>

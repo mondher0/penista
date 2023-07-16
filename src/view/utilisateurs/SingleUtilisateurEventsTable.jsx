@@ -18,6 +18,7 @@ const SingleUtilisateurEventsTable = ({ id }) => {
   const [isLoading, setIsLoading] = useState(false);
   const [pages, setPages] = useState(0);
   const [isError, setIsError] = useState(false);
+  const [isEmpty, setIsEmpty] = useState(false);
   // get all events of the user
   const getUserEvents = async () => {
     try {
@@ -27,6 +28,9 @@ const SingleUtilisateurEventsTable = ({ id }) => {
       );
       console.log(response);
       setReservations(response.data.reservations);
+      if (response.data.reservations.length === 0) {
+        setIsEmpty(true);
+      }
       setPages(response.data.pages);
       setIsLoading(false);
     } catch (error) {
@@ -53,6 +57,7 @@ const SingleUtilisateurEventsTable = ({ id }) => {
     <>
       {isLoading && <div className="loader">Chargement...</div>}
       {isError && <div className="loader">Erreur de chargement</div>}
+      {isEmpty && <div className="loader">Aucun événement</div>}
       <table className="product-table">
         <thead>
           <tr>
