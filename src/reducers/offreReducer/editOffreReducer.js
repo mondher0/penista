@@ -17,7 +17,8 @@ export const editOffreReducer = (state, action) => {
     var year = date.getFullYear();
     var month = date.getMonth() + 1; // Months are zero-based
     var day = date.getDate();
-
+    const hour = date.getHours();
+    const minute = date.getMinutes();
     // Format the date as desired (e.g., "YYYY-MM-DD")
     var formattedDate =
       year +
@@ -34,6 +35,8 @@ export const editOffreReducer = (state, action) => {
       promoCode: action.payload.promo_code,
       expirationDate: formattedDate,
       image: action.payload.image,
+      expirationHour: hour,
+      expirationMinute: minute,
     };
   }
   if (action.type === SET_OFFRE_TYPE) {

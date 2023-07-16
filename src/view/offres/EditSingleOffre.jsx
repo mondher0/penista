@@ -200,6 +200,7 @@ const EditSingleOffre = () => {
                   id="nom"
                   name="nom"
                   placeholder="Heure"
+                  value={state.expirationHour}
                   onChange={(e) => {
                     dispatch({
                       type: SET_OFFRE_HOUR,
@@ -215,6 +216,7 @@ const EditSingleOffre = () => {
                   id="nom"
                   name="nom"
                   placeholder="Minute"
+                  value={state.expirationMinute}
                   onChange={(e) => {
                     dispatch({
                       type: SET_OFFRE_MINUTE,
