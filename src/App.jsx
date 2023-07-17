@@ -34,6 +34,7 @@ import LoginProtectedRoute from "./routes/LoginProtectedRoute";
 import EditSingleProduct from "./view/produit/EditSingleProduct";
 import EditeSingleEvent from "./view/events/EditeSingleEvent";
 import EditSingleOffre from "./view/offres/EditSingleOffre";
+import EditSingleTicket from "./view/tickets/EditSingleTicket";
 
 function App() {
   return (
@@ -105,6 +106,10 @@ function App() {
           <Route path="/tiquet" element={<TicketsPage />} />
           <Route path="/tiquet/mes-tiquets" element={<TicketsMatchePage />} />
           <Route path="/tiquet/ajouter-tiquet" element={<AddTicketPage />} />
+          <Route
+            path="/tiquet/modifier-tiquet/:id"
+            element={<EditSingleTicket />}
+          />
           <Route path="/cadeaux" element={<CadeauxPage />} />
           <Route path="/parametres" element={<SettingsPage />} />
           <Route

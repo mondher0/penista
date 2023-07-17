@@ -4,6 +4,7 @@ import { edite } from "../../assets/index";
 import { useEffect, useState } from "react";
 import axiosInstance from "../../utils/axiosInstance";
 import { baseUrl } from "../../utils/constants";
+import { useNavigate } from "react-router-dom";
 
 const TicketsMatcheTable = () => {
   const [tickets, setTickets] = useState();
@@ -12,6 +13,7 @@ const TicketsMatcheTable = () => {
   const [pages, setPages] = useState(0);
   const [isError, setIsError] = useState(false);
   const [isEmpty, setIsEmpty] = useState(false);
+  const navigate = useNavigate();
 
   // get all tickets
   const getAllTickets = async () => {
@@ -77,7 +79,13 @@ const TicketsMatcheTable = () => {
                   <td>{ticket.is_home ? "Maison" : "Extérieur"}</td>
                   <td>{ticket.tickets}</td>
                   <td>
-                    <img src={edite} alt="Modifier" />
+                    <img
+                      src={edite}
+                      alt="Modifier"
+                      onClick={() => {
+                        navigate(`/tiquet/modifier-tiquet/${ticket.id}`);
+                      }}
+                    />
                   </td>
                 </tr>
               </>
