@@ -81,14 +81,20 @@ const NotificationCard = () => {
         } else if (isYesterday) {
           dateDisplay = `Hier à ${hour}:${minute}`;
         } else {
-          dateDisplay = `${dateObj.getDate()}/${dateObj.getMonth() + 1}/${dateObj.getFullYear()} à ${hour}:${minute}`;
+          dateDisplay = `${dateObj.getDate()}/${
+            dateObj.getMonth() + 1
+          }/${dateObj.getFullYear()} à ${hour}:${minute}`;
         }
 
         return (
           <div
             className="notification"
             key={index}
-            onClick={() => markAsRead(notification.id)}
+            onClick={() => {
+              if (!asRead.includes(notification.id)) {
+                markAsRead(notification.id);
+              }
+            }}
           >
             {!asRead.includes(notification.id) && !notification.is_read && (
               <img src={isNotificated} alt="isNotificated" />
