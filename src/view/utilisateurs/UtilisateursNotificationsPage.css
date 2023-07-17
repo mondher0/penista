@@ -49,6 +49,9 @@
   outline: none;
   padding: 10px;
 }
+.container .filtres .filtre input {
+  color: rgba(0, 0, 0, 0.25);
+}
 .container .form .submit {
   background-color: var(--primary-color);
   color: white;

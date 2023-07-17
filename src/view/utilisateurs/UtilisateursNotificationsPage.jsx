@@ -43,6 +43,9 @@ const UtilisateursNotificationsPage = () => {
             <div className="filtre">
               <div>Abonnement</div>
               <select
+              style={{
+                width:"167px"
+              }}
                 name="abonnement"
                 id="abonnement"
                 onChange={(e) => {
