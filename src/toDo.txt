@@ -28,7 +28,7 @@ missing some property in the backend '(payment)
 I Can not download the recus from the backend private route error 
 
 event: 
-adding champ in the add event
+linking the new champ
 
 reservation : 
 link not yet done

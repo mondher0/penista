@@ -599,6 +599,22 @@ const EditeSingleEvent = () => {
                 </div>
               </>
             )}
+            <div className="input nom">
+              <label htmlFor="nom">Déstiné à</label>
+              <select
+                style={{
+                  border: "1px solid #E5E5E5",
+                }}
+              >
+                <option value="">Choisissez le type de l’événement</option>
+                <option value="Tous les utilisateurs">
+                  Tous les utilisateurs
+                </option>
+                <option value="Uniquement les utilisateurs Penista Premium">
+                  Uniquement les utilisateurs Penista Premium
+                </option>
+              </select>
+            </div>
             <div className="input adress">
               <label htmlFor="option-name">Adresse de l’événement</label>
               <input
