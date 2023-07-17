@@ -47,19 +47,23 @@ const DemandeAbonnementTable = () => {
     setCurrentPage((prevPage) => prevPage + 1);
   };
 
-  // Function to download the image
-  const downloadImage = async (imagePath) => {
+  const handleDownload = async (url) => {
+    console.log(url);
+    const imageUrl = `${baseUrl}${url}`; // Replace with the URL of the image you want to download
+
     try {
-      const response = await axiosInstance.get(`${baseUrl}static${imagePath}`);
+      const response = await fetch(imageUrl);
       const blob = await response.blob();
       const url = URL.createObjectURL(blob);
-      const link = document.createElement("a");
-      link.href = url;
-      link.download = "image.png";
-      link.click();
-      URL.revokeObjectURL(url);
+      const a = document.createElement("a");
+      a.href = url;
+      a.download = "image.jpg"; // Replace with the desired filename for the downloaded image
+      document.body.appendChild(a);
+      a.click();
+      window.URL.revokeObjectURL(url);
+      document.body.removeChild(a);
     } catch (error) {
-      console.log(error);
+      console.error("Error downloading image:", error);
     }
   };
 
@@ -113,7 +117,7 @@ const DemandeAbonnementTable = () => {
                         src={save}
                         alt=""
                         onClick={() => {
-                          downloadImage(demande.payment_receipt);
+                          handleDownload(demande.payment_receipt);
                         }}
                       />
                       {demande.status === "WAITING" && (
