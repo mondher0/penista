@@ -33,7 +33,7 @@ import { baseUrl } from "../../utils/constants";
 const initialState = {
   startDate: "",
   endDate: "",
-  places: "",
+  place: "",
   dates: [],
   optionName: "",
   value: "",
@@ -65,7 +65,6 @@ const AddEventPage = () => {
       formData.append("type", state.type);
       formData.append("description", state.description);
       formData.append("uploaded_images", state.uploaded_images);
-      formData.append("res_type", "versement");
       formData.append("address", state.address);
       formData.append("maps_link", state.maps_link);
       formData.append("dates", JSON.stringify(state.dates));
@@ -74,6 +73,9 @@ const AddEventPage = () => {
         values: state.values,
       };
       formData.append("options", JSON.stringify(options));
+      console.log(state);
+      console.log(state.dates);
+      console.log(options);
       const response = await axiosInstance.post(
         `${baseUrl}event/create/`,
         formData
@@ -205,7 +207,7 @@ const AddEventPage = () => {
                                 type="text"
                                 id="gratuit"
                                 name="gratuit"
-                                value={date.startDate}
+                                value={date.date_start}
                                 disabled
                               />
                             </div>
@@ -215,7 +217,7 @@ const AddEventPage = () => {
                                 type="text"
                                 id="premium"
                                 name="premium"
-                                value={date.endDate}
+                                value={date.date_end}
                                 disabled
                               />
                             </div>
@@ -225,7 +227,7 @@ const AddEventPage = () => {
                                 type="text"
                                 id="premium-box"
                                 name="premium-box"
-                                value={date.places}
+                                value={date.place}
                                 disabled
                               />
                             </div>
@@ -496,24 +498,24 @@ const AddEventPage = () => {
                     <option value="versement">Versement</option>
                   </select>
                 </div>
+                <div className="input nom">
+                  <label htmlFor="nom">Déstiné à</label>
+                  <select
+                    style={{
+                      border: "1px solid #E5E5E5",
+                    }}
+                  >
+                    <option value="">Choisissez le type de l’événement</option>
+                    <option value="Tous les utilisateurs">
+                      Tous les utilisateurs
+                    </option>
+                    <option value="Uniquement les utilisateurs Penista Premium">
+                      Uniquement les utilisateurs Penista Premium
+                    </option>
+                  </select>
+                </div>
               </>
             )}
-            <div className="input nom">
-              <label htmlFor="nom">Déstiné à</label>
-              <select
-                style={{
-                  border: "1px solid #E5E5E5",
-                }}
-              >
-                <option value="">Choisissez le type de l’événement</option>
-                <option value="Tous les utilisateurs">
-                  Tous les utilisateurs
-                </option>
-                <option value="Uniquement les utilisateurs Penista Premium">
-                  Uniquement les utilisateurs Penista Premium
-                </option>
-              </select>
-            </div>
             <div className="input adress">
               <label htmlFor="option-name">Adresse de l’événement</label>
               <input

@@ -155,9 +155,9 @@ export const addEventReducer = (state, action) => {
       dates: [
         ...state.dates,
         {
-          startDate: state.date_start,
-          endDate: state.date_end,
-          places: state.places,
+          date_start: state.date_start,
+          date_end: state.date_end,
+          place: parseInt(state.places),
         },
       ],
     };
