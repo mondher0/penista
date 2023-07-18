@@ -109,7 +109,11 @@ const DemandeAbonnementTable = () => {
                   </td>
                   <td>{demande.plan.name}</td>
                   <td>{demande.start_date}</td>
-                  <td>Versement</td>
+                  <td>
+                    {demande.payment_type === "bank transfer"
+                      ? "Versement"
+                      : demande.delivery_agency}
+                  </td>
                   <td>
                     <div className="actions">
                       {/* Save image with onClick event handler */}
