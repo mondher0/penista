@@ -29,6 +29,7 @@ I Can not download the recus from the backend private route error
 
 event: 
 linking the new champ
+adding new champ ticket number 
 
 reservation : 
 link not yet done
@@ -46,7 +47,7 @@ expectations :
 not linking yet 
 
 tickets :
-not linking yet
+demande de ticket : not linking yet
 
 cadedeaux :
 not linking yet
