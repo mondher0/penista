@@ -28,8 +28,6 @@ dont show actios to an delivery type
 I Can not download the recus from the backend private route error 
 
 event: 
-linking the new champ
-adding new champ ticket number 
 error in the backend edit competition event 
 error in the backend edit event
 i have to Modify the functions of edite when the bug is fixed
@@ -39,12 +37,6 @@ link not yet done
 
 offre :
 delete offre no api 
-
-reservation :
-date de reservation is it createAT property
-type de reservation is it reservation_type or res_type
-download the recus if it is not competible with the browser
-mkhlta chwyaa
 
 expectations :
 not linking yet 
