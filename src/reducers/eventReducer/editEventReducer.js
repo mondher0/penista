@@ -30,12 +30,6 @@ import {
 } from "./addEventActions";
 export const editEventReducer = (state, action) => {
   if (action.type === GET_EVENT_DETAILS) {
-    const datesArray = action.payload.response?.dates || [];
-    const updatedDatesArray = datesArray.map((date) => {
-      const { place, ...rest } = date;
-      return { ...rest, places: place };
-    });
-
     return {
       ...state,
       title: action.payload.response?.title,
@@ -50,7 +44,7 @@ export const editEventReducer = (state, action) => {
       maps_link: action.payload.response?.maps_link,
       address: action.payload.response?.address,
       res_type: action.payload.response?.res_type,
-      dates: updatedDatesArray,
+      dates: action.payload.response?.dates,
       optionName: action.payload.response?.options?.name,
       values: action.payload.response?.options?.values,
       tickets: action.payload.response?.tickets,
@@ -62,7 +56,7 @@ export const editEventReducer = (state, action) => {
       ...state,
       dates: state.dates.map((date, index) =>
         index === action.payload.index
-          ? { ...date, startDate: action.payload.date }
+          ? { ...date, date_start: action.payload.date }
           : date
       ),
     };
@@ -72,7 +66,7 @@ export const editEventReducer = (state, action) => {
       ...state,
       dates: state.dates.map((date, index) =>
         index === action.payload.index
-          ? { ...date, endDate: action.payload.date }
+          ? { ...date, date_end: action.payload.date }
           : date
       ),
     };
@@ -82,7 +76,7 @@ export const editEventReducer = (state, action) => {
       ...state,
       dates: state.dates.map((date, index) =>
         index === action.payload.index
-          ? { ...date, places: action.payload.places }
+          ? { ...date, place: action.payload.place }
           : date
       ),
     };
@@ -195,7 +189,7 @@ export const editEventReducer = (state, action) => {
   if (action.type === SET_PLACES) {
     return {
       ...state,
-      places: action.payload,
+      place: action.payload,
     };
   }
   if (action.type === SET_OPTION_NAME) {
@@ -234,7 +228,7 @@ export const editEventReducer = (state, action) => {
     action.type === SET_DATES &&
     state.date_start !== "" &&
     state.date_end !== "" &&
-    state.places !== ""
+    state.place !== ""
   ) {
     return {
       ...state,
@@ -243,7 +237,7 @@ export const editEventReducer = (state, action) => {
         {
           date_start: state.date_start,
           date_end: state.date_end,
-          places: parseInt(state.places),
+          place: parseInt(state.place),
         },
       ],
     };

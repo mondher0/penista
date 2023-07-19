@@ -43,7 +43,6 @@ const initialState = {
   startDate: "",
   endDate: "",
   place: "",
-  places: "",
   dates: [],
   optionName: "",
   value: "",
@@ -265,7 +264,7 @@ const EditeSingleEvent = () => {
                             <div className="price gratuit">
                               <label htmlFor="gratuit">Date de début</label>
                               <input
-                                type="text"
+                                type="date"
                                 id="gratuit"
                                 name="gratuit"
                                 value={date.date_start}
@@ -285,7 +284,7 @@ const EditeSingleEvent = () => {
                             <div className="price premium">
                               <label htmlFor="premium">Date de fin</label>
                               <input
-                                type="text"
+                                type="date"
                                 id="premium"
                                 name="premium"
                                 value={date.date_end}
@@ -306,7 +305,7 @@ const EditeSingleEvent = () => {
                                 type="text"
                                 id="premium-box"
                                 name="premium-box"
-                                value={date.places}
+                                value={date.place}
                                 onChange={(e) => {
                                   dispatch({
                                     type: EDIT_PLACES,
