@@ -92,7 +92,7 @@ const CommandesTable = () => {
                 <td>{order.client_info.wilaya}</td>
                 <td>{order.commune}</td>
                 <td>{order.shippingMethod}</td>
-                <td>{order.promo}null (back)</td>
+                <td>{order.promo}</td>
                 <td>{order.createdAt}</td>
                 <td>
                   <div className="type">{order.status}</div>

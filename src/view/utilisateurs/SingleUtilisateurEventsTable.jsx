@@ -40,6 +40,26 @@ const SingleUtilisateurEventsTable = ({ id }) => {
     }
   };
 
+  // download image
+  const handleDownload = async (url) => {
+    console.log(url);
+    const imageUrl = `${baseUrl}${url}`; // Replace with the URL of the image you want to download
+    try {
+      const response = await fetch(imageUrl);
+      const blob = await response.blob();
+      const url = URL.createObjectURL(blob);
+      const a = document.createElement("a");
+      a.href = url;
+      a.download = "image.jpg"; // Replace with the desired filename for the downloaded image
+      document.body.appendChild(a);
+      a.click();
+      window.URL.revokeObjectURL(url);
+      document.body.removeChild(a);
+    } catch (error) {
+      console.error("Error downloading image:", error);
+    }
+  };
+
   // Pagination handlers
   const goToPreviousPage = () => {
     setCurrentPage((prevPage) => prevPage - 1);
@@ -82,33 +102,38 @@ const SingleUtilisateurEventsTable = ({ id }) => {
                     <td>{reservation.id}</td>
                     <td>{reservation.event_detail.title}</td>
                     <td>{reservation.event_detail.type}</td>
-                    <td>{reservation.reservation_type}</td>
-                    <td>{reservation.price} DA</td>
+                    <td>{reservation.event_detail.res_type}</td>
+                    <td>{reservation.totalPrice} DA</td>
                     <td>{reservation.ticket}</td>
-                    <td>{reservation.createdAt}</td>
+                    <td>{reservation.reservationDate}</td>
                     <td>{reservation.payment}</td>
                     <td>
                       <div className="actions">
-                        {reservation.event_detail.type === "Compétition" ||
-                        reservation.status !== "WAITING" ? null : (
+                        {reservation.payment === "bank transfer" ? (
+                          <img
+                            src={save}
+                            alt=""
+                            onClick={() => {
+                              handleDownload(reservation.image);
+                            }}
+                          />
+                        ) : null}
+                        {reservation.payment === "bank transfer" &&
+                        reservation.status === "WAITING" ? (
                           <>
-                            <img src={save} alt="" />
+                            {" "}
                             <img
                               src={accept}
                               alt=""
-                              onClick={() => {
-                                setShowPopUp1(reservation.id);
-                              }}
+                              onClick={() => setShowPopUp1(reservation.id)}
                             />
                             <img
                               src={refuse}
                               alt=""
-                              onClick={() => {
-                                setShowPopUp2(reservation.id);
-                              }}
+                              onClick={() => setShowPopUp2(reservation.id)}
                             />
                           </>
-                        )}
+                        ) : null}
                       </div>
                     </td>
                   </tr>
