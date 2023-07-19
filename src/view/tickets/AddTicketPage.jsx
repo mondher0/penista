@@ -67,7 +67,7 @@ const AddTicketPage = () => {
   }, []);
   return (
     <>
-      <NavBar title="Offres" />
+      <NavBar title="Tickets" />
       <div className="container">
         <p>Ajouter un tiquet de match</p>
         <div className="form">

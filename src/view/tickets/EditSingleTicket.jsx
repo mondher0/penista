@@ -69,7 +69,7 @@ const EditSingleTicket = () => {
   };
   return (
     <>
-      <NavBar title="Offres" />
+      <NavBar title="Tickets" />
       <div className="container">
         <p>Modifier les tiquets de match {id}</p>
         <div className="form">
