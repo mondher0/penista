@@ -85,7 +85,7 @@ const SettingsPageTable = () => {
                       <img
                         src={edite}
                         alt="Modifier"
-                        onClick={() => navigate(`/parametres/5/modifier`)}
+                        onClick={() => navigate(`/parametres/${page.id}/modifier`)}
                       />
                     </div>
                   </td>

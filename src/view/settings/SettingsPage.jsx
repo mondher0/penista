@@ -5,7 +5,7 @@ import "../events/AddEventPage.css";
 import SettingsImageTable from "./SettingsImageTable";
 import SettingsPageTable from "./SettingsPageTable";
 import { useNavigate } from "react-router-dom";
-const AddEventPage = () => {
+const SettingsPage = () => {
   const navigate = useNavigate();
   return (
     <>
@@ -105,11 +105,18 @@ const AddEventPage = () => {
         <SettingsImageTable />
         <div className="title">
           <p>Pages</p>
-          <button className="add-product">Ajouter une page</button>
+          <button
+            className="add-product"
+            onClick={() => {
+              navigate("/parametres/ajouter-page");
+            }}
+          >
+            Ajouter une page
+          </button>
         </div>
         <SettingsPageTable />
       </div>
     </>
   );
 };
-export default AddEventPage;
+export default SettingsPage;

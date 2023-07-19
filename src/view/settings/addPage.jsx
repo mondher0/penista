@@ -1,7 +1,7 @@
 import NavBar from "../shared/navBar/NavBar";
 import "../produit/AddProductPage.css";
 import "../events/AddEventPage.css";
-const EditSettingsPage = () => {
+const AddPage = () => {
   return (
     <>
       <NavBar title="Paramètres" />
@@ -36,4 +36,4 @@ const EditSettingsPage = () => {
     </>
   );
 };
-export default EditSettingsPage;
+export default AddPage;
