@@ -75,7 +75,7 @@ const CommandesTable = () => {
                 <td>
                   <div className="user-details">
                     <img
-                      src={`${baseUrl}static${order.client_info.image}`}
+                      src={`${baseUrl}${order.client_info.image}`}
                       alt="user"
                     />
                     <div className="user-info">

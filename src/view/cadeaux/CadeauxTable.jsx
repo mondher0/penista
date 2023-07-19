@@ -1,29 +1,55 @@
-import { edite } from "../../assets/index";
+/* eslint-disable react-hooks/exhaustive-deps */
 import axiosInstance from "../../utils/axiosInstance";
 import { baseUrl } from "../../utils/constants";
-import PopUp from "../shared/popUp/PopUp";
 import { useEffect, useState } from "react";
 
 const CadeauxTable = () => {
-  const [showPopUp, setShowPopUp] = useState(null);
   const [users, setUsers] = useState();
+  const [currentPage, setCurrentPage] = useState(1);
+  const [isLoading, setIsLoading] = useState(false);
+  const [pages, setPages] = useState(0);
+  const [isError, setIsError] = useState(false);
+  const [isEmpty, setIsEmpty] = useState(false);
 
   // get users
   const getUsers = async () => {
     try {
-      const response = await axiosInstance.get(`${baseUrl}accounts/users/`);
+      setIsLoading(true);
+      const response = await axiosInstance.get(
+        `${baseUrl}accounts/users/?page=${currentPage}`
+      );
       console.log(response);
+      setUsers(response.data.data.users);
+      if (response.data.data.users.length === 0) {
+        setIsEmpty(true);
+      }
+      setPages(response.data.data.pages);
+      setIsLoading(false);
     } catch (error) {
       console.log(error);
+      setIsLoading(false);
+      setIsError(true);
     }
   };
 
   useEffect(() => {
     getUsers();
-  }, []);
+  }, [currentPage]);
+
+  // Pagination handlers
+  const goToPreviousPage = () => {
+    setCurrentPage((prevPage) => prevPage - 1);
+  };
+
+  const goToNextPage = () => {
+    setCurrentPage((prevPage) => prevPage + 1);
+  };
 
   return (
     <>
+      {isLoading && <div className="loader">Chargement...</div>}
+      {isError && <div className="loader">Erreur de chargement</div>}
+      {isEmpty && <div className="loader">Aucun utilisateur</div>}
       <table className="product-table">
         <thead>
           <tr>
@@ -35,75 +61,50 @@ const CadeauxTable = () => {
             <th>Points expectations</th>
             <th>Etoiles</th>
             <th>Status</th>
-            <th>Action</th>
           </tr>
         </thead>
         <tbody>
-          <tr>
-            <td>1</td>
-            <td>
-              <div className="user-details">
-                <img src="https://picsum.photos/200" alt="user" />
-                <div className="user-info">
-                  <p>Utilisateur 1</p>
-                  <span>mondher@gmail.com</span>
-                </div>
-              </div>
-            </td>
-            <td>0558604705</td>
-            <td>Gratuit</td>
-            <td>31200</td>
-            <td>1200</td>
-            <td>3</td>
-            <td>
-              <div className="type">Actif</div>
-            </td>
-            <td>
-              <img
-                src={edite}
-                alt="Modifier"
-                onClick={() => setShowPopUp("1")}
-              />
-            </td>
-          </tr>
-          <tr>
-            <td>1</td>
-            <td>
-              <div className="user-details">
-                <img src="https://picsum.photos/200" alt="user" />
-                <div className="user-info">
-                  <p>Utilisateur 1</p>
-                  <span>mondher@gmail.com</span>
-                </div>
-              </div>
-            </td>
-            <td>0558604705</td>
-            <td>Gratuit</td>
-            <td>31200</td>
-            <td>1200</td>
-            <td>3</td>
-            <td>
-              <div className="type">Actif</div>
-            </td>
-            <td>
-              <img
-                src={edite}
-                alt="Modifier"
-                onClick={() => setShowPopUp("22")}
-              />
-            </td>
-          </tr>
+          {users?.map((user) => {
+            return (
+              <>
+                <tr>
+                  <td>{user.id}</td>
+                  <td>
+                    <div className="user-details">
+                      <img src={`${baseUrl}${user.image}`} alt="user" />
+                      <div className="user-info">
+                        <p>
+                          {user.first_name} {user.last_name}
+                        </p>
+                        <span>{user.email}</span>
+                      </div>
+                    </div>
+                  </td>
+                  <td>{user.phone_no}</td>
+                  <td>{user.plan_name}</td>
+                  <td>{user.points}</td>
+                  <td>1200</td>
+                  <td>{user.stars}</td>
+                  <td>
+                    <div className="type">
+                      {user.is_active ? "ACTIF" : "BLOQUÉ²"}
+                    </div>
+                  </td>
+                </tr>
+              </>
+            );
+          })}
         </tbody>
       </table>
-      {showPopUp && (
-        <PopUp
-          text="Nombre de points à enlever"
-          setShowPopUp={setShowPopUp}
-          case="points"
-          button="Envoyer la notification"
-          id={showPopUp}
-        />
-      )}
+      <div className="pagination">
+        <button disabled={currentPage === 1} onClick={goToPreviousPage}>
+          Previous
+        </button>
+        <span>Page{currentPage}</span>
+        <button onClick={goToNextPage} disabled={currentPage == pages}>
+          Next
+        </button>
+      </div>
     </>
   );
 };

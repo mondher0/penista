@@ -87,7 +87,7 @@ const UtilisateursTable = () => {
                 <td>{id}</td>
                 <td>
                   <div className="user-details">
-                    <img src={`${baseUrl}static${user.image}`} alt="user" />
+                    <img src={`${baseUrl}${user.image}`} alt="user" />
                     <div className="user-info">
                       <p>
                         {user.first_name} {user.last_name}
