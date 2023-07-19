@@ -24,9 +24,11 @@ import {
   SET_FREE_PRICE,
   SET_MAPS_LINK,
   SET_ADDRESS,
-  SET_RES_TYPE,
   SET_DATE_START,
   SET_DATE_END,
+  SET_TICKETS,
+  FOR_USER,
+  SET_RESERVATION_TYPE,
 } from "../../reducers/eventReducer/addEventActions";
 import axiosInstance from "../../utils/axiosInstance";
 import { baseUrl } from "../../utils/constants";
@@ -48,10 +50,12 @@ const initialState = {
   premium_price: "",
   free_price: "",
   maps_link: "",
-  res_type: "",
+  reservation_type: "",
   address: "",
   date_start: "",
   date_end: "",
+  tickets: "",
+  forUser: "",
 };
 const AddEventPage = () => {
   const [competition, setCompetition] = useState(false);
@@ -101,10 +105,12 @@ const AddEventPage = () => {
       formData.append("premium_price", state.premium_price);
       formData.append("free_price", state.free_price);
       formData.append("maps_link", state.maps_link);
-      formData.append("res_type", state.res_type);
+      formData.append("res_type", state.reservation_type);
       formData.append("address", state.address);
       formData.append("date_start", state.date_start);
-      formData.append("date_end", state.date_end);
+      formData.append("lastReservationDate", state.date_end);
+      formData.append("tickets", state.tickets);
+      formData.append("forUser", state.forUser);
       const response = await axiosInstance.post(
         `${baseUrl}event/create/`,
         formData
@@ -475,6 +481,20 @@ const AddEventPage = () => {
                       }}
                     />
                   </div>
+                  <div className="price premium ticket">
+                    <label htmlFor="premium">Nombre de tiquets</label>
+                    <input
+                      type="number"
+                      id="premium"
+                      name="premium"
+                      onChange={(e) => {
+                        dispatch({
+                          type: SET_TICKETS,
+                          payload: e.target.value,
+                        });
+                      }}
+                    />
+                  </div>
                 </div>
                 <div className="input option-name">
                   <label htmlFor="option-name">Type de réservation</label>
@@ -486,16 +506,16 @@ const AddEventPage = () => {
                     }}
                     onChange={(e) => {
                       dispatch({
-                        type: SET_RES_TYPE,
+                        type: SET_RESERVATION_TYPE,
                         payload: e.target.value,
                       });
                     }}
                   >
                     <option value="">Choisissez le type de réservation</option>
-                    <option value="presence confirmé">
+                    <option value="Présence confirmée">
                       Confirmer présence
                     </option>
-                    <option value="versement">Versement</option>
+                    <option value="bank transfer">Versement</option>
                   </select>
                 </div>
                 <div className="input nom">
@@ -504,12 +524,16 @@ const AddEventPage = () => {
                     style={{
                       border: "1px solid #E5E5E5",
                     }}
+                    onChange={(e) => {
+                      dispatch({
+                        type: FOR_USER,
+                        payload: e.target.value,
+                      });
+                    }}
                   >
                     <option value="">Choisissez le type de l’événement</option>
-                    <option value="Tous les utilisateurs">
-                      Tous les utilisateurs
-                    </option>
-                    <option value="Uniquement les utilisateurs Penista Premium">
+                    <option value="all">Tous les utilisateurs</option>
+                    <option value="premium">
                       Uniquement les utilisateurs Penista Premium
                     </option>
                   </select>

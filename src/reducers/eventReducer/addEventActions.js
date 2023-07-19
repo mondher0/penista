@@ -25,3 +25,6 @@ export const EDIT_END_DATE = "EDIT_END_DATE";
 export const EDIT_PLACES = "EDIT_PLACES";
 export const EDIT_OPTION_NAME = "EDIT_OPTION_NAME";
 export const EDIT_OPTION_VALUES = "EDIT_OPTION_VALUES";
+export const SET_TICKETS = "SET_TICKETS";
+export const FOR_USER = "FOR_USER";
+export const SET_RESERVATION_TYPE = "SET_RESERVATION_TYPE";

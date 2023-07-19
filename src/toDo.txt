@@ -30,6 +30,9 @@ I Can not download the recus from the backend private route error
 event: 
 linking the new champ
 adding new champ ticket number 
+error in the backend edit competition event 
+error in the backend edit event
+i have to Modify the functions of edite when the bug is fixed
 
 reservation : 
 link not yet done

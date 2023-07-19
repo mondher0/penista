@@ -20,6 +20,9 @@ import {
   SET_RES_TYPE,
   SET_DATE_START,
   SET_DATE_END,
+  SET_TICKETS,
+  FOR_USER,
+  SET_RESERVATION_TYPE,
 } from "./addEventActions";
 export const addEventReducer = (state, action) => {
   if (action.type === SET_TITLE) {
@@ -143,7 +146,25 @@ export const addEventReducer = (state, action) => {
       values: [...state.values, state.value],
     };
   }
+  if (action.type === SET_TICKETS) {
+    return {
+      ...state,
+      tickets: action.payload,
+    };
+  }
 
+  if (action.type === FOR_USER) {
+    return {
+      ...state,
+      forUser: action.payload,
+    };
+  }
+if (action.type === SET_RESERVATION_TYPE) {
+    return {
+      ...state,
+      reservation_type: action.payload,
+    };
+  }
   if (
     action.type === SET_DATES &&
     state.date_start !== "" &&

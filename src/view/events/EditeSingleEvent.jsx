@@ -32,6 +32,8 @@ import {
   EDIT_END_DATE,
   EDIT_PLACES,
   EDIT_OPTION_VALUES,
+  SET_TICKETS,
+  FOR_USER,
 } from "../../reducers/eventReducer/addEventActions";
 import axiosInstance from "../../utils/axiosInstance";
 import { baseUrl } from "../../utils/constants";
@@ -40,6 +42,7 @@ import { editEventReducer } from "../../reducers/eventReducer/editEventReducer";
 const initialState = {
   startDate: "",
   endDate: "",
+  place: "",
   places: "",
   dates: [],
   optionName: "",
@@ -59,6 +62,8 @@ const initialState = {
   address: "",
   date_start: "",
   date_end: "",
+  tickets: "",
+  forUser: "",
 };
 const EditeSingleEvent = () => {
   const { id } = useParams();
@@ -117,7 +122,6 @@ const EditeSingleEvent = () => {
       formData.append("type", state.type);
       formData.append("description", state.description);
       formData.append("uploaded_images", state.uploaded_images);
-      formData.append("res_type", "versement");
       formData.append("address", state.address);
       formData.append("maps_link", state.maps_link);
       formData.append("dates", JSON.stringify(state.dates));
@@ -126,6 +130,7 @@ const EditeSingleEvent = () => {
         values: state.values,
       };
       formData.append("options", JSON.stringify(options));
+      console.log(state);
       const response = await axiosInstance.put(
         `${baseUrl}event/update/${id}/`,
         formData
@@ -261,7 +266,7 @@ const EditeSingleEvent = () => {
                                 type="text"
                                 id="gratuit"
                                 name="gratuit"
-                                value={date.startDate}
+                                value={date.date_start}
                                 onChange={(e) => {
                                   console.log(state.dates);
                                   dispatch({
@@ -281,7 +286,7 @@ const EditeSingleEvent = () => {
                                 type="text"
                                 id="premium"
                                 name="premium"
-                                value={date.endDate}
+                                value={date.date_end}
                                 onChange={(e) => {
                                   dispatch({
                                     type: EDIT_END_DATE,
@@ -572,7 +577,23 @@ const EditeSingleEvent = () => {
                         });
                       }}
                     />
+                    
                   </div>
+                  <div className="price premium ticket">
+                  <label htmlFor="premium">Nombre de tiquets</label>
+                  <input
+                    type="number"
+                    id="premium"
+                    name="premium"
+                    value={state.tickets}
+                    onChange={(e) => {
+                      dispatch({
+                        type: SET_TICKETS,
+                        payload: e.target.value,
+                      });
+                    }}
+                  />
+                </div>
                 </div>
                 <div className="input option-name">
                   <label htmlFor="option-name">Type de réservation</label>
@@ -591,30 +612,39 @@ const EditeSingleEvent = () => {
                     }}
                   >
                     <option value="">Choisissez le type de réservation</option>
-                    <option value="presence confirmé">
+                    <option value="Présence confirmée">
                       Confirmer présence
                     </option>
-                    <option value="versement">Versement</option>
+                    <option value="bank transfer">Versement</option>
+                  </select>
+                </div>
+                <div className="input nom">
+                  <label htmlFor="nom">Déstiné à</label>
+                  <select
+                    style={{
+                      border: "1px solid #E5E5E5",
+                    }}
+                    value={state.forUser}
+                    onChange={(e) => {
+                      dispatch({
+                        type: FOR_USER,
+                        payload: e.target.value,
+                      });
+                    }}
+
+                  >
+                    <option value="">Choisissez le type de l’événement</option>
+                    <option value="all">
+                      Tous les utilisateurs
+                    </option>
+                    <option value="premium">
+                      Uniquement les utilisateurs Penista Premium
+                    </option>
                   </select>
                 </div>
               </>
             )}
-            <div className="input nom">
-              <label htmlFor="nom">Déstiné à</label>
-              <select
-                style={{
-                  border: "1px solid #E5E5E5",
-                }}
-              >
-                <option value="">Choisissez le type de l’événement</option>
-                <option value="Tous les utilisateurs">
-                  Tous les utilisateurs
-                </option>
-                <option value="Uniquement les utilisateurs Penista Premium">
-                  Uniquement les utilisateurs Penista Premium
-                </option>
-              </select>
-            </div>
+
             <div className="input adress">
               <label htmlFor="option-name">Adresse de l’événement</label>
               <input
