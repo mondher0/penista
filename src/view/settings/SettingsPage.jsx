@@ -59,7 +59,7 @@ const AddEventPage = () => {
                 <input type="text" id="premium" name="premium" />
               </div>
             </div>
-            <label htmlFor="prix">Media</label>
+            <label htmlFor="prix">Photo de Profile</label>
             <div className="media">
               <div className="image">
                 <input type="file" id="image" name="image" size="60px" />

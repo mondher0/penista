@@ -1,9 +1,27 @@
 import { edite } from "../../assets/index";
+import axiosInstance from "../../utils/axiosInstance";
+import { baseUrl } from "../../utils/constants";
 import PopUp from "../shared/popUp/PopUp";
-import { useState } from "react";
+import { useEffect, useState } from "react";
 
 const CadeauxTable = () => {
   const [showPopUp, setShowPopUp] = useState(null);
+  const [users, setUsers] = useState();
+
+  // get users
+  const getUsers = async () => {
+    try {
+      const response = await axiosInstance.get(`${baseUrl}accounts/users/`);
+      console.log(response);
+    } catch (error) {
+      console.log(error);
+    }
+  };
+
+  useEffect(() => {
+    getUsers();
+  }, []);
+
   return (
     <>
       <table className="product-table">
