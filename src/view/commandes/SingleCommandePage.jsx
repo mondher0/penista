@@ -62,7 +62,7 @@ const SingleCommandePage = () => {
                 title={item.product_name}
                 price={item.price}
                 quantity={item.quantity}
-                img={item.product_images[0].image}
+                img={item.product_images[0]?.image}
               />
             ))}
           </div>

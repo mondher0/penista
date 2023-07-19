@@ -14,9 +14,13 @@ backend of chart to be done
 ---------------------------------------------------------------------------------------------------------
 all projects : 
 adding loading on any formulaire and errors in this project
+bug in images in the backend
 
 search :
 linking the search bar not yet done
+
+dashboard :
+bug in statistiques
 
 products:
 linking the add product (images and adding i can add just one from the backend)
@@ -25,7 +29,7 @@ the admin can add many images
 utilisateurs:
 demande abonnement :
 dont show actios to an delivery type
-I Can not download the recus from the backend private route error 
+I Can not download the recus from the backend private route error and adding a condition if there id no recus
 
 reservation : 
 link not yet done

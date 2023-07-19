@@ -12,7 +12,7 @@ const CommandeCard = ({ price, title, quantity, img }) => {
   }
   return (
     <div className="commande-card">
-      <img src={`${baseUrl}static${img}`} alt="commande" />
+      <img src={`${baseUrl}${img}`} alt="commande" />
       <div className="commande-card-content">
         <p>{title}</p>
         <p>{price}DA</p>

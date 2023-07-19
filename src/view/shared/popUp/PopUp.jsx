@@ -58,9 +58,11 @@ const PopUp = (props) => {
                 onClick={() => {
                   if (props.action === "bloquer") {
                     handleBlock(props.id);
+                    props?.setAction(false);
                   }
                   if (props.action === "débloquer") {
                     handleUnblock(props.id);
+                    props?.setAction(false);
                   }
                   if (props.action === "deleteProduct") {
                     handleDelete(props.id);
@@ -79,7 +81,6 @@ const PopUp = (props) => {
                   }
 
                   props.setShowPopUp(false);
-                  props?.setAction(false);
                 }}
               >
                 {props.button}
