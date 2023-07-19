@@ -45,8 +45,6 @@ const UtilisateursTable = () => {
 
   useEffect(() => {
     getUsers();
-    console.log("update");
-    console.log(update);
   }, [currentPage, update]);
 
   // Pagination handlers

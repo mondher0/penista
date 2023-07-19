@@ -108,6 +108,7 @@ const PopUpContextProvider = ({ children }) => {
         handleAcceptDemandeAbonnement,
         handleRefuseDemandeAbonnement,
         update,
+        setUpdate
       }}
     >
       {children}

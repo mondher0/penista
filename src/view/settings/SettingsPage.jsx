@@ -103,7 +103,10 @@ const AddEventPage = () => {
           </button>
         </div>
         <SettingsImageTable />
-        <p>Page</p>
+        <div className="title">
+          <p>Pages</p>
+          <button className="add-product">Ajouter une page</button>
+        </div>
         <SettingsPageTable />
       </div>
     </>
