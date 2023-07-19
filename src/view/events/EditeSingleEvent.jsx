@@ -80,7 +80,7 @@ const EditeSingleEvent = () => {
       console.log(response.data.data.date);
       console.log(response.data.data.res_dline);
       setDate(response.data.data.date);
-      setRes_dline(response.data.data.res_dline);
+      setRes_dline(response.data.data.lastReservationDate);
       console.log(date);
       console.log(res_dline);
 
@@ -159,7 +159,9 @@ const EditeSingleEvent = () => {
       formData.append("res_type", state.res_type);
       formData.append("address", state.address);
       formData.append("date_start", date);
-      formData.append("date_end", res_dline);
+      formData.append("lastReservationDate", res_dline);
+      formData.append("tickets", state.tickets);
+      formData.append("forUser", state.forUser);
       console.log(state);
       const response = await axiosInstance.put(
         `${baseUrl}event/update/${id}/`,
@@ -577,23 +579,22 @@ const EditeSingleEvent = () => {
                         });
                       }}
                     />
-                    
                   </div>
                   <div className="price premium ticket">
-                  <label htmlFor="premium">Nombre de tiquets</label>
-                  <input
-                    type="number"
-                    id="premium"
-                    name="premium"
-                    value={state.tickets}
-                    onChange={(e) => {
-                      dispatch({
-                        type: SET_TICKETS,
-                        payload: e.target.value,
-                      });
-                    }}
-                  />
-                </div>
+                    <label htmlFor="premium">Nombre de tiquets</label>
+                    <input
+                      type="number"
+                      id="premium"
+                      name="premium"
+                      value={state.tickets}
+                      onChange={(e) => {
+                        dispatch({
+                          type: SET_TICKETS,
+                          payload: e.target.value,
+                        });
+                      }}
+                    />
+                  </div>
                 </div>
                 <div className="input option-name">
                   <label htmlFor="option-name">Type de réservation</label>
@@ -631,12 +632,9 @@ const EditeSingleEvent = () => {
                         payload: e.target.value,
                       });
                     }}
-
                   >
                     <option value="">Choisissez le type de l’événement</option>
-                    <option value="all">
-                      Tous les utilisateurs
-                    </option>
+                    <option value="all">Tous les utilisateurs</option>
                     <option value="premium">
                       Uniquement les utilisateurs Penista Premium
                     </option>
