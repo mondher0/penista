@@ -44,12 +44,35 @@ const AddEventPage = () => {
                 <input type="password" id="premium" name="premium" />
               </div>
             </div>
-            <label style={{
-              marginBottom: "10px"
-            }}>Yalidine informations</label>
-            <div className="input prix" style={{
-              marginTop: "10px"
-            }}>
+
+            <label htmlFor="prix">Photo de Profile</label>
+            <div className="media">
+              <div className="image">
+                <input type="file" id="image" name="image" size="60px" />
+                <img src={image} alt="image" />
+                <p className="photo">Ajouter une photo</p>
+              </div>
+            </div>
+            <button
+              type="submit"
+              className="add-value submit"
+              style={{
+                marginTop: "0",
+              }}
+            >
+              Enregistrer
+            </button>
+          </form>
+        </div>
+        <div className="form">
+          <form>
+            <p>Yalidine information</p>
+            <div
+              className="input prix"
+              style={{
+                marginTop: "10px",
+              }}
+            >
               <div className="price gratuit ticket">
                 <label htmlFor="gratuit">API Token</label>
                 <input type="text" id="gratuit" name="gratuit" />
@@ -57,14 +80,6 @@ const AddEventPage = () => {
               <div className="price premium ticket">
                 <label htmlFor="premium">API Key</label>
                 <input type="text" id="premium" name="premium" />
-              </div>
-            </div>
-            <label htmlFor="prix">Photo de Profile</label>
-            <div className="media">
-              <div className="image">
-                <input type="file" id="image" name="image" size="60px" />
-                <img src={image} alt="image" />
-                <p className="photo">Ajouter une photo</p>
               </div>
             </div>
             <button
