@@ -84,6 +84,17 @@ const PopUpContextProvider = ({ children }) => {
     }
   };
 
+  // change status of ad
+  const handleChangeStatus = async (id) => {
+    try {
+      const response = await axiosInstance.post(`${baseUrl}ads/status/${id}/`);
+      console.log(response);
+      setUpdate(!update);
+    } catch (error) {
+      console.log(error);
+    }
+  };
+
   // handle refuse demande abonnement
   const handleRefuseDemandeAbonnement = async (id) => {
     try {
@@ -107,8 +118,9 @@ const PopUpContextProvider = ({ children }) => {
         handleRefuse,
         handleAcceptDemandeAbonnement,
         handleRefuseDemandeAbonnement,
+        handleChangeStatus,
         update,
-        setUpdate
+        setUpdate,
       }}
     >
       {children}

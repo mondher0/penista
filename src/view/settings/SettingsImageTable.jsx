@@ -1,15 +1,50 @@
 import "../produit/ProductTable.css";
-import { deleteIcon, edite, pub } from "../../assets/index";
-import { useState } from "react";
+import { deleteIcon, edite } from "../../assets/index";
+import { useEffect, useState } from "react";
 import PopUp from "../shared/popUp/PopUp";
 import "../utilisateurs/UtilisateursTable.css";
+import axiosInstance from "../../utils/axiosInstance";
+import { baseUrl } from "../../utils/constants";
+import "./SettingsImageTable.css";
+import usePopUpContext from "../../hooks/usePopUpContext";
 
 const SettingsImageTable = () => {
   const [showPopUp1, setShowPopUp1] = useState("");
   const [showPopUp2, setShowPopUp2] = useState("");
+  const [showPopUp3, setShowPopUp3] = useState("");
   const [action, setAction] = useState();
+  const [ads, setAds] = useState();
+  const { update } = usePopUpContext();
+  const [isLoading, setIsLoading] = useState(false);
+  const [isError, setIsError] = useState(false);
+  const [isEmpty, setIsEmpty] = useState(false);
+
+  // get all ads
+  const getAllAds = async () => {
+    try {
+      setIsLoading(true);
+      const response = await axiosInstance.get(`${baseUrl}ads/`);
+      console.log(response);
+      setAds(response.data.data);
+      if (response.data.data.length === 0) {
+        setIsEmpty(true);
+      }
+      setIsLoading(false);
+    } catch (error) {
+      console.log(error);
+      setIsLoading(false);
+      setIsError(true);
+    }
+  };
+
+  useEffect(() => {
+    getAllAds();
+  }, [update]);
   return (
     <>
+      {isLoading && <div className="loader">Chargement...</div>}
+      {isError && <div className="loader">Erreur de chargement</div>}
+      {isEmpty && <div className="loader">Aucun utilisateur</div>}
       <table className="product-table">
         <thead>
           <tr>
@@ -21,90 +56,64 @@ const SettingsImageTable = () => {
           </tr>
         </thead>
         <tbody>
-          <tr>
-            <td>
-              <img src={pub} alt="Pub" />
-            </td>
-            <td>Lorem ipsum</td>
-            <td>12-12-2022</td>
-            <td>
-              <div className="action">
-                {action == "3" && (
-                  <div
-                    className="edit"
-                    onClick={() => {
-                      setShowPopUp2("3");
-                    }}
-                  >
-                    Suspendre
-                  </div>
-                )}
-                <div className="type">Commande</div>
-              </div>
-            </td>
-            <td>
-              <img
-                src={deleteIcon}
-                alt="Supprimer"
-                onClick={() => {
-                  setShowPopUp1("3");
-                }}
-              />
-              <img
-                src={edite}
-                alt="Modifier"
-                onClick={() => {
-                  if (action == "3") {
-                    setAction("");
-                  } else {
-                    setAction("3");
-                  }
-                }}
-              />
-            </td>
-          </tr>
-          <tr>
-            <td>
-              <img src={pub} alt="Pub" />
-            </td>
-            <td>Lorem ipsum</td>
-            <td>12-12-2022</td>
-            <td>
-              <div className="action">
-                {action == "4" && (
-                  <div
-                    className="edit"
-                    onClick={() => {
-                      setShowPopUp2("4");
-                    }}
-                  >
-                    Suspendre
-                  </div>
-                )}
-                <div className="type">Commande</div>
-              </div>
-            </td>
-            <td>
-              <img
-                src={deleteIcon}
-                alt="Supprimer"
-                onClick={() => {
-                  setShowPopUp1("4");
-                }}
-              />
-              <img
-                src={edite}
-                alt="Modifier"
-                onClick={() => {
-                  if (action == "4") {
-                    setAction("");
-                  } else {
-                    setAction("4");
-                  }
-                }}
-              />
-            </td>
-          </tr>
+          {ads &&
+            ads.map((ad) => (
+              <>
+                <tr>
+                  <td>
+                    <img
+                      src={`${baseUrl}${ad.image}`}
+                      alt="Pub"
+                      className="pub"
+                    />
+                  </td>
+                  <td>{ad.title}</td>
+                  <td>{ad.createdAt}</td>
+                  <td>
+                    <div className="action">
+                      {action == ad.id && (
+                        <div
+                          className="edit"
+                          onClick={() => {
+                            if (ad.is_active) {
+                              setShowPopUp2(ad.id);
+                            } else {
+                              setShowPopUp3(ad.id);
+                              console.log(showPopUp3);
+                            }
+                          }}
+                        >
+                          {ad.is_active ? "Suspendre" : "Activer"}
+                        </div>
+                      )}
+                      <div className="type">
+                        {ad.is_active ? "ACTIF" : "INACTIF"}
+                      </div>
+                    </div>
+                  </td>
+                  <td>
+                    <img
+                      src={deleteIcon}
+                      alt="Supprimer"
+                      onClick={() => {
+                        setShowPopUp1(ad.id);
+                      }}
+                    />
+                    <img
+                      src={edite}
+                      alt="Modifier"
+                      onClick={() => {
+                        if (action == ad.id) {
+                          setAction("");
+                        } else {
+                          setAction(ad.id);
+                        }
+                      }}
+                    />
+                  </td>
+                </tr>
+              </>
+            ))}
         </tbody>
       </table>
       {showPopUp1 && (
@@ -122,6 +131,17 @@ const SettingsImageTable = () => {
           id={showPopUp2}
           button="Suspendre"
           setAction={setAction}
+          action="change ad status"
+        />
+      )}
+      {showPopUp3 && (
+        <PopUp
+          setShowPopUp={setShowPopUp3}
+          text="Vous voulez vraiment Activer cette publicités?"
+          id={showPopUp3}
+          button="Activer"
+          setAction={setAction}
+          action="change ad status"
         />
       )}
     </>

@@ -27,21 +27,21 @@ const SettingsPage = () => {
             <div className="input prix">
               <div className="price gratuit ticket">
                 <label htmlFor="gratuit">Téléphone</label>
-                <input type="text" id="gratuit" name="gratuit" />
+                <input type="text" id="gratui" name="gratuit" />
               </div>
               <div className="price premium ticket">
                 <label htmlFor="premium">Email</label>
-                <input type="email" id="premium" name="premium" />
+                <input type="email" id="premiu" name="premium" />
               </div>
             </div>
             <div className="input prix">
               <div className="price gratuit ticket">
                 <label htmlFor="gratuit">Nom d’utilisateur</label>
-                <input type="text" id="gratuit" name="gratuit" />
+                <input type="text" id="ratuit" name="gratuit" />
               </div>
               <div className="price premium ticket">
                 <label htmlFor="premium">Nouveau mot de passe</label>
-                <input type="password" id="premium" name="premium" />
+                <input type="password" id="remium" name="premium" />
               </div>
             </div>
 
@@ -75,11 +75,11 @@ const SettingsPage = () => {
             >
               <div className="price gratuit ticket">
                 <label htmlFor="gratuit">API Token</label>
-                <input type="text" id="gratuit" name="gratuit" />
+                <input type="text" id="grahhtuit" name="gratuit" />
               </div>
               <div className="price premium ticket">
                 <label htmlFor="premium">API Key</label>
-                <input type="text" id="premium" name="premium" />
+                <input type="text" id="premhhium" name="premium" />
               </div>
             </div>
             <button
