@@ -108,6 +108,19 @@ const PopUpContextProvider = ({ children }) => {
     }
   };
 
+  // handle delete ad
+  const handleDeleteAd = async (id) => {
+    try {
+      const response = await axiosInstance.delete(
+        `${baseUrl}ads/delete/${id}/`
+      );
+      setUpdate(!update);
+      console.log(response);
+    } catch (error) {
+      console.log(error);
+    }
+  };
+
   return (
     <PopUpContext.Provider
       value={{
@@ -119,6 +132,7 @@ const PopUpContextProvider = ({ children }) => {
         handleAcceptDemandeAbonnement,
         handleRefuseDemandeAbonnement,
         handleChangeStatus,
+        handleDeleteAd,
         update,
         setUpdate,
       }}

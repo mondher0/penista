@@ -12,6 +12,7 @@ const PopUp = (props) => {
     handleAcceptDemandeAbonnement,
     handleRefuseDemandeAbonnement,
     handleChangeStatus,
+    handleDeleteAd,
   } = usePopUpContext();
   console.log(props.id);
   return (
@@ -85,7 +86,9 @@ const PopUp = (props) => {
                     handleChangeStatus(props.id);
                     props?.setAction(false);
                   }
-
+                  if (props.action === "delete ad") {
+                    handleDeleteAd(props.id);
+                  }
                   props.setShowPopUp(false);
                 }}
               >

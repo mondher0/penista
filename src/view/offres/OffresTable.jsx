@@ -13,6 +13,7 @@ const OffresTable = () => {
   const [pages, setPages] = useState(0);
   const [offre, setOffre] = useState();
   const [isError, setIsError] = useState(false);
+  const [isEmpty, setIsEmpty] = useState(false);
   const navigate = useNavigate();
 
   // get all offres
@@ -23,6 +24,9 @@ const OffresTable = () => {
       console.log(response);
       setOffre(response.data.data.Promotions);
       setPages(response.data.data.pages);
+      if (response.data.data.Promotions.length === 0) {
+        setIsEmpty(true);
+      }
       setIsLoading(false);
     } catch (error) {
       console.log(error);
@@ -46,6 +50,7 @@ const OffresTable = () => {
     <>
       {isLoading && <div className="loader">Chargement...</div>}
       {isError && <div className="loader">Erreur de chargement</div>}
+      {isEmpty && <div className="loader">Aucune offre</div>}
       <table className="product-table">
         <thead>
           <tr>

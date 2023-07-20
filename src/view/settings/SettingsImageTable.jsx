@@ -44,7 +44,7 @@ const SettingsImageTable = () => {
     <>
       {isLoading1 && <div className="loader">Chargement...</div>}
       {isError && <div className="loader">Erreur de chargement</div>}
-      {isEmpty && <div className="loader">Aucun utilisateur</div>}
+      {isEmpty && <div className="loader">Aucune publicitée</div>}
       <table className="product-table">
         <thead>
           <tr>
@@ -122,6 +122,7 @@ const SettingsImageTable = () => {
           text="Vous voulez vraiment supprimer cette publicités?"
           id={showPopUp1}
           button="Supprimer"
+          action="delete ad"
         />
       )}
       {showPopUp2 && (

@@ -49,7 +49,7 @@ const CadeauxTable = () => {
     <>
       {isLoading && <div className="loader">Chargement...</div>}
       {isError && <div className="loader">Erreur de chargement</div>}
-      {isEmpty && <div className="loader">Aucun utilisateur</div>}
+      {isEmpty && <div className="loader">Aucun cadeau</div>}
       <table className="product-table">
         <thead>
           <tr>
