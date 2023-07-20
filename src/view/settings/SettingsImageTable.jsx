@@ -15,24 +15,24 @@ const SettingsImageTable = () => {
   const [action, setAction] = useState();
   const [ads, setAds] = useState();
   const { update } = usePopUpContext();
-  const [isLoading, setIsLoading] = useState(false);
+  const [isLoading1, setIsLoading1] = useState(false);
   const [isError, setIsError] = useState(false);
   const [isEmpty, setIsEmpty] = useState(false);
 
   // get all ads
   const getAllAds = async () => {
     try {
-      setIsLoading(true);
+      setIsLoading1(true);
       const response = await axiosInstance.get(`${baseUrl}ads/`);
       console.log(response);
       setAds(response.data.data);
       if (response.data.data.length === 0) {
         setIsEmpty(true);
       }
-      setIsLoading(false);
+      setIsLoading1(false);
     } catch (error) {
       console.log(error);
-      setIsLoading(false);
+      setIsLoading1(false);
       setIsError(true);
     }
   };
@@ -42,7 +42,7 @@ const SettingsImageTable = () => {
   }, [update]);
   return (
     <>
-      {isLoading && <div className="loader">Chargement...</div>}
+      {isLoading1 && <div className="loader">Chargement...</div>}
       {isError && <div className="loader">Erreur de chargement</div>}
       {isEmpty && <div className="loader">Aucun utilisateur</div>}
       <table className="product-table">
