@@ -1,6 +1,5 @@
 ---------------------------------------------------------------------------------------------------------
 all projects : 
-adding loading on any formulaire and errors in this project
 delete all logs in the console
 hover effect in anything is clickable
 
