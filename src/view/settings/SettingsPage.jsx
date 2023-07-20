@@ -5,50 +5,144 @@ import "../events/AddEventPage.css";
 import SettingsImageTable from "./SettingsImageTable";
 import SettingsPageTable from "./SettingsPageTable";
 import { useNavigate } from "react-router-dom";
+import axiosInstance from "../../utils/axiosInstance";
+import { baseUrl } from "../../utils/constants";
+import { useEffect, useState } from "react";
 const SettingsPage = () => {
   const navigate = useNavigate();
+  const [userInfo, setUserInfo] = useState({});
+  const [username, setUsername] = useState("");
+  const [password, setPassword] = useState("");
+  const [profilePicture, setProfilePicture] = useState();
+
+  // get user info
+  const getUserInfo = async () => {
+    try {
+      const response = await axiosInstance.get(`${baseUrl}accounts/userinfo/`);
+      console.log(response);
+      const { first_name, last_name, phone_no, email } = response.data.data;
+      setUserInfo({ first_name, last_name, phone_no, email });
+    } catch (error) {
+      console.log(error);
+    }
+  };
+
+  // update user info
+  const updateUserInfo = async (e) => {
+    e.preventDefault();
+    try {
+      const formData = new FormData();
+      formData.append("username", username);
+      formData.append("password", password);
+      formData.append("first_name", userInfo.first_name);
+      formData.append("last_name", userInfo.last_name);
+      formData.append("phone_no", userInfo.phone_no);
+      formData.append("email", userInfo.email);
+      formData.append("image", profilePicture);
+      const response = await axiosInstance.put(
+        `${baseUrl}accounts/users/admin/`,
+        formData
+      );
+      console.log(response);
+    } catch (error) {
+      console.log(error);
+    }
+  };
+
+  useEffect(() => {
+    getUserInfo();
+  }, []);
   return (
     <>
       <NavBar title="Paramètres" />
       <div className="container">
         <p>Information personnelles</p>
         <div className="form">
-          <form>
+          <form onSubmit={updateUserInfo}>
             <div className="input prix">
               <div className="price gratuit ticket">
                 <label htmlFor="gratuit">Nom</label>
-                <input type="text" id="gratuit" name="gratuit" />
+                <input
+                  type="text"
+                  id="gratuit"
+                  name="gratuit"
+                  value={userInfo.last_name}
+                  onChange={(e) =>
+                    setUserInfo({ ...userInfo, last_name: e.target.value })
+                  }
+                />
               </div>
               <div className="price premium ticket">
                 <label htmlFor="premium">Prénom</label>
-                <input type="text" id="premium" name="premium" />
+                <input
+                  type="text"
+                  id="premium"
+                  name="premium"
+                  value={userInfo.first_name}
+                  onChange={(e) =>
+                    setUserInfo({ ...userInfo, first_name: e.target.value })
+                  }
+                />
               </div>
             </div>
             <div className="input prix">
               <div className="price gratuit ticket">
                 <label htmlFor="gratuit">Téléphone</label>
-                <input type="text" id="gratui" name="gratuit" />
+                <input
+                  type="text"
+                  id="gratui"
+                  name="gratuit"
+                  value={userInfo.phone_no}
+                  onChange={(e) =>
+                    setUserInfo({ ...userInfo, phone_no: e.target.value })
+                  }
+                />
               </div>
               <div className="price premium ticket">
                 <label htmlFor="premium">Email</label>
-                <input type="email" id="premiu" name="premium" />
+                <input
+                  type="email"
+                  id="premiu"
+                  name="premium"
+                  value={userInfo.email}
+                  onChange={(e) =>
+                    setUserInfo({ ...userInfo, email: e.target.value })
+                  }
+                />
               </div>
             </div>
             <div className="input prix">
               <div className="price gratuit ticket">
                 <label htmlFor="gratuit">Nom d’utilisateur</label>
-                <input type="text" id="ratuit" name="gratuit" />
+                <input
+                  type="text"
+                  id="ratuit"
+                  name="gratuit"
+                  value={userInfo.email}
+                  onChange={(e) => setUsername(e.target.value)}
+                />
               </div>
               <div className="price premium ticket">
                 <label htmlFor="premium">Nouveau mot de passe</label>
-                <input type="password" id="remium" name="premium" />
+                <input
+                  type="password"
+                  id="remium"
+                  name="premium"
+                  onChange={(e) => setPassword(e.target.value)}
+                />
               </div>
             </div>
 
             <label htmlFor="prix">Photo de Profile</label>
             <div className="media">
               <div className="image">
-                <input type="file" id="image" name="image" size="60px" />
+                <input
+                  type="file"
+                  id="image"
+                  name="image"
+                  size="60px"
+                  onChange={(e) => setProfilePicture(e.target.files[0])}
+                />
                 <img src={image} alt="image" />
                 <p className="photo">Ajouter une photo</p>
               </div>

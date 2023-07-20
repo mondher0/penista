@@ -30,5 +30,4 @@ cadeaux :
 missing expectation points 
 
 parametres :
-update admin info
-paginations
+missing profil picture property and user name property

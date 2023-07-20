@@ -1,3 +1,4 @@
+/* eslint-disable react-hooks/exhaustive-deps */
 import "../produit/ProductTable.css";
 import { edite, pause, play } from "../../assets/index";
 import "../utilisateurs/UtilisateursTable.css";
@@ -14,14 +15,19 @@ const SettingsPageTable = () => {
   const [isLoading, setIsLoading] = useState(false);
   const [isError, setIsError] = useState(false);
   const [isEmpty, setIsEmpty] = useState(false);
+  const [currentPage, setCurrentPage] = useState(1);
+  const [nmbrPages, setNmbrPages] = useState(1);
 
   // get all pages
   const getAllPages = async () => {
     try {
       setIsLoading(true);
-      const response = await axiosInstance.get(`${baseUrl}page/`);
+      const response = await axiosInstance.get(
+        `${baseUrl}page/?page=${currentPage}`
+      );
       console.log(response);
       setPages(response.data.data);
+      setNmbrPages(response.data.pages);
       if (response.data.data.length === 0) {
         setIsEmpty(true);
       }
@@ -46,7 +52,16 @@ const SettingsPageTable = () => {
 
   useEffect(() => {
     getAllPages();
-  }, [update]);
+  }, [currentPage, update]);
+
+  // Pagination handlers
+  const goToPreviousPage = () => {
+    setCurrentPage((prevPage) => prevPage - 1);
+  };
+
+  const goToNextPage = () => {
+    setCurrentPage((prevPage) => prevPage + 1);
+  };
   return (
     <>
       {isLoading && <div className="loader">Chargement...</div>}
@@ -96,6 +111,15 @@ const SettingsPageTable = () => {
             ))}
         </tbody>
       </table>
+      <div className="pagination">
+        <button disabled={currentPage === 1} onClick={goToPreviousPage}>
+          Previous
+        </button>
+        <span>Page{currentPage}</span>
+        <button onClick={goToNextPage} disabled={currentPage == nmbrPages}>
+          Next
+        </button>
+      </div>
     </>
   );
 };

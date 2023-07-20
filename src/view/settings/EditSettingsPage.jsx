@@ -12,7 +12,8 @@ const EditSettingsPage = () => {
   const [description, setDescription] = useState();
   const [sloganState, setSloganState] = useState();
   const [id, setId] = useState();
-  console.log(slogan);
+  const [loading, setLoading] = useState(false);
+  const [error, setError] = useState(false);
 
   // get page by slogan
   const getPageBySlogan = async () => {
@@ -21,10 +22,10 @@ const EditSettingsPage = () => {
         `${baseUrl}page/slogan/${slogan}/`
       );
       console.log(response);
-      setTitle(response.data.data[0].title);
-      setDescription(response.data.data[0].content);
-      setSloganState(response.data.data[0].slogan);
-      setId(response.data.data[0].id);
+      setTitle(response.data.data?.title);
+      setDescription(response.data.data?.content);
+      setSloganState(response.data.data?.slogan);
+      setId(response.data.data?.id);
     } catch (error) {
       console.log(error);
     }
@@ -34,6 +35,8 @@ const EditSettingsPage = () => {
   const handleUpdate = async (e) => {
     e.preventDefault();
     try {
+      setLoading(true);
+      setError(false);
       const data = {
         title: title,
         slogan: sloganState,
@@ -44,8 +47,16 @@ const EditSettingsPage = () => {
         data
       );
       console.log(response);
+      if (response.data.success === false) {
+        setLoading(false);
+        setError(true);
+        return;
+      }
+      setLoading(false);
     } catch (error) {
       console.log(error);
+      setLoading(false);
+      setError(true);
     }
   };
 
@@ -96,7 +107,7 @@ const EditSettingsPage = () => {
                 marginTop: "0",
               }}
             >
-              Modifier
+              {loading ? "Chargement..." : error ? "Erreur" : "Modifier"}
             </button>
           </form>
         </div>

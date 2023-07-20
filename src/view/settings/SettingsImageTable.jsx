@@ -1,3 +1,4 @@
+/* eslint-disable react-hooks/exhaustive-deps */
 import "../produit/ProductTable.css";
 import { deleteIcon, edite } from "../../assets/index";
 import { useEffect, useState } from "react";
@@ -18,14 +19,19 @@ const SettingsImageTable = () => {
   const [isLoading1, setIsLoading1] = useState(false);
   const [isError, setIsError] = useState(false);
   const [isEmpty, setIsEmpty] = useState(false);
+  const [currentPage, setCurrentPage] = useState(1);
+  const [pages, setPages] = useState(0);
 
   // get all ads
   const getAllAds = async () => {
     try {
       setIsLoading1(true);
-      const response = await axiosInstance.get(`${baseUrl}ads/`);
+      const response = await axiosInstance.get(
+        `${baseUrl}ads/?page=${currentPage}`
+      );
       console.log(response);
       setAds(response.data.data);
+      setPages(response.data.pages);
       if (response.data.data.length === 0) {
         setIsEmpty(true);
       }
@@ -39,7 +45,16 @@ const SettingsImageTable = () => {
 
   useEffect(() => {
     getAllAds();
-  }, [update]);
+  }, [currentPage, update]);
+
+  // Pagination handlers
+  const goToPreviousPage = () => {
+    setCurrentPage((prevPage) => prevPage - 1);
+  };
+
+  const goToNextPage = () => {
+    setCurrentPage((prevPage) => prevPage + 1);
+  };
   return (
     <>
       {isLoading1 && <div className="loader">Chargement...</div>}
@@ -59,7 +74,7 @@ const SettingsImageTable = () => {
           {ads &&
             ads.map((ad) => (
               <>
-                <tr>
+                <tr key={ad.id}>
                   <td>
                     <img
                       src={`${baseUrl}${ad.image}`}
@@ -116,6 +131,15 @@ const SettingsImageTable = () => {
             ))}
         </tbody>
       </table>
+      <div className="pagination">
+        <button disabled={currentPage === 1} onClick={goToPreviousPage}>
+          Previous
+        </button>
+        <span>Page{currentPage}</span>
+        <button onClick={goToNextPage} disabled={currentPage == pages}>
+          Next
+        </button>
+      </div>
       {showPopUp1 && (
         <PopUp
           setShowPopUp={setShowPopUp1}

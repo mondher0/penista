@@ -7,11 +7,15 @@ import { baseUrl } from "../../utils/constants";
 const SettingsAddImagePage = () => {
   const [note, setNote] = useState();
   const [img, setImg] = useState();
+  const [loading, setLoading] = useState(false);
+  const [error, setError] = useState(false);
 
   // handle submit
   const handleSubmit = async (e) => {
     e.preventDefault();
     try {
+      setLoading(true);
+      setError(false);
       const formData = new FormData();
       formData.append("title", note);
       formData.append("image", img);
@@ -20,7 +24,15 @@ const SettingsAddImagePage = () => {
         formData
       );
       console.log(response);
+      if (response.data.success === false) {
+        setLoading(false);
+        setError(true);
+        return;
+      }
+      setLoading(false);
     } catch (error) {
+      setLoading(false);
+      setError(true);
       console.log(error);
     }
   };
@@ -38,6 +50,7 @@ const SettingsAddImagePage = () => {
                 id="nom"
                 name="nom"
                 placeholder="Note"
+                required
                 onChange={(e) => setNote(e.target.value)}
               />
             </div>
@@ -49,6 +62,7 @@ const SettingsAddImagePage = () => {
                   id="image"
                   name="image"
                   size="60px"
+                  required
                   onChange={(e) => setImg(e.target.files[0])}
                 />
                 <img src={image} alt="image" />
@@ -56,7 +70,9 @@ const SettingsAddImagePage = () => {
               </div>
             </div>
             <button type="submit" className="add-value submit">
-              Ajouter le produit
+              {
+                loading ? "Chargement..." : error ? "Erreur" : "Ajouter"
+              }
             </button>
           </form>
         </div>

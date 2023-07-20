@@ -8,11 +8,15 @@ const AddPage = () => {
   const [title, setTitle] = useState();
   const [slogan, setSlogan] = useState();
   const [description, setDescription] = useState();
+  const [loading, setLoading] = useState(false);
+  const [error, setError] = useState(false);
 
   // handle submit
   const handleSubmit = async (e) => {
     try {
       e.preventDefault();
+      setLoading(true);
+      setError(false);
       const data = {
         title: title,
         slogan: slogan,
@@ -20,7 +24,15 @@ const AddPage = () => {
       };
       const response = await axiosInstance.post(`${baseUrl}page/create/`, data);
       console.log(response);
+      if (response.data.success === false) {
+        setLoading(false);
+        setError(true);
+        return;
+      }
+      setLoading(false);
     } catch (error) {
+      setLoading(false);
+      setError(true);
       console.log(error);
     }
   };
@@ -36,6 +48,7 @@ const AddPage = () => {
                 type="text"
                 id="gratuit"
                 name="gratuit"
+                required
                 onChange={(e) => {
                   setTitle(e.target.value);
                 }}
@@ -47,6 +60,7 @@ const AddPage = () => {
                 type="text"
                 id="gratuit"
                 name="gratuit"
+                required
                 onChange={(e) => {
                   setSlogan(e.target.value);
                 }}
@@ -58,6 +72,7 @@ const AddPage = () => {
                 name="description"
                 id="description"
                 cols="30"
+                required
                 rows="10"
                 onChange={(e) => {
                   setDescription(e.target.value);
@@ -71,7 +86,7 @@ const AddPage = () => {
                 marginTop: "0",
               }}
             >
-              Ajouter
+              {loading ? "Chargement..." : error ? "Erreur" : "Ajouter"}
             </button>
           </form>
         </div>
