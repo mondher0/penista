@@ -24,6 +24,7 @@ import {
 } from "../../reducers/ProductReducer/addProductActions";
 import axiosInstance from "../../utils/axiosInstance";
 import { baseUrl } from "../../utils/constants";
+import { useState } from "react";
 const initialState = {
   value: "",
   quantite: "",
@@ -45,34 +46,50 @@ const initialState = {
 };
 const AddProductPage = () => {
   const [state, dispatch] = useReducer(addProductReducer, initialState);
+  const [loading, setLoading] = useState(false);
+  const [error, setError] = useState(false);
   const handleSubmit = async (e) => {
     e.preventDefault();
     // turn the array of values into an object
-    const values = state.values.reduce((acc, value) => {
-      return {
-        ...acc,
-        [value.value]: value.quantite,
-      };
-    }, {});
-    const formData = new FormData();
-    formData.append("name", state.name);
-    formData.append("description", state.description);
-    formData.append("free_price", state.free_price);
-    formData.append("premium_price", state.premium_price);
-    formData.append("pro_price", state.pro_price);
-    formData.append("stock", 33);
-    formData.append("sales", 0);
-    formData.append("options", JSON.stringify(values));
-    formData.append("table_image", state.lavage);
-    formData.append("optionName", state.optionName);
-    formData.append("deliveryDesc", state.deliveryDesc);
-    formData.append("product_images", state.product_images);
+    try {
+      setLoading(true);
+      setError(false);
+      const values = state.values.reduce((acc, value) => {
+        return {
+          ...acc,
+          [value.value]: value.quantite,
+        };
+      }, {});
+      const formData = new FormData();
+      formData.append("name", state.name);
+      formData.append("description", state.description);
+      formData.append("free_price", state.free_price);
+      formData.append("premium_price", state.premium_price);
+      formData.append("pro_price", state.pro_price);
+      formData.append("stock", 33);
+      formData.append("sales", 0);
+      formData.append("options", JSON.stringify(values));
+      formData.append("table_image", state.lavage);
+      formData.append("optionName", state.optionName);
+      formData.append("deliveryDesc", state.deliveryDesc);
+      formData.append("product_images", state.product_images);
 
-    const response = await axiosInstance.post(
-      `${baseUrl}product/create/`,
-      formData
-    );
-    console.log(response);
+      const response = await axiosInstance.post(
+        `${baseUrl}product/create/`,
+        formData
+      );
+      console.log(response);
+      if (response.data.success === false) {
+        setLoading(false);
+        setError(true);
+        return;
+      }
+      setLoading(false);
+    } catch (error) {
+      console.log(error);
+      setLoading(false);
+      setError(true);
+    }
   };
   return (
     <>
@@ -353,7 +370,7 @@ const AddProductPage = () => {
               )}
             </div>
             <button type="submit" className="add-value submit">
-              Ajouter le produit
+              {loading ? "Chargement..." : error ? "Error" : "Ajouter"}
             </button>
           </form>
         </div>

@@ -60,10 +60,14 @@ const initialState = {
 const AddEventPage = () => {
   const [competition, setCompetition] = useState(false);
   const [state, dispatch] = useReducer(addEventReducer, initialState);
+  const [loading, setLoading] = useState(false);
+  const [error, setError] = useState(false);
   // handle competition submit
   const handleCompetitionSubmit = async (e) => {
     e.preventDefault();
     try {
+      setLoading(true);
+      setError(false);
       const formData = new FormData();
       formData.append("title", state.title);
       formData.append("type", state.type);
@@ -85,8 +89,16 @@ const AddEventPage = () => {
         formData
       );
       console.log(response);
+      if (response.data.success === false) {
+        setLoading(false);
+        setError(true);
+        return;
+      }
+      setLoading(false);
     } catch (error) {
       console.log(error);
+      setLoading(false);
+      setError(true);
     }
   };
 
@@ -94,6 +106,8 @@ const AddEventPage = () => {
   const handleSubmit = async (e) => {
     e.preventDefault();
     try {
+      setLoading(true);
+      setError(false);
       const formData = new FormData();
       formData.append("title", state.title);
       formData.append("type", state.type);
@@ -115,9 +129,17 @@ const AddEventPage = () => {
         `${baseUrl}event/create/`,
         formData
       );
+      if (response.data.success === false) {
+        setLoading(false);
+        setError(true);
+        return;
+      }
       console.log(response);
+      setLoading(false);
     } catch (error) {
       console.log(error);
+      setLoading(false);
+      setError(true);
     }
   };
 
@@ -574,7 +596,7 @@ const AddEventPage = () => {
               </div>
             </div>
             <button type="submit" className="add-value submit">
-              Ajouter
+              {loading ? "Chargement..." : error ? "Erreur" : "Ajouter"}
             </button>
           </form>
         </div>

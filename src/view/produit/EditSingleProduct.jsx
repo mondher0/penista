@@ -27,6 +27,7 @@ import {
 import axiosInstance from "../../utils/axiosInstance";
 import { baseUrl } from "../../utils/constants";
 import { useParams } from "react-router-dom";
+import { useState } from "react";
 const initialState = {
   value: "",
   quantite: "",
@@ -48,6 +49,8 @@ const initialState = {
 };
 const EditSingleProduct = () => {
   const [state, dispatch] = useReducer(editProductReducer, initialState);
+  const [loading, setLoading] = useState(false);
+  const [error, setError] = useState(false);
   const { id } = useParams();
   console.log(id);
   const getProduct = async () => {
@@ -69,31 +72,45 @@ const EditSingleProduct = () => {
   const handleSubmit = async (e) => {
     e.preventDefault();
     // turn the array of values into an object
-    const values = state.values.reduce((acc, value) => {
-      return {
-        ...acc,
-        [value.value]: value.quantite,
-      };
-    }, {});
-    const formData = new FormData();
-    formData.append("name", state.name);
-    formData.append("description", state.description);
-    formData.append("free_price", state.free_price);
-    formData.append("premium_price", state.premium_price);
-    formData.append("pro_price", state.pro_price);
-    formData.append("stock", 33);
-    formData.append("sales", 0);
-    formData.append("deliveryDesc", state.deliveryDesc);
-    formData.append("optionName", state.optionName);
-    formData.append("options", JSON.stringify(values));
-    formData.append("table_image", state.media);
-    formData.append("product_images", state.product_images);
-    console.log(state.product_images);
-    const response = await axiosInstance.put(
-      `${baseUrl}product/update/${id}/`,
-      formData
-    );
-    console.log(response);
+    try {
+      setLoading(true);
+      setError(false);
+      const values = state.values.reduce((acc, value) => {
+        return {
+          ...acc,
+          [value.value]: value.quantite,
+        };
+      }, {});
+      const formData = new FormData();
+      formData.append("name", state.name);
+      formData.append("description", state.description);
+      formData.append("free_price", state.free_price);
+      formData.append("premium_price", state.premium_price);
+      formData.append("pro_price", state.pro_price);
+      formData.append("stock", 33);
+      formData.append("sales", 0);
+      formData.append("deliveryDesc", state.deliveryDesc);
+      formData.append("optionName", state.optionName);
+      formData.append("options", JSON.stringify(values));
+      formData.append("table_image", state.media);
+      formData.append("product_images", state.product_images);
+      console.log(state.product_images);
+      const response = await axiosInstance.put(
+        `${baseUrl}product/update/${id}/`,
+        formData
+      );
+      console.log(response);
+      if (response.data.success === false) {
+        setLoading(false);
+        setError(true);
+        return;
+      }
+      setLoading(false);
+    } catch (error) {
+      console.log(error);
+      setLoading(false);
+      setError(true);
+    }
   };
   return (
     <>
@@ -380,7 +397,7 @@ const EditSingleProduct = () => {
               )}
             </div>
             <button type="submit" className="add-value submit">
-              Modifier le produit
+              {loading ? "Chargement..." : error ? "Erreur" : "Modifier"}
             </button>
           </form>
         </div>

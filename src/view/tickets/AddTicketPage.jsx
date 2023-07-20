@@ -24,6 +24,8 @@ const intitalState = {
 const AddTicketPage = () => {
   const [matches, setMatches] = useState([]);
   const [state, dispatch] = useReducer(addTicketReducer, intitalState);
+  const [loading, setLoading] = useState(false);
+  const [error, setError] = useState(false);
 
   //get all matches
   const fetchMatches = async () => {
@@ -43,6 +45,8 @@ const AddTicketPage = () => {
   const handleSubmit = async (e) => {
     try {
       e.preventDefault();
+      setLoading(true);
+      setError(false);
       console.log(state);
       const data = {
         matchId: state.matchId,
@@ -58,8 +62,16 @@ const AddTicketPage = () => {
         data
       );
       console.log(response);
+      if (response.data.success === false) {
+        setLoading(false);
+        setError(true);
+        return;
+      }
+      setLoading(false);
     } catch (error) {
       console.log(error);
+      setLoading(false);
+      setError(true);
     }
   };
   useEffect(() => {
@@ -186,7 +198,9 @@ const AddTicketPage = () => {
                 marginTop: "5px",
               }}
             >
-              Ajouter
+              {
+                loading ? "Chargement..." : error ? "Erreur" : "Ajouter"
+              }
             </button>
           </form>
         </div>

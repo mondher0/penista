@@ -18,6 +18,7 @@ import axiosInstance from "../../utils/axiosInstance";
 import { baseUrl } from "../../utils/constants";
 import { useParams } from "react-router-dom";
 import { editOffreReducer } from "../../reducers/offreReducer/editOffreReducer";
+import { useState } from "react";
 
 const initialState = {
   type: "",
@@ -33,6 +34,8 @@ const EditSingleOffre = () => {
   const { id } = useParams();
   console.log(id);
   const [state, dispatch] = useReducer(editOffreReducer, initialState);
+  const [loading, setLoading] = useState(false);
+  const [error, setError] = useState(false);
   console.log(state);
 
   // get single offre
@@ -56,6 +59,8 @@ const EditSingleOffre = () => {
   const handleSubmit = async (e) => {
     e.preventDefault();
     try {
+      setLoading(true);
+      setError(false);
       const formData = new FormData();
       console.log(state);
       formData.append("promoType", state.type);
@@ -76,8 +81,16 @@ const EditSingleOffre = () => {
         formData
       );
       console.log(response);
+      if (response.data.success === false) {
+        setLoading(false);
+        setError(true);
+        return;
+      }
+      setLoading(false);
     } catch (error) {
       console.log(error);
+      setLoading(false);
+      setError(true);
     }
   };
 
@@ -233,7 +246,11 @@ const EditSingleOffre = () => {
                 marginTop: "5px",
               }}
             >
-              Modifier l’offre
+              {loading
+                ? "Chargement..."
+                : error
+                ? "Erreur"
+                : "Modifier l’offre"}
             </button>
           </form>
         </div>

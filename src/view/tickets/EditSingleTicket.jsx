@@ -14,6 +14,7 @@ import {
   SET_TICKET_PRICE,
 } from "../../reducers/ticketReducer/addTicketsActions";
 import { useParams } from "react-router-dom";
+import { useState } from "react";
 const intitalState = {
   price: "",
   matchId: "",
@@ -25,6 +26,8 @@ const intitalState = {
 const EditSingleTicket = () => {
   const { id } = useParams();
   const [state, dispatch] = useReducer(addTicketReducer, intitalState);
+  const [loading, setLoading] = useState(false);
+  const [error, setError] = useState(false);
 
   // get single match
   const getSingleMatch = async () => {
@@ -47,6 +50,8 @@ const EditSingleTicket = () => {
   // handle submit
   const handleSubmit = async (e) => {
     try {
+      setError(false);
+      setLoading(true);
       e.preventDefault();
       console.log(state);
       const data = {
@@ -63,8 +68,16 @@ const EditSingleTicket = () => {
         data
       );
       console.log(response);
+      if (response.data.success === false) {
+        setLoading(false);
+        setError(true);
+        return;
+      }
+      setLoading(false);
     } catch (error) {
       console.log(error);
+      setLoading(false);
+      setError(true);
     }
   };
   return (
@@ -160,7 +173,7 @@ const EditSingleTicket = () => {
                 marginTop: "5px",
               }}
             >
-              Modifier
+              {loading ? "Chargement..." : error ? "Erreur" : "Modifier"}
             </button>
           </form>
         </div>

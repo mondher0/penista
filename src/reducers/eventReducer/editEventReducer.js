@@ -44,7 +44,7 @@ export const editEventReducer = (state, action) => {
       maps_link: action.payload.response?.maps_link,
       address: action.payload.response?.address,
       res_type: action.payload.response?.res_type,
-      dates: action.payload.response?.dates,
+      dates: action.payload.response?.dates ? action.payload.response?.dates : [],
       optionName: action.payload.response?.options?.name,
       values: action.payload.response?.options?.values,
       tickets: action.payload.response?.tickets,

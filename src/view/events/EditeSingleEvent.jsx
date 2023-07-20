@@ -71,6 +71,8 @@ const EditeSingleEvent = () => {
   const [state, dispatch] = useReducer(editEventReducer, initialState);
   const [date, setDate] = useState("");
   const [res_dline, setRes_dline] = useState("");
+  const [loading, setLoading] = useState(false);
+  const [error, setError] = useState(false);
 
   // get single event
   const getSingleEvent = async () => {
@@ -116,6 +118,8 @@ const EditeSingleEvent = () => {
   const handleCompetitionSubmit = async (e) => {
     e.preventDefault();
     try {
+      setLoading(true);
+      setError(false);
       const formData = new FormData();
       formData.append("title", state.title);
       formData.append("type", state.type);
@@ -135,7 +139,15 @@ const EditeSingleEvent = () => {
         formData
       );
       console.log(response);
+      if (response.data.success === false) {
+        setLoading(false);
+        setError(true);
+        return;
+      }
+      setLoading(false);
     } catch (error) {
+      setLoading(false);
+      setError(true);
       console.log(error);
     }
   };
@@ -144,6 +156,8 @@ const EditeSingleEvent = () => {
   const handleSubmit = async (e) => {
     e.preventDefault();
     try {
+      setLoading(true);
+      setError(false);
       const formData = new FormData();
       formData.append("title", state.title);
       formData.append("type", state.type);
@@ -167,8 +181,16 @@ const EditeSingleEvent = () => {
         formData
       );
       console.log(response);
+      if (response.data.success === false) {
+        setLoading(false);
+        setError(true);
+        return;
+      }
+      setLoading(false);
     } catch (error) {
       console.log(error);
+      setLoading(false);
+      setError(true);
     }
   };
   return (
@@ -249,7 +271,7 @@ const EditeSingleEvent = () => {
             {competition && (
               <>
                 <label>Options de date pour l’évenement</label>
-                {state.dates.length > 0
+                {state.dates?.length > 0
                   ? state.dates.map((date, index) => {
                       console.log(date);
 
@@ -678,7 +700,7 @@ const EditeSingleEvent = () => {
               </div>
             </div>
             <button type="submit" className="add-value submit">
-              Modifier
+              {loading ? "Chargement..." : error ? "Erreur" : "Modifier"}
             </button>
           </form>
         </div>

@@ -15,6 +15,7 @@ import {
 } from "../../reducers/offreReducer/addOffreActions";
 import axiosInstance from "../../utils/axiosInstance";
 import { baseUrl } from "../../utils/constants";
+import { useState } from "react";
 
 const initialState = {
   type: "",
@@ -28,12 +29,16 @@ const initialState = {
 };
 const AddOffrePage = () => {
   const [state, dispatch] = useReducer(addOffreReducer, initialState);
+  const [loading, setLoading] = useState(false);
+  const [error, setError] = useState(false);
   console.log(state);
 
   // handleSubmit
   const handleSubmit = async (e) => {
     e.preventDefault();
     try {
+      setLoading(true);
+      setError(false);
       const formData = new FormData();
       formData.append("promoType", state.type);
       formData.append("title", state.title);
@@ -54,8 +59,16 @@ const AddOffrePage = () => {
         formData
       );
       console.log(response);
+      if (response.data.success === false) {
+        setLoading(false);
+        setError(true);
+        return;
+      }
+      setLoading(false);
     } catch (error) {
       console.log(error);
+      setLoading(false);
+      setError(true);
     }
   };
 
@@ -204,7 +217,7 @@ const AddOffrePage = () => {
                 marginTop: "5px",
               }}
             >
-              Ajouter
+              {loading ? "Chargement..." : error ? "Erreur" : "Ajouter l’offre"}
             </button>
           </form>
         </div>
