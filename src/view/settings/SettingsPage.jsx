@@ -14,6 +14,8 @@ const SettingsPage = () => {
   const [username, setUsername] = useState("");
   const [password, setPassword] = useState("");
   const [profilePicture, setProfilePicture] = useState();
+  const [success, setSuccess] = useState(false);
+  const [showSuccessMessage, setShowSuccessMessage] = useState(false);
 
   // get user info
   const getUserInfo = async () => {
@@ -25,6 +27,14 @@ const SettingsPage = () => {
     } catch (error) {
       console.log(error);
     }
+  };
+
+  const showSuccessMessageFor30Seconds = () => {
+    setShowSuccessMessage(true);
+    setTimeout(() => {
+      console.log("hello");
+      setShowSuccessMessage(false);
+    }, 10000); // 30 seconds (30,000 milliseconds)
   };
 
   // update user info
@@ -44,6 +54,8 @@ const SettingsPage = () => {
         formData
       );
       console.log(response);
+      setSuccess(true);
+      showSuccessMessageFor30Seconds();
     } catch (error) {
       console.log(error);
     }
@@ -51,13 +63,18 @@ const SettingsPage = () => {
 
   useEffect(() => {
     getUserInfo();
-  }, []);
+  }, [success]);
   return (
     <>
       <NavBar title="Paramètres" />
       <div className="container">
         <p>Information personnelles</p>
         <div className="form">
+          {showSuccessMessage && (
+            <p style={{ color: "green" }}>
+              Information mise à jour avec succès
+            </p>
+          )}
           <form onSubmit={updateUserInfo}>
             <div className="input prix">
               <div className="price gratuit ticket">
