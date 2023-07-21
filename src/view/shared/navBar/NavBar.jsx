@@ -25,8 +25,8 @@ const NavBar = ({ title }) => {
       );
       setIsNotificated(response1.data.data.unread);
       console.log(response1);
-      const { first_name, last_name } = response.data.data;
-      setUserInfo({ first_name, last_name });
+      const { first_name, last_name, image } = response.data.data;
+      setUserInfo({ first_name, last_name, image });
     } catch (error) {
       console.log(error);
     }
@@ -57,7 +57,7 @@ const NavBar = ({ title }) => {
               {userInfo.first_name} {userInfo.last_name}
             </p>
             <div className="user-img">
-              <img src={avatar} alt="Avatar" />
+              <img src={`${baseUrl}${userInfo.image}`} alt="Avatar" />
             </div>
           </div>
         </div>

@@ -24,6 +24,7 @@ const SettingsPage = () => {
       console.log(response);
       const { first_name, last_name, phone_no, email } = response.data.data;
       setUserInfo({ first_name, last_name, phone_no, email });
+      setUsername(response.data.data.username)
     } catch (error) {
       console.log(error);
     }
@@ -135,7 +136,7 @@ const SettingsPage = () => {
                   type="text"
                   id="ratuit"
                   name="gratuit"
-                  value={userInfo.email}
+                  value={username}
                   onChange={(e) => setUsername(e.target.value)}
                 />
               </div>

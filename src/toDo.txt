@@ -28,6 +28,3 @@ demande de ticket : not linking yet
 
 cadeaux :
 missing expectation points 
-
-parametres :
-missing profil picture property and user name property
