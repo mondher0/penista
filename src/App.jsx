@@ -115,7 +115,7 @@ function App() {
           <Route path="/parametres" element={<SettingsPage />} />
           <Route path="parametres/ajouter-page" element={<AddPage />} />
           <Route
-            path="/parametres/:slogan/modifier"
+            path="/parametres/:id/modifier"
             element={<EditSettingsPage />}
           />
           <Route

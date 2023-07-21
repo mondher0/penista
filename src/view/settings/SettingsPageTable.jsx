@@ -101,7 +101,7 @@ const SettingsPageTable = () => {
                         src={edite}
                         alt="Modifier"
                         onClick={() =>
-                          navigate(`/parametres/${page.slogan}/modifier`)
+                          navigate(`/parametres/${page.id}/modifier`)
                         }
                       />
                     </div>
