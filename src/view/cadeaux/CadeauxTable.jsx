@@ -2,6 +2,9 @@
 import axiosInstance from "../../utils/axiosInstance";
 import { baseUrl } from "../../utils/constants";
 import { useEffect, useState } from "react";
+import { edite } from "../../assets/index";
+import PopUp from "../shared/popUp/PopUp";
+import usePopUpContext from "../../hooks/usePopUpContext";
 
 const CadeauxTable = () => {
   const [users, setUsers] = useState();
@@ -10,7 +13,8 @@ const CadeauxTable = () => {
   const [pages, setPages] = useState(0);
   const [isError, setIsError] = useState(false);
   const [isEmpty, setIsEmpty] = useState(false);
-
+  const [showPopUp, setShowPopUp] = useState(false);
+  const { update } = usePopUpContext();
   // get users
   const getUsers = async () => {
     try {
@@ -34,7 +38,7 @@ const CadeauxTable = () => {
 
   useEffect(() => {
     getUsers();
-  }, [currentPage]);
+  }, [currentPage, update]);
 
   // Pagination handlers
   const goToPreviousPage = () => {
@@ -61,6 +65,7 @@ const CadeauxTable = () => {
             <th>Points expectations</th>
             <th>Etoiles</th>
             <th>Status</th>
+            <th>Action</th>
           </tr>
         </thead>
         <tbody>
@@ -87,8 +92,11 @@ const CadeauxTable = () => {
                   <td>{user.stars}</td>
                   <td>
                     <div className="type">
-                      {user.is_active ? "ACTIF" : "BLOQUÉ²"}
+                      {user.is_active ? "ACTIF" : "BLOQUÉ"}
                     </div>
+                  </td>
+                  <td>
+                    <img src={edite} onClick={() => setShowPopUp(user.id)} />
                   </td>
                 </tr>
               </>
@@ -105,6 +113,16 @@ const CadeauxTable = () => {
           Next
         </button>
       </div>
+      {showPopUp && (
+        <PopUp
+          setShowPopUp={setShowPopUp}
+          text="Nombre de points à enlever"
+          button="Envoyer la notification"
+          id={showPopUp}
+          case="points"
+          action="enlever"
+        />
+      )}
     </>
   );
 };

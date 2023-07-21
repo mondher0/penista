@@ -121,6 +121,23 @@ const PopUpContextProvider = ({ children }) => {
     }
   };
 
+  // enlever points
+  const handleEnleverPoints = async (id, points) => {
+    try {
+      const data = {
+        points: points,
+      };
+      const response = await axiosInstance.put(
+        `${baseUrl}accounts/users/point/retrive/${id}/`,
+        data
+      );
+      console.log(response);
+      setUpdate(!update);
+    } catch (error) {
+      console.log(error);
+    }
+  };
+
   return (
     <PopUpContext.Provider
       value={{
@@ -133,6 +150,7 @@ const PopUpContextProvider = ({ children }) => {
         handleRefuseDemandeAbonnement,
         handleChangeStatus,
         handleDeleteAd,
+        handleEnleverPoints,
         update,
         setUpdate,
       }}

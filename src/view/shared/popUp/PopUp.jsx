@@ -2,6 +2,7 @@
 import "./PopUp.css";
 import { cancel } from "../../../assets/index";
 import usePopUpContext from "../../../hooks/usePopUpContext";
+import { useState } from "react";
 const PopUp = (props) => {
   const {
     handleBlock,
@@ -13,8 +14,10 @@ const PopUp = (props) => {
     handleRefuseDemandeAbonnement,
     handleChangeStatus,
     handleDeleteAd,
+    handleEnleverPoints,
   } = usePopUpContext();
   console.log(props.id);
+  const [points, setPoints] = useState();
   return (
     <div className="them">
       <div className="them_container">
@@ -38,6 +41,9 @@ const PopUp = (props) => {
                 type="number"
                 placeholder="Nombre de points"
                 className="points"
+                onChange={(e) => {
+                  setPoints(e.target.value);
+                }}
               />
             )}
             <div className="buttons">
@@ -88,6 +94,9 @@ const PopUp = (props) => {
                   }
                   if (props.action === "delete ad") {
                     handleDeleteAd(props.id);
+                  }
+                  if (props.action === "enlever") {
+                    handleEnleverPoints(props.id, points);
                   }
                   props.setShowPopUp(false);
                 }}
