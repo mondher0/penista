@@ -7,9 +7,6 @@ search :
 hidding the search bar for now 
 linking the search bar not yet done
 
-dashboard :
-bug in statistiques
-
 products:
 linking the add product (images and adding i can add just one from the backend)
 the admin can add many images 
@@ -27,12 +24,8 @@ delete offre no api
 expectations :
 not linking yet 
 
-tickets :
-demande de ticket : not linking yet
-
 cadeaux :
 missing expectation points 
-enlever les points de l'utilisateur
 
 settings : 
 linking yalidin info

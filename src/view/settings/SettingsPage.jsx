@@ -18,6 +18,10 @@ const SettingsPage = () => {
   const [showSuccessMessage, setShowSuccessMessage] = useState(false);
   const [loading, setLoading] = useState(false);
   const [error, setError] = useState(false);
+  const [apiToken, setApiToken] = useState("");
+  const [apiKey, setApiKey] = useState("");
+  const [yalidinLoading, setYalidinLoading] = useState(false);
+  const [yalidinError, setYalidinError] = useState(false);
 
   // get user info
   const getUserInfo = async () => {
@@ -73,6 +77,32 @@ const SettingsPage = () => {
     }
   };
 
+  // update yalidine info
+  const updateYalidineInfo = async (e) => {
+    e.preventDefault();
+    try {
+      setYalidinLoading(true);
+      const data = {
+        yalidin_api_key: apiKey,
+        yalidin_api_token: apiToken,
+      };
+      const response = await axiosInstance.post(
+        `${baseUrl}setting/yalidin/`,
+        data
+      );
+      console.log(response);
+      if (response.data.success === false) {
+        setYalidinLoading(false);
+        setYalidinError(true);
+        return;
+      }
+      setYalidinLoading(false);
+    } catch (error) {
+      setYalidinLoading(false);
+      setYalidinError(true);
+      console.log(error);
+    }
+  };
   useEffect(() => {
     getUserInfo();
   }, [success]);
@@ -188,7 +218,7 @@ const SettingsPage = () => {
           </form>
         </div>
         <div className="form">
-          <form>
+          <form onSubmit={updateYalidineInfo}>
             <p>Yalidine information</p>
             <div
               className="input prix"
@@ -198,11 +228,23 @@ const SettingsPage = () => {
             >
               <div className="price gratuit ticket">
                 <label htmlFor="gratuit">API Token</label>
-                <input type="text" id="grahhtuit" name="gratuit" />
+                <input
+                  type="text"
+                  id="grahhtuit"
+                  name="gratuit"
+                  onChange={(e) => setApiToken(e.target.value)}
+                />
               </div>
               <div className="price premium ticket">
                 <label htmlFor="premium">API Key</label>
-                <input type="text" id="premhhium" name="premium" />
+                <input
+                  type="text"
+                  id="premhhium"
+                  name="premium"
+                  onChange={(e) => {
+                    setApiKey(e.target.value);
+                  }}
+                />
               </div>
             </div>
             <button
@@ -212,7 +254,11 @@ const SettingsPage = () => {
                 marginTop: "0",
               }}
             >
-              Enregistrer
+              {yalidinLoading
+                ? "Chargement"
+                : yalidinError
+                ? "Erreur"
+                : "Enregistrer"}
             </button>
           </form>
         </div>
