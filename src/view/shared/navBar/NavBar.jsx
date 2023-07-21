@@ -3,7 +3,6 @@
 import {
   search,
   actifNotification,
-  avatar,
   emptyNot,
 } from "../../../assets/index";
 import { baseUrl } from "../../../utils/constants";
@@ -43,7 +42,6 @@ const NavBar = ({ title }) => {
         </div>
         <div className="profile">
           <div className="icons">
-            <img src={search} alt="Rechercher" />
             <img
               src={isNotificated ? actifNotification : emptyNot}
               alt="Notification"

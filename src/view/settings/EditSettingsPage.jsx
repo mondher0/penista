@@ -191,7 +191,7 @@ function EditSettingsPage() {
             </form>
           ) : (
             // Render a placeholder or loading message while waiting for content
-            <p>Loading editor...</p>
+            <p>Chargement...</p>
           )}
         </div>
       </div>

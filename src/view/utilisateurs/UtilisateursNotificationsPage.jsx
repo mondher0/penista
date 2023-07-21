@@ -10,6 +10,8 @@ const UtilisateursNotificationsPage = () => {
   const [wilaya, setWilaya] = useState("");
   const [stars, setStars] = useState("");
   const [text, setText] = useState("");
+  const [loading, setLoading] = useState(false);
+  const [error, setError] = useState(false);
 
   // Send notification
   const sendNotification = async (e) => {
@@ -22,12 +24,21 @@ const UtilisateursNotificationsPage = () => {
       ...(abonnement && { subscription: abonnement }),
     };
     try {
+      setLoading(true);
       const response = await axiosInstance.post(
         `${baseUrl}notification/admin/send/`,
         data
       );
       console.log(response);
+      if (response.data.data.success === false) {
+        setLoading(false);
+        setError(true);
+        return;
+      }
+      setLoading(false);
     } catch (error) {
+      setLoading(false);
+      setError(true);
       console.log(error);
     }
   };
@@ -43,9 +54,9 @@ const UtilisateursNotificationsPage = () => {
             <div className="filtre">
               <div>Abonnement</div>
               <select
-              style={{
-                width:"167px"
-              }}
+                style={{
+                  width: "167px",
+                }}
                 name="abonnement"
                 id="abonnement"
                 onChange={(e) => {
@@ -102,7 +113,7 @@ const UtilisateursNotificationsPage = () => {
             }}
           ></textarea>
           <button type="submit" className="submit">
-            Envoyer
+            {loading ? "En cours..." : error ? "Erreur" : "Envoyer"}
           </button>
         </form>
       </div>

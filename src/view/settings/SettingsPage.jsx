@@ -16,6 +16,8 @@ const SettingsPage = () => {
   const [profilePicture, setProfilePicture] = useState();
   const [success, setSuccess] = useState(false);
   const [showSuccessMessage, setShowSuccessMessage] = useState(false);
+  const [loading, setLoading] = useState(false);
+  const [error, setError] = useState(false);
 
   // get user info
   const getUserInfo = async () => {
@@ -24,7 +26,7 @@ const SettingsPage = () => {
       console.log(response);
       const { first_name, last_name, phone_no, email } = response.data.data;
       setUserInfo({ first_name, last_name, phone_no, email });
-      setUsername(response.data.data.username)
+      setUsername(response.data.data.username);
     } catch (error) {
       console.log(error);
     }
@@ -42,6 +44,7 @@ const SettingsPage = () => {
   const updateUserInfo = async (e) => {
     e.preventDefault();
     try {
+      setLoading(true);
       const formData = new FormData();
       formData.append("username", username);
       formData.append("password", password);
@@ -55,9 +58,17 @@ const SettingsPage = () => {
         formData
       );
       console.log(response);
+      if (response.data.data.success === false) {
+        setLoading(false);
+        setError(true);
+        return;
+      }
       setSuccess(true);
+      setLoading(false);
       showSuccessMessageFor30Seconds();
     } catch (error) {
+      setLoading(false);
+      setError(true);
       console.log(error);
     }
   };
@@ -172,7 +183,7 @@ const SettingsPage = () => {
                 marginTop: "0",
               }}
             >
-              Enregistrer
+              {loading ? "Chargement..." : error ? "Erreur" : "Enregistrer"}
             </button>
           </form>
         </div>

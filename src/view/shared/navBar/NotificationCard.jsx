@@ -101,7 +101,7 @@ const NotificationCard = () => {
             )}
             <div className="single-not">
               <img
-                src={`${baseUrl}static${notification.client_image.image}`}
+                src={`${baseUrl}${notification.client_image.image}`}
                 alt="Avatar"
               />
               <div className="txt">

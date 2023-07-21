@@ -4,6 +4,7 @@ delete all logs in the console
 hover effect in anything is clickable
 
 search :
+hidding the search bar for now 
 linking the search bar not yet done
 
 dashboard :

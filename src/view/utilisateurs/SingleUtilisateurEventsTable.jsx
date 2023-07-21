@@ -102,11 +102,19 @@ const SingleUtilisateurEventsTable = ({ id }) => {
                     <td>{reservation.id}</td>
                     <td>{reservation.event_detail.title}</td>
                     <td>{reservation.event_detail.type}</td>
-                    <td>{reservation.event_detail.res_type}</td>
+                    <td>
+                      {reservation.event_detail.res_type === "bank transfer"
+                        ? "Versement"
+                        : reservation.event_detail.res_type}
+                    </td>
                     <td>{reservation.totalPrice} DA</td>
                     <td>{reservation.ticket}</td>
                     <td>{reservation.reservationDate}</td>
-                    <td>{reservation.payment}</td>
+                    <td>
+                      {reservation.payment === "bank transfer"
+                        ? "Versement"
+                        : reservation.payment}
+                    </td>
                     <td>
                       <div className="actions">
                         {reservation.payment === "bank transfer" ? (
