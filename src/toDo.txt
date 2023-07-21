@@ -18,6 +18,9 @@ utilisateurs:
 demande abonnement :
 dont show actios to an delivery type
 
+commandes : 
+2 btns annuler and confirmer
+
 offre :
 delete offre no api 
 
@@ -29,6 +32,9 @@ demande de ticket : not linking yet
 
 cadeaux :
 missing expectation points 
+enlever les points de l'utilisateur
 
 settings : 
 linking yalidin info
+
+make hour to be in the local time zone
