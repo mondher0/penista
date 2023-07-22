@@ -19,7 +19,7 @@ offre :
 delete offre no api 
 
 expectations :
-not linking yet 
+not linking the filtre yet 
 
 cadeaux :
 missing expectation points 
