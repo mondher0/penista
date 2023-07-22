@@ -77,17 +77,30 @@ const SettingsPage = () => {
     }
   };
 
+  // get yaalidine info
+  const getYalidineInfo = async () => {
+    try {
+      const response = await axiosInstance.get(`${baseUrl}setting/yalidin/`);
+      console.log(response);
+      setApiKey(response.data.data.yalidin_api_key);
+      setApiToken(response.data.data.yalidin_api_token);
+    } catch (error) {
+      console.log(error);
+    }
+  };
+
   // update yalidine info
   const updateYalidineInfo = async (e) => {
     e.preventDefault();
     try {
       setYalidinLoading(true);
+      setYalidinError(false);
       const data = {
         yalidin_api_key: apiKey,
         yalidin_api_token: apiToken,
       };
       const response = await axiosInstance.post(
-        `${baseUrl}setting/yalidin/`,
+        `${baseUrl}setting/yalidin/update/`,
         data
       );
       console.log(response);
@@ -105,6 +118,7 @@ const SettingsPage = () => {
   };
   useEffect(() => {
     getUserInfo();
+    getYalidineInfo();
   }, [success]);
   return (
     <>
@@ -232,6 +246,7 @@ const SettingsPage = () => {
                   type="text"
                   id="grahhtuit"
                   name="gratuit"
+                  value={apiToken}
                   onChange={(e) => setApiToken(e.target.value)}
                 />
               </div>
@@ -241,6 +256,7 @@ const SettingsPage = () => {
                   type="text"
                   id="premhhium"
                   name="premium"
+                  value={apiKey}
                   onChange={(e) => {
                     setApiKey(e.target.value);
                   }}
