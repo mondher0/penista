@@ -24,8 +24,5 @@ not linking yet
 cadeaux :
 missing expectation points 
 
-settings : 
-linking yalidin info (get)
-
 make hour to be in the local time zone
 get wilaya by api 
