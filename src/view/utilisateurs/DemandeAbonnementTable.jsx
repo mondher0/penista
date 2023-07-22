@@ -98,7 +98,7 @@ const DemandeAbonnementTable = () => {
                   <td>
                     <div className="user-details">
                       <img
-                        src={`${baseUrl}static${demande.user.image}`}
+                        src={`${baseUrl}${demande.user.image}`}
                         alt="user"
                       />
                       <div className="user-info">
