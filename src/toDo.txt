@@ -15,9 +15,6 @@ utilisateurs:
 demande abonnement :
 dont show actios to an delivery type
 
-commandes : 
-2 btns annuler and confirmer
-
 offre :
 delete offre no api 
 
