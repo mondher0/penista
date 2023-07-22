@@ -86,6 +86,7 @@ const ProductTable = () => {
                       <img
                         src={deleteIcon}
                         alt="Supprimer"
+                        className="hover"
                         onClick={() => {
                           setShowPopUp(product.id);
                         }}
@@ -93,6 +94,7 @@ const ProductTable = () => {
                       <img
                         src={edite}
                         alt="Modifier"
+                        className="hover"
                         onClick={() =>
                           navigate(`/produit/modifier-produit/${product.id}`)
                         }

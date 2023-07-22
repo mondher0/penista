@@ -91,6 +91,7 @@ const SingleUtilisateurCommandeTable = ({ id }) => {
                   <td>
                     <img
                       src={eye}
+                      className="hover"
                       alt="Consulter"
                       onClick={() => {
                         navigate(`/commandes/${order.id}`);

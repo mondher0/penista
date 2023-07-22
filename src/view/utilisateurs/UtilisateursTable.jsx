@@ -117,7 +117,7 @@ const UtilisateursTable = () => {
                   <div className="action">
                     {action === id && (
                       <div
-                        className="edit"
+                        className="edit hover"
                         onClick={() => {
                           if (user.is_active) {
                             setShowPopUp1(id);
@@ -138,6 +138,7 @@ const UtilisateursTable = () => {
                   <img
                     src={edite}
                     alt="Modifier"
+                    className="hover"
                     onClick={() => {
                       if (action === id) {
                         setAction("");

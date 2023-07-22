@@ -88,7 +88,7 @@ const SettingsImageTable = () => {
                     <div className="action">
                       {action == ad.id && (
                         <div
-                          className="edit"
+                          className="edit hover"
                           onClick={() => {
                             if (ad.is_active) {
                               setShowPopUp2(ad.id);
@@ -109,6 +109,7 @@ const SettingsImageTable = () => {
                   <td>
                     <img
                       src={deleteIcon}
+                      className="hover"
                       alt="Supprimer"
                       onClick={() => {
                         setShowPopUp1(ad.id);
@@ -117,6 +118,7 @@ const SettingsImageTable = () => {
                     <img
                       src={edite}
                       alt="Modifier"
+                      className="hover"
                       onClick={() => {
                         if (action == ad.id) {
                           setAction("");

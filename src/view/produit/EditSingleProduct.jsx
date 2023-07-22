@@ -327,6 +327,7 @@ const EditSingleProduct = () => {
                           <img
                             src={edite}
                             alt="Modifier"
+                            className="hover"
                             onClick={() => {
                               dispatch({ type: EDIT, payload: value.value });
                             }}
@@ -335,6 +336,7 @@ const EditSingleProduct = () => {
                           <img
                             alt="Supprimer"
                             src={deleteIcon}
+                            className="hover"
                             onClick={() => {
                               dispatch({ type: DELETE, payload: value.value });
                             }}

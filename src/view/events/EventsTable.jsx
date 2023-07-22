@@ -134,6 +134,7 @@ const EventsTable = () => {
                           <img
                             src={save}
                             alt=""
+                            className="hover"
                             onClick={() => {
                               handleDownload(reservation.image);
                             }}
@@ -146,11 +147,13 @@ const EventsTable = () => {
                             <img
                               src={accept}
                               alt=""
+                              className="hover"
                               onClick={() => setShowPopUp1(reservation.id)}
                             />
                             <img
                               src={refuse}
                               alt=""
+                              className="hover"
                               onClick={() => setShowPopUp2(reservation.id)}
                             />
                           </>

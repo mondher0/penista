@@ -300,6 +300,7 @@ const AddProductPage = () => {
                           <img
                             src={edite}
                             alt="Modifier"
+                            className="hover"
                             onClick={() => {
                               dispatch({ type: EDIT, payload: value.value });
                             }}
@@ -307,6 +308,7 @@ const AddProductPage = () => {
                         ) : (
                           <img
                             alt="Supprimer"
+                            className="hover"
                             src={deleteIcon}
                             onClick={() => {
                               dispatch({ type: DELETE, payload: value.value });

@@ -85,6 +85,7 @@ const MyEventsTable = () => {
                   <img
                     src={edite}
                     alt=""
+                    className="hover"
                     onClick={() =>
                       navigate(`/evenements/modifier-evenement/${event.id}`)
                     }

@@ -123,6 +123,7 @@ const SingleUtilisateurEventsTable = ({ id }) => {
                         {reservation.payment === "bank transfer" ? (
                           <img
                             src={save}
+                            className="hover"
                             alt=""
                             onClick={() => {
                               handleDownload(reservation.image);
@@ -136,11 +137,13 @@ const SingleUtilisateurEventsTable = ({ id }) => {
                             <img
                               src={accept}
                               alt=""
+                              className="hover"
                               onClick={() => setShowPopUp1(reservation.id)}
                             />
                             <img
                               src={refuse}
                               alt=""
+                              className="hover"
                               onClick={() => setShowPopUp2(reservation.id)}
                             />
                           </>

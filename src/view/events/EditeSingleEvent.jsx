@@ -219,6 +219,7 @@ const EditeSingleEvent = () => {
                 style={{
                   border: "1px solid #E5E5E5",
                 }}
+                disabled={true}
                 value={state.type}
                 onChange={(e) => {
                   if (e.target.value === "Compétition") {

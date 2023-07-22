@@ -83,11 +83,13 @@ const OffresTable = () => {
                       <img
                         src={deleteIcon}
                         alt="Supprimer"
+                        className="hover"
                         onClick={() => setShowPopUp("1")}
                       />
                       <img
                         src={edite}
                         alt="Modifier"
+                        className="hover"
                         onClick={() => {
                           navigate(`/offres/modifier-offre/${offre.id}`);
                         }}

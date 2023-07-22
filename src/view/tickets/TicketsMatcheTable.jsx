@@ -87,6 +87,7 @@ const TicketsMatcheTable = () => {
                       <img
                         src={edite}
                         alt="Modifier"
+                        className="hover"
                         onClick={() => {
                           navigate(`/tiquet/modifier-tiquet/${ticket.id}`);
                         }}

@@ -93,6 +93,7 @@ const SettingsPageTable = () => {
                       <img
                         src={page.is_active ? pause : play}
                         alt="Supprimer"
+                        className="hover"
                         onClick={() => {
                           handleChangeStatus(page.id);
                         }}
@@ -100,6 +101,7 @@ const SettingsPageTable = () => {
                       <img
                         src={edite}
                         alt="Modifier"
+                        className="hover"
                         onClick={() =>
                           navigate(`/parametres/${page.id}/modifier`)
                         }

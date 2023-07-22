@@ -126,6 +126,7 @@ const CommandesTable = () => {
                   <img
                     src={eye}
                     alt="Consulter"
+                    className="hover"
                     onClick={() => {
                       navigate(`/commandes/${order.id}`);
                     }}

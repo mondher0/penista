@@ -120,6 +120,7 @@ const DemandeAbonnementTable = () => {
                       <img
                         src={save}
                         alt=""
+                        className="hover"
                         onClick={() => {
                           handleDownload(demande.payment_receipt);
                         }}
@@ -129,6 +130,7 @@ const DemandeAbonnementTable = () => {
                           <img
                             src={accept}
                             alt=""
+                            className="hover"
                             onClick={() => {
                               setShowPopUp1(demande.id);
                             }}
@@ -136,6 +138,7 @@ const DemandeAbonnementTable = () => {
                           <img
                             src={refuse}
                             alt=""
+                            className="hover"
                             onClick={() => {
                               setShowPopUp2(demande.id);
                             }}

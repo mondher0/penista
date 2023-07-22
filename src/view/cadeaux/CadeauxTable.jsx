@@ -96,7 +96,11 @@ const CadeauxTable = () => {
                     </div>
                   </td>
                   <td>
-                    <img src={edite} onClick={() => setShowPopUp(user.id)} />
+                    <img
+                      src={edite}
+                      onClick={() => setShowPopUp(user.id)}
+                      className="hover"
+                    />
                   </td>
                 </tr>
               </>
