@@ -138,6 +138,29 @@ const PopUpContextProvider = ({ children }) => {
     }
   };
 
+  // handle accept order
+  const handleAcceptOrder = async (id) => {
+    try {
+      const response = await axiosInstance.put(
+        `${baseUrl}order/delivery/${id}/`
+      );
+      console.log(response);
+      setUpdate(!update);
+    } catch (error) {
+      console.log(error);
+    }
+  };
+
+  // handle refuse order
+  const handleRefuseOrder = async (id) => {
+    try {
+      const response = await axiosInstance.put(`${baseUrl}order/cancel/${id}/`);
+      console.log(response);
+      setUpdate(!update);
+    } catch (error) {
+      console.log(error);
+    }
+  };
   return (
     <PopUpContext.Provider
       value={{
@@ -151,6 +174,8 @@ const PopUpContextProvider = ({ children }) => {
         handleChangeStatus,
         handleDeleteAd,
         handleEnleverPoints,
+        handleAcceptOrder,
+        handleRefuseOrder,
         update,
         setUpdate,
       }}

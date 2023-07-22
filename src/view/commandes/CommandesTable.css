@@ -82,3 +82,23 @@
     padding: 3px;
   }
 }
+.case {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  gap: 10px;
+}
+.case .delivery {
+  background-color: #3b5f90;
+}
+.case .annuler {
+  background-color: #cc1616;
+}
+.case button {
+  color: white;
+  border: none;
+  border-radius: 18px;
+  padding: 8px;
+  width: 100px;
+}

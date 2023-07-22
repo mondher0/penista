@@ -5,6 +5,8 @@ import axiosInstance from "../../utils/axiosInstance";
 import { baseUrl } from "../../utils/constants";
 import "./CommandesTable.css";
 import { useNavigate } from "react-router-dom";
+import PopUp from "../shared/popUp/PopUp";
+import usePopUpContext from "../../hooks/usePopUpContext";
 const CommandesTable = () => {
   const navigate = useNavigate();
   const [orders, setOrders] = useState();
@@ -13,7 +15,11 @@ const CommandesTable = () => {
   const [isLoading, setIsLoading] = useState(false);
   const [isError, setIsError] = useState(false);
   const [isEmpty, setIsEmpty] = useState(false);
+  const [showPopUp1, setShowPopUp1] = useState(false);
+  const [showPopUp2, setShowPopUp2] = useState(false);
+  const { update } = usePopUpContext();
   // get all commandes
+
   const getCommandes = async () => {
     try {
       setIsLoading(true);
@@ -35,7 +41,7 @@ const CommandesTable = () => {
   };
   useEffect(() => {
     getCommandes();
-  }, [currentPage]);
+  }, [currentPage, update]);
 
   // Pagination handlers
   const goToPreviousPage = () => {
@@ -63,6 +69,7 @@ const CommandesTable = () => {
             <th>Livraison</th>
             <th>Code promo</th>
             <th>Date de commande</th>
+            <th>Commande</th>
             <th>Status</th>
             <th>Action</th>
           </tr>
@@ -95,6 +102,24 @@ const CommandesTable = () => {
                 <td>{order.promo}</td>
                 <td>{order.createdAt}</td>
                 <td>
+                  {order.status === "Commandée" ? (
+                    <div className="case">
+                      <button
+                        className="delivery"
+                        onClick={() => setShowPopUp1(order.id)}
+                      >
+                        Livrer
+                      </button>
+                      <button
+                        className="annuler"
+                        onClick={() => setShowPopUp2(order.id)}
+                      >
+                        Annuler
+                      </button>
+                    </div>
+                  ) : null}
+                </td>
+                <td>
                   <div className="type">{order.status}</div>
                 </td>
                 <td>
@@ -120,6 +145,26 @@ const CommandesTable = () => {
           Next
         </button>
       </div>
+      {showPopUp1 && (
+        <PopUp
+          setShowPopUp={setShowPopUp1}
+          text="Vous voulez vraiment livrer la commande
+          de cet utilisateur?"
+          button="Livrer"
+          id={showPopUp1}
+          action="accept order"
+        />
+      )}
+      {showPopUp2 && (
+        <PopUp
+          setShowPopUp={setShowPopUp2}
+          text="Vous voulez vraiment annuler la commande
+          de cet utilisateur?"
+          button="OUI Annuler"
+          id={showPopUp2}
+          action="cancel order"
+        />
+      )}
     </>
   );
 };
