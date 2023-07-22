@@ -5,6 +5,7 @@ import { useEffect, useState } from "react";
 import axiosInstance from "../../utils/axiosInstance";
 import { baseUrl } from "../../utils/constants";
 import { useNavigate } from "react-router-dom";
+import getLocalDate from "../../utils/getLocalDate";
 
 const TicketsMatcheTable = () => {
   const [tickets, setTickets] = useState();
@@ -68,28 +69,33 @@ const TicketsMatcheTable = () => {
         </thead>
         <tbody>
           {tickets &&
-            tickets.map((ticket) => (
-              <>
-                <tr>
-                  <td>{ticket.id}</td>
-                  <td>{ticket.startDate}</td>
-                  <td>{ticket.league.name}</td>
-                  <td>{ticket.opposingTeam.name}</td>
-                  <td>{ticket.league.round}</td>
-                  <td>{ticket.is_home ? "Maison" : "Extérieur"}</td>
-                  <td>{ticket.tickets}</td>
-                  <td>
-                    <img
-                      src={edite}
-                      alt="Modifier"
-                      onClick={() => {
-                        navigate(`/tiquet/modifier-tiquet/${ticket.id}`);
-                      }}
-                    />
-                  </td>
-                </tr>
-              </>
-            ))}
+            tickets.map((ticket) => {
+              const { startDate } = ticket;
+              const { newDate, time } = getLocalDate(startDate);
+              console.log(time);
+              return (
+                <>
+                  <tr>
+                    <td>{ticket.id}</td>
+                    <td>{newDate} {time}</td>
+                    <td>{ticket.league.name}</td>
+                    <td>{ticket.opposingTeam.name}</td>
+                    <td>{ticket.league.round}</td>
+                    <td>{ticket.is_home ? "Maison" : "Extérieur"}</td>
+                    <td>{ticket.tickets}</td>
+                    <td>
+                      <img
+                        src={edite}
+                        alt="Modifier"
+                        onClick={() => {
+                          navigate(`/tiquet/modifier-tiquet/${ticket.id}`);
+                        }}
+                      />
+                    </td>
+                  </tr>
+                </>
+              );
+            })}
         </tbody>
       </table>
       <div className="pagination">

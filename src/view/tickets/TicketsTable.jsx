@@ -68,7 +68,7 @@ const TicketsTable = () => {
         <tbody>
           {tickets.map((ticket) => {
             const { match, client_info } = ticket;
-            let { startDate } = match;
+            const { startDate } = match;
             const { newDate, time } = getLocalDate(startDate);
 
             return (

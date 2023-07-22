@@ -3,6 +3,7 @@ import { isNotificated } from "../../../assets/index";
 import axiosInstance from "../../../utils/axiosInstance";
 import { baseUrl } from "../../../utils/constants";
 import { useEffect, useState } from "react";
+import getLocalDate from "../../../utils/getLocalDate";
 
 const NotificationCard = () => {
   const [notifications, setNotifications] = useState([]);
@@ -68,22 +69,23 @@ const NotificationCard = () => {
       {notifications.map((notification, index) => {
         let createdAt = notification.createdAt;
         let dateObj = new Date(createdAt);
-        let hour = dateObj.getHours();
-        let minute = dateObj.getMinutes();
-        minute = String(minute).padStart(2, "0");
+        const {time} = getLocalDate(createdAt)
+
+
+      
 
         const isToday = dateObj.toDateString() === today.toDateString();
         const isYesterday = dateObj.toDateString() === yesterday.toDateString();
 
         let dateDisplay;
         if (isToday) {
-          dateDisplay = `Aujourd'hui à ${hour}:${minute}`;
+          dateDisplay = `Aujourd'hui à ${time}`;
         } else if (isYesterday) {
-          dateDisplay = `Hier à ${hour}:${minute}`;
+          dateDisplay = `Hier à ${time}`;
         } else {
           dateDisplay = `${dateObj.getDate()}/${
             dateObj.getMonth() + 1
-          }/${dateObj.getFullYear()} à ${hour}:${minute}`;
+          }/${dateObj.getFullYear()} à ${time}`;
         }
 
         return (
