@@ -3,6 +3,7 @@ import "../utilisateurs/DemandeAbonnementTable.css";
 import { useEffect, useState } from "react";
 import axiosInstance from "../../utils/axiosInstance";
 import { baseUrl } from "../../utils/constants";
+import getLocalDate from "../../utils/getLocalDate";
 
 const TicketsTable = () => {
   const [tickets, setTickets] = useState([]);
@@ -67,15 +68,15 @@ const TicketsTable = () => {
         <tbody>
           {tickets.map((ticket) => {
             const { match, client_info } = ticket;
-            const { startDate } = match;
-            const [date, hour] = startDate.split(" ");
+            let { startDate } = match;
+            const { newDate, time } = getLocalDate(startDate);
 
             return (
               <>
                 <tr key={ticket.id}>
                   <td>{ticket.id}</td>
-                  <td>{date}</td>
-                  <td>{hour}</td>
+                  <td>{newDate}</td>
+                  <td>{time}</td>
                   <td>{match.opposingTeam.name}</td>
                   <td>
                     <div className="user-details">

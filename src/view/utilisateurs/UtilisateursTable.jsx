@@ -79,7 +79,9 @@ const UtilisateursTable = () => {
         </thead>
         <tbody>
           {users.map((user) => {
-            const { id } = user;
+            const { id, date_joined } = user;
+            const dateJoined = new Date(date_joined);
+            console.log(dateJoined);
             return (
               <tr key={id}>
                 <td>{id}</td>
