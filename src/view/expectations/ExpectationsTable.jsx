@@ -21,7 +21,7 @@ const ExpectationsTable = () => {
       );
       console.log(response);
       setExpectations(response.data.data);
-      if (response.data.data.length === 0) {
+      if (response.data.data?.length === 0) {
         setIsEmpty(true);
       }
       setPages(response.data.pages);
