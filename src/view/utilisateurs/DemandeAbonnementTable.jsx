@@ -49,6 +49,9 @@ const DemandeAbonnementTable = () => {
 
   const handleDownload = async (url) => {
     console.log(url);
+    if (!url) {
+      return;
+    }
     const imageUrl = `${baseUrl}${url}`; // Replace with the URL of the image you want to download
 
     try {
@@ -97,10 +100,7 @@ const DemandeAbonnementTable = () => {
                   <td>{demande.id}</td>
                   <td>
                     <div className="user-details">
-                      <img
-                        src={`${baseUrl}${demande.user.image}`}
-                        alt="user"
-                      />
+                      <img src={`${baseUrl}${demande.user.image}`} alt="user" />
                       <div className="user-info">
                         <p>{demande.user.first_name}</p>
                         <span>{demande.user.email}</span>
