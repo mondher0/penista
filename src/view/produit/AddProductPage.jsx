@@ -42,7 +42,7 @@ const initialState = {
   lavage: "",
   optionName: "",
   deliveryDesc: "",
-  product_images: "",
+  product_images: [],
 };
 const AddProductPage = () => {
   const [state, dispatch] = useReducer(addProductReducer, initialState);
@@ -75,17 +75,10 @@ const AddProductPage = () => {
       formData.append("table_image", state.lavage);
       formData.append("optionName", state.optionName);
       formData.append("deliveryDesc", state.deliveryDesc);
-      const array = [
-        {
-          id: Math.random(),
-          image: state.product_images,
-        },
-        {
-          id: Math.random(),
-          image: state.product_images,
-        },
-      ];
-      formData.append("product_images", array);
+      for (let i of state.product_images) {
+        formData.append("product_images", i);
+      }
+      console.log(formData.get("product_images"));
 
       const response = await axiosInstance.post(
         `${baseUrl}product/create/`,

@@ -58,7 +58,7 @@ export const addProductReducer = (state, action) => {
     return {
       ...state,
       media: action.payload,
-      product_images: action.payload,
+      product_images: [...state.product_images, action.payload],
     };
   }
   if (action.type === SET_DELEVERY_DESCRIPTION) {
