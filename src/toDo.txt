@@ -10,8 +10,4 @@ utilisateurs:
 demande abonnement :
 dont show actios to an delivery type
 
-cadeaux :
-missing expectation points 
-
-make hour to be in the local time zone
 get wilaya by api 

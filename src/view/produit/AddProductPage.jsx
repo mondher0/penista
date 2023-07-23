@@ -54,6 +54,10 @@ const AddProductPage = () => {
     try {
       setLoading(true);
       setError(false);
+      const totalStock = state.values.reduce(
+        (acc, item) => acc + item.quantite,
+        0
+      );
       const values = state.values.reduce((acc, value) => {
         return {
           ...acc,
@@ -66,13 +70,22 @@ const AddProductPage = () => {
       formData.append("free_price", state.free_price);
       formData.append("premium_price", state.premium_price);
       formData.append("pro_price", state.pro_price);
-      formData.append("stock", 33);
-      formData.append("sales", 0);
+      formData.append("stock", totalStock);
       formData.append("options", JSON.stringify(values));
       formData.append("table_image", state.lavage);
       formData.append("optionName", state.optionName);
       formData.append("deliveryDesc", state.deliveryDesc);
-      formData.append("product_images", state.product_images);
+      const array = [
+        {
+          id: Math.random(),
+          image: state.product_images,
+        },
+        {
+          id: Math.random(),
+          image: state.product_images,
+        },
+      ];
+      formData.append("product_images", array);
 
       const response = await axiosInstance.post(
         `${baseUrl}product/create/`,
@@ -283,7 +296,7 @@ const AddProductPage = () => {
                         <input
                           className="added-quantite"
                           value={value.quantite}
-                          type="text"
+                          type="number"
                           disabled={value.disabled}
                           onChange={(e) => {
                             const int = parseInt(e.target.value);
@@ -332,7 +345,7 @@ const AddProductPage = () => {
                   }}
                 />
                 <input
-                  type="text"
+                  type="number"
                   id="quantité"
                   name="quantité"
                   placeholder="Quantité"

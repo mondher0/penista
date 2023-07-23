@@ -75,6 +75,10 @@ const EditSingleProduct = () => {
     try {
       setLoading(true);
       setError(false);
+      const totalStock = state.values.reduce(
+        (acc, item) => acc + item.quantite,
+        0
+      );
       const values = state.values.reduce((acc, value) => {
         return {
           ...acc,
@@ -87,8 +91,7 @@ const EditSingleProduct = () => {
       formData.append("free_price", state.free_price);
       formData.append("premium_price", state.premium_price);
       formData.append("pro_price", state.pro_price);
-      formData.append("stock", 33);
-      formData.append("sales", 0);
+      formData.append("stock", totalStock);
       formData.append("deliveryDesc", state.deliveryDesc);
       formData.append("optionName", state.optionName);
       formData.append("options", JSON.stringify(values));
@@ -314,11 +317,12 @@ const EditSingleProduct = () => {
                           type="number"
                           disabled={value.disabled}
                           onChange={(e) => {
+                            const int = parseInt(e.target.value);
                             dispatch({
                               type: UPDATE_QUANTITE,
                               payload: {
                                 id: value.id,
-                                quantite: e.target.value,
+                                quantite: int,
                               },
                             });
                           }}

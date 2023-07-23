@@ -88,7 +88,7 @@ const CadeauxTable = () => {
                   <td>{user.phone_no}</td>
                   <td>{user.plan_name}</td>
                   <td>{user.points}</td>
-                  <td>1200</td>
+                  <td>{user.expectationPoints}</td>
                   <td>{user.stars}</td>
                   <td>
                     <div className="type">
