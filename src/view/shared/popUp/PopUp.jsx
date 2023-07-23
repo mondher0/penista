@@ -17,6 +17,7 @@ const PopUp = (props) => {
     handleEnleverPoints,
     handleAcceptOrder,
     handleRefuseOrder,
+    handleDeleteOffre,
   } = usePopUpContext();
   console.log(props.id);
   const [points, setPoints] = useState();
@@ -105,6 +106,9 @@ const PopUp = (props) => {
                   }
                   if (props.action === "cancel order") {
                     handleRefuseOrder(props.id);
+                  }
+                  if (props.action === "delete offre") {
+                    handleDeleteOffre(props.id);
                   }
                   props.setShowPopUp(false);
                 }}

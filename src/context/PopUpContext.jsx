@@ -161,6 +161,19 @@ const PopUpContextProvider = ({ children }) => {
       console.log(error);
     }
   };
+
+  // handle delete offre
+  const handleDeleteOffre = async (id) => {
+    try {
+      const response = await axiosInstance.delete(
+        `${baseUrl}promotion/delete/${id}/`
+      );
+      console.log(response);
+      setUpdate(!update);
+    } catch (error) {
+      console.log(error);
+    }
+  };
   return (
     <PopUpContext.Provider
       value={{
@@ -176,6 +189,7 @@ const PopUpContextProvider = ({ children }) => {
         handleEnleverPoints,
         handleAcceptOrder,
         handleRefuseOrder,
+        handleDeleteOffre,
         update,
         setUpdate,
       }}

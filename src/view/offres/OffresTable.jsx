@@ -1,3 +1,4 @@
+/* eslint-disable react-hooks/exhaustive-deps */
 import "../produit/ProductTable.css";
 import { deleteIcon, edite } from "../../assets/index";
 import { useEffect, useState } from "react";
@@ -5,6 +6,7 @@ import PopUp from "../shared/popUp/PopUp";
 import axiosInstance from "../../utils/axiosInstance";
 import { baseUrl } from "../../utils/constants";
 import { useNavigate } from "react-router-dom";
+import usePopUpContext from "../../hooks/usePopUpContext";
 
 const OffresTable = () => {
   const [showPopUp, setShowPopUp] = useState(false);
@@ -15,12 +17,15 @@ const OffresTable = () => {
   const [isError, setIsError] = useState(false);
   const [isEmpty, setIsEmpty] = useState(false);
   const navigate = useNavigate();
+  const { update } = usePopUpContext();
 
   // get all offres
   const getOffres = async () => {
     try {
       setIsLoading(true);
-      const response = await axiosInstance.get(`${baseUrl}promotion/`);
+      const response = await axiosInstance.get(
+        `${baseUrl}promotion/?page=${currentPage}`
+      );
       console.log(response);
       setOffre(response.data.data.Promotions);
       setPages(response.data.data.pages);
@@ -44,7 +49,7 @@ const OffresTable = () => {
   };
   useEffect(() => {
     getOffres();
-  }, [currentPage]);
+  }, [currentPage, update]);
 
   return (
     <>
@@ -84,7 +89,7 @@ const OffresTable = () => {
                         src={deleteIcon}
                         alt="Supprimer"
                         className="hover"
-                        onClick={() => setShowPopUp("1")}
+                        onClick={() => setShowPopUp(offre.id)}
                       />
                       <img
                         src={edite}
@@ -116,6 +121,7 @@ const OffresTable = () => {
           text="Vous voulez vraiment supprimer cette offre?"
           button="Supprimer"
           id={showPopUp}
+          action="delete offre"
         />
       )}
     </>

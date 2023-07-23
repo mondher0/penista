@@ -18,7 +18,7 @@ offre :
 delete offre no api 
 
 expectations :
-not linking the filtre yet 
+bug in adversaire filter
 
 cadeaux :
 missing expectation points 
