@@ -88,7 +88,7 @@ const DashBoardPage = () => {
                       title={product.name}
                       cmd={product.sales}
                       key={product.id}
-                      image={product.images[1]?.image}
+                      image={product.images[0]?.image}
                     />
                   </>
                 )
