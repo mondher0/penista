@@ -1,8 +1,14 @@
 import NavBar from "../shared/navBar/NavBar";
 import "./ExpectationsPage.css";
 import ExpectationsTable from "./ExpectationsTable";
+import { useState } from "react";
 
 const ExpectationsPage = () => {
+  const [filter, setFilter] = useState(false);
+  const [etat, setEtat] = useState("");
+  const [adversaire, setAdversaire] = useState("");
+  const [date, setDate] = useState("");
+
   return (
     <>
       <NavBar title="Expectations" />
@@ -10,24 +16,43 @@ const ExpectationsPage = () => {
         <div className="title row">
           <p>Toutes les expectations</p>
           <div>
-            <form>
+            <form
+              onSubmit={(e) => {
+                e.preventDefault();
+                setFilter(!filter);
+              }}
+            >
               <div className="search">
                 <div className="element">
                   <div>Etat</div>
-                  <select name="abonnement" id="abonnement">
+                  <select
+                    name="abonnement"
+                    id="abonnement"
+                    onChange={(e) => {
+                      setEtat(e.target.value);
+                    }}
+                  >
                     <option value="">Choisir</option>
-                    <option value="1">Nul</option>
-                    <option value="2">Victoire</option>
-                    <option value="3">Défaite</option>
+                    <option value="null">Nul</option>
+                    <option value={true}>Victoire</option>
+                    <option value={false}>Défaite</option>
                   </select>
                 </div>
                 <div className="element">
                   <div>Adversaire</div>
-                  <input type="text" placeholder="Ecrivez..." />
+                  <input
+                    type="text"
+                    placeholder="Ecrivez..."
+                    onChange={(e) => setAdversaire(e.target.value)}
+                  />
                 </div>
                 <div className="element">
                   <div>Date du match</div>
-                  <input type="date" placeholder="Ecrivez..." />
+                  <input
+                    type="date"
+                    placeholder="Ecrivez..."
+                    onChange={(e) => setDate(e.target.value)}
+                  />
                 </div>
               </div>
               <button type="submit" className="add-product">
@@ -36,7 +61,12 @@ const ExpectationsPage = () => {
             </form>
           </div>
         </div>
-        <ExpectationsTable />
+        <ExpectationsTable
+          filter={filter}
+          etat={etat}
+          adversaire={adversaire}
+          date={date}
+        />
       </div>
     </>
   );
