@@ -69,14 +69,9 @@ const NotificationCard = () => {
       {notifications.map((notification, index) => {
         let createdAt = notification.createdAt;
         let dateObj = new Date(createdAt);
-        const {time} = getLocalDate(createdAt)
-
-
-      
-
+        const { time } = getLocalDate(createdAt);
         const isToday = dateObj.toDateString() === today.toDateString();
         const isYesterday = dateObj.toDateString() === yesterday.toDateString();
-
         let dateDisplay;
         if (isToday) {
           dateDisplay = `Aujourd'hui à ${time}`;
@@ -87,7 +82,6 @@ const NotificationCard = () => {
             dateObj.getMonth() + 1
           }/${dateObj.getFullYear()} à ${time}`;
         }
-
         return (
           <div
             className="notification"
