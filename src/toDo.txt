@@ -2,10 +2,6 @@
 all projects : 
 delete all logs in the console
 
-search :
-hidding the search bar for now 
-linking the search bar not yet done
-
 products:
 linking the add product (images and adding i can add just one from the backend)
 the admin can add many images 
@@ -13,12 +9,6 @@ the admin can add many images
 utilisateurs:
 demande abonnement :
 dont show actios to an delivery type
-
-offre :
-delete offre no api 
-
-expectations :
-bug in adversaire filter
 
 cadeaux :
 missing expectation points 
