@@ -31,6 +31,11 @@ export const editProductReducer = (state, action) => {
       isAdded: true,
       id: Math.random(),
     }));
+    let images = [];
+    for (let i in action.payload.images) {
+      images[i] = action.payload.images[i].image;
+    }
+    console.log();
 
     return {
       ...state,
@@ -43,6 +48,7 @@ export const editProductReducer = (state, action) => {
       values: arr,
       deliveryDesc: action.payload.deliveryDesc,
       optionName: action.payload.optionName,
+      product_images: [],
     };
   }
   if (action.type === SET_NAME) {
@@ -89,10 +95,11 @@ export const editProductReducer = (state, action) => {
     };
   }
   if (action.type === SET_MEDIA) {
+    console.log(state.product_images);
     return {
       ...state,
       media: action.payload,
-      product_images: action.payload,
+      product_images: [...state.product_images, action.payload],
     };
   }
   if (action.type === SET_LAVAGE) {

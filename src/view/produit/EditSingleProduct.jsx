@@ -45,7 +45,7 @@ const initialState = {
   lavage: "",
   optionName: "",
   deliveryDesc: "",
-  product_images: "",
+  product_images: [],
 };
 const EditSingleProduct = () => {
   const [state, dispatch] = useReducer(editProductReducer, initialState);
@@ -61,6 +61,7 @@ const EditSingleProduct = () => {
         type: GET_PRODUCT_DETAILS,
         payload: response.data.data,
       });
+      console.log(state);
     } catch (error) {
       console.log(error);
     }
@@ -86,6 +87,7 @@ const EditSingleProduct = () => {
         };
       }, {});
       const formData = new FormData();
+      console.log(state);
       formData.append("name", state.name);
       formData.append("description", state.description);
       formData.append("free_price", state.free_price);
@@ -95,8 +97,11 @@ const EditSingleProduct = () => {
       formData.append("deliveryDesc", state.deliveryDesc);
       formData.append("optionName", state.optionName);
       formData.append("options", JSON.stringify(values));
-      formData.append("table_image", state.media);
-      formData.append("product_images", state.product_images);
+      formData.append("table_image", state.lavage);
+      console.log(state.product_images);
+      for (let i of state.product_images) {
+        formData.append("product_images", i);
+      }
       console.log(state.product_images);
       const response = await axiosInstance.put(
         `${baseUrl}product/update/${id}/`,
@@ -130,12 +135,13 @@ const EditSingleProduct = () => {
                 name="nom"
                 placeholder="T-shirt"
                 value={state.name}
-                onChange={(e) =>
+                onChange={(e) => {
+                  console.log(state);
                   dispatch({
                     type: SET_NAME,
                     payload: e.target.value,
-                  })
-                }
+                  });
+                }}
               />
             </div>
             <div className="input desc">
@@ -181,7 +187,7 @@ const EditSingleProduct = () => {
                   name="image"
                   size="60px"
                   onChange={(e) => {
-                    console.log(e.target.value);
+                    console.log(e.target.files[0]);
                     dispatch({
                       type: SET_MEDIA,
                       payload: e.target.files[0],
