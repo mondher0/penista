@@ -1,6 +1,9 @@
 const getLocalDate = (date) => {
   console.log(date);
   date = new Date(date);
+  console.log(date);
+  date.setHours(date.getHours() + 1);
+  console.log(date);
   const year = date.getFullYear();
   const month = date.getMonth() + 1; // Month is zero-based, so we add 1
   const day = date.getDate();
@@ -15,7 +18,7 @@ const getLocalDate = (date) => {
   console.log(date);
 
   // Extract time components
-  const hour = date.getHours();
+  let hour = date.getHours();
   const minutes = date.getMinutes();
 
   // Format the time in "HH:mm" format with leading zeros
