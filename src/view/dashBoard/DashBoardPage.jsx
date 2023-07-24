@@ -1,3 +1,4 @@
+/* eslint-disable no-empty */
 /* eslint-disable react-hooks/exhaustive-deps */
 import NavBar from "../shared/navBar/NavBar";
 import "./DashBoardPage.css";
@@ -18,21 +19,16 @@ const DashBoardPage = () => {
       const response = await axiosInstance.get(
         `${baseUrl}dashboard/top-product/`
       );
-      console.log(response);
       setTopProducts(response.data.data.products);
     } catch (error) {
-      console.log(error);
     }
   };
 
   const getStatistiques = async () => {
     try {
       const response = await axiosInstance.get(`${baseUrl}dashboard/`);
-      console.log(response);
       setStatistiques(response.data.data);
-      console.log(statistiques["Utilisateur participant au jeu "]);
     } catch (error) {
-      console.log(error);
     }
   };
   useEffect(() => {
@@ -80,8 +76,6 @@ const DashBoardPage = () => {
           <div className="custom">
             {topProducts.map(
               (product) => (
-                console.log(product?.images[0]?.image),
-                console.log(product),
                 (
                   <>
                     <CustomContainer

@@ -1,7 +1,7 @@
+/* eslint-disable no-empty */
 /* eslint-disable react-hooks/exhaustive-deps */
 /* eslint-disable react/prop-types */
 import {
-  search,
   actifNotification,
   emptyNot,
 } from "../../../assets/index";
@@ -23,11 +23,9 @@ const NavBar = ({ title }) => {
         `${baseUrl}notification/admin/`
       );
       setIsNotificated(response1.data.data.unread);
-      console.log(response1);
       const { first_name, last_name, image } = response.data.data;
       setUserInfo({ first_name, last_name, image });
     } catch (error) {
-      console.log(error);
     }
   };
 

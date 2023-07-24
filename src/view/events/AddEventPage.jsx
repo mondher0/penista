@@ -81,14 +81,10 @@ const AddEventPage = () => {
         values: state.values,
       };
       formData.append("options", JSON.stringify(options));
-      console.log(state);
-      console.log(state.dates);
-      console.log(options);
       const response = await axiosInstance.post(
         `${baseUrl}event/create/`,
         formData
       );
-      console.log(response);
       if (response.data.success === false) {
         setLoading(false);
         setError(true);
@@ -96,7 +92,6 @@ const AddEventPage = () => {
       }
       setLoading(false);
     } catch (error) {
-      console.log(error);
       setLoading(false);
       setError(true);
     }
@@ -134,10 +129,8 @@ const AddEventPage = () => {
         setError(true);
         return;
       }
-      console.log(response);
       setLoading(false);
     } catch (error) {
-      console.log(error);
       setLoading(false);
       setError(true);
     }
@@ -220,7 +213,6 @@ const AddEventPage = () => {
                 <label>Options de date pour l’évenement</label>
                 {state.dates.length > 0
                   ? state.dates.map((date) => {
-                      console.log(date);
                       return (
                         <>
                           <div
@@ -324,7 +316,6 @@ const AddEventPage = () => {
                       {
                         type: SET_DATES,
                       },
-                      console.log(state.dates)
                     );
                   }}
                 >

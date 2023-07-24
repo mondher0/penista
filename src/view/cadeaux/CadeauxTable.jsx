@@ -22,7 +22,6 @@ const CadeauxTable = () => {
       const response = await axiosInstance.get(
         `${baseUrl}accounts/users/?page=${currentPage}`
       );
-      console.log(response);
       setUsers(response.data.data.users);
       if (response.data.data.users.length === 0) {
         setIsEmpty(true);
@@ -30,7 +29,6 @@ const CadeauxTable = () => {
       setPages(response.data.data.pages);
       setIsLoading(false);
     } catch (error) {
-      console.log(error);
       setIsLoading(false);
       setIsError(true);
     }

@@ -23,7 +23,6 @@ const TicketsMatcheTable = () => {
       const response = await axiosInstance.get(
         `${baseUrl}match/with/ticket/?page=${currentPage}`
       );
-      console.log(response);
       if (response.data.data.matchs.length === 0) {
         setIsEmpty(true);
       }
@@ -31,7 +30,6 @@ const TicketsMatcheTable = () => {
       setPages(response.data.data.pages);
       setIsLoading(false);
     } catch (error) {
-      console.log(error);
       setIsLoading(false);
       setIsError(true);
     }
@@ -72,7 +70,6 @@ const TicketsMatcheTable = () => {
             tickets.map((ticket) => {
               const { startDate } = ticket;
               const { newDate, time } = getLocalDate(startDate);
-              console.log(time);
               return (
                 <>
                   <tr>

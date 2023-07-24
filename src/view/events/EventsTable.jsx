@@ -24,8 +24,6 @@ const EventsTable = () => {
       const response = await axiosInstance.get(
         `${baseUrl}reservation/?page=${currentPage}`
       );
-      console.log(response);
-      console.log(response.data.reservations);
       if (response.data.reservations.length === 0) {
         setIsEmpty(true);
       }
@@ -33,7 +31,6 @@ const EventsTable = () => {
       setPages(response.data.pages);
       setIsLoading(false);
     } catch (error) {
-      console.log(error);
       setIsLoading(false);
       setIsError(true);
     }
@@ -42,7 +39,6 @@ const EventsTable = () => {
 
   // download image
   const handleDownload = async (url) => {
-    console.log(url);
     if (!url) {
       return;
     }

@@ -1,3 +1,4 @@
+/* eslint-disable no-empty */
 /* eslint-disable react-hooks/exhaustive-deps */
 import "../produit/ProductTable.css";
 import { edite, pause, play } from "../../assets/index";
@@ -25,7 +26,6 @@ const SettingsPageTable = () => {
       const response = await axiosInstance.get(
         `${baseUrl}page/?page=${currentPage}`
       );
-      console.log(response);
       setPages(response.data.data);
       setNmbrPages(response.data.pages);
       if (response.data.data.length === 0) {
@@ -33,7 +33,6 @@ const SettingsPageTable = () => {
       }
       setIsLoading(false);
     } catch (error) {
-      console.log(error);
       setIsLoading(false);
       setIsError(true);
     }
@@ -43,10 +42,8 @@ const SettingsPageTable = () => {
   const handleChangeStatus = async (id) => {
     try {
       const response = await axiosInstance.post(`${baseUrl}page/status/${id}/`);
-      console.log(response);
       setUpdate(!update);
     } catch (error) {
-      console.log(error);
     }
   };
 

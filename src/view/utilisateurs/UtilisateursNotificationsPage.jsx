@@ -30,7 +30,6 @@ const UtilisateursNotificationsPage = () => {
         `${baseUrl}notification/admin/send/`,
         data
       );
-      console.log(response);
       if (response.data.data.success === false) {
         setLoading(false);
         setError(true);
@@ -40,7 +39,6 @@ const UtilisateursNotificationsPage = () => {
     } catch (error) {
       setLoading(false);
       setError(true);
-      console.log(error);
     }
   };
 

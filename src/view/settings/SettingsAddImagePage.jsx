@@ -23,7 +23,6 @@ const SettingsAddImagePage = () => {
         `${baseUrl}ads/create/`,
         formData
       );
-      console.log(response);
       if (response.data.success === false) {
         setLoading(false);
         setError(true);
@@ -33,7 +32,6 @@ const SettingsAddImagePage = () => {
     } catch (error) {
       setLoading(false);
       setError(true);
-      console.log(error);
     }
   };
   return (

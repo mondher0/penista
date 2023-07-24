@@ -1,3 +1,4 @@
+/* eslint-disable no-empty */
 /* eslint-disable react-hooks/exhaustive-deps */
 import NavBar from "../shared/navBar/NavBar";
 import "../produit/AddProductPage.css";
@@ -33,14 +34,11 @@ const EditSingleTicket = () => {
   const getSingleMatch = async () => {
     try {
       const response = await axiosInstance.get(`${baseUrl}match/${id}/`);
-      console.log(response);
       dispatch({
         type: GET_MATCHE_DETAILS,
         payload: response.data.data,
       });
-      console.log(state);
     } catch (error) {
-      console.log(error);
     }
   };
   useEffect(() => {
@@ -53,7 +51,6 @@ const EditSingleTicket = () => {
       setError(false);
       setLoading(true);
       e.preventDefault();
-      console.log(state);
       const data = {
         matchId: id,
         ticket_price: state.price,
@@ -67,7 +64,6 @@ const EditSingleTicket = () => {
         `${baseUrl}match/ticket/create/`,
         data
       );
-      console.log(response);
       if (response.data.success === false) {
         setLoading(false);
         setError(true);
@@ -75,7 +71,6 @@ const EditSingleTicket = () => {
       }
       setLoading(false);
     } catch (error) {
-      console.log(error);
       setLoading(false);
       setError(true);
     }

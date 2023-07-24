@@ -26,7 +26,6 @@ const OffresTable = () => {
       const response = await axiosInstance.get(
         `${baseUrl}promotion/?page=${currentPage}`
       );
-      console.log(response);
       setOffre(response.data.data.Promotions);
       setPages(response.data.data.pages);
       if (response.data.data.Promotions.length === 0) {
@@ -34,7 +33,6 @@ const OffresTable = () => {
       }
       setIsLoading(false);
     } catch (error) {
-      console.log(error);
       setIsLoading(false);
       setIsError(true);
     }

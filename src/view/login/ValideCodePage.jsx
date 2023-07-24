@@ -31,7 +31,6 @@ const ValideCodePage = () => {
         email: username,
         verification_code: firstCode + secondCode + thirdCode + fourthCode,
       };
-      console.log(data);
       const response = await axios.post(
         `${baseUrl}accounts/phone/verification-api/`,
         data
@@ -45,7 +44,6 @@ const ValideCodePage = () => {
       dispatch({ type: ERROR, payload: "" });
       navigate("/changer-mot-de-passe");
     } catch (error) {
-      console.log(error);
       dispatch({ type: ERROR, payload: "something went wrong" });
     }
   };

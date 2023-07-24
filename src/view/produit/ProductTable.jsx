@@ -24,7 +24,6 @@ const ProductTable = () => {
       const response = await axiosInstance.get(
         `${baseUrl}product/?page=${currentPage}`
       );
-      console.log(response);
       setProducts(response.data.data.products);
       if (response.data.data.products.length === 0) {
         setIsEmpty(true);
@@ -32,7 +31,6 @@ const ProductTable = () => {
       setPages(response.data.data.pages);
       setIsLoading(false);
     } catch (error) {
-      console.log(error);
       setIsLoading(false);
       setIsError(true);
     }
@@ -71,7 +69,6 @@ const ProductTable = () => {
         <tbody>
           {products?.map(
             (product) => (
-              console.log(product),
               (
                 <>
                   <tr key={product.id}>

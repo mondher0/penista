@@ -1,3 +1,4 @@
+/* eslint-disable no-empty */
 /* eslint-disable react-hooks/exhaustive-deps */
 import NavBar from "../shared/navBar/NavBar";
 import "../produit/AddProductPage.css";
@@ -33,11 +34,8 @@ const AddTicketPage = () => {
       const response = await axiosInstance.get(
         `${baseUrl}match/without/ticket/`
       );
-      console.log(response);
-      console.log(response.data.data.matchs);
       setMatches(response.data.data.matchs);
     } catch (error) {
-      console.log(error);
     }
   };
 
@@ -47,7 +45,6 @@ const AddTicketPage = () => {
       e.preventDefault();
       setLoading(true);
       setError(false);
-      console.log(state);
       const data = {
         matchId: state.matchId,
         ticket_price: state.price,
@@ -61,7 +58,6 @@ const AddTicketPage = () => {
         `${baseUrl}match/ticket/create/`,
         data
       );
-      console.log(response);
       if (response.data.success === false) {
         setLoading(false);
         setError(true);
@@ -69,7 +65,6 @@ const AddTicketPage = () => {
       }
       setLoading(false);
     } catch (error) {
-      console.log(error);
       setLoading(false);
       setError(true);
     }
@@ -93,7 +88,6 @@ const AddTicketPage = () => {
                   border: "solid 1px #ccc",
                 }}
                 onChange={(e) => {
-                  console.log(e.target.value);
                   dispatch({
                     type: SET_MATCHE_ID,
                     payload: e.target.value,

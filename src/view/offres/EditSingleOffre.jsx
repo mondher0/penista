@@ -1,3 +1,4 @@
+/* eslint-disable no-empty */
 /* eslint-disable react-hooks/exhaustive-deps */
 import NavBar from "../shared/navBar/NavBar";
 import "../produit/AddProductPage.css";
@@ -32,23 +33,19 @@ const initialState = {
 };
 const EditSingleOffre = () => {
   const { id } = useParams();
-  console.log(id);
   const [state, dispatch] = useReducer(editOffreReducer, initialState);
   const [loading, setLoading] = useState(false);
   const [error, setError] = useState(false);
-  console.log(state);
 
   // get single offre
   const getSingleOffre = async () => {
     try {
       const response = await axiosInstance.get(`${baseUrl}promotion/${id}/`);
-      console.log(response);
       dispatch({
         type: GET_offre_DETAILS,
         payload: response.data.data,
       });
     } catch (error) {
-      console.log(error);
     }
   };
   useEffect(() => {
@@ -62,7 +59,6 @@ const EditSingleOffre = () => {
       setLoading(true);
       setError(false);
       const formData = new FormData();
-      console.log(state);
       formData.append("promoType", state.type);
       formData.append("title", state.title);
       formData.append("percentage", state.percentage);
@@ -80,7 +76,6 @@ const EditSingleOffre = () => {
         `${baseUrl}promotion/update/${id}/`,
         formData
       );
-      console.log(response);
       if (response.data.success === false) {
         setLoading(false);
         setError(true);
@@ -88,7 +83,6 @@ const EditSingleOffre = () => {
       }
       setLoading(false);
     } catch (error) {
-      console.log(error);
       setLoading(false);
       setError(true);
     }

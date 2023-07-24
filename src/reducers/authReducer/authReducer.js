@@ -84,7 +84,6 @@ export const authReducer = (state, action) => {
   if (action.type === IS_AUTHENTICATED) {
     const token = localStorage.getItem("token");
     if (token) {
-      console.log("token exist");
       return {
         ...state,
         isLogged: true,

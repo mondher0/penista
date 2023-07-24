@@ -1,3 +1,4 @@
+/* eslint-disable no-empty */
 /* eslint-disable react-hooks/exhaustive-deps */
 import NavBar from "../shared/navBar/NavBar";
 import "./AddProductPage.css";
@@ -52,18 +53,14 @@ const EditSingleProduct = () => {
   const [loading, setLoading] = useState(false);
   const [error, setError] = useState(false);
   const { id } = useParams();
-  console.log(id);
   const getProduct = async () => {
     try {
       const response = await axiosInstance.get(`${baseUrl}product/${id}/`);
-      console.log(response);
       dispatch({
         type: GET_PRODUCT_DETAILS,
         payload: response.data.data,
       });
-      console.log(state);
     } catch (error) {
-      console.log(error);
     }
   };
 
@@ -87,7 +84,6 @@ const EditSingleProduct = () => {
         };
       }, {});
       const formData = new FormData();
-      console.log(state);
       formData.append("name", state.name);
       formData.append("description", state.description);
       formData.append("free_price", state.free_price);
@@ -98,16 +94,13 @@ const EditSingleProduct = () => {
       formData.append("optionName", state.optionName);
       formData.append("options", JSON.stringify(values));
       formData.append("table_image", state.lavage);
-      console.log(state.product_images);
       for (let i of state.product_images) {
         formData.append("product_images", i);
       }
-      console.log(state.product_images);
       const response = await axiosInstance.put(
         `${baseUrl}product/update/${id}/`,
         formData
       );
-      console.log(response);
       if (response.data.success === false) {
         setLoading(false);
         setError(true);
@@ -115,7 +108,6 @@ const EditSingleProduct = () => {
       }
       setLoading(false);
     } catch (error) {
-      console.log(error);
       setLoading(false);
       setError(true);
     }
@@ -136,7 +128,6 @@ const EditSingleProduct = () => {
                 placeholder="T-shirt"
                 value={state.name}
                 onChange={(e) => {
-                  console.log(state);
                   dispatch({
                     type: SET_NAME,
                     payload: e.target.value,
@@ -187,7 +178,6 @@ const EditSingleProduct = () => {
                   name="image"
                   size="60px"
                   onChange={(e) => {
-                    console.log(e.target.files[0]);
                     dispatch({
                       type: SET_MEDIA,
                       payload: e.target.files[0],
@@ -209,7 +199,6 @@ const EditSingleProduct = () => {
                   name="image"
                   size="60px"
                   onChange={(e) => {
-                    console.log(e.target.value);
                     dispatch({
                       type: SET_LAVAGE,
                       payload: e.target.files[0],
@@ -289,7 +278,6 @@ const EditSingleProduct = () => {
               <label htmlFor="valeurs">Valeurs</label>
               {state.values.length > 0
                 ? state.values.map((value) => {
-                    console.log(value);
                     return (
                       <div className="added" key={value.value}>
                         {value.isAddingAfterSaved && (
@@ -365,7 +353,6 @@ const EditSingleProduct = () => {
                   value={state.value}
                   onChange={(e) => {
                     dispatch({ type: SET_VALUE, payload: e.target.value });
-                    console.log(state);
                   }}
                 />
                 <input
@@ -378,7 +365,6 @@ const EditSingleProduct = () => {
                     // convert the value to int
                     const int = parseInt(e.target.value);
                     dispatch({ type: SET_QUANTITE, payload: int });
-                    console.log(state);
                   }}
                 />
               </div>
@@ -390,7 +376,6 @@ const EditSingleProduct = () => {
                     return;
                   }
                   dispatch({ type: ADD_VALUE, payload: state });
-                  console.log(state);
                 }}
               >
                 Ajouter une valeur
@@ -401,7 +386,6 @@ const EditSingleProduct = () => {
                   className="add-value"
                   onClick={() => {
                     dispatch({ type: SAVE });
-                    console.log(state);
                   }}
                 >
                   Terminer

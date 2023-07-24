@@ -19,7 +19,6 @@ const PopUp = (props) => {
     handleRefuseOrder,
     handleDeleteOffre,
   } = usePopUpContext();
-  console.log(props.id);
   const [points, setPoints] = useState();
   return (
     <div className="them">
@@ -91,7 +90,6 @@ const PopUp = (props) => {
                     handleRefuseDemandeAbonnement(props.id);
                   }
                   if (props.action === "change ad status") {
-                    console.log(props.id);
                     handleChangeStatus(props.id);
                     props?.setAction(false);
                   }

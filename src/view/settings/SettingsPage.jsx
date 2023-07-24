@@ -1,3 +1,4 @@
+/* eslint-disable no-empty */
 import NavBar from "../shared/navBar/NavBar";
 import "../produit/AddProductPage.css";
 import { image } from "../../assets/index";
@@ -27,19 +28,16 @@ const SettingsPage = () => {
   const getUserInfo = async () => {
     try {
       const response = await axiosInstance.get(`${baseUrl}accounts/userinfo/`);
-      console.log(response);
       const { first_name, last_name, phone_no, email } = response.data.data;
       setUserInfo({ first_name, last_name, phone_no, email });
       setUsername(response.data.data.username);
     } catch (error) {
-      console.log(error);
     }
   };
 
   const showSuccessMessageFor30Seconds = () => {
     setShowSuccessMessage(true);
     setTimeout(() => {
-      console.log("hello");
       setShowSuccessMessage(false);
     }, 10000); // 30 seconds (30,000 milliseconds)
   };
@@ -61,7 +59,6 @@ const SettingsPage = () => {
         `${baseUrl}accounts/users/admin/`,
         formData
       );
-      console.log(response);
       if (response.data.data.success === false) {
         setLoading(false);
         setError(true);
@@ -73,7 +70,6 @@ const SettingsPage = () => {
     } catch (error) {
       setLoading(false);
       setError(true);
-      console.log(error);
     }
   };
 
@@ -81,11 +77,9 @@ const SettingsPage = () => {
   const getYalidineInfo = async () => {
     try {
       const response = await axiosInstance.get(`${baseUrl}setting/yalidin/`);
-      console.log(response);
       setApiKey(response.data.data.yalidin_api_key);
       setApiToken(response.data.data.yalidin_api_token);
     } catch (error) {
-      console.log(error);
     }
   };
 
@@ -103,7 +97,6 @@ const SettingsPage = () => {
         `${baseUrl}setting/yalidin/update/`,
         data
       );
-      console.log(response);
       if (response.data.success === false) {
         setYalidinLoading(false);
         setYalidinError(true);
@@ -113,7 +106,6 @@ const SettingsPage = () => {
     } catch (error) {
       setYalidinLoading(false);
       setYalidinError(true);
-      console.log(error);
     }
   };
   useEffect(() => {

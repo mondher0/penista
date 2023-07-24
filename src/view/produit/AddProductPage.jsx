@@ -78,13 +78,10 @@ const AddProductPage = () => {
       for (let i of state.product_images) {
         formData.append("product_images", i);
       }
-      console.log(formData.get("product_images"));
-
       const response = await axiosInstance.post(
         `${baseUrl}product/create/`,
         formData
       );
-      console.log(response);
       if (response.data.success === false) {
         setLoading(false);
         setError(true);
@@ -92,7 +89,6 @@ const AddProductPage = () => {
       }
       setLoading(false);
     } catch (error) {
-      console.log(error);
       setLoading(false);
       setError(true);
     }
@@ -160,7 +156,6 @@ const AddProductPage = () => {
                   name="image"
                   size="60px"
                   onChange={(e) => {
-                    console.log(e.target.value);
                     dispatch({
                       type: SET_MEDIA,
                       payload: e.target.files[0],
@@ -182,7 +177,6 @@ const AddProductPage = () => {
                   name="image"
                   size="60px"
                   onChange={(e) => {
-                    console.log(e.target.value);
                     dispatch({
                       type: SET_LAVAGE,
                       payload: e.target.files[0],
@@ -258,7 +252,6 @@ const AddProductPage = () => {
               <label htmlFor="valeurs">Valeurs</label>
               {state.values.length > 0
                 ? state.values.map((value) => {
-                    console.log(value);
                     return (
                       <div className="added" key={value.value}>
                         {value.isAddingAfterSaved && (
@@ -334,7 +327,6 @@ const AddProductPage = () => {
                   value={state.value}
                   onChange={(e) => {
                     dispatch({ type: SET_VALUE, payload: e.target.value });
-                    console.log(state);
                   }}
                 />
                 <input
@@ -347,7 +339,6 @@ const AddProductPage = () => {
                     // convert the value to int
                     const int = parseInt(e.target.value);
                     dispatch({ type: SET_QUANTITE, payload: int });
-                    console.log(state);
                   }}
                 />
               </div>
@@ -359,7 +350,6 @@ const AddProductPage = () => {
                     return;
                   }
                   dispatch({ type: ADD_VALUE, payload: state });
-                  console.log(state);
                 }}
               >
                 Ajouter une valeur
@@ -370,7 +360,6 @@ const AddProductPage = () => {
                   className="add-value"
                   onClick={() => {
                     dispatch({ type: SAVE });
-                    console.log(state);
                   }}
                 >
                   Terminer

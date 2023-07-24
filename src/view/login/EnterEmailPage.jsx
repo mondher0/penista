@@ -1,3 +1,4 @@
+/* eslint-disable no-unused-vars */
 import { colorLogo } from "../../assets/index";
 import useAuthContext from "../../hooks/useAuthContext";
 import { useNavigate } from "react-router-dom";
@@ -22,12 +23,10 @@ const EnterEmailPage = () => {
         `${baseUrl}accounts/phone/verification-sms/`,
         data
       );
-      console.log(response);
       dispatch({ type: LOADING });
       dispatch({ type: ERROR, payload: "" });
       navigate("/valider-code");
     } catch (error) {
-      console.log(error);
       dispatch({ type: ERROR, payload: "something went wrong" });
     }
   };

@@ -26,7 +26,6 @@ const SingleUtilisateurEventsTable = ({ id }) => {
       const response = await axiosInstance.get(
         `${baseUrl}reservation/user/${id}/?page=${currentPage}`
       );
-      console.log(response);
       setReservations(response.data.reservations);
       if (response.data.reservations.length === 0) {
         setIsEmpty(true);
@@ -34,7 +33,6 @@ const SingleUtilisateurEventsTable = ({ id }) => {
       setPages(response.data.pages);
       setIsLoading(false);
     } catch (error) {
-      console.log(error);
       setIsLoading(false);
       setIsError(true);
     }
@@ -42,7 +40,6 @@ const SingleUtilisateurEventsTable = ({ id }) => {
 
   // download image
   const handleDownload = async (url) => {
-    console.log(url);
     if (!url) {
       return;
     }
@@ -98,7 +95,6 @@ const SingleUtilisateurEventsTable = ({ id }) => {
         <tbody>
           {reservations &&
             reservations.map((reservation) => {
-              console.log(reservation.status);
               return (
                 <>
                   <tr key={reservation.id}>

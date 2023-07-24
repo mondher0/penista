@@ -147,7 +147,6 @@ export const addProductReducer = (state, action) => {
     };
   }
   if (action.type === UPDATE_VALUE) {
-    console.log(state);
     return {
       ...state,
       values: state.values.map((value) => {
@@ -162,7 +161,6 @@ export const addProductReducer = (state, action) => {
     };
   }
   if (action.type === UPDATE_QUANTITE) {
-    console.log(state);
     return {
       ...state,
       values: state.values.map((value) => {

@@ -1,3 +1,5 @@
+/* eslint-disable no-unused-vars */
+/* eslint-disable no-empty */
 /* eslint-disable react-hooks/exhaustive-deps */
 import { isNotificated } from "../../../assets/index";
 import axiosInstance from "../../../utils/axiosInstance";
@@ -19,8 +21,6 @@ const NotificationCard = () => {
       const response = await axiosInstance.get(
         `${baseUrl}notification/admin/?page=${currentPage}`
       );
-      console.log(currentPage);
-      console.log(response);
       setNotifications((prevNotifications) => [
         ...prevNotifications,
         ...response.data.data.notifications,
@@ -28,7 +28,6 @@ const NotificationCard = () => {
       setCurrentPage((prevPage) => prevPage + 1);
       setPages(response.data.data.pages);
     } catch (error) {
-      console.log(error);
     } finally {
       setIsLoading(false);
     }
@@ -40,10 +39,8 @@ const NotificationCard = () => {
       const response = await axiosInstance.put(
         `${baseUrl}notification/admin/read/${id}/`
       );
-      console.log(response);
       setAsRead((prevRead) => [...prevRead, id]);
     } catch (error) {
-      console.log(error);
     }
   };
 

@@ -20,7 +20,6 @@ const TicketsTable = () => {
       const response = await axiosInstance.get(
         `${baseUrl}match/ticket/?page=${currentPage}`
       );
-      console.log(response);
       if (response.data.data.tickets?.length === 0) {
         setIsEmpty(true);
       }
@@ -30,7 +29,6 @@ const TicketsTable = () => {
     } catch (error) {
       setIsLoading(false);
       setIsError(true);
-      console.log(error);
     }
   };
 

@@ -1,3 +1,4 @@
+/* eslint-disable no-unused-vars */
 /* eslint-disable react-hooks/exhaustive-deps */
 import { edite } from "../../assets/index";
 import "./UtilisateursTable.css";
@@ -29,7 +30,6 @@ const UtilisateursTable = () => {
       const response = await axiosInstance.get(
         `${baseUrl}accounts/users/?page=${currentPage}`
       );
-      console.log(response);
       setUsers(response.data.data.users);
       if (response.data.data.users.length === 0) {
         setIsEmpty(true);
@@ -37,7 +37,6 @@ const UtilisateursTable = () => {
       setPages(response.data.data.pages);
       setIsLoading(false);
     } catch (error) {
-      console.log(error);
       setIsLoading(false);
       setIsError(true);
     }
@@ -81,7 +80,6 @@ const UtilisateursTable = () => {
           {users.map((user) => {
             const { id, date_joined } = user;
             const dateJoined = new Date(date_joined);
-            console.log(dateJoined);
             return (
               <tr key={id}>
                 <td>{id}</td>

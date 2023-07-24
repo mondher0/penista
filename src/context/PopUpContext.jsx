@@ -1,3 +1,5 @@
+/* eslint-disable no-unused-vars */
+/* eslint-disable no-empty */
 /* eslint-disable react/prop-types */
 import { createContext, useState } from "react";
 import axiosInstance from "../utils/axiosInstance";
@@ -12,10 +14,8 @@ const PopUpContextProvider = ({ children }) => {
       const response = await axiosInstance.put(
         `${baseUrl}accounts/users/block/${id}/`
       );
-      console.log(response);
       setUpdate(!update);
     } catch (error) {
-      console.log(error);
     }
   };
 
@@ -25,10 +25,8 @@ const PopUpContextProvider = ({ children }) => {
       const response = await axiosInstance.put(
         `${baseUrl}accounts/users/deblock/${id}/`
       );
-      console.log(response);
       setUpdate(!update);
     } catch (error) {
-      console.log(error);
     }
   };
 
@@ -38,10 +36,8 @@ const PopUpContextProvider = ({ children }) => {
       const response = await axiosInstance.delete(
         `${baseUrl}product/delete/${id}/`
       );
-      console.log(response);
       setUpdate(!update);
     } catch (error) {
-      console.log(error);
     }
   };
 
@@ -51,10 +47,8 @@ const PopUpContextProvider = ({ children }) => {
       const response = await axiosInstance.put(
         `${baseUrl}reservation/approve/${id}/`
       );
-      console.log(response);
       setUpdate(!update);
     } catch (error) {
-      console.log(error);
     }
   };
 
@@ -64,10 +58,8 @@ const PopUpContextProvider = ({ children }) => {
       const response = await axiosInstance.put(
         `${baseUrl}reservation/reject/${id}/`
       );
-      console.log(response);
       setUpdate(!update);
     } catch (error) {
-      console.log(error);
     }
   };
 
@@ -77,10 +69,8 @@ const PopUpContextProvider = ({ children }) => {
       const response = await axiosInstance.put(
         `${baseUrl}accounts/subscription/approve/${id}/`
       );
-      console.log(response);
       setUpdate(!update);
     } catch (error) {
-      console.log(error);
     }
   };
 
@@ -88,10 +78,8 @@ const PopUpContextProvider = ({ children }) => {
   const handleChangeStatus = async (id) => {
     try {
       const response = await axiosInstance.post(`${baseUrl}ads/status/${id}/`);
-      console.log(response);
       setUpdate(!update);
     } catch (error) {
-      console.log(error);
     }
   };
 
@@ -101,10 +89,8 @@ const PopUpContextProvider = ({ children }) => {
       const response = await axiosInstance.put(
         `${baseUrl}accounts/subscription/reject/${id}/`
       );
-      console.log(response);
       setUpdate(!update);
     } catch (error) {
-      console.log(error);
     }
   };
 
@@ -115,9 +101,7 @@ const PopUpContextProvider = ({ children }) => {
         `${baseUrl}ads/delete/${id}/`
       );
       setUpdate(!update);
-      console.log(response);
     } catch (error) {
-      console.log(error);
     }
   };
 
@@ -131,10 +115,8 @@ const PopUpContextProvider = ({ children }) => {
         `${baseUrl}accounts/users/point/retrive/${id}/`,
         data
       );
-      console.log(response);
       setUpdate(!update);
     } catch (error) {
-      console.log(error);
     }
   };
 
@@ -144,10 +126,8 @@ const PopUpContextProvider = ({ children }) => {
       const response = await axiosInstance.put(
         `${baseUrl}order/delivery/${id}/`
       );
-      console.log(response);
       setUpdate(!update);
     } catch (error) {
-      console.log(error);
     }
   };
 
@@ -155,10 +135,8 @@ const PopUpContextProvider = ({ children }) => {
   const handleRefuseOrder = async (id) => {
     try {
       const response = await axiosInstance.put(`${baseUrl}order/cancel/${id}/`);
-      console.log(response);
       setUpdate(!update);
     } catch (error) {
-      console.log(error);
     }
   };
 
@@ -168,10 +146,8 @@ const PopUpContextProvider = ({ children }) => {
       const response = await axiosInstance.delete(
         `${baseUrl}promotion/delete/${id}/`
       );
-      console.log(response);
       setUpdate(!update);
     } catch (error) {
-      console.log(error);
     }
   };
   return (

@@ -17,11 +17,9 @@ const SingleCommandePage = () => {
     try {
       setIsLoading(true);
       const response = await axiosInstance.get(`${baseUrl}order/${id}/`);
-      console.log(response);
       setItems(response.data.data.orderItems);
       setIsLoading(false);
     } catch (error) {
-      console.log(error);
       setIsLoading(false);
       setIsError(true);
     }

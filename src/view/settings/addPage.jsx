@@ -28,7 +28,6 @@ function AddPage() {
         content: content,
       };
       const response = await axiosInstance.post(`${baseUrl}page/create/`, data);
-      console.log(response);
       if (response.data.success === false) {
         setLoading(false);
         setError(true);
@@ -38,7 +37,6 @@ function AddPage() {
     } catch (error) {
       setLoading(false);
       setError(true);
-      console.log(error);
     }
   };
 

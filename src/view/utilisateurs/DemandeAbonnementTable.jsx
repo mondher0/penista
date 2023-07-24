@@ -24,7 +24,6 @@ const DemandeAbonnementTable = () => {
       const response = await axiosInstance.get(
         `${baseUrl}accounts/subscription/?page=${currentPage}`
       );
-      console.log(response);
       setPages(response.data.data.pages);
       setDemandeAbonnement(response.data.data.subscriptions);
       if (demandeAbonnement?.length === 0) {
@@ -32,7 +31,6 @@ const DemandeAbonnementTable = () => {
       }
       setIsLoading(false);
     } catch (error) {
-      console.log(error);
       setIsLoading(false);
       setIsError(true);
     }
@@ -48,7 +46,6 @@ const DemandeAbonnementTable = () => {
   };
 
   const handleDownload = async (url) => {
-    console.log(url);
     if (!url) {
       return;
     }
@@ -94,7 +91,6 @@ const DemandeAbonnementTable = () => {
         <tbody>
           {demandeAbonnement &&
             demandeAbonnement.map((demande) => {
-              console.log(demande.payment_receipt);
               return (
                 <tr key={demande.id}>
                   <td>{demande.id}</td>

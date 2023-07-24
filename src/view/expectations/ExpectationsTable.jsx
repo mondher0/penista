@@ -6,15 +6,12 @@ import axiosInstance from "../../utils/axiosInstance";
 import { baseUrl } from "../../utils/constants";
 
 const ExpectationsTable = (props) => {
-  console.log(props.filter);
   const [expectations, setExpectations] = useState();
   const [currentPage, setCurrentPage] = useState(1);
   const [isLoading, setIsLoading] = useState(false);
   const [pages, setPages] = useState(0);
   const [isError, setIsError] = useState(false);
   const [isEmpty, setIsEmpty] = useState(false);
-  console.log(props.etat);
-
   // get all expectations
   const getAllExpectations = async () => {
     try {
@@ -24,7 +21,6 @@ const ExpectationsTable = (props) => {
       const response = await axiosInstance.get(
         `${baseUrl}expectation/?page=${currentPage}&matchStatusExpectation=${props.etat}&opponent=${props.adversaire}&matchDate=${props.date}`
       );
-      console.log(response);
       setExpectations(response.data.data);
       if (response.data.data?.length === 0) {
         setIsEmpty(true);
@@ -32,7 +28,6 @@ const ExpectationsTable = (props) => {
       setPages(response.data.pages);
       setIsLoading(false);
     } catch (error) {
-      console.log(error);
       setIsLoading(false);
       setIsError(true);
     }
@@ -70,7 +65,6 @@ const ExpectationsTable = (props) => {
         <tbody>
           {expectations &&
             expectations.map((expectation) => {
-              console.log(typeof expectation.answer.win);
               return (
                 <>
                   <tr key={expectation.id}>

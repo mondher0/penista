@@ -22,7 +22,6 @@ const SingleUtilisateurCommandeTable = ({ id }) => {
       const response = await axiosInstance.get(
         `${baseUrl}/order/user/${id}/?page=${currentPage}`
       );
-      console.log(response);
       setOrders(response.data.data.orders);
       if (response.data.data.orders.length === 0) {
         setIsEmpty(true);
@@ -30,7 +29,6 @@ const SingleUtilisateurCommandeTable = ({ id }) => {
       setPages(response.data.data.pages);
       setIsLoading(false);
     } catch (error) {
-      console.log(error);
       setIsLoading(false);
       setIsError(true);
     }

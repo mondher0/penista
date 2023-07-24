@@ -29,7 +29,6 @@ const SettingsImageTable = () => {
       const response = await axiosInstance.get(
         `${baseUrl}ads/?page=${currentPage}`
       );
-      console.log(response);
       setAds(response.data.data);
       setPages(response.data.pages);
       if (response.data.data.length === 0) {
@@ -37,7 +36,6 @@ const SettingsImageTable = () => {
       }
       setIsLoading1(false);
     } catch (error) {
-      console.log(error);
       setIsLoading1(false);
       setIsError(true);
     }
@@ -94,7 +92,6 @@ const SettingsImageTable = () => {
                               setShowPopUp2(ad.id);
                             } else {
                               setShowPopUp3(ad.id);
-                              console.log(showPopUp3);
                             }
                           }}
                         >

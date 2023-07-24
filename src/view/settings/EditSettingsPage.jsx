@@ -1,3 +1,4 @@
+/* eslint-disable no-empty */
 /* eslint-disable react-hooks/exhaustive-deps */
 /* eslint-disable react/prop-types */
 import { RichTextEditor } from "@mantine/rte";
@@ -33,7 +34,6 @@ function EditSettingsPage() {
         `${baseUrl}page/update/${id}/`,
         data
       );
-      console.log(response);
       if (response.data.success === false) {
         setLoading(false);
         setError(true);
@@ -43,7 +43,6 @@ function EditSettingsPage() {
     } catch (error) {
       setLoading(false);
       setError(true);
-      console.log(error);
     }
   };
 
@@ -51,12 +50,10 @@ function EditSettingsPage() {
   const getPageById = async () => {
     try {
       const response = await axiosInstance.get(`${baseUrl}page/${id}/`);
-      console.log(response);
       setSlogan(response.data.data.slogan);
       setTitle(response.data.data.title);
       setContent(response.data.data.content);
     } catch (error) {
-      console.log(error);
     }
   };
 

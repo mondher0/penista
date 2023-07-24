@@ -1,3 +1,4 @@
+/* eslint-disable no-empty */
 /* eslint-disable react-hooks/exhaustive-deps */
 import NavBar from "../shared/navBar/NavBar";
 import "../produit/AddProductPage.css";
@@ -66,7 +67,6 @@ const initialState = {
 };
 const EditeSingleEvent = () => {
   const { id } = useParams();
-  console.log(id);
   const [competition, setCompetition] = useState(false);
   const [state, dispatch] = useReducer(editEventReducer, initialState);
   const [date, setDate] = useState("");
@@ -78,12 +78,8 @@ const EditeSingleEvent = () => {
   const getSingleEvent = async () => {
     try {
       const response = await axiosInstance.get(`${baseUrl}event/${id}/`);
-      console.log(response.data.data.date);
-      console.log(response.data.data.res_dline);
       setDate(response.data.data.date);
       setRes_dline(response.data.data.lastReservationDate);
-      console.log(date);
-      console.log(res_dline);
 
       if (response.data.data.type === "Compétition") {
         setCompetition(true);
@@ -103,16 +99,13 @@ const EditeSingleEvent = () => {
         payload: res_dline,
       });
 
-      console.log(response);
     } catch (error) {
-      console.log(error);
     }
   };
 
   useEffect(() => {
     getSingleEvent();
   }, []);
-  console.log(state);
 
   // handle competition submit
   const handleCompetitionSubmit = async (e) => {
@@ -133,12 +126,10 @@ const EditeSingleEvent = () => {
         values: state.values,
       };
       formData.append("options", JSON.stringify(options));
-      console.log(state);
       const response = await axiosInstance.put(
         `${baseUrl}event/update/${id}/`,
         formData
       );
-      console.log(response);
       if (response.data.success === false) {
         setLoading(false);
         setError(true);
@@ -148,7 +139,6 @@ const EditeSingleEvent = () => {
     } catch (error) {
       setLoading(false);
       setError(true);
-      console.log(error);
     }
   };
 
@@ -175,12 +165,10 @@ const EditeSingleEvent = () => {
       formData.append("lastReservationDate", res_dline);
       formData.append("tickets", state.tickets);
       formData.append("forUser", state.forUser);
-      console.log(state);
       const response = await axiosInstance.put(
         `${baseUrl}event/update/${id}/`,
         formData
       );
-      console.log(response);
       if (response.data.success === false) {
         setLoading(false);
         setError(true);
@@ -188,7 +176,6 @@ const EditeSingleEvent = () => {
       }
       setLoading(false);
     } catch (error) {
-      console.log(error);
       setLoading(false);
       setError(true);
     }
@@ -274,8 +261,6 @@ const EditeSingleEvent = () => {
                 <label>Options de date pour l’évenement</label>
                 {state.dates?.length > 0
                   ? state.dates.map((date, index) => {
-                      console.log(date);
-
                       return (
                         <>
                           <div
@@ -292,7 +277,6 @@ const EditeSingleEvent = () => {
                                 name="gratuit"
                                 value={date.date_start}
                                 onChange={(e) => {
-                                  console.log(state.dates);
                                   dispatch({
                                     type: EDIT_START_DATE,
                                     payload: {
@@ -300,7 +284,6 @@ const EditeSingleEvent = () => {
                                       index: index,
                                     },
                                   });
-                                  console.log(state.dates);
                                 }}
                               />
                             </div>
@@ -405,7 +388,6 @@ const EditeSingleEvent = () => {
                       {
                         type: SET_DATES,
                       },
-                      console.log(state.dates)
                     );
                   }}
                 >

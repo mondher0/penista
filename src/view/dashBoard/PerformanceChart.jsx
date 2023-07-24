@@ -1,3 +1,4 @@
+/* eslint-disable no-empty */
 /* eslint-disable react-hooks/exhaustive-deps */
 import { useState, useEffect, useRef } from "react";
 import Chart from "chart.js/auto";
@@ -33,20 +34,13 @@ const PerformanceChart = () => {
   const getChart = async () => {
     try {
       const response = await axiosInstance.get(`${baseUrl}dashboard/chart/`);
-      console.log(response);
       const orderData = response.data.data.order_data;
       const reservationData = response.data.data["reservation_data "];
-      console.log(orderData);
-      console.log(reservationData);
-
       const labels = orderData.map((item) => months[item.month - 1]);
-
       const productData = orderData.map((item) => item.total_orders);
       const eventData = reservationData.map((item) => item.total_reservations);
-
       setChartData({ labels, eventData, productData });
     } catch (error) {
-      console.log(error);
     }
   };
 

@@ -31,7 +31,6 @@ const AddOffrePage = () => {
   const [state, dispatch] = useReducer(addOffreReducer, initialState);
   const [loading, setLoading] = useState(false);
   const [error, setError] = useState(false);
-  console.log(state);
 
   // handleSubmit
   const handleSubmit = async (e) => {
@@ -53,12 +52,10 @@ const AddOffrePage = () => {
           state.expirationMinute
       );
       formData.append("image", state.image);
-      console.log(state);
       const response = await axiosInstance.post(
         `${baseUrl}promotion/create/`,
         formData
       );
-      console.log(response);
       if (response.data.success === false) {
         setLoading(false);
         setError(true);
@@ -66,7 +63,6 @@ const AddOffrePage = () => {
       }
       setLoading(false);
     } catch (error) {
-      console.log(error);
       setLoading(false);
       setError(true);
     }

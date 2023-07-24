@@ -21,7 +21,6 @@ const MyEventsTable = () => {
       const response = await axiosInstance.get(
         `${baseUrl}/event/?page=${currentPage}`
       );
-      console.log(response.data.data.events);
       setEvents(response.data.data.events);
       if (response.data.data.events.length === 0) {
         setIsEmpty(true);
@@ -29,7 +28,6 @@ const MyEventsTable = () => {
       setPages(response.data.data.pages);
       setIsLoading(false);
     } catch (error) {
-      console.log(error);
       setIsLoading(false);
       setIsError(true);
     }
