@@ -1,3 +1,4 @@
+/* eslint-disable no-unused-vars */
 /* eslint-disable no-empty */
 /* eslint-disable react-hooks/exhaustive-deps */
 import "../produit/ProductTable.css";
