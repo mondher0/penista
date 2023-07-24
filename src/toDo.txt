@@ -2,10 +2,6 @@
 all projects : 
 delete all logs in the console
 
-products:
-linking the add product (images and adding i can add just one from the backend)
-the admin can add many images 
-
 utilisateurs:
 demande abonnement :
 dont show actios to an delivery type

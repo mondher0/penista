@@ -3,6 +3,7 @@ import NavBar from "../shared/navBar/NavBar";
 import "./UtilisateursNotificationsPage.css";
 import { useState } from "react";
 import axiosInstance from "../../utils/axiosInstance";
+import { wilays } from "../../utils/wilayas";
 
 const UtilisateursNotificationsPage = () => {
   const [abonnement, setAbonnement] = useState("");
@@ -85,13 +86,18 @@ const UtilisateursNotificationsPage = () => {
             </div>
             <div className="filtre">
               <div>Wilaya</div>
-              <input
-                type="text"
-                placeholder="Wilaya"
-                onChange={(e) => {
-                  setWilaya(e.target.value);
+              <select
+                onChange={(e) => setWilaya(e.target.value)}
+                style={{
+                  width: "167px",
                 }}
-              />
+              >
+                {wilays.map((wilaya) => (
+                  <option value={wilaya.name} key={wilaya.id}>
+                    {wilaya.name}
+                  </option>
+                ))}
+              </select>
             </div>
             <div className="filtre">
               <div>Nombre d’étoiles </div>
