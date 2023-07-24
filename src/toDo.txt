@@ -5,5 +5,3 @@ delete all logs in the console
 utilisateurs:
 demande abonnement :
 dont show actios to an delivery type
-
-get wilaya by api 
