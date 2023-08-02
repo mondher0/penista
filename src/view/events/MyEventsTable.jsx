@@ -1,10 +1,12 @@
 /* eslint-disable react-hooks/exhaustive-deps */
-import { edite } from "../../assets/index";
+import { deleteIcon, edite } from "../../assets/index";
 import "../utilisateurs/DemandeAbonnementTable.css";
 import axiosInstance from "../../utils/axiosInstance";
 import { baseUrl } from "../../utils/constants";
 import { useEffect, useState } from "react";
 import { useNavigate } from "react-router-dom";
+import PopUp from "../shared/popUp/PopUp";
+import usePopUpContext from "../../hooks/usePopUpContext";
 
 const MyEventsTable = () => {
   const navigate = useNavigate();
@@ -14,6 +16,8 @@ const MyEventsTable = () => {
   const [pages, setPages] = useState(0);
   const [isError, setIsError] = useState(false);
   const [isEmpty, setIsEmpty] = useState(false);
+  const [showPopUp, setShowPopUp] = useState("");
+  const { update } = usePopUpContext();
   // get events
   const getEvents = async () => {
     try {
@@ -43,7 +47,7 @@ const MyEventsTable = () => {
 
   useEffect(() => {
     getEvents();
-  }, [currentPage]);
+  }, [currentPage, update]);
   return (
     <>
       {isLoading && <div className="loader">Chargement...</div>}
@@ -88,12 +92,27 @@ const MyEventsTable = () => {
                       navigate(`/evenements/modifier-evenement/${event.id}`)
                     }
                   />
+                  <img
+                    src={deleteIcon}
+                    className="hover"
+                    alt="delete"
+                    onClick={() => setShowPopUp(event.id)}
+                  />
                 </td>
               </tr>
             </>
           ))}
         </tbody>
       </table>
+      {showPopUp && (
+        <PopUp
+          setShowPopUp={setShowPopUp}
+          text="Vous voulez vraiment supprimer ce evenement?"
+          id={showPopUp}
+          button="Supprimer"
+          action="deleteEvent"
+        />
+      )}
       <div className="pagination">
         <button disabled={currentPage === 1} onClick={goToPreviousPage}>
           Previous

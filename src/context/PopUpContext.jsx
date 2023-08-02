@@ -15,8 +15,7 @@ const PopUpContextProvider = ({ children }) => {
         `${baseUrl}accounts/users/block/${id}/`
       );
       setUpdate(!update);
-    } catch (error) {
-    }
+    } catch (error) {}
   };
 
   // handle unblock user
@@ -26,8 +25,7 @@ const PopUpContextProvider = ({ children }) => {
         `${baseUrl}accounts/users/deblock/${id}/`
       );
       setUpdate(!update);
-    } catch (error) {
-    }
+    } catch (error) {}
   };
 
   // handle delete produt
@@ -37,8 +35,7 @@ const PopUpContextProvider = ({ children }) => {
         `${baseUrl}product/delete/${id}/`
       );
       setUpdate(!update);
-    } catch (error) {
-    }
+    } catch (error) {}
   };
 
   // handle accept reservation
@@ -48,8 +45,7 @@ const PopUpContextProvider = ({ children }) => {
         `${baseUrl}reservation/approve/${id}/`
       );
       setUpdate(!update);
-    } catch (error) {
-    }
+    } catch (error) {}
   };
 
   // handle refuse reservation
@@ -59,8 +55,7 @@ const PopUpContextProvider = ({ children }) => {
         `${baseUrl}reservation/reject/${id}/`
       );
       setUpdate(!update);
-    } catch (error) {
-    }
+    } catch (error) {}
   };
 
   // handle accept demande abonnement
@@ -70,8 +65,7 @@ const PopUpContextProvider = ({ children }) => {
         `${baseUrl}accounts/subscription/approve/${id}/`
       );
       setUpdate(!update);
-    } catch (error) {
-    }
+    } catch (error) {}
   };
 
   // change status of ad
@@ -79,8 +73,7 @@ const PopUpContextProvider = ({ children }) => {
     try {
       const response = await axiosInstance.post(`${baseUrl}ads/status/${id}/`);
       setUpdate(!update);
-    } catch (error) {
-    }
+    } catch (error) {}
   };
 
   // handle refuse demande abonnement
@@ -90,8 +83,7 @@ const PopUpContextProvider = ({ children }) => {
         `${baseUrl}accounts/subscription/reject/${id}/`
       );
       setUpdate(!update);
-    } catch (error) {
-    }
+    } catch (error) {}
   };
 
   // handle delete ad
@@ -101,8 +93,7 @@ const PopUpContextProvider = ({ children }) => {
         `${baseUrl}ads/delete/${id}/`
       );
       setUpdate(!update);
-    } catch (error) {
-    }
+    } catch (error) {}
   };
 
   // enlever points
@@ -116,8 +107,7 @@ const PopUpContextProvider = ({ children }) => {
         data
       );
       setUpdate(!update);
-    } catch (error) {
-    }
+    } catch (error) {}
   };
 
   // handle accept order
@@ -127,8 +117,7 @@ const PopUpContextProvider = ({ children }) => {
         `${baseUrl}order/delivery/${id}/`
       );
       setUpdate(!update);
-    } catch (error) {
-    }
+    } catch (error) {}
   };
 
   // handle refuse order
@@ -136,8 +125,7 @@ const PopUpContextProvider = ({ children }) => {
     try {
       const response = await axiosInstance.put(`${baseUrl}order/cancel/${id}/`);
       setUpdate(!update);
-    } catch (error) {
-    }
+    } catch (error) {}
   };
 
   // handle delete offre
@@ -147,8 +135,17 @@ const PopUpContextProvider = ({ children }) => {
         `${baseUrl}promotion/delete/${id}/`
       );
       setUpdate(!update);
-    } catch (error) {
-    }
+    } catch (error) {}
+  };
+
+  // handle delete event
+  const handleDeleteEvent = async (id) => {
+    try {
+      const response = await axiosInstance.delete(
+        `${baseUrl}event/delete/${id}/`
+      );
+      setUpdate(!update);
+    } catch (error) {}
   };
   return (
     <PopUpContext.Provider
@@ -166,6 +163,7 @@ const PopUpContextProvider = ({ children }) => {
         handleAcceptOrder,
         handleRefuseOrder,
         handleDeleteOffre,
+        handleDeleteEvent,
         update,
         setUpdate,
       }}
