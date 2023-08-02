@@ -18,12 +18,13 @@ const MyEventsTable = () => {
   const [isEmpty, setIsEmpty] = useState(false);
   const [showPopUp, setShowPopUp] = useState("");
   const { update } = usePopUpContext();
+
   // get events
   const getEvents = async () => {
     try {
       setIsLoading(true);
       const response = await axiosInstance.get(
-        `${baseUrl}/event/?page=${currentPage}`
+        `${baseUrl}event/?page=${currentPage}`
       );
       setEvents(response.data.data.events);
       if (response.data.data.events.length === 0) {
@@ -34,8 +35,10 @@ const MyEventsTable = () => {
     } catch (error) {
       setIsLoading(false);
       setIsError(true);
+      console.log(error);
     }
   };
+  
   // Pagination handlers
   const goToPreviousPage = () => {
     setCurrentPage((prevPage) => prevPage - 1);
