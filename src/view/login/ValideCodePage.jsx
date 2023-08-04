@@ -44,6 +44,7 @@ const ValideCodePage = () => {
       dispatch({ type: ERROR, payload: "" });
       navigate("/changer-mot-de-passe");
     } catch (error) {
+      console.log(error);
       dispatch({ type: ERROR, payload: "something went wrong" });
     }
   };

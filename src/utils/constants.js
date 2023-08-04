@@ -1,2 +1,2 @@
-export const baseUrl = "https://akramayeb.pythonanywhere.com/";
+export const baseUrl = "http://backend.algerianpena.com/";
 export const loginUrl = `${baseUrl}accounts/token/`;
