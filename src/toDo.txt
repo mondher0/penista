@@ -6,3 +6,4 @@ dont show actios to an delivery type
 settings:
 linking the club feature
 linking add club 
+adding edit club page 
