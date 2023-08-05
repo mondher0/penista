@@ -9,6 +9,7 @@ import { useNavigate } from "react-router-dom";
 import axiosInstance from "../../utils/axiosInstance";
 import { baseUrl } from "../../utils/constants";
 import { useEffect, useState } from "react";
+import ClubsTable from "./ClubsTable";
 const SettingsPage = () => {
   const navigate = useNavigate();
   const [userInfo, setUserInfo] = useState({});
@@ -31,8 +32,7 @@ const SettingsPage = () => {
       const { first_name, last_name, phone_no, email } = response.data.data;
       setUserInfo({ first_name, last_name, phone_no, email });
       setUsername(response.data.data.username);
-    } catch (error) {
-    }
+    } catch (error) {}
   };
 
   const showSuccessMessageFor30Seconds = () => {
@@ -79,8 +79,7 @@ const SettingsPage = () => {
       const response = await axiosInstance.get(`${baseUrl}setting/yalidin/`);
       setApiKey(response.data.data.yalidin_api_key);
       setApiToken(response.data.data.yalidin_api_token);
-    } catch (error) {
-    }
+    } catch (error) {}
   };
 
   // update yalidine info
@@ -292,6 +291,16 @@ const SettingsPage = () => {
           </button>
         </div>
         <SettingsPageTable />
+        <div className="title">
+          <p>Clubs</p>
+          <button
+            className="add-product"
+            onClick={() => navigate("/parametres/ajouter-club")}
+          >
+            Ajouter un club
+          </button>
+        </div>
+        <ClubsTable />
       </div>
     </>
   );

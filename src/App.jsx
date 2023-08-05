@@ -36,6 +36,7 @@ import EditeSingleEvent from "./view/events/EditeSingleEvent";
 import EditSingleOffre from "./view/offres/EditSingleOffre";
 import EditSingleTicket from "./view/tickets/EditSingleTicket";
 import AddPage from "./view/settings/addPage";
+import AddClub from "./view/settings/addClub";
 
 function App() {
   return (
@@ -114,6 +115,7 @@ function App() {
           <Route path="/cadeaux" element={<CadeauxPage />} />
           <Route path="/parametres" element={<SettingsPage />} />
           <Route path="parametres/ajouter-page" element={<AddPage />} />
+          <Route path="/parametres/ajouter-club" element={<AddClub />} />
           <Route
             path="/parametres/:id/modifier"
             element={<EditSettingsPage />}

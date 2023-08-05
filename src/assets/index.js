@@ -37,6 +37,9 @@ import colorLogo from "./color-logo.svg";
 import isNotificated from "./is-notificated.svg";
 import emptyNot from "./empty-not.svg";
 import play from "./play.svg";
+import club from "./club.svg";
+import primaryCard from "./primary-card.svg";
+import secondaryCard from "./secondary-card.svg";
 export {
   logo,
   dashboard,
@@ -77,4 +80,7 @@ export {
   isNotificated,
   emptyNot,
   play,
+  club,
+  primaryCard,
+  secondaryCard,
 };
