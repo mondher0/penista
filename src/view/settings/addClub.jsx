@@ -1,14 +1,61 @@
+/* eslint-disable react-hooks/exhaustive-deps */
 import NavBar from "../shared/navBar/NavBar";
 import "../produit/AddProductPage.css";
 import { image } from "../../assets/index";
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import axiosInstance from "../../utils/axiosInstance";
 import { baseUrl } from "../../utils/constants";
 const AddClub = () => {
-  const [note, setNote] = useState();
-  const [img, setImg] = useState();
+  const [countries, setCountries] = useState();
+  const [country, setCountry] = useState();
+  const [teams, setTeams] = useState();
+  const [team, setTeam] = useState();
+  const [primaryCard, setPrimaryCard] = useState();
+  const [secondaryCard, setSecondaryCard] = useState();
+  const [paymentType, setPaymentType] = useState();
   const [loading, setLoading] = useState(false);
   const [error, setError] = useState(false);
+  const [isLoaded, setIsLoaded] = useState(false);
+  const [isError, setIsError] = useState(false);
+
+  // get all countries
+  const getCountries = async () => {
+    try {
+      const response = await axiosInstance.get(
+        `${baseUrl}countries/?no_pagination=true`
+      );
+      console.log(response);
+      setCountries(response.data.countries);
+    } catch (error) {
+      console.log(error);
+    }
+  };
+
+  // get clubs
+  const getClubs = async () => {
+    try {
+      setIsLoaded(true);
+      setIsError(false);
+      const response = await axiosInstance.get(
+        `${baseUrl}teams/notActive/?no_pagination=true&country=${country}`
+      );
+      console.log(response);
+      setTeams(response.data.data.teams);
+      setIsLoaded(false);
+    } catch (error) {
+      setIsLoaded(false);
+      setIsError(true);
+      console.log(error);
+    }
+  };
+
+  useEffect(() => {
+    if (country) {
+      getClubs();
+      return;
+    }
+    getCountries();
+  }, [country]);
 
   // handle submit
   const handleSubmit = async (e) => {
@@ -17,12 +64,20 @@ const AddClub = () => {
       setLoading(true);
       setError(false);
       const formData = new FormData();
-      formData.append("title", note);
-      formData.append("image", img);
+      formData.append("teamId", team);
+      formData.append("card_primary", primaryCard);
+      formData.append("card_secondary", secondaryCard);
+      if (paymentType === "all") {
+        formData.append("payment_type", "bank transfer");
+        formData.append("payment_type", "on delivery");
+      } else {
+        formData.append("payment_type", paymentType);
+      }
       const response = await axiosInstance.post(
-        `${baseUrl}ads/create/`,
+        `${baseUrl}teams/add/`,
         formData
       );
+      console.log(response);
       if (response.data.success === false) {
         setLoading(false);
         setError(true);
@@ -32,6 +87,7 @@ const AddClub = () => {
     } catch (error) {
       setLoading(false);
       setError(true);
+      console.log(error);
     }
   };
   return (
@@ -47,8 +103,15 @@ const AddClub = () => {
                 style={{
                   border: "1px solid #E5E5E5",
                 }}
+                onChange={(e) => setCountry(e.target.value)}
               >
                 <option value="">Choisissez un Pays</option>
+                {countries &&
+                  countries.map((country) => (
+                    <option value={country.name} key={country.id}>
+                      {country.name}
+                    </option>
+                  ))}
               </select>
             </div>
             <div className="input nom">
@@ -57,8 +120,28 @@ const AddClub = () => {
                 style={{
                   border: "1px solid #E5E5E5",
                 }}
+                onChange={(e) => {
+                  setTeam(e.target.value);
+                }}
               >
-                <option value="">Choisissez un Club</option>
+                {isError && <option>Erreur de chargement</option>}
+                {isLoaded ? (
+                  <option value="">Chargement...</option>
+                ) : (
+                  <>
+                    <option value="">
+                      {!country
+                        ? "Choisissez un Pays D'abord"
+                        : "Choisissez un Club"}
+                    </option>
+                    {teams &&
+                      teams.map((team) => (
+                        <option value={team.team_id} key={team.id}>
+                          {team.name}
+                        </option>
+                      ))}
+                  </>
+                )}
               </select>
             </div>
             <div className="input nom">
@@ -67,8 +150,12 @@ const AddClub = () => {
                 style={{
                   border: "1px solid #E5E5E5",
                 }}
+                onChange={(e) => setPaymentType(e.target.value)}
               >
                 <option value="">Choisissez le type de payment</option>
+                <option value="on delivery">Yalidine</option>
+                <option value="bank transfer">Reçu</option>
+                <option value="all">Reçu et Yalidine</option>
               </select>
             </div>
             <label htmlFor="prix">Carte (Primaire) *</label>
@@ -80,7 +167,7 @@ const AddClub = () => {
                   name="image"
                   size="60px"
                   required
-                  onChange={(e) => setImg(e.target.files[0])}
+                  onChange={(e) => setPrimaryCard(e.target.files[0])}
                 />
                 <img src={image} alt="image" />
                 <p className="photo">Ajouter une photo</p>
@@ -94,7 +181,7 @@ const AddClub = () => {
                   id="image"
                   name="image"
                   size="60px"
-                  onChange={(e) => setImg(e.target.files[0])}
+                  onChange={(e) => setSecondaryCard(e.target.files[0])}
                 />
                 <img src={image} alt="image" />
                 <p className="photo">Ajouter une photo</p>

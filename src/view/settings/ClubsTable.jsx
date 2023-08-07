@@ -89,7 +89,13 @@ const ClubsTable = () => {
                       height="100px"
                     />
                   </td>
-                  <td>Reçu et Yalidine</td>
+                  <td>
+                    {team.payment_type.length === 1
+                      ? team.payment_type[0] === "on delivery"
+                        ? "Yalidine"
+                        : "Reçu"
+                      : "Reçu et Yalidine"}
+                  </td>
                   <td>
                     <img src={edite} alt="Modifier" className="hover" />
                   </td>
