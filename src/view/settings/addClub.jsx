@@ -37,7 +37,7 @@ const AddClub = () => {
       const response = await axiosInstance.get(
         `${baseUrl}teams/notActive/?no_pagination=true&country=${country}`
       );
-      setTeams(response.data.data.teams);
+      setTeams(response.data.teams);
       setIsLoaded(false);
     } catch (error) {
       setIsLoaded(false);

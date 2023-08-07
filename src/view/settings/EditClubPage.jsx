@@ -8,54 +8,50 @@ import axiosInstance from "../../utils/axiosInstance";
 import { baseUrl } from "../../utils/constants";
 import { useParams } from "react-router-dom";
 const EditClub = () => {
-    const { id } = useParams();
-    console.log(id);
-  const [countries, setCountries] = useState();
-  const [country, setCountry] = useState();
-  const [teams, setTeams] = useState();
+  const { id } = useParams();
+  console.log(id);
+  const [country, setCountry] = useState("");
   const [team, setTeam] = useState();
+  const [teamName, setTeamName] = useState();
   const [primaryCard, setPrimaryCard] = useState();
   const [secondaryCard, setSecondaryCard] = useState();
   const [paymentType, setPaymentType] = useState();
   const [loading, setLoading] = useState(false);
   const [error, setError] = useState(false);
-  const [isLoaded, setIsLoaded] = useState(false);
-  const [isError, setIsError] = useState(false);
 
-  // get all countries
-  const getCountries = async () => {
+  // get club
+  const getClub = async () => {
     try {
-      const response = await axiosInstance.get(
-        `${baseUrl}countries/?no_pagination=true`
-      );
-      setCountries(response.data.countries);
+      const response = await axiosInstance.get(`${baseUrl}teams/${id}/`);
+      console.log(response);
+      console.log(response.data?.team.country.name);
+      setCountry(response.data?.team.country.name);
+      setTeam(response.data?.team.team_id);
+      setTeamName(response.data?.team.name);
+      setPrimaryCard(baseUrl + response.data?.team.card_primary);
+      // const resp = await fetch(baseUrl + response.data?.team.card_primary);
+     
+      //   const blob = await response.blob();
+      //   const file = new File([blob], "image.jpg", { type: "image/jpeg" });
+      //   console.log(file);
+      //   setPrimaryCard(file);
+      
+      console.log(primaryCard);
+      if (response.data?.team.payment_type?.length === 1) {
+        setPaymentType(response.data?.team.payment_type[0]);
+      } else {
+        setPaymentType("all");
+      }
+      console.log(country);
     } catch (error) {
-    }
-  };
-
-  // get clubs
-  const getClubs = async () => {
-    try {
-      setIsLoaded(true);
-      setIsError(false);
-      const response = await axiosInstance.get(
-        `${baseUrl}teams/notActive/?no_pagination=true&country=${country}`
-      );
-      setTeams(response.data.data.teams);
-      setIsLoaded(false);
-    } catch (error) {
-      setIsLoaded(false);
-      setIsError(true);
+      console.log(error);
     }
   };
 
   useEffect(() => {
-    if (country) {
-      getClubs();
-      return;
-    }
-    getCountries();
-  }, [country]);
+    getClub();
+    console.log(country);
+  }, []);
 
   // handle submit
   const handleSubmit = async (e) => {
@@ -66,6 +62,7 @@ const EditClub = () => {
       const formData = new FormData();
       formData.append("teamId", team);
       formData.append("card_primary", primaryCard);
+      console.log(formData.get("card_primary"));
       formData.append("card_secondary", secondaryCard);
       if (paymentType === "all") {
         formData.append("payment_type", "bank transfer");
@@ -103,15 +100,9 @@ const EditClub = () => {
                 style={{
                   border: "1px solid #E5E5E5",
                 }}
-                onChange={(e) => setCountry(e.target.value)}
+                disabled
               >
-                <option value="">Choisissez un Pays</option>
-                {countries &&
-                  countries.map((country) => (
-                    <option value={country.name} key={country.id}>
-                      {country.name}
-                    </option>
-                  ))}
+                <option value="">{country}</option>
               </select>
             </div>
             <div className="input nom">
@@ -120,28 +111,10 @@ const EditClub = () => {
                 style={{
                   border: "1px solid #E5E5E5",
                 }}
-                onChange={(e) => {
-                  setTeam(e.target.value);
-                }}
+                value={teamName}
+                disabled
               >
-                {isError && <option>Erreur de chargement</option>}
-                {isLoaded ? (
-                  <option value="">Chargement...</option>
-                ) : (
-                  <>
-                    <option value="">
-                      {!country
-                        ? "Choisissez un Pays D'abord"
-                        : "Choisissez un Club"}
-                    </option>
-                    {teams &&
-                      teams.map((team) => (
-                        <option value={team.team_id} key={team.id}>
-                          {team.name}
-                        </option>
-                      ))}
-                  </>
-                )}
+                <option value="">{teamName}</option>
               </select>
             </div>
             <div className="input nom">
@@ -151,6 +124,7 @@ const EditClub = () => {
                   border: "1px solid #E5E5E5",
                 }}
                 onChange={(e) => setPaymentType(e.target.value)}
+                value={paymentType}
               >
                 <option value="">Choisissez le type de payment</option>
                 <option value="on delivery">Yalidine</option>
@@ -166,11 +140,10 @@ const EditClub = () => {
                   id="image"
                   name="image"
                   size="60px"
-                  required
                   onChange={(e) => setPrimaryCard(e.target.files[0])}
                 />
                 <img src={image} alt="image" />
-                <p className="photo">Ajouter une photo</p>
+                <p className="photo">Modifier une photo</p>
               </div>
             </div>
             <label htmlFor="prix">Carte (Secondaire)</label>
@@ -184,11 +157,11 @@ const EditClub = () => {
                   onChange={(e) => setSecondaryCard(e.target.files[0])}
                 />
                 <img src={image} alt="image" />
-                <p className="photo">Ajouter une photo</p>
+                <p className="photo">Modifier une photo</p>
               </div>
             </div>
             <button type="submit" className="add-value submit">
-              {loading ? "Chargement..." : error ? "Erreur" : "Ajouter"}
+              {loading ? "Chargement..." : error ? "Erreur" : "Modifier"}
             </button>
           </form>
         </div>
