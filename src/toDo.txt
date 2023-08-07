@@ -1,5 +1,3 @@
 ---------------------------------------------------------------------------------------------------------
 settings:
-linking the club feature
-linking add club 
-adding edit club page 
+linking edit club page 
