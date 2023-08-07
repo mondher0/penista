@@ -6,6 +6,7 @@ import "../utilisateurs/UtilisateursTable.css";
 import axiosInstance from "../../utils/axiosInstance";
 import { baseUrl } from "../../utils/constants";
 import "./SettingsImageTable.css";
+import { useNavigate } from "react-router-dom";
 
 const ClubsTable = () => {
   const [teams, setTeams] = useState();
@@ -14,6 +15,7 @@ const ClubsTable = () => {
   const [isEmpty, setIsEmpty] = useState(false);
   const [currentPage, setCurrentPage] = useState(1);
   const [pages, setPages] = useState(0);
+  const navigate = useNavigate();
 
   // get all teams
   const getTeams = async () => {
@@ -22,7 +24,6 @@ const ClubsTable = () => {
       const response = await axiosInstance.get(
         `${baseUrl}teams/active/?page=${currentPage}`
       );
-      console.log(response);
       setTeams(response.data.data.teams);
       setPages(response.data.data.pages);
       if (response.data.data.teams.length === 0) {
@@ -30,7 +31,6 @@ const ClubsTable = () => {
       }
       setIsLoading1(false);
     } catch (error) {
-      console.log(error);
       setIsLoading1(false);
       setIsError(true);
     }
@@ -68,7 +68,7 @@ const ClubsTable = () => {
           {teams &&
             teams.map((team) => (
               <>
-                <tr key={team.id}>
+                <tr key={team.team_id}>
                   <td>
                     <img src={team.logo} alt="club" />
                   </td>
@@ -97,7 +97,14 @@ const ClubsTable = () => {
                       : "Reçu et Yalidine"}
                   </td>
                   <td>
-                    <img src={edite} alt="Modifier" className="hover" />
+                    <img
+                      src={edite}
+                      alt="Modifier"
+                      className="hover"
+                      onClick={() => {
+                        navigate(`/parametres/modifier-club/${team.team_id}`);
+                      }}
+                    />
                   </td>
                 </tr>
               </>

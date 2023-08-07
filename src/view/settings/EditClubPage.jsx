@@ -6,7 +6,10 @@ import { image } from "../../assets/index";
 import { useEffect, useState } from "react";
 import axiosInstance from "../../utils/axiosInstance";
 import { baseUrl } from "../../utils/constants";
-const AddClub = () => {
+import { useParams } from "react-router-dom";
+const EditClub = () => {
+    const { id } = useParams();
+    console.log(id);
   const [countries, setCountries] = useState();
   const [country, setCountry] = useState();
   const [teams, setTeams] = useState();
@@ -26,7 +29,8 @@ const AddClub = () => {
         `${baseUrl}countries/?no_pagination=true`
       );
       setCountries(response.data.countries);
-    } catch (error) {}
+    } catch (error) {
+    }
   };
 
   // get clubs
@@ -192,4 +196,4 @@ const AddClub = () => {
     </>
   );
 };
-export default AddClub;
+export default EditClub;

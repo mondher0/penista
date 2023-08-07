@@ -37,6 +37,7 @@ import EditSingleOffre from "./view/offres/EditSingleOffre";
 import EditSingleTicket from "./view/tickets/EditSingleTicket";
 import AddPage from "./view/settings/addPage";
 import AddClub from "./view/settings/addClub";
+import EditClub from "./view/settings/EditClubPage";
 
 function App() {
   return (
@@ -124,6 +125,7 @@ function App() {
             path="/parametres/ajouter-image"
             element={<SettingsAddImagePage />}
           />
+          <Route path="/parametres/modifier-club/:id" element={<EditClub />} />
         </Route>
       </Routes>
     </BrowserRouter>

@@ -113,14 +113,16 @@ const DemandeAbonnementTable = () => {
                   <td>
                     <div className="actions">
                       {/* Save image with onClick event handler */}
-                      <img
-                        src={save}
-                        alt=""
-                        className="hover"
-                        onClick={() => {
-                          handleDownload(demande.payment_receipt);
-                        }}
-                      />
+                      {demande.payment_type !== "on delivery" && (
+                        <img
+                          src={save}
+                          alt=""
+                          className="hover"
+                          onClick={() => {
+                            handleDownload(demande.payment_receipt);
+                          }}
+                        />
+                      )}
                       {demande.status === "WAITING" && (
                         <>
                           <img
