@@ -1,45 +1,44 @@
 /* eslint-disable react-hooks/exhaustive-deps */
 import "../produit/ProductTable.css";
-import { club, edite, primaryCard, secondaryCard } from "../../assets/index";
+import { edite } from "../../assets/index";
 import { useEffect, useState } from "react";
 import "../utilisateurs/UtilisateursTable.css";
 import axiosInstance from "../../utils/axiosInstance";
 import { baseUrl } from "../../utils/constants";
 import "./SettingsImageTable.css";
-import usePopUpContext from "../../hooks/usePopUpContext";
 
 const ClubsTable = () => {
-  const [action, setAction] = useState();
-  const [ads, setAds] = useState();
-  const { update } = usePopUpContext();
+  const [teams, setTeams] = useState();
   const [isLoading1, setIsLoading1] = useState(false);
   const [isError, setIsError] = useState(false);
   const [isEmpty, setIsEmpty] = useState(false);
   const [currentPage, setCurrentPage] = useState(1);
   const [pages, setPages] = useState(0);
 
-  // get all ads
-  const getAllAds = async () => {
+  // get all teams
+  const getTeams = async () => {
     try {
       setIsLoading1(true);
       const response = await axiosInstance.get(
-        `${baseUrl}ads/?page=${currentPage}`
+        `${baseUrl}teams/active/?page=${currentPage}`
       );
-      setAds(response.data.data);
-      setPages(response.data.pages);
-      if (response.data.data.length === 0) {
+      console.log(response);
+      setTeams(response.data.data.teams);
+      setPages(response.data.data.pages);
+      if (response.data.data.teams.length === 0) {
         setIsEmpty(true);
       }
       setIsLoading1(false);
     } catch (error) {
+      console.log(error);
       setIsLoading1(false);
       setIsError(true);
     }
   };
 
   useEffect(() => {
-    getAllAds();
-  }, [currentPage, update]);
+    getTeams();
+  }, [currentPage]);
 
   // Pagination handlers
   const goToPreviousPage = () => {
@@ -66,36 +65,33 @@ const ClubsTable = () => {
           </tr>
         </thead>
         <tbody>
-          {ads &&
-            ads.map((ad) => (
+          {teams &&
+            teams.map((team) => (
               <>
-                <tr key={ad.id}>
+                <tr key={team.id}>
                   <td>
-                    <img src={club} alt="club"  />
+                    <img src={team.logo} alt="club" />
                   </td>
-                  <td>Real Madrid</td>
+                  <td>{team.name}</td>
                   <td>
-                    <img src={primaryCard} alt="Pub"  />
-                  </td>
-                  <td>
-                  <img src={secondaryCard} alt="Pub" />
-                </td>
-                  <td>
-                  Reçu et Yalidine
+                    <img
+                      src={`${baseUrl}${team.card_primary}`}
+                      alt="Pub"
+                      width="170px"
+                      height="100px"
+                    />
                   </td>
                   <td>
                     <img
-                      src={edite}
-                      alt="Modifier"
-                      className="hover"
-                      onClick={() => {
-                        if (action == ad.id) {
-                          setAction("");
-                        } else {
-                          setAction(ad.id);
-                        }
-                      }}
+                      src={`${baseUrl}${team.card_secondary}`}
+                      alt="Pub"
+                      width="170px"
+                      height="100px"
                     />
+                  </td>
+                  <td>Reçu et Yalidine</td>
+                  <td>
+                    <img src={edite} alt="Modifier" className="hover" />
                   </td>
                 </tr>
               </>
