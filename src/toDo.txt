@@ -1,7 +1,3 @@
 ---------------------------------------------------------------------------------------------------------
 settings:
 linking edit club page 
-na7iw pagination mn get no active clubs
-
-login: 
-changing the login url 
