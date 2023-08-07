@@ -1,10 +1,7 @@
 /* eslint-disable no-empty */
 /* eslint-disable react-hooks/exhaustive-deps */
 /* eslint-disable react/prop-types */
-import {
-  actifNotification,
-  emptyNot,
-} from "../../../assets/index";
+import { actifNotification, emptyNot } from "../../../assets/index";
 import { baseUrl } from "../../../utils/constants";
 import axiosInstance from "../../../utils/axiosInstance";
 import "./NavBar.css";
@@ -25,8 +22,7 @@ const NavBar = ({ title }) => {
       setIsNotificated(response1.data.data.unread);
       const { first_name, last_name, image } = response.data.data;
       setUserInfo({ first_name, last_name, image });
-    } catch (error) {
-    }
+    } catch (error) {}
   };
 
   useEffect(() => {
@@ -53,7 +49,10 @@ const NavBar = ({ title }) => {
               {userInfo.first_name} {userInfo.last_name}
             </p>
             <div className="user-img">
-              <img src={`${baseUrl}${userInfo.image}`} alt="Avatar" />
+              <img
+                src={userInfo.image ? `${baseUrl}${userInfo.image}` : null}
+                alt="Avatar"
+              />
             </div>
           </div>
         </div>
