@@ -29,13 +29,6 @@ const EditClub = () => {
       setTeam(response.data?.team.team_id);
       setTeamName(response.data?.team.name);
       setPrimaryCard(baseUrl + response.data?.team.card_primary);
-      // const resp = await fetch(baseUrl + response.data?.team.card_primary);
-     
-      //   const blob = await response.blob();
-      //   const file = new File([blob], "image.jpg", { type: "image/jpeg" });
-      //   console.log(file);
-      //   setPrimaryCard(file);
-      
       console.log(primaryCard);
       if (response.data?.team.payment_type?.length === 1) {
         setPaymentType(response.data?.team.payment_type[0]);
@@ -62,7 +55,6 @@ const EditClub = () => {
       const formData = new FormData();
       formData.append("teamId", team);
       formData.append("card_primary", primaryCard);
-      console.log(formData.get("card_primary"));
       formData.append("card_secondary", secondaryCard);
       if (paymentType === "all") {
         formData.append("payment_type", "bank transfer");
@@ -140,6 +132,7 @@ const EditClub = () => {
                   id="image"
                   name="image"
                   size="60px"
+                  required
                   onChange={(e) => setPrimaryCard(e.target.files[0])}
                 />
                 <img src={image} alt="image" />
