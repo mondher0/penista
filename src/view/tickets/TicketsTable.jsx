@@ -75,7 +75,11 @@ const TicketsTable = () => {
                   <td>{ticket.id}</td>
                   <td>{newDate}</td>
                   <td>{time}</td>
-                  <td>{match.opposingTeam.name}</td>
+                  <td>
+                    {ticket.match.homeTeam?.team_id === 541
+                      ? ticket.match.awayTeam?.name
+                      : ticket.match.homeTeam?.name}
+                  </td>
                   <td>
                     <div className="user-details">
                       <img src={`${baseUrl}${client_info.image}`} alt="user" />

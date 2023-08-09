@@ -21,7 +21,6 @@ const ExpectationsTable = (props) => {
       const response = await axiosInstance.get(
         `${baseUrl}expectation/?page=${currentPage}&matchStatusExpectation=${props.etat}&opponent=${props.adversaire}&matchDate=${props.date}`
       );
-      console.log(response);
       setExpectations(response.data.data);
       if (response.data.data?.length === 0) {
         setIsEmpty(true);
@@ -72,8 +71,13 @@ const ExpectationsTable = (props) => {
                   <tr key={expectation.id}>
                     <td>{expectation.id}</td>
                     <td>{expectation.match_info.startDate}</td>
-                    <td>{expectation.match_info.ourTeam.name}</td>
-                    <td>{expectation.match_info.opposingTeam.name}</td>
+                    <td>{expectation.client_info.team?.name}</td>
+                    <td>
+                      {expectation.match_info.awayTeam?.name ===
+                      expectation.client_info.team?.name
+                        ? expectation.match_info.homeTeam?.name
+                        : expectation.match_info.awayTeam?.name}
+                    </td>
                     <td>
                       <div className="user-details">
                         <img

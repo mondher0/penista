@@ -39,10 +39,11 @@ const EventsTable = () => {
 
   // download image
   const handleDownload = async (url) => {
+    console.log(url);
     if (!url) {
       return;
     }
-    const imageUrl = `${baseUrl}${url}`; // Replace with the URL of the image you want to download
+    const imageUrl = url; // Replace with the URL of the image you want to download
     try {
       const response = await fetch(imageUrl);
       const blob = await response.blob();

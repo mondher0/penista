@@ -35,8 +35,7 @@ const AddTicketPage = () => {
         `${baseUrl}match/without/ticket/`
       );
       setMatches(response.data.data.matchs);
-    } catch (error) {
-    }
+    } catch (error) {}
   };
 
   // handle submit
@@ -94,21 +93,29 @@ const AddTicketPage = () => {
                   });
                 }}
               >
-                {matches.map((match) => (
-                  <option
-                    value={match.id}
-                    key={match.id}
-                    style={{
-                      backgroundColor: "white",
-                      color: "black",
-                      margin: "5px",
-                      border: "none",
-                      width: "100%",
-                    }}
-                  >
-                    {match.startDate} {match.opposingTeam.name}
-                  </option>
-                ))}
+                {matches.map((match) => {
+                  if (
+                    match?.homeTeam?.team_id === 541 ||
+                    match?.awayTeam?.team_id === 541
+                  ) {
+                    return (
+                      <option
+                        value={match.id}
+                        key={match.id}
+                        style={{
+                          backgroundColor: "white",
+                          color: "black",
+                          margin: "5px",
+                          border: "none",
+                          width: "100%",
+                        }}
+                      >
+                        {match.startDate} {match?.awayTeam?.name} VS{" "}
+                        {match?.homeTeam?.name}
+                      </option>
+                    );
+                  }
+                })}
               </select>
             </div>
             <div className="input nom">
@@ -192,9 +199,7 @@ const AddTicketPage = () => {
                 marginTop: "5px",
               }}
             >
-              {
-                loading ? "Chargement..." : error ? "Erreur" : "Ajouter"
-              }
+              {loading ? "Chargement..." : error ? "Erreur" : "Ajouter"}
             </button>
           </form>
         </div>

@@ -74,9 +74,15 @@ const TicketsMatcheTable = () => {
                 <>
                   <tr>
                     <td>{ticket.id}</td>
-                    <td>{newDate} {time}</td>
+                    <td>
+                      {newDate} {time}
+                    </td>
                     <td>{ticket.league.name}</td>
-                    <td>{ticket.opposingTeam.name}</td>
+                    <td>
+                      {ticket.homeTeam?.team_id === 541
+                        ? ticket.awayTeam?.name
+                        : ticket.homeTeam?.name}
+                    </td>
                     <td>{ticket.league.round}</td>
                     <td>{ticket.is_home ? "Maison" : "Extérieur"}</td>
                     <td>{ticket.tickets}</td>
