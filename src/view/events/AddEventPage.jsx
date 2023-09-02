@@ -130,6 +130,7 @@ const AddEventPage = () => {
         return;
       }
       setLoading(false);
+      window.location.href = "/evenements/mes-evenements";
     } catch (error) {
       setLoading(false);
       setError(true);
@@ -312,11 +313,9 @@ const AddEventPage = () => {
                   }}
                   type="button"
                   onClick={() => {
-                    dispatch(
-                      {
-                        type: SET_DATES,
-                      },
-                    );
+                    dispatch({
+                      type: SET_DATES,
+                    });
                   }}
                 >
                   Ajouter

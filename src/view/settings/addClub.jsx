@@ -80,6 +80,7 @@ const AddClub = () => {
         return;
       }
       setLoading(false);
+      window.location.href = "/parametres";
     } catch (error) {
       setLoading(false);
       setError(true);
@@ -90,7 +91,7 @@ const AddClub = () => {
     <>
       <NavBar title="Paramètres" />
       <div className="container">
-        <p>Slider et publicités</p>
+        <p>Ajouter Club</p>
         <div className="form">
           <form onSubmit={handleSubmit}>
             <div className="input nom">

@@ -82,6 +82,7 @@ const DemandeAbonnementTable = () => {
           <tr>
             <th>ID Demande</th>
             <th>Utilisateur</th>
+            <th>Club</th>
             <th>Abonnement</th>
             <th>Date de demande</th>
             <th>Paiement</th>
@@ -103,6 +104,7 @@ const DemandeAbonnementTable = () => {
                       </div>
                     </div>
                   </td>
+                  <td>{demande.user?.team?.name}</td>
                   <td>{demande.plan.name}</td>
                   <td>{demande.start_date}</td>
                   <td>

@@ -83,7 +83,7 @@ const EditClub = () => {
     <>
       <NavBar title="Paramètres" />
       <div className="container">
-        <p>Slider et publicités</p>
+        <p>Modifier Club</p>
         <div className="form">
           <form onSubmit={handleSubmit}>
             <div className="input nom">

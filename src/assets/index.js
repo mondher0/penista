@@ -40,6 +40,7 @@ import play from "./play.svg";
 import club from "./club.svg";
 import primaryCard from "./primary-card.svg";
 import secondaryCard from "./secondary-card.svg";
+import add from "./add.png";
 export {
   logo,
   dashboard,
@@ -83,4 +84,5 @@ export {
   club,
   primaryCard,
   secondaryCard,
+  add,
 };

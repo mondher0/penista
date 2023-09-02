@@ -62,6 +62,7 @@ const AddOffrePage = () => {
         return;
       }
       setLoading(false);
+      window.location.href = "/offres";
     } catch (error) {
       setLoading(false);
       setError(true);

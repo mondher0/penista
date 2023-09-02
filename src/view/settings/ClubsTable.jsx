@@ -97,14 +97,34 @@ const ClubsTable = () => {
                       : "Reçu et Yalidine"}
                   </td>
                   <td>
-                    <img
-                      src={edite}
-                      alt="Modifier"
-                      className="hover"
-                      onClick={() => {
-                        navigate(`/parametres/modifier-club/${team.team_id}`);
+                    <div
+                      style={{
+                        display: "flex",
+                        justifyContent: "space-between",
+                        alignItems: "center",
+                        marginRight: "10px",
                       }}
-                    />
+                    >
+                      <img
+                        src={edite}
+                        alt="Modifier"
+                        className="hover"
+                        onClick={() => {
+                          navigate(`/parametres/modifier-club/${team.team_id}`);
+                        }}
+                      />
+                      <span
+                        className="hover"
+                        style={{
+                          fontWeight: "bold",
+                        }}
+                        onClick={() => {
+                          navigate(`/parametres/ajouter-plan/${team.team_id}`);
+                        }}
+                      >
+                        Ajouter
+                      </span>
+                    </div>
                   </td>
                 </tr>
               </>
