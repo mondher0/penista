@@ -10,7 +10,6 @@ const AddClub = () => {
   const { id } = useParams();
   const [loading, setLoading] = useState(false);
   const [error, setError] = useState(false);
-  const [cartPrice, setCartPrice] = useState();
   const [description, setDescription] = useState();
   const [name, setName] = useState();
   const [price, setPrice] = useState();
@@ -23,7 +22,6 @@ const AddClub = () => {
       setError(false);
       const data = {
         name: name,
-        card_price: cartPrice,
         description: description,
         team_id: id,
         price: price,
@@ -76,18 +74,6 @@ const AddClub = () => {
                 placeholder="Le prix"
                 onChange={(e) => {
                   setPrice(e.target.value);
-                }}
-              />
-            </div>
-            <div className="input nom">
-              <label htmlFor="nom">Prix de la carte</label>
-              <input
-                type="number"
-                name="price"
-                id="price"
-                placeholder="Le prix de la carte"
-                onChange={(e) => {
-                  setCartPrice(e.target.value);
                 }}
               />
             </div>
