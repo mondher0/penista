@@ -25,6 +25,7 @@ const AddClub = () => {
         description: description,
         team_id: id,
         price: price,
+        price_card: price,
       };
       const response = await axiosInstance.post(
         `${baseUrl}accounts/plan/create/`,
