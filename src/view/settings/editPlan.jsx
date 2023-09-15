@@ -2,19 +2,35 @@
 /* eslint-disable react-hooks/exhaustive-deps */
 import NavBar from "../shared/navBar/NavBar";
 import "../produit/AddProductPage.css";
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import axiosInstance from "../../utils/axiosInstance";
 import { baseUrl } from "../../utils/constants";
 import { useParams } from "react-router-dom";
 import { image } from "../../assets/index";
-const AddClub = () => {
+const EditPlan = () => {
   const { id } = useParams();
   const [loading, setLoading] = useState(false);
   const [error, setError] = useState(false);
   const [description, setDescription] = useState();
-  const [name, setName] = useState();
   const [price, setPrice] = useState();
   const [primaryCard, setPrimaryCard] = useState();
+  const [plans, setPlans] = useState();
+
+  // get plan
+  const getPlan = async () => {
+    try {
+      const response = await axiosInstance.get(
+        `${baseUrl}accounts/plan/${id}/`
+      );
+      console.log(response);
+      setPlans(response.data?.plan);
+      setPrice(response.data?.plan?.card_price);
+      setDescription(response.data?.plan?.description);
+      setPrimaryCard(response.data?.plan?.card_image);
+    } catch (error) {
+      console.log(error);
+    }
+  };
 
   // handle submit
   const handleSubmit = async (e) => {
@@ -23,13 +39,10 @@ const AddClub = () => {
       setLoading(true);
       setError(false);
       const formData = new FormData();
-      formData.append("name", name);
       formData.append("description", description);
-      formData.append("team_id", id);
       formData.append("price", price);
       formData.append("card_price", price);
       formData.append("card_image", primaryCard);
-      formData.append("duration", 1);
       console.log(formData.get("card_image"));
       console.log(formData.get("name"));
       console.log(formData.get("description"));
@@ -37,8 +50,8 @@ const AddClub = () => {
       console.log(formData.get("price"));
       console.log(formData.get("price_card"));
       console.log(formData.get("duration"));
-      const response = await axiosInstance.post(
-        `${baseUrl}accounts/plan/create/`,
+      const response = await axiosInstance.put(
+        `${baseUrl}accounts/plan/update/${id}/`,
         formData
       );
       console.log(response);
@@ -56,25 +69,27 @@ const AddClub = () => {
       console.log(error);
     }
   };
+
+  useEffect(() => {
+    getPlan();
+  }, []);
   return (
     <>
       <NavBar title="Paramètres" />
       <div className="container">
-        <p>Ajouter Plan</p>
+        <p>Modifier Plan</p>
         <div className="form">
           <form onSubmit={handleSubmit}>
             <div className="input nom">
               <label htmlFor="nom">Plan</label>
               <select
-                onChange={(e) => {
-                  setName(e.target.value);
-                }}
+                value={plans?.name}
                 style={{
                   border: "1px solid #E5E5E5",
                 }}
+                disabled
               >
-                <option value="">Choisissez un plan</option>
-                <option value="premiumBox">Premium Box</option>
+                <option value="premiumBox">{plans?.name}</option>
               </select>
             </div>
             <div className="input nom">
@@ -84,6 +99,7 @@ const AddClub = () => {
                 name="price"
                 id="price"
                 placeholder="Le prix"
+                value={price}
                 onChange={(e) => {
                   setPrice(e.target.value);
                 }}
@@ -96,6 +112,7 @@ const AddClub = () => {
                 name="price"
                 id="price"
                 placeholder="Description"
+                value={description}
                 onChange={(e) => {
                   setDescription(e.target.value);
                 }}
@@ -112,11 +129,11 @@ const AddClub = () => {
                   onChange={(e) => setPrimaryCard(e.target.files[0])}
                 />
                 <img src={image} alt="image" />
-                <p className="photo">Ajouter une photo</p>
+                <p className="photo">Modifier une photo</p>
               </div>
             </div>
             <button type="submit" className="add-value submit">
-              {loading ? "Chargement..." : error ? "Erreur" : "Ajouter"}
+              {loading ? "Chargement..." : error ? "Erreur" : "Modifier"}
             </button>
           </form>
         </div>
@@ -124,4 +141,4 @@ const AddClub = () => {
     </>
   );
 };
-export default AddClub;
+export default EditPlan;

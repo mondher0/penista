@@ -1,6 +1,5 @@
 /* eslint-disable react-hooks/exhaustive-deps */
 import "../produit/ProductTable.css";
-import { edite } from "../../assets/index";
 import { useEffect, useState } from "react";
 import "../utilisateurs/UtilisateursTable.css";
 import axiosInstance from "../../utils/axiosInstance";
@@ -24,6 +23,7 @@ const ClubsTable = () => {
       const response = await axiosInstance.get(
         `${baseUrl}teams/active/?page=${currentPage}`
       );
+      console.log(response);
       setTeams(response.data.data.teams);
       setPages(response.data.data.pages);
       if (response.data.data.teams.length === 0) {
@@ -58,9 +58,6 @@ const ClubsTable = () => {
           <tr>
             <th>Photo club</th>
             <th>Nom du club</th>
-            <th>Carte (Primaire)</th>
-            <th>Carte (Secondaire)</th>
-            <th>Type de paiement</th>
             <th>Action</th>
           </tr>
         </thead>
@@ -74,55 +71,25 @@ const ClubsTable = () => {
                   </td>
                   <td>{team.name}</td>
                   <td>
-                    <img
-                      src={`${baseUrl}${team.card_primary}`}
-                      alt="Pub"
-                      width="170px"
-                      height="100px"
-                    />
-                  </td>
-                  <td>
-                    <img
-                      src={`${baseUrl}${team.card_secondary}`}
-                      alt="Pub"
-                      width="170px"
-                      height="100px"
-                    />
-                  </td>
-                  <td>
-                    {team.payment_type.length === 1
-                      ? team.payment_type[0] === "on delivery"
-                        ? "Yalidine"
-                        : "Reçu"
-                      : "Reçu et Yalidine"}
-                  </td>
-                  <td>
                     <div
                       style={{
                         display: "flex",
-                        justifyContent: "space-between",
+                        justifyContent: "center",
                         alignItems: "center",
                         marginRight: "10px",
                       }}
                     >
-                      <img
-                        src={edite}
-                        alt="Modifier"
-                        className="hover"
-                        onClick={() => {
-                          navigate(`/parametres/modifier-club/${team.team_id}`);
-                        }}
-                      />
+              
                       <span
                         className="hover"
                         style={{
                           fontWeight: "bold",
                         }}
                         onClick={() => {
-                          navigate(`/parametres/ajouter-plan/${team.team_id}`);
+                          navigate(`/parametres/voir-plan/${team.team_id}`);
                         }}
                       >
-                        Ajouter
+                        Voir plan
                       </span>
                     </div>
                   </td>

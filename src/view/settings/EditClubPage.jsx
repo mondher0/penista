@@ -2,7 +2,6 @@
 /* eslint-disable react-hooks/exhaustive-deps */
 import NavBar from "../shared/navBar/NavBar";
 import "../produit/AddProductPage.css";
-import { image } from "../../assets/index";
 import { useEffect, useState } from "react";
 import axiosInstance from "../../utils/axiosInstance";
 import { baseUrl } from "../../utils/constants";
@@ -13,8 +12,6 @@ const EditClub = () => {
   const [country, setCountry] = useState("");
   const [team, setTeam] = useState();
   const [teamName, setTeamName] = useState();
-  const [primaryCard, setPrimaryCard] = useState();
-  const [secondaryCard, setSecondaryCard] = useState();
   const [paymentType, setPaymentType] = useState();
   const [loading, setLoading] = useState(false);
   const [error, setError] = useState(false);
@@ -28,8 +25,6 @@ const EditClub = () => {
       setCountry(response.data?.team.country.name);
       setTeam(response.data?.team.team_id);
       setTeamName(response.data?.team.name);
-      setPrimaryCard(baseUrl + response.data?.team.card_primary);
-      console.log(primaryCard);
       if (response.data?.team.payment_type?.length === 1) {
         setPaymentType(response.data?.team.payment_type[0]);
       } else {
@@ -52,20 +47,11 @@ const EditClub = () => {
     try {
       setLoading(true);
       setError(false);
-      const formData = new FormData();
-      formData.append("teamId", team);
-      formData.append("card_primary", primaryCard);
-      formData.append("card_secondary", secondaryCard);
-      if (paymentType === "all") {
-        formData.append("payment_type", "bank transfer");
-        formData.append("payment_type", "on delivery");
-      } else {
-        formData.append("payment_type", paymentType);
-      }
-      const response = await axiosInstance.post(
-        `${baseUrl}teams/add/`,
-        formData
-      );
+      const data = {
+        teamId: team,
+      };
+
+      const response = await axiosInstance.post(`${baseUrl}teams/add/`, data);
       console.log(response);
       if (response.data.success === false) {
         setLoading(false);
@@ -123,35 +109,6 @@ const EditClub = () => {
                 <option value="bank transfer">Reçu</option>
                 <option value="all">Reçu et Yalidine</option>
               </select>
-            </div>
-            <label htmlFor="prix">Carte (Primaire) *</label>
-            <div className="media">
-              <div className="image">
-                <input
-                  type="file"
-                  id="image"
-                  name="image"
-                  size="60px"
-                  required
-                  onChange={(e) => setPrimaryCard(e.target.files[0])}
-                />
-                <img src={image} alt="image" />
-                <p className="photo">Modifier une photo</p>
-              </div>
-            </div>
-            <label htmlFor="prix">Carte (Secondaire)</label>
-            <div className="media">
-              <div className="image">
-                <input
-                  type="file"
-                  id="image"
-                  name="image"
-                  size="60px"
-                  onChange={(e) => setSecondaryCard(e.target.files[0])}
-                />
-                <img src={image} alt="image" />
-                <p className="photo">Modifier une photo</p>
-              </div>
             </div>
             <button type="submit" className="add-value submit">
               {loading ? "Chargement..." : error ? "Erreur" : "Modifier"}

@@ -39,6 +39,8 @@ import AddPage from "./view/settings/addPage";
 import AddClub from "./view/settings/addClub";
 import EditClub from "./view/settings/EditClubPage";
 import AddPlan from "./view/settings/AddPlan";
+import VoirPlan from "./view/settings/voirPlan";
+import EditPlan from "./view/settings/editPlan";
 
 function App() {
   return (
@@ -119,6 +121,8 @@ function App() {
           <Route path="parametres/ajouter-page" element={<AddPage />} />
           <Route path="/parametres/ajouter-club" element={<AddClub />} />
           <Route path="/parametres/ajouter-plan/:id" element={<AddPlan />} />
+          <Route path="/parametres/modifier-plan/:id" element={<EditPlan />} />
+          <Route path="/parametres/voir-plan/:id" element={<VoirPlan />} />
           <Route
             path="/parametres/:id/modifier"
             element={<EditSettingsPage />}
