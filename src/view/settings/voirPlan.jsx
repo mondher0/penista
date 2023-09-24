@@ -79,8 +79,8 @@ const VoirPlan = () => {
                                 }}
                               />
                             </td>
-                            <td>{plan.card_price}</td>
                             <td>{plan.description}</td>
+                            <td>{plan.card_price}</td>
                             <td>
                               <img src={edite} alt="edite" className="hover" onClick={() => {
                                 navigate(`/parametres/modifier-plan/${plan.id}`);

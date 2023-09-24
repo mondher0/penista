@@ -91,7 +91,7 @@ const AddClub = () => {
             </div>
             <div className="input nom">
               <label htmlFor="nom">Description</label>
-              <input
+              <textarea
                 type="text"
                 name="price"
                 id="price"
