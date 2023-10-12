@@ -82,7 +82,8 @@ const AddProductPage = () => {
         `${baseUrl}product/create/`,
         formData
       );
-      if (response.data.success === false) {
+      console.log(response);
+      if (response.data.success === false) { 
         setLoading(false);
         setError(true);
         return;

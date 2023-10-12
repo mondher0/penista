@@ -41,6 +41,7 @@ import club from "./club.svg";
 import primaryCard from "./primary-card.svg";
 import secondaryCard from "./secondary-card.svg";
 import add from "./add.png";
+import scanIcon from "./scan-icon.svg";
 export {
   logo,
   dashboard,
@@ -85,4 +86,6 @@ export {
   primaryCard,
   secondaryCard,
   add,
+  scanIcon,
 };
+

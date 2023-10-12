@@ -56,12 +56,12 @@ const EditSingleProduct = () => {
   const getProduct = async () => {
     try {
       const response = await axiosInstance.get(`${baseUrl}product/${id}/`);
+      console.log(response);
       dispatch({
         type: GET_PRODUCT_DETAILS,
         payload: response.data.data,
       });
-    } catch (error) {
-    }
+    } catch (error) {}
   };
 
   useEffect(() => {
@@ -97,6 +97,18 @@ const EditSingleProduct = () => {
       for (let i of state.product_images) {
         formData.append("product_images", i);
       }
+      console.log(formData.get("name"));
+      console.log(formData.get("description"));
+      console.log(formData.get("free_price"));
+      console.log(formData.get("premium_price"));
+      console.log(formData.get("pro_price"));
+      console.log(formData.get("stock"));
+      console.log(formData.get("deliveryDesc"));
+      console.log(formData.get("optionName"));
+      console.log(formData.get("options"));
+      console.log(formData.get("table_image"));
+      console.log(formData.get("product_images"));
+
       const response = await axiosInstance.put(
         `${baseUrl}product/update/${id}/`,
         formData

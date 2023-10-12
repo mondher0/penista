@@ -19,7 +19,7 @@ const ExpectationsTable = (props) => {
       setIsEmpty(false);
       setIsError(false);
       const response = await axiosInstance.get(
-        `${baseUrl}expectation/?page=${currentPage}&matchStatusExpectation=${props.etat}&opponent=${props.adversaire}&matchDate=${props.date}`
+        `${baseUrl}expectation/?page=${currentPage}&matchStatusExpectation=${props.etat}&team=${props.adversaire}&matchDate=${props.date}`
       );
       setExpectations(response.data.data);
       if (response.data.data?.length === 0) {

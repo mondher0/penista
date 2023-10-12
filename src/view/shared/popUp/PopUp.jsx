@@ -24,7 +24,7 @@ const PopUp = (props) => {
   return (
     <div className="them">
       <div className="them_container">
-        <div className="cancel">
+        <div className="cancel hover">
           <img
             src={cancel}
             alt="cancel"
