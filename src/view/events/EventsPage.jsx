@@ -2,7 +2,7 @@ import NavBar from "../shared/navBar/NavBar";
 import EventsTable from "./EventsTable";
 import { useNavigate } from "react-router-dom";
 import { cancel, scanIcon } from "../../assets/index";
-import QrReader from "react-qr-scanner";
+import { QrScanner } from "@yudiel/react-qr-scanner";
 import { useState } from "react";
 import "../shared/popUp/PopUp.css";
 const EventsPage = () => {
@@ -13,6 +13,7 @@ const EventsPage = () => {
     gap: "10px",
   };
   const [qrscan, setQrscan] = useState(false);
+  const [data, setData] = useState("No result");
   const handleScan = (data) => {
     if (data) {
       setQrscan(data);
@@ -23,26 +24,6 @@ const EventsPage = () => {
   const handleError = (err) => {
     console.error(err);
   };
-
-  // useEffect(() => {
-  //   const succes = (result) => {
-  //     scanner.clear();
-  //     console.log(result);
-  //   };
-
-  //   const error = (err) => {
-  //     console.log(err);
-  //   };
-  //   const scanner = new Html5QrcodeScanner("reader", {
-  //     qrbox: {
-  //       width: 500,
-  //       height: 500,
-  //     },
-  //     fps: 50,
-  //   });
-
-  //   scanner.render(succes, error);
-  // }, []);
   return (
     <>
       <NavBar title="Evénements" />
@@ -71,15 +52,11 @@ const EventsPage = () => {
               <div className="info">
                 <form>
                   <div style={{ marginTop: 30 }}>
-                    <QrReader
-                      delay={false}
-                      onError={handleError}
-                      onScan={handleScan}
-                      legacyMode={true}
-                      style={{
-                        width: 200,
-                        height: 200,
+                    <QrScanner
+                      onDecode={(result) => {
+                        handleScan(result);
                       }}
+                      onError={(error) => console.log(error?.message)}
                     />
                   </div>
                 </form>

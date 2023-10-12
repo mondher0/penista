@@ -23,6 +23,7 @@
     "@tiptap/pm": "^2.0.4",
     "@tiptap/react": "^2.0.4",
     "@tiptap/starter-kit": "^2.0.4",
+    "@yudiel/react-qr-scanner": "^1.1.10",
     "axios": "^1.4.0",
     "chart.js": "^4.3.0",
     "chartjs-plugin-datalabels": "^2.2.0",
