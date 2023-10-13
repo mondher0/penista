@@ -147,6 +147,18 @@ const PopUpContextProvider = ({ children }) => {
       setUpdate(!update);
     } catch (error) {}
   };
+  // delete categorie from database
+  const deleteCategorie = async (id) => {
+    try {
+      const response = await axiosInstance.delete(
+        `${baseUrl}category/admin/delete/${id}/`
+      );
+      console.log(response);
+      setUpdate(!update);
+    } catch (error) {
+      console.log(error);
+    }
+  };
   return (
     <PopUpContext.Provider
       value={{
@@ -164,6 +176,7 @@ const PopUpContextProvider = ({ children }) => {
         handleRefuseOrder,
         handleDeleteOffre,
         handleDeleteEvent,
+        deleteCategorie,
         update,
         setUpdate,
       }}

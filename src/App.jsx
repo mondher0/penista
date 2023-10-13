@@ -41,6 +41,9 @@ import EditClub from "./view/settings/EditClubPage";
 import AddPlan from "./view/settings/AddPlan";
 import VoirPlan from "./view/settings/voirPlan";
 import EditPlan from "./view/settings/editPlan";
+import CategoriesPage from "./view/categories/CategoriesPage";
+import AddCategoriePage from "./view/categories/AddCategoriePage";
+import EditCategoriePage from "./view/categories/EditCategoriePage";
 
 function App() {
   return (
@@ -103,6 +106,15 @@ function App() {
             element={<AddEventPage />}
           />
           <Route path="/offres" element={<OffresPage />} />
+          <Route path="/categories" element={<CategoriesPage />} />
+          <Route
+            path="/categories/ajouter-categorie"
+            element={<AddCategoriePage />}
+          />
+          <Route
+            path="/categories/modifier-categorie/:id"
+            element={<EditCategoriePage />}
+          />
           <Route path="/offres/ajouter-offre" element={<AddOffrePage />} />
           <Route
             path="/offres/modifier-offre/:id"

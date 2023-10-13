@@ -19,6 +19,7 @@ const PopUp = (props) => {
     handleRefuseOrder,
     handleDeleteOffre,
     handleDeleteEvent,
+    deleteCategorie,
   } = usePopUpContext();
   const [points, setPoints] = useState();
   return (
@@ -111,6 +112,9 @@ const PopUp = (props) => {
                   }
                   if (props.action === "deleteEvent") {
                     handleDeleteEvent(props.id);
+                  }
+                  if (props.action === "deleteCategorie") {
+                    deleteCategorie(props.id);
                   }
                   props.setShowPopUp(false);
                 }}

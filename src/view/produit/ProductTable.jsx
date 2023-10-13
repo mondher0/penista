@@ -24,6 +24,7 @@ const ProductTable = () => {
       const response = await axiosInstance.get(
         `${baseUrl}product/?page=${currentPage}`
       );
+      console.log(response);
       setProducts(response.data.data.products);
       if (response.data.data.products.length === 0) {
         setIsEmpty(true);
@@ -67,41 +68,37 @@ const ProductTable = () => {
           </tr>
         </thead>
         <tbody>
-          {products?.map(
-            (product) => (
-              (
-                <>
-                  <tr key={product.id}>
-                    <td>{product.id}</td>
-                    <td>{product.name}</td>
-                    <td>{product.free_price}</td>
-                    <td>{product.premium_price}</td>
-                    <td>{product.pro_price}</td>
-                    <td>{product.stock}</td>
-                    <td>{product.sales}</td>
-                    <td>
-                      <img
-                        src={deleteIcon}
-                        alt="Supprimer"
-                        className="hover"
-                        onClick={() => {
-                          setShowPopUp(product.id);
-                        }}
-                      />
-                      <img
-                        src={edite}
-                        alt="Modifier"
-                        className="hover"
-                        onClick={() =>
-                          navigate(`/produit/modifier-produit/${product.id}`)
-                        }
-                      />
-                    </td>
-                  </tr>
-                </>
-              )
-            )
-          )}
+          {products?.map((product) => (
+            <>
+              <tr key={product.id}>
+                <td>{product.id}</td>
+                <td>{product.name}</td>
+                <td>{product.free_price}</td>
+                <td>{product.premium_price}</td>
+                <td>{product.pro_price}</td>
+                <td>{product.stock}</td>
+                <td>{product.sales}</td>
+                <td>
+                  <img
+                    src={deleteIcon}
+                    alt="Supprimer"
+                    className="hover"
+                    onClick={() => {
+                      setShowPopUp(product.id);
+                    }}
+                  />
+                  <img
+                    src={edite}
+                    alt="Modifier"
+                    className="hover"
+                    onClick={() =>
+                      navigate(`/produit/modifier-produit/${product.id}`)
+                    }
+                  />
+                </td>
+              </tr>
+            </>
+          ))}
         </tbody>
       </table>
       <div className="pagination">

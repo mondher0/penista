@@ -5,6 +5,11 @@ import { useNavigate } from "react-router-dom";
 
 const ProduitPage = () => {
   const navigate = useNavigate();
+  const myStyle = {
+    display: "flex",
+    flexDirection: "row",
+    gap: "10px",
+  };
 
   return (
     <>
@@ -12,12 +17,20 @@ const ProduitPage = () => {
       <div className="container">
         <div className="title">
           <p>Vos Produit</p>
-          <button
-            className="add-product"
-            onClick={() => navigate("/produit/ajouter-produit")}
-          >
-            Ajouter Produit
-          </button>
+          <div style={myStyle}>
+            <button
+              className="add-product"
+              onClick={() => navigate("/categories")}
+            >
+              Catégories
+            </button>
+            <button
+              className="add-product"
+              onClick={() => navigate("/produit/ajouter-produit")}
+            >
+              Ajouter Produit
+            </button>
+          </div>
         </div>
         <div className="table">
           <ProductTable />
