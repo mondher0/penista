@@ -44,6 +44,9 @@ import EditPlan from "./view/settings/editPlan";
 import CategoriesPage from "./view/categories/CategoriesPage";
 import AddCategoriePage from "./view/categories/AddCategoriePage";
 import EditCategoriePage from "./view/categories/EditCategoriePage";
+import QuizPage from "./view/quiz/QuizPage";
+import MesQuizzPage from "./view/quiz/MesQuizzPage";
+import AddQuizzPage from "./view/quiz/AddQuizzPage";
 
 function App() {
   return (
@@ -105,6 +108,9 @@ function App() {
             path="/evenements/ajouter-evenement"
             element={<AddEventPage />}
           />
+          <Route path="/quizz" element={<QuizPage />} />
+          <Route path="/mes-quizz" element={<MesQuizzPage />} />
+          <Route path="/ajouter-quizz" element={<AddQuizzPage />} />
           <Route path="/offres" element={<OffresPage />} />
           <Route path="/categories" element={<CategoriesPage />} />
           <Route

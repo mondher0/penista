@@ -14,6 +14,7 @@ import {
   gift,
   ball,
   logout,
+  quizz,
 } from "../../../assets/index";
 import { NavLink } from "react-router-dom";
 
@@ -87,6 +88,14 @@ const SideBar = () => {
             <div className="link expectations">
               <img src={game} alt="Expectations" />
               <p>Expectations</p>
+            </div>
+          </li>
+        </NavLink>
+        <NavLink to="/quizz" style={style}>
+          <li>
+            <div className="link users">
+              <img src={quizz} alt="quizz" />
+              <p>Quizz</p>
             </div>
           </li>
         </NavLink>
