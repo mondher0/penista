@@ -36,6 +36,7 @@
     "react-qr-reader_multiformatreader": "^1.0.4",
     "react-qr-scanner": "^1.0.0-alpha.11",
     "react-router-dom": "^6.14.1",
+    "react-select": "^5.7.7",
     "react-slick": "^0.29.0",
     "slick-carousel": "^1.8.1"
   },

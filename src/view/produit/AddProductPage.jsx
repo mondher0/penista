@@ -25,6 +25,7 @@ import {
 import axiosInstance from "../../utils/axiosInstance";
 import { baseUrl } from "../../utils/constants";
 import { useState } from "react";
+import { useEffect } from "react";
 const initialState = {
   value: "",
   quantite: "",
@@ -48,6 +49,11 @@ const AddProductPage = () => {
   const [state, dispatch] = useReducer(addProductReducer, initialState);
   const [loading, setLoading] = useState(false);
   const [error, setError] = useState(false);
+  const [categories, setCategories] = useState([]);
+  const [showCat, setShowCat] = useState(false);
+  const [showSubCat, setShowSubCat] = useState(false);
+  let [categoriesSelected, setCategoriesSelected] = useState([]);
+  let [subCategoriesSelected, setSubCategoriesSelected] = useState([]);
   const handleSubmit = async (e) => {
     e.preventDefault();
     // turn the array of values into an object
@@ -78,23 +84,45 @@ const AddProductPage = () => {
       for (let i of state.product_images) {
         formData.append("product_images", i);
       }
+      categoriesSelected = categoriesSelected.join(",");
+      subCategoriesSelected = subCategoriesSelected.join(",");
+      formData.append("categories", categoriesSelected);
+      formData.append("subcategories", subCategoriesSelected);
+      console.log(categoriesSelected);
+      console.log(subCategoriesSelected);
       const response = await axiosInstance.post(
         `${baseUrl}product/create/`,
         formData
       );
       console.log(response);
-      if (response.data.success === false) { 
+      if (response.data.success === false) {
         setLoading(false);
         setError(true);
         return;
       }
       setLoading(false);
-      window.location.href = "/produit";
+      // window.location.href = "/produit";
     } catch (error) {
       setLoading(false);
       setError(true);
     }
   };
+
+  // get all catégories
+  const getCategories = async () => {
+    try {
+      const response = await axiosInstance.get(
+        `${baseUrl}category/admin/?pagination=false&child=true`
+      );
+      console.log(response);
+      setCategories(response.data.data);
+    } catch (error) {
+      console.log(error);
+    }
+  };
+  useEffect(() => {
+    getCategories();
+  }, []);
   return (
     <>
       <NavBar title="Produit" />
@@ -116,6 +144,85 @@ const AddProductPage = () => {
                   })
                 }
               />
+            </div>
+            <div className="cat">
+              <div className="input">
+                <label
+                  htmlFor="nom"
+                  className="hover"
+                  onClick={() => setShowCat(!showCat)}
+                >
+                  Catégorie
+                </label>
+                <div className="sub">
+                  {categories.map((category) => {
+                    return (
+                      <div key={category.id}>
+                        <input
+                          type="checkbox"
+                          checked={categoriesSelected.includes(category.id)}
+                          onChange={(e) => {
+                            console.log(e.target.checked);
+                            if (e.target.checked) {
+                              setCategoriesSelected([
+                                ...categoriesSelected,
+                                category.id,
+                              ]);
+                            } else {
+                              setCategoriesSelected(
+                                categoriesSelected.filter(
+                                  (item) => item !== category.id
+                                )
+                              );
+                            }
+                          }}
+                        />
+                        <label htmlFor="nom">{category.name}</label>
+                      </div>
+                    );
+                  })}
+                </div>
+              </div>
+              <div className="input">
+                <label
+                  htmlFor="nom"
+                  onClick={() => setShowSubCat(!showSubCat)}
+                  className="hover"
+                >
+                  Sous catégorie
+                </label>
+
+                <div className="sub">
+                  {categories.map((category) => {
+                    return category.subCategories.map((child) => {
+                      return (
+                        <div key={child.id}>
+                          <input
+                            type="checkbox"
+                            checked={subCategoriesSelected.includes(child.id)}
+                            onChange={(e) => {
+                              console.log(e.target.checked);
+                              if (e.target.checked) {
+                                setSubCategoriesSelected([
+                                  ...subCategoriesSelected,
+                                  child.id,
+                                ]);
+                              } else {
+                                setSubCategoriesSelected(
+                                  subCategoriesSelected.filter(
+                                    (item) => item !== child.id
+                                  )
+                                );
+                              }
+                            }}
+                          />
+                          <label htmlFor="nom">{child.name}</label>
+                        </div>
+                      );
+                    });
+                  })}
+                </div>
+              </div>
             </div>
             <div className="input desc">
               <label htmlFor="desc">Description</label>

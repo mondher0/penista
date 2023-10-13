@@ -52,11 +52,32 @@ const EditSingleProduct = () => {
   const [state, dispatch] = useReducer(editProductReducer, initialState);
   const [loading, setLoading] = useState(false);
   const [error, setError] = useState(false);
+  const [categories, setCategories] = useState([]);
+  let [categoriesSelected, setCategoriesSelected] = useState([]);
+  let [subCategoriesSelected, setSubCategoriesSelected] = useState([]);
   const { id } = useParams();
   const getProduct = async () => {
     try {
       const response = await axiosInstance.get(`${baseUrl}product/${id}/`);
+      const response2 = await axiosInstance.get(
+        `${baseUrl}category/admin/?pagination=false&child=true`
+      );
       console.log(response);
+      console.log(response2);
+      // Filter categoriesSelected to keep only existing IDs
+      const filteredCategoriesSelected = response.data.data.categories.filter(
+        (item) => response2.data.data.some((category) => category.id === item)
+      );
+
+      const commonSubCategoryIDs = response2.data.data
+        .flatMap((obj) =>
+          obj.subCategories.map((subCategory) => subCategory.id)
+        )
+        .filter((id) => response.data.data.categories.includes(id));
+
+      setCategories(response2.data.data);
+      setCategoriesSelected(filteredCategoriesSelected);
+      setSubCategoriesSelected(commonSubCategoryIDs);
       dispatch({
         type: GET_PRODUCT_DETAILS,
         payload: response.data.data,
@@ -97,6 +118,12 @@ const EditSingleProduct = () => {
       for (let i of state.product_images) {
         formData.append("product_images", i);
       }
+      categoriesSelected = categoriesSelected.join(",");
+      console.log(categoriesSelected);
+      subCategoriesSelected = subCategoriesSelected.join(",");
+      console.log(subCategoriesSelected);
+      formData.append("categories", categoriesSelected);
+      formData.append("subcategories", subCategoriesSelected);
       console.log(formData.get("name"));
       console.log(formData.get("description"));
       console.log(formData.get("free_price"));
@@ -146,6 +173,77 @@ const EditSingleProduct = () => {
                   });
                 }}
               />
+            </div>
+            <div className="cat">
+              <div className="input">
+                <label htmlFor="nom" className="hover">
+                  Catégorie
+                </label>
+                <div className="sub">
+                  {categories.map((category) => {
+                    return (
+                      <div key={category.id}>
+                        <input
+                          type="checkbox"
+                          checked={categoriesSelected.includes(category.id)}
+                          onChange={(e) => {
+                            console.log(e.target.checked);
+                            if (e.target.checked) {
+                              setCategoriesSelected([
+                                ...categoriesSelected,
+                                category.id,
+                              ]);
+                            } else {
+                              let tempArray = categoriesSelected;
+                              setCategoriesSelected(
+                                tempArray.filter((item) => item !== category.id)
+                              );
+                            }
+                          }}
+                        />
+                        <label htmlFor="nom">{category.name}</label>
+                      </div>
+                    );
+                  })}
+                </div>
+              </div>
+              <div className="input">
+                <label htmlFor="nom" className="hover">
+                  Sous catégorie
+                </label>
+
+                <div className="sub">
+                  {categories.map((category) => {
+                    return category.subCategories.map((child) => {
+                      return (
+                        <div key={child.id}>
+                          <input
+                            type="checkbox"
+                            checked={subCategoriesSelected.includes(child.id)}
+                            onChange={(e) => {
+                              console.log(e.target.checked);
+                              if (e.target.checked) {
+                                setSubCategoriesSelected([
+                                  ...subCategoriesSelected,
+                                  child.id,
+                                ]);
+                              } else {
+                                console.log(subCategoriesSelected);
+                                let tempArray = subCategoriesSelected;
+                                setSubCategoriesSelected(
+                                  tempArray.filter((item) => item !== child.id)
+                                );
+                                console.log(subCategoriesSelected);
+                              }
+                            }}
+                          />
+                          <label htmlFor="nom">{child.name}</label>
+                        </div>
+                      );
+                    });
+                  })}
+                </div>
+              </div>
             </div>
             <div className="input desc">
               <label htmlFor="desc">Description</label>

@@ -173,3 +173,43 @@ label {
     top: 60px;
   }
 }
+.cat {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  width: 80%;
+  gap: 10px;
+}
+.sub {
+  border-radius: 12px;
+  border: 1px solid #ddd;
+  outline: none;
+  padding: 23px 8px 8px 15px;
+  position: relative;
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+  padding: 10px;
+  align-items: flex-start;
+  justify-content: flex-start;
+  height: 200px;
+  overflow-y: auto;
+}
+.sub .child-sub {
+  position: absolute;
+  top: 122%;
+  background-color: white;
+  width: 50%;
+  border: 1px solid #ddd;
+
+  left: 18%;
+  border-radius: 12px;
+}
+.sub div {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  justify-content: flex-start;
+  gap: 20px;
+  width: 100%;
+}
