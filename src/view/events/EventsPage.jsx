@@ -129,7 +129,13 @@ const EventsPage = () => {
                 <form>
                   <div style={{ marginTop: 30 }}>
                     {isError ? (
-                      <p>{isError}</p>
+                      <p
+                        style={{
+                          color: "red",
+                        }}
+                      >
+                        {isError}
+                      </p>
                     ) : success ? (
                       <p>{success}</p>
                     ) : (
