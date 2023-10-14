@@ -94,7 +94,7 @@ const MesQuizzTable = () => {
                         alt="Modifier"
                         className="hover"
                         onClick={() => {
-                          navigate(`/offres/modifier-offre/${offre.id}`);
+                          navigate(`/modifier-quizz/${offre.id}`);
                         }}
                       />
                     </td>

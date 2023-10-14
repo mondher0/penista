@@ -47,6 +47,7 @@ import EditCategoriePage from "./view/categories/EditCategoriePage";
 import QuizPage from "./view/quiz/QuizPage";
 import MesQuizzPage from "./view/quiz/MesQuizzPage";
 import AddQuizzPage from "./view/quiz/AddQuizzPage";
+import EditQuizzPage from "./view/quiz/EditQuizzPage";
 
 function App() {
   return (
@@ -111,6 +112,7 @@ function App() {
           <Route path="/quizz" element={<QuizPage />} />
           <Route path="/mes-quizz" element={<MesQuizzPage />} />
           <Route path="/ajouter-quizz" element={<AddQuizzPage />} />
+          <Route path="/modifier-quizz/:id" element={<EditQuizzPage />} />
           <Route path="/offres" element={<OffresPage />} />
           <Route path="/categories" element={<CategoriesPage />} />
           <Route
