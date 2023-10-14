@@ -5,24 +5,41 @@ import { cancel, scanIcon } from "../../assets/index";
 import { QrScanner } from "@yudiel/react-qr-scanner";
 import { useState } from "react";
 import "../shared/popUp/PopUp.css";
+import axiosInstance from "../../utils/axiosInstance";
+import { baseUrl } from "../../utils/constants";
 const EventsPage = () => {
   const navigate = useNavigate();
+  const [isError, setIsError] = useState(false);
   const myStyle = {
     display: "flex",
     flexDirection: "row",
     gap: "10px",
   };
   const [qrscan, setQrscan] = useState(false);
-  const [data, setData] = useState("No result");
-  const handleScan = (data) => {
+  const handleScan = async (data) => {
     if (data) {
-      setQrscan(data);
-      console.log(data);
-      console.log("good scan");
+      try {
+        setQrscan(data);
+        console.log(data);
+        console.log("good scan");
+        const qrInfo = {
+          qr_code: data,
+          event_id: 23,
+        };
+        const response = await axiosInstance.post(
+          `${baseUrl}reservations/admin/check_ticket/`,
+          qrInfo
+        );
+        console.log(response);
+        if (!response.data.success) {
+          setIsError(response.data.message);
+          return;
+        }
+        return;
+      } catch (error) {
+        console.log(error);
+      }
     }
-  };
-  const handleError = (err) => {
-    console.error(err);
   };
   return (
     <>
@@ -46,21 +63,39 @@ const EventsPage = () => {
         {qrscan && (
           <div className="them">
             <div className="them_container">
-              <div className="cancel hover" onClick={() => setQrscan(false)}>
+              <div
+                className="cancel hover"
+                onClick={() => {
+                  setQrscan(false);
+                  setIsError(false);
+                }}
+              >
                 <img src={cancel} alt="cancel" />
               </div>
               <div className="info">
                 <form>
                   <div style={{ marginTop: 30 }}>
-                    <QrScanner
-                      onDecode={(result) => {
-                        handleScan(result);
-                      }}
-                      onError={(error) => console.log(error?.message)}
-                    />
+                    {isError ? (
+                      <p>{isError}</p>
+                    ) : (
+                      <QrScanner
+                        onDecode={(result) => {
+                          handleScan(result);
+                        }}
+                        onError={(error) => console.log(error?.message)}
+                      />
+                    )}
                   </div>
                 </form>
-                <p>Scanner le code QR</p>
+                {!isError && (
+                  <p
+                    style={{
+                      marginTop: "10px",
+                    }}
+                  >
+                    Scanner le code QR
+                  </p>
+                )}
               </div>
             </div>
           </div>
