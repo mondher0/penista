@@ -15,7 +15,6 @@ const AddQuizzPage = () => {
   const [countries, setCountries] = useState();
   const [country, setCountry] = useState();
   const [country2, setCountry2] = useState();
-  const [loading, setLoading] = useState(false);
   const [error, setError] = useState(false);
   const [isLoaded, setIsLoaded] = useState(false);
   const [isError, setIsError] = useState(false);
@@ -89,7 +88,7 @@ const AddQuizzPage = () => {
       }
       setIsLoading(false);
     } catch (error) {
-      setLoading(false);
+      setIsLoading(false);
       setError(true);
       console.log(error);
     }
