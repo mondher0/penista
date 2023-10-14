@@ -18,8 +18,9 @@ const QuizTable = (props) => {
       setIsLoading(true);
       setIsEmpty(false);
       setIsError(false);
+      console.log(props.date);
       const response = await axiosInstance.get(
-        `${baseUrl}quiz/admin/answers/`
+        `${baseUrl}quiz/admin/answers/?page=${currentPage}&status=${props.etat}&team=${props.adversaire}&matchDate=${props.date}`
       );
       console.log(response);
       setExpectations(response.data.data);
@@ -49,59 +50,51 @@ const QuizTable = (props) => {
     <>
       {isLoading && <div className="loader">Chargement...</div>}
       {isError && <div className="loader">Erreur de chargement</div>}
-      {isEmpty && <div className="loader">Aucune expectation</div>}
+      {isEmpty && <div className="loader">Aucune quizz</div>}
       <table className="product-table">
         <thead>
           <tr>
             <th>ID Expectation</th>
             <th>Date du match</th>
-            <th>Nom club</th>
-            <th>Nom adversaire</th>
+            <th>Nom Equipe 1</th>
+            <th>Nom Equipe 2</th>
             <th>Utilisateur</th>
             <th>Etat</th>
-            <th>Club</th>
-            <th>Adversaire</th>
+            <th>Equipe 1</th>
+            <th>Equipe 2</th>
           </tr>
         </thead>
         <tbody>
           {expectations &&
-            expectations.map((expectation) => {
+            expectations.map((expectation,index) => {
               return (
                 <>
-                  <tr key={expectation.id}>
+                  <tr key={index}>
                     <td>{expectation.id}</td>
-                    <td>{expectation.match_info.startDate}</td>
-                    <td>{expectation.client_info.team?.name}</td>
-                    <td>
-                      {expectation.match_info.awayTeam?.name ===
-                      expectation.client_info.team?.name
-                        ? expectation.match_info.homeTeam?.name
-                        : expectation.match_info.awayTeam?.name}
-                    </td>
+                    <td>{expectation.quiz.startDate}</td>
+                    <td>{expectation.quiz.homeTeam.name}</td>
+                    <td>{expectation.quiz.awayTeam.name}</td>
                     <td>
                       <div className="user-details">
                         <img
-                          src={`${baseUrl}${expectation.client_info.image}`}
+                          // src={`${baseUrl}${expectation.client_info.image}`}
                           alt="user"
                         />
                         <div className="user-info">
-                          <p>
-                            {expectation.client_info.first_name}{" "}
-                            {expectation.client_info.last_name}
-                          </p>
-                          <span>{expectation.client_info.email}</span>
+                          <p>nom prenom</p>
+                          <span>email</span>
                         </div>
                       </div>
                     </td>
                     <td>
-                      {expectation.answer.win
+                      {expectation.awayGoals < expectation.homeGoals
                         ? "Victoire"
-                        : expectation.answer.win === false
+                        : expectation.awayGoals > expectation.homeGoals
                         ? "Défaite"
                         : "Nul"}
                     </td>
-                    <td>{expectation.answer.ourTeamGoals}</td>
-                    <td>{expectation.answer.opposingTeam}</td>
+                    <td>{expectation.homeGoals}</td>
+                    <td>{expectation.awayGoals}</td>
                   </tr>
                 </>
               );

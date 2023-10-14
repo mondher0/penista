@@ -159,6 +159,19 @@ const PopUpContextProvider = ({ children }) => {
       console.log(error);
     }
   };
+
+  // delete quizz
+  const deleteQuizz = async (id) => {
+    try {
+      const response = await axiosInstance.delete(
+        `${baseUrl}quiz/admin/delete/${id}/`
+      );
+      console.log(response);
+      setUpdate(!update);
+    } catch (error) {
+      console.log(error);
+    }
+  };
   return (
     <PopUpContext.Provider
       value={{
@@ -177,6 +190,7 @@ const PopUpContextProvider = ({ children }) => {
         handleDeleteOffre,
         handleDeleteEvent,
         deleteCategorie,
+        deleteQuizz,
         update,
         setUpdate,
       }}

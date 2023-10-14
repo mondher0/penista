@@ -33,13 +33,13 @@ const QuizPage = () => {
                     }}
                   >
                     <option value="">Choisir</option>
-                    <option value="null">Nul</option>
-                    <option value={true}>Victoire</option>
-                    <option value={false}>Défaite</option>
+                    <option value="draw">Nul</option>
+                    <option value="win">Victoire</option>
+                    <option value="loss">Défaite</option>
                   </select>
                 </div>
                 <div className="element">
-                  <div>Adversaire</div>
+                  <div>Club</div>
                   <input
                     type="text"
                     placeholder="Ecrivez..."

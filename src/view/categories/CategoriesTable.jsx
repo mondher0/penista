@@ -74,7 +74,7 @@ const CategoriesTable = () => {
                     <td>{categorie.id}</td>
                     <td>{categorie.name}</td>
                     <td>{subCategorie.name}</td>
-                    <td>missing from backend</td>
+                    <td>{categorie.products_count}</td>
                     <td>
                       <img
                         src={deleteIcon}

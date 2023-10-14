@@ -116,10 +116,10 @@ const MesQuizzTable = () => {
       {showPopUp && (
         <PopUp
           setShowPopUp={setShowPopUp}
-          text="Vous voulez vraiment supprimer cette offre?"
+          text="Vous voulez vraiment supprimer ce quizz?"
           button="Supprimer"
           id={showPopUp}
-          action="delete offre"
+          action="delete quizz"
         />
       )}
     </>
