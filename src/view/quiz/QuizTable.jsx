@@ -66,7 +66,7 @@ const QuizTable = (props) => {
         </thead>
         <tbody>
           {expectations &&
-            expectations.map((expectation,index) => {
+            expectations.map((expectation, index) => {
               return (
                 <>
                   <tr key={index}>
@@ -77,12 +77,15 @@ const QuizTable = (props) => {
                     <td>
                       <div className="user-details">
                         <img
-                          // src={`${baseUrl}${expectation.client_info.image}`}
+                          src={`${baseUrl}${expectation.user.image}`}
                           alt="user"
                         />
                         <div className="user-info">
-                          <p>nom prenom</p>
-                          <span>email</span>
+                          <p>
+                            {expectation.user["first-name"]}{" "}
+                            {expectation.user.last_name}
+                          </p>
+                          <span>{expectation.user.email}</span>
                         </div>
                       </div>
                     </td>

@@ -124,7 +124,7 @@ const SideBar = () => {
           </li>
         </NavLink>
         <li>
-          <div className="link logout" onClick={handleLogout}>
+          <div className="link logout hover" onClick={handleLogout}>
             <img src={logout} alt="Se déconnecter" />
             <p>Se déconnecter</p>
           </div>
