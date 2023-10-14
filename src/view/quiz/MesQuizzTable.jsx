@@ -22,13 +22,15 @@ const MesQuizzTable = () => {
   // get all offres
   const getOffres = async () => {
     try {
+      setIsError(false);
       setIsLoading(true);
       const response = await axiosInstance.get(
-        `${baseUrl}promotion/?page=${currentPage}`
+        `${baseUrl}quiz/admin/?page=${currentPage}`
       );
-      setOffre(response.data.data.Promotions);
-      setPages(response.data.data.pages);
-      if (response.data.data.Promotions.length === 0) {
+      console.log(response);
+      setOffre(response.data.data);
+      setPages(response.data.pages);
+      if (response.data.data.length === 0) {
         setIsEmpty(true);
       }
       setIsLoading(false);
@@ -73,14 +75,12 @@ const MesQuizzTable = () => {
                 <>
                   <tr>
                     <td>{offre.id}</td>
-                    <td>{offre.title}</td>
-                    <td>{offre.percentage}</td>
-                    <td>{offre.promo_code}</td>
-                    <td>{offre.expirationDate}</td>
+                    <td>{offre.startDate}</td>
+                    <td>{offre.awayTeam.name}</td>
+                    <td>{offre.homeTeam.name}</td>
+                    <td>{offre.league}</td>
                     <td>
-                      <div className="type">
-                        {!offre.status ? "Actif" : "Inactif"}
-                      </div>
+                      <div className="type">{offre.status}</div>
                     </td>
                     <td>
                       <img

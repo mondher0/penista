@@ -19,8 +19,9 @@ const QuizTable = (props) => {
       setIsEmpty(false);
       setIsError(false);
       const response = await axiosInstance.get(
-        `${baseUrl}expectation/?page=${currentPage}&matchStatusExpectation=${props.etat}&team=${props.adversaire}&matchDate=${props.date}`
+        `${baseUrl}quiz/admin/answers/`
       );
+      console.log(response);
       setExpectations(response.data.data);
       if (response.data.data?.length === 0) {
         setIsEmpty(true);
