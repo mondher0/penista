@@ -31,6 +31,7 @@ const AddCategoriePage = () => {
         return;
       }
       setIsLoading(false);
+      window.location.href = "/categories";
     } catch (error) {
       setIsLoading(false);
       setIsError(true);

@@ -101,7 +101,7 @@ const AddProductPage = () => {
         return;
       }
       setLoading(false);
-      // window.location.href = "/produit";
+      window.location.href = "/produit";
     } catch (error) {
       setLoading(false);
       setError(true);

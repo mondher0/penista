@@ -87,6 +87,7 @@ const AddQuizzPage = () => {
         return;
       }
       setIsLoading(false);
+      window.location.href = "/mes-quizz";
     } catch (error) {
       setIsLoading(false);
       setError(true);
