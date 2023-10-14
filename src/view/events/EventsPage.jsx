@@ -16,6 +16,9 @@ const EventsPage = () => {
     gap: "10px",
   };
   const [qrscan, setQrscan] = useState(false);
+  const [enterEventId, setEnterEventId] = useState(false);
+  const [eventID, setEventID] = useState(false);
+  const [success, setSuccess] = useState(false);
   const handleScan = async (data) => {
     if (data) {
       try {
@@ -24,7 +27,7 @@ const EventsPage = () => {
         console.log("good scan");
         const qrInfo = {
           qr_code: data,
-          event_id: 19,
+          event_id: eventID,
         };
         console.log(qrInfo);
         const response = await axiosInstance.post(
@@ -32,6 +35,7 @@ const EventsPage = () => {
           qrInfo
         );
         console.log(response);
+        setSuccess(response.data.message);
         if (!response.data.success) {
           setIsError(response.data.message);
           return;
@@ -49,7 +53,10 @@ const EventsPage = () => {
         <div className="title">
           <p>Tous les événements résérvés</p>
           <div style={myStyle}>
-            <button className="add-product" onClick={() => setQrscan(true)}>
+            <button
+              className="add-product"
+              onClick={() => setEnterEventId(true)}
+            >
               <img src={scanIcon} />
             </button>
             <button
@@ -61,7 +68,7 @@ const EventsPage = () => {
           </div>
         </div>
         <EventsTable />
-        {qrscan && (
+        {enterEventId && (
           <div className="them">
             <div className="them_container">
               <div
@@ -71,6 +78,51 @@ const EventsPage = () => {
                   setIsError(false);
                 }}
               >
+                <img
+                  src={cancel}
+                  alt="cancel"
+                  onClick={() => setEnterEventId(false)}
+                />
+              </div>
+              <div className="info">
+                <p>Event id</p>
+                <form>
+                  <input
+                    type="text"
+                    placeholder="event id"
+                    className="points"
+                    onChange={(e) => {
+                      setEventID(e.target.value);
+                    }}
+                  />
+                  <div className="buttons">
+                    <button
+                      className="elevated Supprimer"
+                      type="button"
+                      onClick={() => {
+                        setEnterEventId(false);
+                        setQrscan(true);
+                      }}
+                    >
+                      Continuer
+                    </button>
+                  </div>
+                </form>
+              </div>
+            </div>
+          </div>
+        )}
+        {qrscan && (
+          <div className="them">
+            <div className="them_container">
+              <div
+                className="cancel hover"
+                onClick={() => {
+                  setQrscan(false);
+                  setIsError(false);
+                  setSuccess(false);
+                }}
+              >
                 <img src={cancel} alt="cancel" />
               </div>
               <div className="info">
@@ -78,6 +130,8 @@ const EventsPage = () => {
                   <div style={{ marginTop: 30 }}>
                     {isError ? (
                       <p>{isError}</p>
+                    ) : success ? (
+                      <p>{success}</p>
                     ) : (
                       <QrScanner
                         onDecode={(result) => {
@@ -88,7 +142,7 @@ const EventsPage = () => {
                     )}
                   </div>
                 </form>
-                {!isError && (
+                {!isError && !success && (
                   <p
                     style={{
                       marginTop: "10px",
