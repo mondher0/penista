@@ -24,8 +24,9 @@ const EventsPage = () => {
         console.log("good scan");
         const qrInfo = {
           qr_code: data,
-          event_id: 23,
+          event_id: 19,
         };
+        console.log(qrInfo);
         const response = await axiosInstance.post(
           `${baseUrl}reservations/admin/check_ticket/`,
           qrInfo
