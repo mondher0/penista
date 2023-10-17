@@ -29,6 +29,7 @@ import axiosInstance from "../../utils/axiosInstance";
 import { baseUrl } from "../../utils/constants";
 import { useParams } from "react-router-dom";
 import { useState } from "react";
+import RichTextEditor from "@mantine/rte";
 const initialState = {
   value: "",
   quantite: "",
@@ -247,20 +248,21 @@ const EditSingleProduct = () => {
             </div>
             <div className="input desc">
               <label htmlFor="desc">Description</label>
-              <textarea
-                name="desc"
-                id="desc"
-                cols="30"
-                rows="10"
-                placeholder="Description du produit"
+              <RichTextEditor
+                sx={{
+                  padding: "20px",
+                  display: "flex",
+                  flexDirection: "column",
+                  justifyContent: "center",
+                }}
                 value={state.description}
                 onChange={(e) =>
                   dispatch({
                     type: SET_DESCRIPTION,
-                    payload: e.target.value,
+                    payload: e,
                   })
                 }
-              ></textarea>
+              ></RichTextEditor>
             </div>
             <div className="input livraison">
               <label htmlFor="livraison">Livraison</label>

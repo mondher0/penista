@@ -3,6 +3,8 @@ import "./AddProductPage.css";
 import { image, deleteIcon, edite } from "../../assets/index";
 import { useReducer } from "react";
 import { addProductReducer } from "../../reducers/ProductReducer/addProductReducer";
+import { RichTextEditor } from "@mantine/rte";
+
 import {
   ADD_VALUE,
   SET_QUANTITE,
@@ -226,19 +228,21 @@ const AddProductPage = () => {
             </div>
             <div className="input desc">
               <label htmlFor="desc">Description</label>
-              <textarea
-                name="desc"
-                id="desc"
-                cols="30"
-                rows="10"
-                placeholder="Description du produit"
+              <RichTextEditor
+                sx={{
+                  padding: "20px",
+                  display: "flex",
+                  flexDirection: "column",
+                  justifyContent: "center",
+                }}
+               value={state.description}
                 onChange={(e) =>
                   dispatch({
                     type: SET_DESCRIPTION,
-                    payload: e.target.value,
+                    payload: e,
                   })
                 }
-              ></textarea>
+              ></RichTextEditor>
             </div>
             <div className="input livraison">
               <label htmlFor="livraison">Livraison</label>
