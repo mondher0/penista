@@ -45,6 +45,7 @@ import scanIcon from "./scan-icon.svg";
 import quizz from "./quizz.svg";
 import succesQr from "./succes-qr.svg";
 import errorQr from "./err-qr.svg";
+import warning from "./warning.svg";
 export {
   logo,
   dashboard,
@@ -93,5 +94,6 @@ export {
   quizz,
   succesQr,
   errorQr,
+  warning,
 };
 

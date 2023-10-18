@@ -40,6 +40,7 @@ import axiosInstance from "../../utils/axiosInstance";
 import { baseUrl } from "../../utils/constants";
 import { useParams } from "react-router-dom";
 import { editEventReducer } from "../../reducers/eventReducer/editEventReducer";
+import RichTextEditor from "@mantine/rte";
 const initialState = {
   startDate: "",
   endDate: "",
@@ -98,9 +99,7 @@ const EditeSingleEvent = () => {
         type: SET_DATE_END,
         payload: res_dline,
       });
-
-    } catch (error) {
-    }
+    } catch (error) {}
   };
 
   useEffect(() => {
@@ -225,20 +224,21 @@ const EditeSingleEvent = () => {
             </div>
             <div className="input desc">
               <label htmlFor="desc">Description</label>
-              <textarea
-                name="desc"
-                id="desc"
-                cols="30"
-                rows="10"
-                placeholder="Description du l'événement"
+              <RichTextEditor
+                sx={{
+                  padding: "20px",
+                  display: "flex",
+                  flexDirection: "column",
+                  justifyContent: "center",
+                }}
                 value={state.description}
                 onChange={(e) => {
                   dispatch({
                     type: SET_DESCRIPTION,
-                    payload: e.target.value,
+                    payload: e,
                   });
                 }}
-              ></textarea>
+              ></RichTextEditor>
             </div>
             <label htmlFor="prix">Media</label>
             <div className="media">
@@ -384,11 +384,9 @@ const EditeSingleEvent = () => {
                   }}
                   type="button"
                   onClick={() => {
-                    dispatch(
-                      {
-                        type: SET_DATES,
-                      },
-                    );
+                    dispatch({
+                      type: SET_DATES,
+                    });
                   }}
                 >
                   Ajouter

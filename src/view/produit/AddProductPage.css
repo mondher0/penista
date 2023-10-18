@@ -19,6 +19,15 @@
   width: 80%;
   gap: 10px;
 }
+.pop .input {
+  margin-bottom: 20px;
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-start;
+  align-items: flex-start;
+  width: 100%;
+  gap: 10px;
+}
 .container .form form .input label,
 label {
   color: #7c7c7c;
@@ -28,7 +37,10 @@ label {
   line-height: 18px;
 }
 .container .form form .input input,
-.container .form form .input textarea {
+.container .form form .input textarea,
+.pop .input input,
+.pop .input textarea
+ {
   border-radius: 12px;
   border: 1px solid #ddd;
   outline: none;

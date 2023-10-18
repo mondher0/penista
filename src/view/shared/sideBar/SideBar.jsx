@@ -15,6 +15,7 @@ import {
   ball,
   logout,
   quizz,
+  warning,
 } from "../../../assets/index";
 import { NavLink } from "react-router-dom";
 
@@ -123,6 +124,14 @@ const SideBar = () => {
             </div>
           </li>
         </NavLink>
+        <NavLink to="/signalements" style={style}>
+        <li>
+          <div className="link settings">
+            <img src={warning} alt="Paramètres" />
+            <p>Signalements</p>
+          </div>
+        </li>
+      </NavLink>
         <li>
           <div className="link logout hover" onClick={handleLogout}>
             <img src={logout} alt="Se déconnecter" />

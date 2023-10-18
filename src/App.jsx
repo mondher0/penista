@@ -48,6 +48,8 @@ import QuizPage from "./view/quiz/QuizPage";
 import MesQuizzPage from "./view/quiz/MesQuizzPage";
 import AddQuizzPage from "./view/quiz/AddQuizzPage";
 import EditQuizzPage from "./view/quiz/EditQuizzPage";
+import ReportsPage from "./view/reports/ReportsPage";
+import SeeReport from "./view/reports/SeeReport";
 
 function App() {
   return (
@@ -115,6 +117,8 @@ function App() {
           <Route path="/modifier-quizz/:id" element={<EditQuizzPage />} />
           <Route path="/offres" element={<OffresPage />} />
           <Route path="/categories" element={<CategoriesPage />} />
+          <Route path="/signalements" element={<ReportsPage />} />
+          <Route path="/voir-signalement/:id" element={<SeeReport />} />
           <Route
             path="/categories/ajouter-categorie"
             element={<AddCategoriePage />}

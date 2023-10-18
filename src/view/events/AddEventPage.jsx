@@ -32,6 +32,7 @@ import {
 } from "../../reducers/eventReducer/addEventActions";
 import axiosInstance from "../../utils/axiosInstance";
 import { baseUrl } from "../../utils/constants";
+import RichTextEditor from "@mantine/rte";
 const initialState = {
   startDate: "",
   endDate: "",
@@ -179,19 +180,21 @@ const AddEventPage = () => {
             </div>
             <div className="input desc">
               <label htmlFor="desc">Description</label>
-              <textarea
-                name="desc"
-                id="desc"
-                cols="30"
-                rows="10"
-                placeholder="Description du l'événement"
+              <RichTextEditor
+                sx={{
+                  padding: "20px",
+                  display: "flex",
+                  flexDirection: "column",
+                  justifyContent: "center",
+                }}
+                value={state.description}
                 onChange={(e) => {
                   dispatch({
                     type: SET_DESCRIPTION,
-                    payload: e.target.value,
+                    payload: e,
                   });
                 }}
-              ></textarea>
+              ></RichTextEditor>
             </div>
             <label htmlFor="prix">Media</label>
             <div className="media">
