@@ -74,12 +74,12 @@ const ReportsTable = () => {
                     <td>
                       <div className="user-details">
                         <img
-                          // src={`${baseUrl}${expectation.user.image}`}
+                          src={`${baseUrl}${offre.user.image}`}
                           alt="user"
                         />
                         <div className="user-info">
-                          <p>mondher mameri</p>
-                          <span>m_mameri@gmai.com</span>
+                          <p>{offre.user.first_name} {offre.user.first_last_name}</p>
+                          <span>{offre.user.email}</span>
                         </div>
                       </div>
                     </td>
