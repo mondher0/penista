@@ -20,6 +20,7 @@ import { baseUrl } from "../../utils/constants";
 import { useParams } from "react-router-dom";
 import { editOffreReducer } from "../../reducers/offreReducer/editOffreReducer";
 import { useState } from "react";
+import RichTextEditor from "@mantine/rte";
 
 const initialState = {
   type: "",
@@ -45,8 +46,7 @@ const EditSingleOffre = () => {
         type: GET_offre_DETAILS,
         payload: response.data.data,
       });
-    } catch (error) {
-    }
+    } catch (error) {}
   };
   useEffect(() => {
     getSingleOffre();
@@ -118,19 +118,21 @@ const EditSingleOffre = () => {
             </div>
             <div className="input nom">
               <label htmlFor="nom">Titre de l’offre</label>
-              <input
-                type="text"
-                id="nom"
-                name="nom"
-                placeholder="Titre de l’offre"
+              <RichTextEditor
+                sx={{
+                  padding: "20px",
+                  display: "flex",
+                  flexDirection: "column",
+                  justifyContent: "center",
+                }}
                 value={state.title}
                 onChange={(e) => {
                   dispatch({
                     type: SET_OFFRE_TITLE,
-                    payload: e.target.value,
+                    payload: e,
                   });
                 }}
-              />
+              ></RichTextEditor>
             </div>
             <label htmlFor="prix">Media</label>
             <div className="media">

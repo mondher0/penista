@@ -5,6 +5,7 @@ import { baseUrl } from "../../utils/constants";
 import { useEffect, useState } from "react";
 import PopUp from "../shared/popUp/PopUp";
 import usePopUpContext from "../../hooks/usePopUpContext";
+import { useNavigate } from "react-router-dom";
 
 const DemandeAbonnementTable = () => {
   const [demandeAbonnement, setDemandeAbonnement] = useState();
@@ -16,6 +17,7 @@ const DemandeAbonnementTable = () => {
   const [currentPage, setCurrentPage] = useState(1);
   const [pages, setPages] = useState(0);
   const [isError, setIsError] = useState(false);
+  const navigate = useNavigate();
 
   // Get all demande abonnement
   const getDemandeAbonnement = async () => {
@@ -122,6 +124,19 @@ const DemandeAbonnementTable = () => {
                           className="hover"
                           onClick={() => {
                             handleDownload(demande.payment_receipt);
+                            const imageUrl = demande.payment_receipt;
+                            const imageNameWithExtension = imageUrl.substring(
+                              imageUrl.lastIndexOf("/") + 1
+                            );
+                            const imageName =
+                              imageNameWithExtension.split(".")[0];
+                            const imageExtension =
+                              imageNameWithExtension.split(".")[1];
+                            console.log("Image Name: " + imageName);
+                            console.log("Image Extension: " + imageExtension);
+                            navigate(
+                              `/telecharger-reçu/${imageName}?extension=${imageExtension}`
+                            );
                           }}
                         />
                       )}

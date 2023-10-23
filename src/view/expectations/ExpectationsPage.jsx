@@ -39,7 +39,7 @@ const ExpectationsPage = () => {
                   </select>
                 </div>
                 <div className="element">
-                  <div>Adversaire</div>
+                  <div>Club</div>
                   <input
                     type="text"
                     placeholder="Ecrivez..."

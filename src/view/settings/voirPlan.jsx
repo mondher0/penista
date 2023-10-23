@@ -79,12 +79,23 @@ const VoirPlan = () => {
                                 }}
                               />
                             </td>
-                            <td>{plan.description}</td>
+                            <td
+                              dangerouslySetInnerHTML={{
+                                __html: plan.description,
+                              }}
+                            ></td>
                             <td>{plan.card_price}</td>
                             <td>
-                              <img src={edite} alt="edite" className="hover" onClick={() => {
-                                navigate(`/parametres/modifier-plan/${plan.id}`);
-                              }}/>
+                              <img
+                                src={edite}
+                                alt="edite"
+                                className="hover"
+                                onClick={() => {
+                                  navigate(
+                                    `/parametres/modifier-plan/${plan.id}`
+                                  );
+                                }}
+                              />
                             </td>
                           </tr>
                         </>

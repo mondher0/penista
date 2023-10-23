@@ -50,6 +50,7 @@ import AddQuizzPage from "./view/quiz/AddQuizzPage";
 import EditQuizzPage from "./view/quiz/EditQuizzPage";
 import ReportsPage from "./view/reports/ReportsPage";
 import SeeReport from "./view/reports/SeeReport";
+import DownloadImage from "./view/downlod-image/DownloadImage";
 
 function App() {
   return (
@@ -128,6 +129,7 @@ function App() {
             element={<EditCategoriePage />}
           />
           <Route path="/offres/ajouter-offre" element={<AddOffrePage />} />
+          <Route path="/telecharger-reçu/:img" element={<DownloadImage />} />
           <Route
             path="/offres/modifier-offre/:id"
             element={<EditSingleOffre />}

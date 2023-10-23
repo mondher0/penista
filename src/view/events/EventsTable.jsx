@@ -6,6 +6,7 @@ import { useEffect, useState } from "react";
 import axiosInstance from "../../utils/axiosInstance";
 import { baseUrl } from "../../utils/constants";
 import usePopUpContext from "../../hooks/usePopUpContext";
+import { useNavigate } from "react-router-dom";
 
 const EventsTable = () => {
   const [showPopUp1, setShowPopUp1] = useState(false);
@@ -17,6 +18,7 @@ const EventsTable = () => {
   const [isError, setIsError] = useState(false);
   const [isEmpty, setIsEmpty] = useState(false);
   const { update } = usePopUpContext();
+  const navigate = useNavigate();
   // get events
   const getReservations = async () => {
     try {
@@ -35,7 +37,6 @@ const EventsTable = () => {
       setIsError(true);
     }
   };
-
 
   // download image
   const handleDownload = async (url) => {
@@ -134,6 +135,19 @@ const EventsTable = () => {
                             className="hover"
                             onClick={() => {
                               handleDownload(reservation.image);
+                              const imageUrl = reservation.image;
+                              const imageNameWithExtension = imageUrl.substring(
+                                imageUrl.lastIndexOf("/") + 1
+                              );
+                              const imageName =
+                                imageNameWithExtension.split(".")[0];
+                              const imageExtension =
+                                imageNameWithExtension.split(".")[1];
+                              console.log("Image Name: " + imageName);
+                              console.log("Image Extension: " + imageExtension);
+                              navigate(
+                                `/telecharger-reçu/${imageName}?extension=${imageExtension}`
+                              );
                             }}
                           />
                         ) : null}

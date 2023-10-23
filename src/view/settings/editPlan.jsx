@@ -7,6 +7,7 @@ import axiosInstance from "../../utils/axiosInstance";
 import { baseUrl } from "../../utils/constants";
 import { useParams } from "react-router-dom";
 import { image } from "../../assets/index";
+import RichTextEditor from "@mantine/rte";
 const EditPlan = () => {
   const { id } = useParams();
   const [loading, setLoading] = useState(false);
@@ -107,16 +108,18 @@ const EditPlan = () => {
             </div>
             <div className="input nom">
               <label htmlFor="nom">Description</label>
-              <input
-                type="text"
-                name="price"
-                id="price"
-                placeholder="Description"
+              <RichTextEditor
+                sx={{
+                  padding: "20px",
+                  display: "flex",
+                  flexDirection: "column",
+                  justifyContent: "center",
+                }}
                 value={description}
                 onChange={(e) => {
-                  setDescription(e.target.value);
+                  setDescription(e);
                 }}
-              />
+              ></RichTextEditor>
             </div>
             <label htmlFor="image">Image</label>
             <div className="media">

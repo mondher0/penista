@@ -7,6 +7,7 @@ import axiosInstance from "../../utils/axiosInstance";
 import { baseUrl } from "../../utils/constants";
 import { useParams } from "react-router-dom";
 import { image } from "../../assets/index";
+import RichTextEditor from "@mantine/rte";
 const AddClub = () => {
   const { id } = useParams();
   const [loading, setLoading] = useState(false);
@@ -91,15 +92,18 @@ const AddClub = () => {
             </div>
             <div className="input nom">
               <label htmlFor="nom">Description</label>
-              <textarea
-                type="text"
-                name="price"
-                id="price"
-                placeholder="Description"
-                onChange={(e) => {
-                  setDescription(e.target.value);
+              <RichTextEditor
+                sx={{
+                  padding: "20px",
+                  display: "flex",
+                  flexDirection: "column",
+                  justifyContent: "center",
                 }}
-              />
+                value={description}
+                onChange={(e) => {
+                  setDescription(e);
+                }}
+              ></RichTextEditor>
             </div>
             <label htmlFor="image">Image</label>
             <div className="media">

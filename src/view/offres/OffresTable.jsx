@@ -1,3 +1,4 @@
+/* eslint-disable react/no-danger-with-children */
 /* eslint-disable react-hooks/exhaustive-deps */
 import "../produit/ProductTable.css";
 import { deleteIcon, edite } from "../../assets/index";
@@ -73,7 +74,7 @@ const OffresTable = () => {
                 <>
                   <tr>
                     <td>{offre.id}</td>
-                    <td>{offre.title}</td>
+                    <td dangerouslySetInnerHTML={{ __html: offre.title }}></td>
                     <td>{offre.percentage}</td>
                     <td>{offre.promo_code}</td>
                     <td>{offre.expirationDate}</td>

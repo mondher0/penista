@@ -16,6 +16,7 @@ import {
 import axiosInstance from "../../utils/axiosInstance";
 import { baseUrl } from "../../utils/constants";
 import { useState } from "react";
+import RichTextEditor from "@mantine/rte";
 
 const initialState = {
   type: "",
@@ -98,18 +99,21 @@ const AddOffrePage = () => {
             </div>
             <div className="input nom">
               <label htmlFor="nom">Titre de l’offre</label>
-              <input
-                type="text"
-                id="nom"
-                name="nom"
-                placeholder="Titre de l’offre"
+              <RichTextEditor
+                sx={{
+                  padding: "20px",
+                  display: "flex",
+                  flexDirection: "column",
+                  justifyContent: "center",
+                }}
+                value={state.title}
                 onChange={(e) => {
                   dispatch({
                     type: SET_OFFRE_TITLE,
-                    payload: e.target.value,
+                    payload: e,
                   });
                 }}
-              />
+              ></RichTextEditor>
             </div>
             <label htmlFor="prix">Media</label>
             <div className="media">
