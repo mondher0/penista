@@ -31,7 +31,7 @@ const SeeReport = () => {
 
   return (
     <>
-      <NavBar title="Quizz" />
+      <NavBar title="Signalement" />
       <div className="container">
         <p>Voir signalement</p>
         <div className="form">
