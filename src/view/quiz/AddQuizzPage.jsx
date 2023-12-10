@@ -3,6 +3,7 @@ import { useEffect, useState } from "react";
 import NavBar from "../shared/navBar/NavBar";
 import axiosInstance from "../../utils/axiosInstance";
 import { baseUrl } from "../../utils/constants";
+import TimePicker from "react-time-picker";
 
 const AddQuizzPage = () => {
   const [firstTeam, setFirstTeam] = useState("");
@@ -18,12 +19,13 @@ const AddQuizzPage = () => {
   const [error, setError] = useState(false);
   const [isLoaded, setIsLoaded] = useState(false);
   const [isError, setIsError] = useState(false);
+  const [time, setTime] = useState(new Date());
 
   // get all countries
   const getCountries = async () => {
     try {
       const response = await axiosInstance.get(
-        `${baseUrl}countries/?no_pagination=true`
+        `${baseUrl}countries/?no_pagination=true`,
       );
       setCountries(response.data.countries);
     } catch (error) {
@@ -37,7 +39,7 @@ const AddQuizzPage = () => {
       setIsLoaded(true);
       setIsError(false);
       const response = await axiosInstance.get(
-        `${baseUrl}teams/notActive/?no_pagination=true&country=${country}`
+        `${baseUrl}teams/notActive/?no_pagination=true&country=${country}`,
       );
       setTeams(response.data.teams);
       setIsLoaded(false);
@@ -53,7 +55,7 @@ const AddQuizzPage = () => {
       setIsLoaded(true);
       setIsError(false);
       const response = await axiosInstance.get(
-        `${baseUrl}teams/notActive/?no_pagination=true&country=${country2}`
+        `${baseUrl}teams/notActive/?no_pagination=true&country=${country2}`,
       );
       console.log(response);
       setTeams2(response.data.teams);
@@ -69,16 +71,17 @@ const AddQuizzPage = () => {
     e.preventDefault();
     try {
       setIsLoading(true);
+      console.log(time);
       const data = {
         team1_id: firstTeam,
         team2_id: secondTeam,
-        start_date: date + " " + "00:00",
+        start_date: date + " " + time,
         league: cup,
       };
       console.log(data);
       const response = await axiosInstance.post(
         `${baseUrl}quiz/admin/create/`,
-        data
+        data,
       );
       console.log(response);
       if (response.data.success === false) {
@@ -216,6 +219,15 @@ const AddQuizzPage = () => {
                 placeholder="Entrer la date du match"
                 onChange={(e) => {
                   setDate(e.target.value);
+                }}
+              />
+              <input
+                type="time"
+                id="nom"
+                name="nom"
+                placeholder="Entrer la date du match"
+                onChange={(e) => {
+                  setTime(e.target.value);
                 }}
               />
             </div>
