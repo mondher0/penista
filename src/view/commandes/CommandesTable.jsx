@@ -18,13 +18,26 @@ const CommandesTable = () => {
   const [showPopUp1, setShowPopUp1] = useState(false);
   const [showPopUp2, setShowPopUp2] = useState(false);
   const { update } = usePopUpContext();
-  // get all commandes
+  const [commande, setCommande] = useState();
+  const style = {
+    width: "50%",
+    height: "40px",
+    margin: "auto",
+    fontSize: "20px",
+    paddingLeft: "10px",
+    border: "1px solid #ccc",
+    borderRadius: "5px",
+  };
 
+  // get all commandes
   const getCommandes = async () => {
     try {
       setIsLoading(true);
+      setIsEmpty(false);
       const response = await axiosInstance.get(
-        `${baseUrl}order/?page=${currentPage}`
+        `${baseUrl}order/?page=${currentPage} 
+         ${commande ? `&q=${commande}` : ""}
+        `,
       );
       setOrders(response.data.data.orders);
       if (response.data.data.orders.length === 0) {
@@ -39,7 +52,7 @@ const CommandesTable = () => {
   };
   useEffect(() => {
     getCommandes();
-  }, [currentPage, update]);
+  }, [currentPage, update, commande]);
 
   // Pagination handlers
   const goToPreviousPage = () => {
@@ -52,6 +65,12 @@ const CommandesTable = () => {
 
   return (
     <>
+      <input
+        type="text"
+        onChange={(e) => setCommande(e.target.value)}
+        style={style}
+        placeholder="Rechercher une commande"
+      />
       {isLoading && <div className="loader">Chargement...</div>}
       {isError && <div className="loader">Erreur de chargement</div>}
       {isEmpty && <div className="loader">Aucune commande</div>}

@@ -15,12 +15,25 @@ const CadeauxTable = () => {
   const [isEmpty, setIsEmpty] = useState(false);
   const [showPopUp, setShowPopUp] = useState(false);
   const { update } = usePopUpContext();
+  const style = {
+    width: "50%",
+    height: "40px",
+    margin: "auto",
+    fontSize: "20px",
+    paddingLeft: "10px",
+    border: "1px solid #ccc",
+    borderRadius: "5px",
+  };
+  const [user, setUser] = useState();
+
   // get users
   const getUsers = async () => {
     try {
       setIsLoading(true);
+      setIsEmpty(false);
       const response = await axiosInstance.get(
-        `${baseUrl}accounts/users/?page=${currentPage}`
+        `${baseUrl}accounts/users/?page=${currentPage}
+         ${user ? `&q=${user}` : ""}`,
       );
       setUsers(response.data.data.users);
       if (response.data.data.users.length === 0) {
@@ -36,7 +49,7 @@ const CadeauxTable = () => {
 
   useEffect(() => {
     getUsers();
-  }, [currentPage, update]);
+  }, [currentPage, update, user]);
 
   // Pagination handlers
   const goToPreviousPage = () => {
@@ -49,6 +62,12 @@ const CadeauxTable = () => {
 
   return (
     <>
+      <input
+        type="text"
+        onChange={(e) => setUser(e.target.value)}
+        style={style}
+        placeholder="Rechercher un utilisateur"
+      />
       {isLoading && <div className="loader">Chargement...</div>}
       {isError && <div className="loader">Erreur de chargement</div>}
       {isEmpty && <div className="loader">Aucun cadeau</div>}

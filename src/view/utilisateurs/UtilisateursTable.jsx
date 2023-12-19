@@ -22,14 +22,28 @@ const UtilisateursTable = () => {
 
   const { update } = usePopUpContext();
   const navigate = useNavigate();
+  const [user, setUser] = useState();
+  const style = {
+    width: "50%",
+    height: "40px",
+    margin: "auto",
+    fontSize: "20px",
+    paddingLeft: "10px",
+    border: "1px solid #ccc",
+    borderRadius: "5px",
+  };
 
   // Fetch users based on the current page
   const getUsers = async () => {
     try {
       setIsLoading(true);
+      setIsEmpty(false);
       const response = await axiosInstance.get(
-        `${baseUrl}accounts/users/?page=${currentPage}`
+        `${baseUrl}accounts/users/?page=${currentPage}${
+          user ? `&q=${user}` : ""
+        }`,
       );
+      console.log(response.data.data.users);
       setUsers(response.data.data.users);
       if (response.data.data.users.length === 0) {
         setIsEmpty(true);
@@ -44,7 +58,7 @@ const UtilisateursTable = () => {
 
   useEffect(() => {
     getUsers();
-  }, [currentPage, update]);
+  }, [currentPage, update, user]);
 
   // Pagination handlers
   const goToPreviousPage = () => {
@@ -57,6 +71,12 @@ const UtilisateursTable = () => {
 
   return (
     <>
+      <input
+        type="text"
+        onChange={(e) => setUser(e.target.value)}
+        style={style}
+        placeholder="Rechercher un utilisateur"
+      />
       {isLoading && <div className="loader">Chargement...</div>}
       {isError && <div className="loader">Erreur de chargement</div>}
       {isEmpty && <div className="loader">Aucun utilisateur</div>}

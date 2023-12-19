@@ -18,13 +18,26 @@ const DemandeAbonnementTable = () => {
   const [pages, setPages] = useState(0);
   const [isError, setIsError] = useState(false);
   const navigate = useNavigate();
+  const style = {
+    width: "50%",
+    height: "40px",
+    margin: "auto",
+    fontSize: "20px",
+    paddingLeft: "10px",
+    border: "1px solid #ccc",
+    borderRadius: "5px",
+  };
+  const [user, setUser] = useState();
 
   // Get all demande abonnement
   const getDemandeAbonnement = async () => {
     try {
       setIsLoading(true);
+      setIsEmpty(false);
       const response = await axiosInstance.get(
-        `${baseUrl}accounts/subscription/?page=${currentPage}`
+        `${baseUrl}accounts/subscription/?page=${currentPage}
+          ${user ? `&q=${user}` : ""}
+        `,
       );
       setPages(response.data.data.pages);
       setDemandeAbonnement(response.data.data.subscriptions);
@@ -72,10 +85,16 @@ const DemandeAbonnementTable = () => {
   useEffect(() => {
     getDemandeAbonnement();
     // eslint-disable-next-line react-hooks/exhaustive-deps
-  }, [currentPage, update]);
+  }, [currentPage, update, user]);
 
   return (
     <>
+      <input
+        type="text"
+        onChange={(e) => setUser(e.target.value)}
+        style={style}
+        placeholder="Rechercher un utilisateur"
+      />
       {isLoading && <div className="loader">Chargement...</div>}{" "}
       {isEmpty && <div className="loader">Aucune demande d{"'"}abonnement</div>}
       {isError && <div className="loader">Erreur de chargement</div>}
@@ -126,7 +145,7 @@ const DemandeAbonnementTable = () => {
                             handleDownload(demande.payment_receipt);
                             const imageUrl = demande.payment_receipt;
                             const imageNameWithExtension = imageUrl.substring(
-                              imageUrl.lastIndexOf("/") + 1
+                              imageUrl.lastIndexOf("/") + 1,
                             );
                             const imageName =
                               imageNameWithExtension.split(".")[0];
@@ -135,7 +154,7 @@ const DemandeAbonnementTable = () => {
                             console.log("Image Name: " + imageName);
                             console.log("Image Extension: " + imageExtension);
                             navigate(
-                              `/telecharger-reçu/${imageName}?extension=${imageExtension}`
+                              `/telecharger-reçu/${imageName}?extension=${imageExtension}`,
                             );
                           }}
                         />

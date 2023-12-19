@@ -12,13 +12,26 @@ const TicketsTable = () => {
   const [pages, setPages] = useState(0);
   const [isError, setIsError] = useState(false);
   const [isEmpty, setIsEmpty] = useState(false);
+  const style = {
+    width: "50%",
+    height: "40px",
+    margin: "auto",
+    fontSize: "20px",
+    paddingLeft: "10px",
+    border: "1px solid #ccc",
+    borderRadius: "5px",
+  };
+  const [ticket, setTicket] = useState();
 
   // get tickets
   const getTickets = async () => {
     try {
       setIsLoading(true);
+      setIsEmpty(false);
       const response = await axiosInstance.get(
-        `${baseUrl}match/ticket/?page=${currentPage}`
+        `${baseUrl}match/ticket/?page=${currentPage}
+         ${ticket ? `&q=${ticket}` : ""}
+        `,
       );
       if (response.data.data.tickets?.length === 0) {
         setIsEmpty(true);
@@ -34,7 +47,7 @@ const TicketsTable = () => {
 
   useEffect(() => {
     getTickets();
-  }, [currentPage]);
+  }, [currentPage, ticket]);
 
   // Pagination handlers
   const goToPreviousPage = () => {
@@ -46,6 +59,12 @@ const TicketsTable = () => {
   };
   return (
     <>
+      <input
+        type="text"
+        onChange={(e) => setTicket(e.target.value)}
+        style={style}
+        placeholder="Rechercher un tiquet"
+      />
       {isLoading && <div className="loader">Chargement...</div>}
       {isError && <div className="loader">Erreur de chargement</div>}
       {isEmpty && <div className="loader">Aucune demande</div>}
