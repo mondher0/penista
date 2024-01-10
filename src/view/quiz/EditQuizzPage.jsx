@@ -102,7 +102,7 @@ const EditQuizzPage = () => {
                 }}
                 disabled
               >
-                <option value={country}>{country}</option>
+                <option value={country2}>{country2}</option>
               </select>
             </div>
             <div className="input nom">
@@ -113,7 +113,7 @@ const EditQuizzPage = () => {
                 }}
                 disabled
               >
-                <option value={country2}>{country2}</option>
+                <option value={country}>{country}</option>
               </select>
             </div>
             <div className="input nom">
@@ -124,7 +124,7 @@ const EditQuizzPage = () => {
                 }}
                 disabled
               >
-                <option value={firstTeam}>{firstTeam}</option>
+                <option value={secondTeam}>{secondTeam}</option>
               </select>
             </div>
 
@@ -136,7 +136,7 @@ const EditQuizzPage = () => {
                 }}
                 disabled
               >
-                <option value={secondTeam}>{secondTeam}</option>
+                <option value={firstTeam}>{firstTeam}</option>
               </select>
             </div>
             <div className="input nom">
