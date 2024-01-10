@@ -76,8 +76,9 @@ const MesQuizzTable = () => {
                   <tr>
                     <td>{offre.id}</td>
                     <td>{offre.startDate}</td>
-                    <td>{offre.awayTeam.name}</td>
                     <td>{offre.homeTeam.name}</td>
+                    <td>{offre.awayTeam.name}</td>
+            
                     <td>{offre.league}</td>
                     <td>
                       <div className="type">{offre.status}</div>
