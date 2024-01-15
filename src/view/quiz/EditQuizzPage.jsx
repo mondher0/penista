@@ -20,6 +20,7 @@ const EditQuizzPage = () => {
   const [error, setError] = useState(false);
   const [firstTeamResult, setFirstTeamResult] = useState();
   const [secondTeamResult, setSecondTeamResult] = useState();
+  const [time, setTime] = useState(new Date());
 
   // get single quizz
   const getSingleQuizz = async () => {
@@ -54,7 +55,7 @@ const EditQuizzPage = () => {
       const data = {
         team1_id: firstTeamId,
         team2_id: secondTeamId,
-        start_date: date + " " + "00:00",
+        start_date: date + " " + time,
         league: cup,
       };
       const data2 = {
@@ -175,6 +176,15 @@ const EditQuizzPage = () => {
                 value={date}
                 onChange={(e) => {
                   setDate(e.target.value);
+                }}
+              />
+              <input
+                type="time"
+                id="nom"
+                name="nom"
+                placeholder="Entrer la date du match"
+                onChange={(e) => {
+                  setTime(e.target.value);
                 }}
               />
             </div>
