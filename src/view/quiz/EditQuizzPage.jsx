@@ -58,16 +58,16 @@ const EditQuizzPage = () => {
         league: cup,
       };
       const data2 = {
-        home_goals: firstTeamResult,
-        away_goals: secondTeamResult,
+        home_goals: secondTeamResult,
+        away_goals: firstTeamResult,
       };
       const response = await axiosInstance.post(
         `${baseUrl}quiz/admin/update/${id}/`,
-        data
+        data,
       );
       const response2 = await axiosInstance.post(
         `${baseUrl}quiz/admin/status/${id}/`,
-        data2
+        data2,
       );
       console.log(response);
       console.log(response2);
@@ -146,7 +146,7 @@ const EditQuizzPage = () => {
                 id="nom"
                 name="nom"
                 placeholder="Entrer resultat de la première équipe"
-                value={firstTeamResult}
+                value={secondTeamResult}
                 onChange={(e) => {
                   setFirstTeamResult(e.target.value);
                 }}
@@ -159,9 +159,9 @@ const EditQuizzPage = () => {
                 id="nom"
                 name="nom"
                 placeholder="Entrer resultat de la deuxième équipe"
-                value={secondTeamResult}
+                value={firstTeamResult}
                 onChange={(e) => {
-                  setSecondTeamResult(e.target.value);
+                  setFirstTeamResult(e.target.value);
                 }}
               />
             </div>
