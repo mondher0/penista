@@ -149,7 +149,7 @@ const EditQuizzPage = () => {
                 placeholder="Entrer resultat de la première équipe"
                 value={secondTeamResult}
                 onChange={(e) => {
-                  setFirstTeamResult(e.target.value);
+                  setSecondTeamResult(e.target.value);
                 }}
               />
             </div>
