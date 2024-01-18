@@ -53,14 +53,14 @@ const EditQuizzPage = () => {
     try {
       setIsLoading(true);
       const data = {
-        team1_id: firstTeamId,
-        team2_id: secondTeamId,
-        start_date: date + " " + time,
+        team1_id: secondTeamId,
+        team2_id: firstTeamId,
+        start_date: date + " " + "00:00",
         league: cup,
       };
       const data2 = {
-        home_goals: secondTeamResult,
-        away_goals: firstTeamResult,
+        home_goals: parseInt(secondTeamResult),
+        away_goals: parseInt(firstTeamResult),
       };
       const response = await axiosInstance.post(
         `${baseUrl}quiz/admin/update/${id}/`,
