@@ -26,7 +26,6 @@ const ReportsTable = () => {
       const response = await axiosInstance.get(
         `${baseUrl}report/admin/?page=${currentPage}`
       );
-      console.log(response);
       setOffre(response.data.data.reports);
       setPages(response.data.data.pages);
       if (response.data.data.length === 0) {
