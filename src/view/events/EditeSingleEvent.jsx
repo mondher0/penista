@@ -220,7 +220,7 @@ const EditeSingleEvent = () => {
                 <option value="Regroupement">Regroupement</option>
                 <option value="voyage">voyage</option>
                 <option value="Compétition">Compétition</option>
-                <option value="fane zone">Fan Zone</option>
+                <option value="fan zone">Fan Zone</option>
               </select>
             </div>
             <div className="input desc">
