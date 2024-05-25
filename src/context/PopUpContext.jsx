@@ -12,7 +12,7 @@ const PopUpContextProvider = ({ children }) => {
   const handleBlock = async (id) => {
     try {
       const response = await axiosInstance.put(
-        `${baseUrl}accounts/users/block/${id}/`
+        `${baseUrl}accounts/users/block/${id}/`,
       );
       setUpdate(!update);
     } catch (error) {}
@@ -22,7 +22,7 @@ const PopUpContextProvider = ({ children }) => {
   const handleUnblock = async (id) => {
     try {
       const response = await axiosInstance.put(
-        `${baseUrl}accounts/users/deblock/${id}/`
+        `${baseUrl}accounts/users/deblock/${id}/`,
       );
       setUpdate(!update);
     } catch (error) {}
@@ -32,7 +32,7 @@ const PopUpContextProvider = ({ children }) => {
   const handleDelete = async (id) => {
     try {
       const response = await axiosInstance.delete(
-        `${baseUrl}product/delete/${id}/`
+        `${baseUrl}product/delete/${id}/`,
       );
       setUpdate(!update);
     } catch (error) {}
@@ -42,7 +42,7 @@ const PopUpContextProvider = ({ children }) => {
   const handleAccept = async (id) => {
     try {
       const response = await axiosInstance.put(
-        `${baseUrl}reservation/approve/${id}/`
+        `${baseUrl}reservation/approve/${id}/`,
       );
       setUpdate(!update);
     } catch (error) {}
@@ -52,7 +52,7 @@ const PopUpContextProvider = ({ children }) => {
   const handleRefuse = async (id) => {
     try {
       const response = await axiosInstance.put(
-        `${baseUrl}reservation/reject/${id}/`
+        `${baseUrl}reservation/reject/${id}/`,
       );
       setUpdate(!update);
     } catch (error) {}
@@ -62,7 +62,7 @@ const PopUpContextProvider = ({ children }) => {
   const handleAcceptDemandeAbonnement = async (id) => {
     try {
       const response = await axiosInstance.put(
-        `${baseUrl}accounts/subscription/approve/${id}/`
+        `${baseUrl}accounts/subscription/approve/${id}/`,
       );
       setUpdate(!update);
     } catch (error) {}
@@ -80,7 +80,7 @@ const PopUpContextProvider = ({ children }) => {
   const handleRefuseDemandeAbonnement = async (id) => {
     try {
       const response = await axiosInstance.put(
-        `${baseUrl}accounts/subscription/reject/${id}/`
+        `${baseUrl}accounts/subscription/reject/${id}/`,
       );
       setUpdate(!update);
     } catch (error) {}
@@ -90,7 +90,7 @@ const PopUpContextProvider = ({ children }) => {
   const handleDeleteAd = async (id) => {
     try {
       const response = await axiosInstance.delete(
-        `${baseUrl}ads/delete/${id}/`
+        `${baseUrl}ads/delete/${id}/`,
       );
       setUpdate(!update);
     } catch (error) {}
@@ -104,7 +104,7 @@ const PopUpContextProvider = ({ children }) => {
       };
       const response = await axiosInstance.put(
         `${baseUrl}accounts/users/point/retrive/${id}/`,
-        data
+        data,
       );
       setUpdate(!update);
     } catch (error) {}
@@ -114,7 +114,7 @@ const PopUpContextProvider = ({ children }) => {
   const handleAcceptOrder = async (id) => {
     try {
       const response = await axiosInstance.put(
-        `${baseUrl}order/delivery/${id}/`
+        `${baseUrl}order/delivery/${id}/`,
       );
       setUpdate(!update);
     } catch (error) {}
@@ -132,7 +132,7 @@ const PopUpContextProvider = ({ children }) => {
   const handleDeleteOffre = async (id) => {
     try {
       const response = await axiosInstance.delete(
-        `${baseUrl}promotion/delete/${id}/`
+        `${baseUrl}promotion/delete/${id}/`,
       );
       setUpdate(!update);
     } catch (error) {}
@@ -142,7 +142,7 @@ const PopUpContextProvider = ({ children }) => {
   const handleDeleteEvent = async (id) => {
     try {
       const response = await axiosInstance.delete(
-        `${baseUrl}event/delete/${id}/`
+        `${baseUrl}event/delete/${id}/`,
       );
       setUpdate(!update);
     } catch (error) {}
@@ -151,7 +151,7 @@ const PopUpContextProvider = ({ children }) => {
   const deleteCategorie = async (id) => {
     try {
       const response = await axiosInstance.delete(
-        `${baseUrl}category/admin/delete/${id}/`
+        `${baseUrl}category/admin/delete/${id}/`,
       );
       console.log(response);
       setUpdate(!update);
@@ -164,7 +164,35 @@ const PopUpContextProvider = ({ children }) => {
   const deleteQuizz = async (id) => {
     try {
       const response = await axiosInstance.delete(
-        `${baseUrl}quiz/admin/delete/${id}/`
+        `${baseUrl}quiz/admin/delete/${id}/`,
+      );
+      console.log(response);
+      setUpdate(!update);
+    } catch (error) {
+      console.log(error);
+    }
+  };
+
+  // desactivate user from chat
+  const desactiverUserFromChat = async (id) => {
+    try {
+      console.log(id);
+      const response = await axiosInstance.post(
+        `${baseUrl}report/admin/chat/block/${id}/`,
+      );
+      console.log(response);
+      setUpdate(!update);
+    } catch (error) {
+      console.log(error);
+    }
+  };
+
+  // activate user from chat
+  const activerUserFromChat = async (id) => {
+    try {
+      console.log(id);
+      const response = await axiosInstance.post(
+        `${baseUrl}report/admin/chat/unblock/${id}/`,
       );
       console.log(response);
       setUpdate(!update);
@@ -193,6 +221,8 @@ const PopUpContextProvider = ({ children }) => {
         deleteQuizz,
         update,
         setUpdate,
+        activerUserFromChat,
+        desactiverUserFromChat,
       }}
     >
       {children}

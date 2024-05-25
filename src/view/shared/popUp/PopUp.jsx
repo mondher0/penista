@@ -21,6 +21,8 @@ const PopUp = (props) => {
     handleDeleteEvent,
     deleteCategorie,
     deleteQuizz,
+    desactiverUserFromChat,
+    activerUserFromChat,
   } = usePopUpContext();
   const [points, setPoints] = useState();
   return (
@@ -119,6 +121,12 @@ const PopUp = (props) => {
                   }
                   if (props.action === "delete quizz") {
                     deleteQuizz(props.id);
+                  }
+                  if (props.action === "désactiver") {
+                    desactiverUserFromChat(props.id);
+                  }
+                  if (props.action === "activer") {
+                    activerUserFromChat(props.id);
                   }
                   props.setShowPopUp(false);
                 }}
