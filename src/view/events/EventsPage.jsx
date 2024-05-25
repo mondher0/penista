@@ -7,9 +7,11 @@ import { useState } from "react";
 import "../shared/popUp/PopUp.css";
 import axiosInstance from "../../utils/axiosInstance";
 import { baseUrl } from "../../utils/constants";
+
 const EventsPage = () => {
   const navigate = useNavigate();
   const [isError, setIsError] = useState(false);
+  const [isScanning, setIsScanning] = useState(false); // State to track if a scan is in progress
   const myStyle = {
     display: "flex",
     flexDirection: "row",
@@ -25,8 +27,10 @@ const EventsPage = () => {
   const [qrscan, setQrscan] = useState(false);
   const [success, setSuccess] = useState(false);
   const [succesData, setSuccesData] = useState();
+
   const handleScan = async (data) => {
-    if (data) {
+    if (data && !isScanning) { // Check if a scan is already in progress
+      setIsScanning(true); // Set scanning to true
       try {
         setQrscan(data);
         console.log(data);
@@ -45,14 +49,15 @@ const EventsPage = () => {
         if (!response.data.success) {
           setIsError(response.data.message);
           setSuccesData(response.data.data);
-          return;
         }
-        return;
       } catch (error) {
         console.log(error);
+      } finally {
+        setIsScanning(false); // Reset scanning state after processing
       }
     }
   };
+
   return (
     <>
       <NavBar title="Evénements" />
@@ -81,6 +86,7 @@ const EventsPage = () => {
                   setQrscan(false);
                   setIsError(false);
                   setSuccess(false);
+                  setIsScanning(false); // Reset scanning state on cancel
                 }}
               >
                 <img src={cancel} alt="cancel" />
@@ -98,7 +104,7 @@ const EventsPage = () => {
                           }}
                         />
                         <p style={pStyle}>
-                          Utilisateur:{succesData.client_name}
+                          Utilisateur: {succesData.client_name}
                         </p>
                         <p style={pStyle}>Event: {succesData.event_title}</p>
                         <p style={pStyle}>
@@ -125,14 +131,14 @@ const EventsPage = () => {
                           }}
                         />
                         <p style={pStyle}>
-                          Utilisateur:{succesData.client_name}
+                          Utilisateur: {succesData.client_name}
                         </p>
                         <p style={pStyle}>Event: {succesData.event_title}</p>
                         <p style={pStyle}>
                           Tickets: {succesData.used_tickets} /{" "}
                           {succesData.total_tickets}
                         </p>
-                        <p style={pStyle}>Status:{success}</p>
+                        <p style={pStyle}>Status: {success}</p>
                       </>
                     ) : (
                       <QrScanner
