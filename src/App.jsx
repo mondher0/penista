@@ -129,7 +129,14 @@ function App() {
             element={<EditCategoriePage />}
           />
           <Route path="/offres/ajouter-offre" element={<AddOffrePage />} />
-          <Route path="/telecharger-reçu/:img" element={<DownloadImage />} />
+          <Route
+            path="/telecharger-reçu/:img"
+            element={<DownloadImage title="Telecharger reçu" />}
+          />
+          <Route
+            path="/tecket-img/:img"
+            element={<DownloadImage title="Ticket image" />}
+          />
           <Route
             path="/offres/modifier-offre/:id"
             element={<EditSingleOffre />}

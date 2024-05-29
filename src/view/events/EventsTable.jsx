@@ -24,11 +24,12 @@ const EventsTable = () => {
     try {
       setIsLoading(true);
       const response = await axiosInstance.get(
-        `${baseUrl}reservation/?page=${currentPage}`
+        `${baseUrl}reservation/?page=${currentPage}`,
       );
       if (response.data.reservations.length === 0) {
         setIsEmpty(true);
       }
+      console.log(response);
       setReservations(response.data.reservations);
       setPages(response.data.pages);
       setIsLoading(false);
@@ -88,6 +89,7 @@ const EventsTable = () => {
             <th>Prix</th>
             <th>Tiquet</th>
             <th>Date de résérvation</th>
+            <th>Status de résérvation</th>
             <th>Paiment</th>
             <th>Action</th>
           </tr>
@@ -119,8 +121,29 @@ const EventsTable = () => {
                       </div>
                     </td>
                     <td>{reservation.totalPrice} DA</td>
-                    <td>{reservation.ticket}</td>
+                    <td
+                      className="hover"
+                      onClick={() => {
+                        const imageUrl = baseUrl + reservation.ticket_image;
+                        console.log("Image URL: " + imageUrl);
+                        const imageNameWithExtension = imageUrl.substring(
+                          imageUrl.lastIndexOf("/") + 1,
+                        );
+                        console.log("Image Name with Extension: " + imageNameWithExtension);
+                        const imageName = imageNameWithExtension.split(".")[0];
+                        const imageExtension =
+                          imageNameWithExtension.split(".")[1];
+                        console.log("Image Name: " + imageName);
+                        console.log("Image Extension: " + imageExtension);
+                        navigate(
+                          `/tecket-img/${imageName}?extension=${imageExtension}`,
+                        );
+                      }}
+                    >
+                      {reservation.ticket}
+                    </td>
                     <td>{reservation.reservationDate}</td>
+                    <td>{reservation.status}</td>
                     <td>
                       {reservation.payment === "bank transfer"
                         ? "Versement"
@@ -137,7 +160,7 @@ const EventsTable = () => {
                               handleDownload(reservation.image);
                               const imageUrl = reservation.image;
                               const imageNameWithExtension = imageUrl.substring(
-                                imageUrl.lastIndexOf("/") + 1
+                                imageUrl.lastIndexOf("/") + 1,
                               );
                               const imageName =
                                 imageNameWithExtension.split(".")[0];
@@ -146,7 +169,7 @@ const EventsTable = () => {
                               console.log("Image Name: " + imageName);
                               console.log("Image Extension: " + imageExtension);
                               navigate(
-                                `/telecharger-reçu/${imageName}?extension=${imageExtension}`
+                                `/telecharger-reçu/${imageName}?extension=${imageExtension}`,
                               );
                             }}
                           />

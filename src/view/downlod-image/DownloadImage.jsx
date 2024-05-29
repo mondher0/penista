@@ -1,17 +1,18 @@
+/* eslint-disable react/prop-types */
 import { useParams } from "react-router-dom";
 import NavBar from "../shared/navBar/NavBar";
 import { baseUrl } from "../../utils/constants";
 
-const DownloadImage = () => {
+const DownloadImage = ({ title }) => {
   const { img } = useParams();
   const extension = new URLSearchParams(window.location.search).get(
-    "extension"
+    "extension",
   );
   console.log(extension);
   console.log(img);
   return (
     <>
-      <NavBar title="Telecharger reçu" />
+      <NavBar title={title} />
       <div
         className="download-image"
         style={{
